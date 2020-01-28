@@ -1,0 +1,13 @@
+@import "variables";
+@import "../../styles/app-colors";
+
+h1 {
+  color: $color-primary;
+}
+
+:host(.login) {
+  @include flex-center();
+  height: 100%;
+  min-height: 100vh;
+  background-color: $color-admin-background;
+}

@@ -1,0 +1,8 @@
+<h1>Launch Subscribers</h1>
+<app-launch-subscriber-filter [shouldResetFilter]="shouldResetFilter"
+                              (filterChanged)="onLaunchSubscriberFilterChanged($event)"
+                              (deleteRequested)="onLaunchSubscribersDeleteRequested($event)"></app-launch-subscriber-filter>
+<app-subscriber-list [subscribers]="launchSubscribers"
+                     [pagination]="launchSubscribersPagination"
+                     (subscribersSelected)="onSubscribersSelected($event)"
+                     (pageChanged)="onPageChanged($event)"></app-subscriber-list>

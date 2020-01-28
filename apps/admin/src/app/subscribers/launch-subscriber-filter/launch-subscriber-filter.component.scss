@@ -1,0 +1,37 @@
+@import "variables";
+
+.filters {
+  flex: 1;
+  @include flex-column();
+
+  @media #{$medium-up} {
+    @include flex-row();
+  }
+
+  .filter {
+    &:not(:last-of-type) {
+      @media #{$medium-up} {
+        margin-right: 1rem;
+      }
+    }
+  }
+}
+
+.actions {
+  @include flex-column();
+  margin: .25em 0;
+  padding-bottom: 1.34375em;
+
+  @media #{$medium-up} {
+    margin-left: auto;
+    @include flex-row();
+  }
+}
+
+:host(.launch-subscriber-filter) {
+  @include flex-column();
+
+  @media #{$medium-up} {
+    @include flex-row(center);
+  }
+}

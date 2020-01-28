@@ -1,0 +1,91 @@
+@import "variables";
+
+.pull-request-title-wrapper {
+  @include flex-column();
+  background: #F6F8FA;
+  border: 1px solid #C5C9CC;
+  border-radius: 3px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  .pull-request-title {
+    font-size: rem(14px);
+    font-weight: 700;
+  }
+
+  .pull-request-link {
+    align-self: flex-end;
+    font-size: rem(12px);
+
+    a {
+      color: #6A737D;
+      text-decoration: underline;
+    }
+  }
+}
+
+ol.rating-items {
+  padding: 0;
+  margin-left: 1.25rem;
+
+  li.rating-item {
+    display: list-item;
+    margin-bottom: 1rem;
+
+    .question {
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+
+    .score {
+      align-self: flex-start;
+
+      ::ng-deep .rating {
+        justify-content: flex-start;
+
+        .star-container {
+          margin: 0;
+
+          .star {
+            width: rem(25px);
+            height: rem(25px);
+
+            &:not(:last-of-type) {
+              margin-right: .25rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+ul.reviewers {
+  padding: 0;
+  margin: 0 0 1rem 0;
+  list-style-type: none;
+  @include responsive-grid-fill(25%);
+}
+
+.person {
+  @include flex-column(center);
+
+  img {
+    width: rem(40px);
+    height: rem(40px);
+    object-fit: contain;
+    border-radius: 4px;
+  }
+}
+
+.actions {
+  @include flex-column(center);
+  padding: 1rem 1rem 0 1rem;
+}
+
+.content {
+  @include flex-column();
+}
+
+:host(.pull-request-rating-dialog) {
+}

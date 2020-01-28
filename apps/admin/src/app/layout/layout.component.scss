@@ -1,0 +1,66 @@
+@import "variables";
+@import "../../styles/app-colors";
+
+.title {
+  margin: 0;
+  color: $color-primary;
+  font-size: rem(20px);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: rem(24px);
+}
+
+.toolbar {
+  background-color: $color-admin-background;
+
+  @media #{$medium-up} {
+    display: none;
+  }
+
+  .mat-icon {
+    color: $color-primary;
+  }
+}
+
+.logo-wrapper {
+  padding: 0 1rem;
+
+  .logo-container {
+    @include flex-row();
+
+    padding: 1.5rem 0;
+    border-bottom: solid thin $light-dividers;
+
+    .titles {
+      @include flex-column();
+      justify-content: space-around;
+      padding-left: 1rem;
+    }
+  }
+}
+
+.sidenav {
+  background-color: $color-admin-background;
+  width: 80%;
+
+  @media #{$medium-up} {
+    width: 15rem;
+  }
+
+  a {
+    &.active {
+      background-color: rgba(0, 0, 0, .2);
+      color: $color-primary;
+    }
+  }
+}
+
+.mat-sidenav-content {
+  padding: 0 2rem;
+  background-color: white;
+}
+
+:host(.layout) {
+}

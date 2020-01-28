@@ -1,0 +1,82 @@
+@import "variables";
+
+.hero {
+  @include flex-center();
+  height: rem(138px);
+  background-color: #444A52;
+  color: white;
+
+  @media #{$medium-up} {
+    height: rem(240px);
+  }
+
+  .page-title {
+    margin: 0;
+    font-size: rem(32px);
+
+    @media #{$medium-up} {
+      font-size: rem(64px);
+    }
+  }
+}
+
+.slogan {
+  font-size: rem(20px);
+  font-weight: 700;
+  text-align: center;
+  margin: 4rem 0;
+}
+
+ul.plans {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  li.plan {
+    padding: 1rem;
+  }
+}
+
+::ng-deep .mat-tab-group {
+  width: 100%;
+  max-width: rem(1090px);
+  margin: 0 auto;
+
+  .mat-tab-header {
+    border-bottom: none;
+
+    .mat-tab-label-container {
+      flex-grow: 0;
+      margin: 0 auto;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+  }
+}
+
+.contact-us {
+  @include flex-column(center);
+  margin: 5rem auto;
+  text-align: center;
+
+  .mat-flat-button {
+    margin: 1rem 0;
+  }
+}
+
+:host(.pricing) {
+  @include flex-column();
+  width: 100%;
+  min-height: calc(100vh - 56px - 79px);
+  //background-image: linear-gradient(#1E455C, #25292D);
+  //background-color: $color-dark-background;
+  position: relative;
+
+  @media #{$medium-up} {
+    min-width: rem(900px);
+    min-height: calc(100vh - 64px - 79px);
+  }
+
+  &.light-theme {
+    background-color: white;
+  }
+}

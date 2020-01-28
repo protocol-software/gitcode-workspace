@@ -1,0 +1,78 @@
+<h3>User Information</h3>
+<form [formGroup]="formGroup"
+      (ngSubmit)="onFormSubmit($event, formGroup.getRawValue())">
+  <mat-form-field floatLabel="always">
+    <mat-label>GitHub username</mat-label>
+    <input matInput
+           type="text"
+           formControlName="githubUsername"
+           required
+           placeholder="GitHub username">
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always">
+    <mat-label>GitHub repository URL</mat-label>
+    <input matInput
+           type="url"
+           formControlName="repository"
+           required
+           placeholder="GitHub repository">
+    <mat-error>A repository URL is required.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" *ngIf="false">
+    <mat-label>GitHub repository</mat-label>
+    <mat-select formControlName="repository" (selectionChange)="setSelectedRepo($event)">
+      <mat-select-trigger>
+        {{ selectedRepo ? selectedRepo.name : '' }}
+      </mat-select-trigger>
+      <mat-option *ngFor="let repository of publicRepositories" [value]="repository.url" class="repo-option">
+        <div class="key-value repo-key-value">
+          <div class="key">{{ repository.name }}</div>
+          <div class="value">{{ repository.url }}</div>
+        </div>
+      </mat-option>
+    </mat-select>
+    <mat-hint *ngIf="false">
+      {{ selectedRepo ? selectedRepo.url : '' }}
+    </mat-hint>
+    <mat-error>A repository is required.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always">
+    <mat-label>Email address</mat-label>
+    <input matInput
+           type="text"
+           formControlName="email"
+           required
+           placeholder="Please enter your email address">
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always">
+    <mat-label>Phone number</mat-label>
+    <input matInput
+           type="text"
+           formControlName="phone"
+           required
+           placeholder="Ex.82-01012345678">
+  </mat-form-field>
+
+  <mat-checkbox formControlName="isAgreementAccepted">
+    I have confirmed the purchase information and agree to the process. *
+  </mat-checkbox>
+
+  <div class="actions">
+    <div class="action" *ngIf="formGroup?.valid">
+      <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+    </div>
+    <button mat-flat-button
+            class="action"
+            type="submit"
+            *ngIf="!formGroup?.valid"
+            [disabled]="!formGroup?.valid">
+      <img
+        src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png"
+        alt="PayPal Logo">
+    </button>
+  </div>
+</form>

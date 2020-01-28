@@ -1,0 +1,52 @@
+@import "variables";
+
+.message-wrapper {
+  @include flex-column();
+  padding: .75em .5em 0.5em 1em;
+  background: #FFFFFF;
+  border: 1px solid #D1D5DA;
+  border-radius: 3px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 6px;
+    height: 100%;
+    border-left: 6px solid #2E76DF;
+    border-radius: 3px 0 0 3px;
+  }
+
+  &.is-read {
+    &::before {
+      border-left-color: #CDD0D4;
+    }
+  }
+
+  .message {
+    font-size: em(14px);
+  }
+
+  .created-at {
+    font-size: em(12px);
+    line-height: 2;
+    color: #A3AAB1;
+    text-align: right;
+    margin-top: 1em;
+  }
+
+  .close-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #A3AAB1;
+    cursor: pointer;
+  }
+}
+
+:host(.inbox-message) {
+  @include flex-column();
+  font-size: 1rem;
+}

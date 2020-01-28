@@ -1,0 +1,37 @@
+<div class="table" role="table">
+  <div class="headers row" role="rowheader">
+    <div class="header cell select" role="columnheader">
+      <mat-checkbox (change)="selectAllSubscribers($event)"></mat-checkbox>
+    </div>
+    <div class="header cell email" role="columnheader">Email Address</div>
+    <div class="header cell team-size" role="columnheader">Team Size</div>
+    <div class="header cell purposes" role="columnheader">Purposes</div>
+    <div class="header cell phone" role="columnheader">Phone</div>
+    <div class="header cell register-date" role="columnheader">Register Date</div>
+  </div>
+  <div class="row" role="row" *ngFor="let subscriber of subscribers | paginate: pagination">
+    <div class="cell select" role="cell">
+      <mat-checkbox [checked]="subscriber.isSelected"
+                    (change)="selectSubscriber($event, subscriber)"></mat-checkbox>
+    </div>
+    <div class="cell email" role="cell">{{ subscriber.email }}</div>
+    <div class="cell team-size" role="cell">{{ subscriber.teamSize }}</div>
+    <div class="cell purposes" role="cell">{{ subscriber.purposes.join(', ') }}</div>
+    <div class="cell phone" role="cell">{{ subscriber.phone }}</div>
+    <div class="cell register-date" role="cell" *ngIf="subscriber.registerDate">{{ subscriber.registerDate.seconds * 1000 | date:'yyyy-MM-dd HH:mm:ss' }}</div>
+    <div class="cell register-date" role="cell" *ngIf="!subscriber.registerDate">-</div>
+  </div>
+</div>
+
+<div class="pagination">
+  <pagination-controls (pageChange)="onPageChanged($event)"
+                       maxSize="9"
+                       directionLinks="true"
+                       autoHide="true"
+                       responsive="true"
+                       previousLabel="Previous"
+                       nextLabel="Next"
+                       screenReaderPaginationLabel="Pagination"
+                       screenReaderPageLabel="page"
+                       screenReaderCurrentLabel="You're on page"></pagination-controls>
+</div>

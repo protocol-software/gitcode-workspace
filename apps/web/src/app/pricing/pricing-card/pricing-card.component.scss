@@ -1,0 +1,136 @@
+@import "variables";
+
+.chips {
+  grid-area: chips;
+}
+
+.info {
+  grid-area: info;
+}
+
+.price-plan {
+  grid-area: price-plan;
+  @include flex-center();
+  line-height: 1.5;
+  padding: .5rem 0;
+}
+
+.actions {
+  grid-area: actions;
+  @include flex-center();
+}
+
+.chip {
+  @include flex-row-inline(center);
+  color: white;
+  padding: .25rem 1rem;
+  border: solid thin transparent;
+  border-radius: 9999px;
+  font-size: em(14px);
+
+  &.subscription {
+    background-color: #6749BA;
+  }
+
+  &.on-demand {
+    background-color: #2E76DF;
+  }
+
+  img.icon {
+    margin-right: .5rem;
+    width: rem(15px);
+    height: rem(15px);
+    object-fit: contain;
+  }
+}
+
+.title {
+  font-size: rem(14px);
+  font-weight: 700;
+  line-height: 2;
+  margin: 0;
+
+  @media #{$medium-up} {
+    font-size: rem(20px);
+    line-height: 3;
+  }
+}
+
+.description {
+  font-size: em(14px);
+  color: #444A52;
+}
+
+ul.benefits {
+  margin: .5rem auto;
+  padding: 0 0 0 1rem;
+  list-style-type: none;
+  font-size: em(14px);
+  @include flex-row(center);
+  flex-wrap: wrap;
+  color: #444A52;
+  max-width: 15rem;
+
+  @media #{$medium-up} {
+    margin: .5rem 0;
+    max-width: unset;
+  }
+
+  li.benefit {
+    width: 100%;
+    padding-left: .2rem;
+    line-height: 2.5;
+    position: relative;
+
+    @media #{$medium-up} {
+      width: 50%;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: .65rem;
+      left: -1rem;
+      width: rem(14px);
+      height: rem(14px);
+      background: url("/assets/icons/check.svg") no-repeat;
+      background-size: contain;
+    }
+  }
+}
+
+.plans {
+  font-size: em(14px);
+}
+
+.plan-price {
+  font-size: em(32px);
+
+  @media #{$medium-up} {
+    font-size: em(48px);
+  }
+
+  &.on_demand {
+    &::after {
+      content: "~";
+    }
+  }
+}
+
+:host(.pricing-card) {
+  display: grid;
+  grid-template-areas: "chips" "price-plan" "info" "actions";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-row-gap: .5rem;
+  background: #FFFFFF;
+  box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  padding: 1rem;
+
+  @media #{$medium-up} {
+    grid-template-areas: "chips chips" "info price-plan" "info actions";
+    grid-template-columns: 1.5fr 1fr;
+    padding: 2rem;
+  }
+}

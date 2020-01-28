@@ -1,0 +1,46 @@
+<div class="filters">
+  <mat-form-field class="filter" floatLabel="always">
+    <mat-label>Team Size</mat-label>
+    <mat-select placeholder="Any" [formControl]="teamSizes" multiple>
+      <mat-select-trigger>
+        {{teamSizes.value ? (teamSizes.value[0] | titlecase) : ''}}
+        <span *ngIf="teamSizes.value?.length > 1">
+          (+{{teamSizes.value.length - 1}} {{teamSizes.value?.length === 2 ? 'other' : 'others'}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let teamSize of teamSizeList"
+                  [value]="teamSize.value">{{ teamSize.text }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="filter" floatLabel="always">
+    <mat-label>Purpose</mat-label>
+    <mat-select placeholder="Any" [formControl]="purposes" multiple>
+      <mat-select-trigger>
+        {{purposes.value ? (purposes.value[0] | titlecase) : ''}}
+        <span *ngIf="purposes.value?.length > 1">
+          (+{{purposes.value.length - 1}} {{purposes.value?.length === 2 ? 'other' : 'others'}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let purpose of purposeList"
+                  [value]="purpose.value">{{ purpose.text }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="filter" floatLabel="always">
+    <mat-label>Email Address</mat-label>
+    <mat-icon matPrefix>search</mat-icon>
+    <input matInput
+           [formControl]="keyword"
+           type="text"
+           placeholder="Search email address">
+  </mat-form-field>
+</div>
+
+<div class="actions">
+  <button class="action"
+          mat-stroked-button
+          color="warn"
+          (click)="requestDelete($event)">Delete
+  </button>
+</div>

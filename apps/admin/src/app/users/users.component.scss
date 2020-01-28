@@ -1,0 +1,15 @@
+@import "variables";
+
+:host(.users) {
+  @include flex-column(center);
+  width: 100vw;
+  min-height: 100vh;
+  //background-image: linear-gradient(#1E455C, #25292D);
+  background-color: #25292D;
+  position: relative;
+
+  @media #{$medium-up} {
+    @include flex-row();
+    justify-content: center;
+  }
+}

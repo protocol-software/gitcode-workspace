@@ -1,0 +1,159 @@
+@import "variables";
+@import "../../styles/app-colors";
+
+.toolbar {
+  background-color: $color-dark-background;
+  position: relative;
+
+  .sidenav-toggle {
+    @media #{$medium-up} {
+      display: none;
+    }
+
+    .mat-icon {
+      color: $color-primary;
+    }
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .spinner {
+    display: none;
+
+    @media #{$medium-up} {
+      display: block;
+    }
+  }
+
+  ul.menu-items {
+    display: none;
+    margin: 0;
+    padding: 0 1rem;
+    list-style-type: none;
+
+    @media #{$medium-up} {
+      @include flex-row(center);
+    }
+
+    li.menu-item {
+      a {
+        font-family: $body-font-family;
+        font-size: rem(14px);
+        color: white;
+        text-decoration: none;
+        padding: 0 1rem;
+
+        &:hover {
+          color: $color-primary;
+        }
+
+        &.active {
+          color: $color-primary;
+        }
+      }
+    }
+  }
+}
+
+.title {
+  margin: 0;
+  color: $color-primary;
+  font-size: rem(20px);
+}
+
+.logo-wrapper {
+  padding: 0 1rem;
+
+  .logo-container {
+    @include flex-row();
+
+    padding: 1.5rem 0;
+    border-bottom: solid thin $light-dividers;
+
+    .titles {
+      @include flex-column();
+      justify-content: space-around;
+      padding-left: 1rem;
+    }
+  }
+}
+
+.sidenav {
+  background-color: $color-dark-background;
+  width: 80%;
+
+  @media #{$medium-up} {
+    width: 15rem;
+  }
+
+  a {
+    font-family: $body-font-family;
+    font-size: rem(14px);
+
+    &.active {
+      background-color: rgba(0, 0, 0, .2);
+      color: $color-primary;
+    }
+  }
+}
+
+.mat-sidenav-content {
+  padding: 0;
+  background-color: white;
+}
+
+.footer {
+  @include flex-center();
+  margin-top: auto;
+  background-color: #CDD0D4;
+  color: #4E4E56;
+  padding: 2rem;
+}
+
+.user-menu {
+  .mat-button {
+    img {
+      width: rem(32px);
+      height: rem(32px);
+      object-fit: cover;
+      border-radius: 3px;
+    }
+  }
+}
+
+.notifications {
+  @include flex-center();
+}
+
+ul.inbox-messages {
+  margin: 0;
+  padding: 0 1rem;
+  list-style-type: none;
+
+  li.inbox-message {
+    &:not(:last-of-type) {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+::ng-deep .mat-menu-panel {
+  &.light-theme {
+    background-color: white;
+  }
+
+  .mat-menu-content {
+    .mat-menu-item {
+      font-family: $body-font-family;
+    }
+
+    .user-info {
+      padding: .5rem 1rem 1rem;
+    }
+  }
+}
+
+:host(.layout) {
+}

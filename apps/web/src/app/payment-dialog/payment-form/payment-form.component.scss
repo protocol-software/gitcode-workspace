@@ -1,0 +1,66 @@
+@import "variables";
+
+form {
+  @include flex-column();
+
+  .mat-form-field {
+
+  }
+}
+
+.actions {
+  @include flex-column(center);
+  justify-content: center;
+  padding: 1rem;
+
+  @media #{$medium-up} {
+    @include flex-row(center);
+    justify-content: space-around;
+  }
+
+  .action {
+    min-width: 10rem;
+
+    &[type=submit] {
+      filter: grayscale(1);
+      pointer-events: none;
+    }
+  }
+}
+
+.mat-option.repo-option {
+  height: auto;
+  line-height: 2;
+  padding: 1rem;
+}
+
+.repo-key-value {
+  .key {
+
+  }
+
+  .value {
+    font-size: .8em;
+    color: $color-gray-light;
+  }
+}
+
+::ng-deep .mat-checkbox {
+  .mat-checkbox-layout {
+    white-space: unset;
+
+    .mat-checkbox-inner-container {
+      margin-top: 2px;
+    }
+
+    .mat-checkbox-label {
+      font-size: em(12px);
+      line-height: 1.5;
+    }
+  }
+}
+
+:host(.payment-form) {
+  @include flex-column();
+  font-size: 1rem;
+}

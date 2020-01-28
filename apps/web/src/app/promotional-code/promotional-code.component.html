@@ -1,0 +1,16 @@
+<div class="input-with-action">
+  <mat-form-field floatLabel="always" class="compact">
+    <mat-label>Promotion Code</mat-label>
+    <input matInput
+           type="text"
+           [formControl]="promotionCodeFormControl"
+           placeholder="If you have a coupon code, enter it.">
+    <mat-error *ngIf="promotionCodeFormControl?.errors">The code is invalid or expired.</mat-error>
+  </mat-form-field>
+  <button mat-flat-button
+          color="primary"
+          [class.in-progress]="isPromotionCodeChecking"
+          [disabled]="!promotionCodeFormControl?.valid"
+          (click)="applyPromotionCode($event)">Apply
+  </button>
+</div>

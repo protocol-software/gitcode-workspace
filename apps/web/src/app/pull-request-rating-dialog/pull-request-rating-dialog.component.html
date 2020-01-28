@@ -1,0 +1,72 @@
+<button mat-icon-button mat-dialog-close class="close-icon" tabindex="-1">
+  <mat-icon>close</mat-icon>
+</button>
+
+<mat-dialog-content>
+  <div class="title">Rating</div>
+  <div class="content">
+    <div class="pull-request-title-wrapper">
+      <div class="pull-request-title">{{ pullRequest?.title }}</div>
+      <div class="pull-request-link">
+        <a href="{{ pullRequest?.url }}" target="_blank">View</a>
+      </div>
+    </div>
+
+    <div class="reviewer-selector">
+      <p>Please select reviewers to rate</p>
+      <mat-radio-group (change)="onReviewerSelectionChanged($event)">
+        <ul class="reviewers">
+          <li class="person reviewer">
+            <img class="person-avatar icon"
+                 [src]="pullRequest.reviewerAvatar"
+                 [alt]="pullRequest.reviewerId"
+                 (error)="imageService.handleImageLoadError($event, '/assets/images/github-avatar.svg')">
+            <div class="person-id">
+              <mat-radio-button [value]="pullRequest.reviewerId" checked>{{ pullRequest.reviewerId || '-' }}</mat-radio-button>
+            </div>
+          </li>
+        </ul>
+      </mat-radio-group>
+    </div>
+
+    <ol class="rating-items">
+      <li class="rating-item" *ngFor="let rating of ratings">
+        <div class="question">{{ rating.question }}</div>
+        <star-rating class="score"
+                     [starType]="'svg'"
+                     size="medium"
+                     [rating]="rating.score || 0"
+                     (ratingChange)="rating.score = $event.rating"></star-rating>
+      </li>
+    </ol>
+
+    <mat-form-field floatLabel="always" class="rating-comment-container">
+      <mat-label>Comment</mat-label>
+      <textarea matInput
+                [(ngModel)]="ratingComment"
+                placeholder="Please leave your comments about the code review."
+                rows="5"></textarea>
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-flat-button
+              class="action"
+              type="button"
+              color="primary"
+              (click)="saveRating($event)"
+              [disabled]="selectedReviewerIds?.length === 0">Complete
+      </button>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions *ngIf="false">
+  <div class="dialog-actions">
+    <button mat-flat-button
+            class="dialog-action"
+            type="button"
+            color="primary"
+            (click)="saveRating($event)">Complete
+    </button>
+  </div>
+</mat-dialog-actions>

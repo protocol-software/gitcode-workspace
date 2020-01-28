@@ -1,3 +1,6 @@
+# node version
+> v12.14.0
+
 # Run
 
 `yarn start web`  

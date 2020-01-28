@@ -1,0 +1,154 @@
+@import "variables";
+
+.toggle {
+  @include flex-center();
+  margin: 1rem auto;
+  font-size: rem(12px);
+  color: #2E76DF;
+  cursor: pointer;
+
+  .mat-icon {
+    transition: transform .3s ease;
+  }
+
+  &.open {
+    .mat-icon {
+      transform: rotateX(180deg);
+    }
+
+    + .benefits {
+      max-height: 500px;
+    }
+  }
+}
+
+.pricing-plan {
+  background-color: #F7F9FE;
+  padding: 0 1rem 1rem;
+}
+
+.info {
+  .description {
+    font-size: em(14px);
+  }
+}
+
+ul.benefits {
+  margin: .5rem 0;
+  padding: 0 0 0 1rem;
+  list-style-type: none;
+  font-size: em(14px);
+  @include flex-row();
+  flex-wrap: wrap;
+  color: #444A52;
+  max-width: 15rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .3s ease;
+
+  @media #{$medium-up} {
+    max-width: unset;
+  }
+
+  li.benefit {
+    width: 100%;
+    padding-left: .2rem;
+    padding-right: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+
+    @media #{$medium-up} {
+      width: 50%;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: .1rem;
+      left: -1rem;
+      width: rem(14px);
+      height: rem(14px);
+      background: url("/assets/icons/check.svg") no-repeat;
+      background-size: contain;
+    }
+  }
+}
+
+.divider {
+  display: block;
+  border-bottom: solid thin #CDD0D4;
+}
+
+.price-wrapper {
+  @include flex-row();
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 1rem 0;
+
+  .price {
+    font-size: em(20px);
+    font-weight: 700;
+  }
+
+  .unit {
+    font-size: em(14px);
+    margin-left: .25rem;
+  }
+}
+
+.discount-value-wrapper {
+  @include flex-row(center);
+  justify-content: flex-end;
+  padding: 1rem 0 .25rem;
+
+  .label {
+    font-size: em(14px);
+    font-weight: 700;
+    margin-right: 1em;
+  }
+
+  .value {
+    font-size: em(20px);
+    font-weight: 700;
+  }
+
+  + .note {
+    font-size: em(12px);
+    color: #444A52;
+    text-align: right;
+  }
+}
+
+.total-amount {
+  @include flex-row(baseline);
+  justify-content: flex-end;
+  padding: 1rem 0 .25rem;
+
+  .label {
+    font-size: em(14px);
+    font-weight: 700;
+    margin-right: 1em;
+  }
+
+  .value {
+    font-size: em(32px);
+    font-weight: 700;
+  }
+}
+
+.mat-icon.remove-code {
+  font-size: 1em;
+  line-height: 1.5;
+  text-align: center;
+  color: $color-gray;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-alert;
+  }
+}
+
+:host(.payment-review) {
+  @include flex-column();
+  font-size: 1rem;
+}

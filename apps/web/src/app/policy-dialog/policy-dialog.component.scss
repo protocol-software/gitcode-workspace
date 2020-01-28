@@ -1,0 +1,19 @@
+@import "variables";
+
+:host(.secondary) {
+  .title {
+    color: black;
+    background-color: $color-title-bar-background-secondary;
+  }
+
+  .close-icon {
+    ::ng-deep .mat-button-wrapper {
+      .mat-icon {
+        color: black;
+      }
+    }
+  }
+}
+
+:host(.policy-dialog) {
+}

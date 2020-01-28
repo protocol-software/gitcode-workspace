@@ -1,0 +1,8 @@
+<ul class="steps">
+  <li class="step"
+      *ngFor="let step of steps; let i = index"
+      [class.in-progress]="progressStep === i + 2"
+      [class.active]="progressStep === i + 1">
+    <span class="message">{{ step }}</span>
+  </li>
+</ul>

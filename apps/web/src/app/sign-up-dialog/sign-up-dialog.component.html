@@ -1,0 +1,45 @@
+<button mat-icon-button mat-dialog-close class="close-icon" tabindex="-1">
+  <mat-icon>close</mat-icon>
+</button>
+
+<mat-dialog-content>
+  <div class="title" [innerHtml]="'signUpDialog.title' | translate"></div>
+  <div class="content">
+    <form [formGroup]="formGroup"
+          (ngSubmit)="onFormSubmit($event, formGroup.value)">
+      <h4 [innerHtml]="'signUpDialog.agreementTitle' | translate"></h4>
+      <mat-checkbox formControlName="isAgreed" required>
+        <span [innerHtml]="'signUpDialog.agreementStart' | translate"></span>
+        <a href="#" (click)="displayTerms($event)" [innerHtml]="'signUpDialog.agreementTerms' | translate"></a>
+        <span [innerHtml]="'signUpDialog.agreementAnd' | translate"></span>
+        <a href="#" (click)="displayPolicy($event)" [innerHtml]="'signUpDialog.agreementPolicy' | translate"></a>
+        <span [innerHtml]="'signUpDialog.agreementEnd' | translate"></span>
+      </mat-checkbox>
+      <div class="form-control-alert" [innerHtml]="'signUpDialog.agreementRequired' | translate"></div>
+      <h4 [innerHtml]="'signUpDialog.githubRegistrationTitle' | translate"></h4>
+      <p [innerHtml]="'signUpDialog.githubRegistrationMessage' | translate">If you are not registered on Github, please register first.</p>
+      <a href="https://github.com/join" target="_blank" [innerHtml]="'signUpDialog.githubSignUpLink' | translate"></a>
+
+      <div class="form-actions">
+        <button mat-stroked-button
+                class="form-action"
+                type="submit"
+                [disabled]="!formGroup?.valid">
+          <img src="/assets/images/github-mark.svg" alt="GitHub">
+          <span [innerHtml]="'signUpDialog.githubSignIn' | translate"></span>
+        </button>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions *ngIf="false">
+  <div class="dialog-actions">
+    <button mat-flat-button
+            class="dialog-action"
+            color="primary"
+            type="button"
+            mat-dialog-close>OK
+    </button>
+  </div>
+</mat-dialog-actions>

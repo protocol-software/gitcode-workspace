@@ -1,0 +1,10 @@
+<div class="message-wrapper"
+     [class.is-read]="inboxMessage?.isRead"
+     (click)="markAsRead($event)">
+  <mat-icon class="close-icon"
+            (click)="deleteMessage($event)">remove_circle
+  </mat-icon>
+  <div class="message" [innerHtml]="inboxMessage?.message"></div>
+  <div class="created-at"
+       [innerHtml]="inboxMessage?.createdAt?.seconds | amFromUnix | amLocal | amDateFormat:'YYYY-MM-DD HH:mm:ss'"></div>
+</div>

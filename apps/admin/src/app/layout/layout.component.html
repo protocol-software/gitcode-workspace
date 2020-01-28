@@ -1,0 +1,36 @@
+<mat-toolbar class="toolbar">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1 class="title">{{ "RE: {CODE}; | ADMIN" }}</h1>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav class="sidenav"
+               [mode]="mobileQuery.matches ? 'over' : 'side'"
+               opened
+               [fixedInViewport]="true">
+    <div class="logo-wrapper">
+      <div class="logo-container">
+        <img class="logo" src="/assets/images/r.svg" alt="ReCode">
+        <div class="titles">
+          <h1 class="title">{{ "RE: {CODE};" }}</h1>
+          <h2 class="subtitle">Backoffice</h2>
+        </div>
+      </div>
+    </div>
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="/login" routerLinkActive="active">Home</a>
+
+      <a mat-list-item *ngFor="let menu of menuList" [routerLink]="menu.routerLink" routerLinkActive="active">{{ menu.title }}</a>
+
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/logout">Sign out</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

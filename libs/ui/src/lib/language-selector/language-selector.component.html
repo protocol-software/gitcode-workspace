@@ -1,0 +1,12 @@
+<button mat-button [matMenuTriggerFor]="langMenu" class="lang-menu">
+  <img [attr.src]="'https://www.countryflags.io/' + (selectedLanguage?.flagCode || selectedLanguage?.languageCode) + '/flat/24.png'"
+       alt="{{ selectedLanguage?.languageCode }}">
+  <span class="selected-language">{{ selectedLanguage?.languageText }}</span>
+</button>
+<mat-menu #langMenu="matMenu">
+  <button mat-menu-item *ngFor="let language of availableLanguages" (click)="changeLanguage(language.languageCode)">
+    <img [attr.src]="'https://www.countryflags.io/' + (language.flagCode || language.languageCode) + '/flat/24.png'"
+         alt="{{ language.languageCode }}">
+    <span>{{ ('languageSelector.' + language.languageCode) | translate }}</span>
+  </button>
+</mat-menu>

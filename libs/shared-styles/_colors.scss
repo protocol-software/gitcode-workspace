@@ -1,0 +1,180 @@
+/* For use in src/lib/core/theming/_palette.scss */
+$palette-turquoise: (
+  50 : #e7f7f7,
+  100 : #c3ecea,
+  200 : #9bdfdd,
+  300 : #73d2cf,
+  400 : #55c8c4,
+  500 : #37beba,
+  600 : #31b8b3,
+  700 : #2aafab,
+  800 : #23a7a3,
+  900 : #169994,
+  A100 : #cefffd,
+  A200 : #9bfffa,
+  A400 : #68fff8,
+  A700 : #4efff7,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$palette-coral: (
+  50 : #ffeeec,
+  100 : #ffd4d0,
+  200 : #ffb7b0,
+  300 : #ff9a90,
+  400 : #ff8579,
+  500 : #ff6f61,
+  600 : #ff6759,
+  700 : #ff5c4f,
+  800 : #ff5245,
+  900 : #ff4033,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #ffe0de,
+  A700 : #ffc8c4,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$palette-blue: (
+  50 : #e4e7f4,
+  100 : #bdc4e4,
+  200 : #919cd2,
+  300 : #6474bf,
+  400 : #4357b2,
+  500 : #2239a4,
+  600 : #1e339c,
+  700 : #192c92,
+  800 : #142489,
+  900 : #0c1778,
+  A100 : #a9b0ff,
+  A200 : #7681ff,
+  A400 : #4352ff,
+  A700 : #2a3bff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$palette-red: (
+  50 : #fbe9e7,
+  100 : #f4c7c3,
+  200 : #eda29b,
+  300 : #e67c73,
+  400 : #e06055,
+  500 : #db4437,
+  600 : #d73e31,
+  700 : #d2352a,
+  800 : #cd2d23,
+  900 : #c41f16,
+  A100 : #fff6f6,
+  A200 : #ffc5c3,
+  A400 : #ff9490,
+  A700 : #ff7c76,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$facebook-blue: #1777F2;
+
+$google-blue: #4285F4;
+$google-red: #DB4437;
+$google-yellow: #F4B400;
+$google-green: #0F9D58;
+$google-orange: #F57E02;
+$google-gray: #757575;
+
+$microsoft-red: #F25022;
+$microsoft-green: #7FBA00;
+$microsoft-blue: #00A4EF;
+$microsoft-orange: #FFB900;
+$microsoft-gray: #737373;
+
+$line-green: #00b900;
+
+$kakao-yellow: #fcd411;
+$kakao-brown: #2e2e30;
+
+$color-primary: map_get($palette-turquoise, 500);
+$color-accent: map_get($palette-coral, 500);
+
+$color-basic-blue: #2a2e7c;
+
+$color-gray: #BDBDBD;
+$color-gray-dark: #828282;
+$color-gray-darker: #383838;
+$color-gray-light: #E0E0E0;
+$color-gray-lighter: #F2F2F2;
+
+$color-text-default: rgba(0, 0, 0, .87);
+$color-text-default-subtle: rgba(0, 0, 0, .435);
+$color-text-light: rgba(255, 255, 255, .87);
+$color-text-light-subtle: #A6BBD2;
+
+$color-alert: map_get($palette-red, 400);
+
+$color-table-header-background: #F7F9FA;
+$color-table-header-text: #919699;
+$color-table-row-divider: #E3E5E6;
+
+$color-dark-background: #25292D;
+$color-title-bar-background: #2E76DF;
+$color-title-bar-background-secondary: #E9F0FD;
+
+$color-coral: #E6712F;

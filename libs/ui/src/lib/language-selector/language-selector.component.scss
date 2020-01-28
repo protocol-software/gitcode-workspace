@@ -1,0 +1,16 @@
+@import "libs/shared-styles/variables";
+
+.selected-language {
+  padding: 0 .5em;
+}
+
+.mat-menu-item {
+  @include flex-row(center);
+
+  img {
+    margin-right: .5em;
+  }
+}
+
+:host(.language-selector) {
+}

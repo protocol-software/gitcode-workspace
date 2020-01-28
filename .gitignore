@@ -40,5 +40,6 @@ Thumbs.db
 .firebase
 *.log
 
+environment.ts
 environment.dev.ts
 environment.prod.ts

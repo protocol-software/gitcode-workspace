@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutResolver } from './logout/logout.resolver';
 import { RegisterComponent } from './register/register.component';
+import { WrittenReviewComponent } from './written-review/written-review.component';
+import { RequestClaimComponent } from './request-claim/request-claim.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,17 +24,21 @@ const routes: Routes = [
   {
     path: 'pricing',
     loadChildren: () => import('./pricing/pricing.module').then(m => m.PricingModule),
+  },{	
+    path: 'written-review',	
+    loadChildren: () => import('./written-review/written-review.module').then(m => m.WrittenReviewModule),
   },
   {
     path: 'pull-requests',
     loadChildren: () => import('./pull-requests/pull-requests.module').then(m => m.PullRequestsModule),
   },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
-
+  { path:'request-claim',loadChildren: () => import('./request-claim/request-claim.module').then(m=>m.RequestClaimModule)},
+  
   { path: 'apply-reviewee', component: ApplyRevieweeComponent },
   { path: 'apply-reviewer', component: ApplyReviewerComponent },
-
   { path: '**', redirectTo: 'home' },
+
 ];
 
 @NgModule({
@@ -40,7 +46,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       anchorScrolling: 'enabled',
       scrollPositionRestoration: 'enabled',
-      useHash: false,
+      useHash: true,
     }),
   ],
   exports: [RouterModule],

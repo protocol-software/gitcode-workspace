@@ -1,0 +1,67 @@
+  <div class="close"> 
+    <button (click)="close()">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="#6A737D"/>
+      </svg>
+  </button> </div>
+  <h2><span class="mat-dialog-title">Request Claim</span></h2>  
+<div class="claim-title">
+  <span> <span class='circle'></span>Claim Info.</span>
+    <span class='line'> </span> 
+  <span> <span class='circle'></span><span class="grayish">Completed</span> </span>
+  </div>
+<div class="container1">
+     <div class="flex-content1">
+        <h4 class="title"> Claim Information </h4>
+        <div class="claim-information-grid">
+
+          <div class="claim-description">You can request a payment from ₩100,000 in cumulative revenue.</div>  
+          
+          <div class="detailed-price">
+            <span class="name">Total Revenue</span>
+            <span class="price">₩1,234,567</span>
+              <span class="name fonts">Claimable Amount</span>
+              <span class="price">₩234,567</span>
+          </div>
+
+            <div class="outlined">
+              <div class="final-price">
+              ₩<input type="text" name="ClaimAmount" class="field-style claim-style" placeholder="Enter Claim Amount" />
+              </div>
+            <div class="description">
+            <p><span class="red">*</span>Deposite will be charged excluding 3.3% tax from payment request threshold.</p>
+            </div>
+            </div>
+        
+          </div>
+          
+      </div>
+  <div class="flex-container2">
+    <h4 class="title"> Bank information </h4>
+       <form class="bank-information">
+          <!-- <mat-form-field  class="form-input-field" apearance="outline">
+    <input matInput placeholder="Enter Bank Name*" />
+  </mat-form-field> -->
+   <div class="form-group">
+        <label for="Bank">Bank </label><span class="red">*</span>
+        <input type="text" name="Bank" class="field-style" placeholder="Enter Bank name" />
+      </div>
+   <div class="form-group">
+        <label for="Account">Account </label><span class="red">*</span>
+        <input type="text" name="Account" class="field-style" placeholder="Enter Bank Account Number" />
+      </div>
+        <div class="form-group">
+        <label for="AccountHolder">Account Holder </label><span class="red">*</span>
+        <input type="text" name="AccountHolder" class="field-style full-width" placeholder="Enter Account Holder name" />
+      </div>
+  <label class="container">I Agree to provide personal information for depositing profits.<span class="red">*</span>
+  <input type="checkbox"  name="agreement">
+  <span class="checkmark"></span>
+</label>
+<div class="align-button">
+    <button class="button" type="submit">Apply</button>
+</div>
+         </form>
+     
+  </div>
+</div>

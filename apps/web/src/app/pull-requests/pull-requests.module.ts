@@ -26,7 +26,6 @@ import { PullRequestsService } from './pull-requests.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-
     MatButtonModule,
     MatCheckboxModule,
     MatFormFieldModule,
@@ -35,7 +34,6 @@ import { PullRequestsService } from './pull-requests.service';
     MatSelectModule,
     MomentModule,
     StarRatingModule.forChild(),
-
     LayoutModule,
     PullRequestRatingDialogModule,
     PullRequestsRoutingModule,

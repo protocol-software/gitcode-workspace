@@ -1,10 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+
 @import "reset";
 @import "variables";
 @import "utilities";
 @import "dialog";
 @import '~@angular/material/theming';
 @import './styles/app-colors.scss';
+
 
 body {
   color: mat-contrast($mat-secondary, 500);
@@ -140,3 +143,5 @@ p {
     }
   }
 }
+
+

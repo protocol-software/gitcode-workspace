@@ -4,11 +4,13 @@ import { ApplyRevieweeComponent } from './apply-reviewee/apply-reviewee.componen
 import { ApplyReviewerComponent } from './apply-reviewer/apply-reviewer.component';
 import { AuthGuard } from './core/auth.guard';
 import { HomeComponent } from './home/home.component';
+// import { MypagePublicPRComponent } from './mypage_public_pr/mypage_public_pr.component'
 import { LoginComponent } from './login/login.component';
 import { LogoutResolver } from './logout/logout.resolver';
 import { RegisterComponent } from './register/register.component';
-import { WrittenReviewComponent } from './written-review/written-review.component';
-import { RequestClaimComponent } from './request-claim/request-claim.component';
+// import { WrittenReviewComponent } from './written-review/written-review.component';
+// import { RequestClaimComponent } from './request-claim/request-claim.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,6 +30,7 @@ const routes: Routes = [
     path: 'written-review',	
     loadChildren: () => import('./written-review/written-review.module').then(m => m.WrittenReviewModule),
   },
+
   {
     path: 'pull-requests',
     loadChildren: () => import('./pull-requests/pull-requests.module').then(m => m.PullRequestsModule),
@@ -37,8 +40,17 @@ const routes: Routes = [
   
   { path: 'apply-reviewee', component: ApplyRevieweeComponent },
   { path: 'apply-reviewer', component: ApplyReviewerComponent },
+  { path: 'pr', 
+    loadChildren: () => import('./mypage_public_pr/mypage_public_pr.module').then(m => m.MypagePublicPRModule),
+  },
+  { path: 'my', 
+    loadChildren: () => import('./mypage-group/myprofit/myprofit.module').then(m => m.MyprofitModule),
+  },
+  { path: 'receive-review', 
+    loadChildren: () => import('./mypage_receive_review/mypage_receive_review.module').then(m => m.MypageReceiveReviewModule),
+  },
   { path: '**', redirectTo: 'home' },
-
+  
 ];
 
 @NgModule({

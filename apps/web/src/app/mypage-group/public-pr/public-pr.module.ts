@@ -23,7 +23,6 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {StarRatingModule } from 'angular-star-rating';
-import { PullRequestSummaryComponent } from './pull-request-summary/pull-request-summary.component';
 
 @NgModule({
   imports: [
@@ -52,8 +51,7 @@ import { PullRequestSummaryComponent } from './pull-request-summary/pull-request
     StarRatingModule,
     MatGridListModule,
   ],
-  declarations: [PublicPRComponent,
-    PullRequestSummaryComponent,
+  declarations: [PublicPRComponent
   
   ],
   providers: [],

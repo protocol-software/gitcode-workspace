@@ -23,6 +23,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {StarRatingModule } from 'angular-star-rating';
+import {PullRequestSummaryComponent} from './pull-request-summary/pull-request-summary.component';
+import {PublicPrService} from './public-pr.routing.service';
+import {PublicPrResolver} from './public-pr.routing.resolver';
+import {CustomModuleModule} from '../../custom-module/custom-module.module';
 
 @NgModule({
   imports: [
@@ -50,11 +54,16 @@ import {StarRatingModule } from 'angular-star-rating';
     MatRippleModule,
     StarRatingModule,
     MatGridListModule,
+    CustomModuleModule,
+    
   ],
-  declarations: [PublicPRComponent
+  declarations: [PublicPRComponent,PullRequestSummaryComponent,
   
   ],
-  providers: [],
+  providers: [
+    PublicPrService,
+    PublicPrResolver,
+  ],
   exports: [
     PublicPRComponent,
     MatButtonModule,

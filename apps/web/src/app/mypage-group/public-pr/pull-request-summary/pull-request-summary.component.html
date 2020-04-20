@@ -14,7 +14,8 @@
            [alt]="pullRequest?.status"
            (error)="imageService.handleImageLoadError($event)"
            *ngIf="pullRequest?.status?.toLowerCase().trim() === 'closed'">
-      <img class="icon" src="/assets/images/pr-reopen.svg"
+      <!-- <img class="icon" src="../../../../../../../libs/shared-assets/images/pr-reopen.svg" -->
+      <img class="icon" src="/libs/shared-assets/images/pr-reopen.svg"
            [alt]="pullRequest?.status"
            (error)="imageService.handleImageLoadError($event)"
            *ngIf="pullRequest?.status?.toLowerCase().trim() === 'reopen'">

@@ -21,6 +21,7 @@ import { PullRequestsComponent } from './pull-requests.component';
 import { PullRequestsResolver } from './pull-requests.resolver';
 import { PullRequestsRoutingModule } from './pull-requests.routing.module';
 import { PullRequestsService } from './pull-requests.service';
+import { CustomModuleModule } from '../custom-module/custom-module.module';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { PullRequestsService } from './pull-requests.service';
     PullRequestsRoutingModule,
     TranslateModule,
     UiModule,
+    CustomModuleModule,
   ],
   declarations: [
     PullRequestsComponent,

@@ -61,10 +61,10 @@
   </div>
   <div class="status opened">
     <div class="text">open</div>
-    <!-- <div class="time">{{ pullRequest.createdAt.seconds | amFromUnix | amLocal | amDateFormat:'YYYY-MM-DD HH:mm:ss' }}</div> -->
+    <div class="time">{{ pullRequest.createdAt.seconds | amFromUnix | amLocal | amDateFormat:'YYYY-MM-DD HH:mm:ss' }}</div>
   </div>
   <div class="status closed" *ngIf="pullRequest.status === 'Closed'">
     <div class="text">closed</div>
-    <!-- <div class="time">{{ pullRequest.updatedAt.seconds | amFromUnix | amLocal | amDateFormat:'YYYY-MM-DD HH:mm:ss' }}</div> -->
+    <div class="time">{{ pullRequest.updatedAt.seconds | amFromUnix | amLocal | amDateFormat:'YYYY-MM-DD HH:mm:ss' }}</div>
   </div>
 </div>

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PrivatePrRoutingModule } from './private-pr-routing.module';
 import { PrivatePrComponent } from './private-pr.component';
-import {ComponentNavComponent} from '../../component-nav/component-nav.component';
+import {ComponentNavModule} from '../../component-nav/component-nav.module';
 
 import {TranslateModule } from '@ngx-translate/core';
 import {LayoutModule } from '../../layout/layout.module';
@@ -40,7 +40,8 @@ import {PullRequestSummaryComponent} from './pull-request-summary/pull-request-s
 
 @NgModule({
   declarations: [PrivatePrComponent,PullRequestSummaryComponent, 
-    ComponentNavComponent],
+  
+  ],
   imports: [
     CommonModule,
     PrivatePrRoutingModule,
@@ -72,6 +73,7 @@ import {PullRequestSummaryComponent} from './pull-request-summary/pull-request-s
     StarRatingModule.forChild(),
     MatGridListModule,
     CustomModuleModule,
+    ComponentNavModule,
   ],
   exports:[
     PrivatePrComponent,PullRequestSummaryComponent,

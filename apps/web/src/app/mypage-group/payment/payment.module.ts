@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { PaymentRoutingModule } from './payment-routing.module';
 import { PaymentComponent } from './payment.component';
+import {ComponentNavModule} from '../../component-nav/component-nav.module';
 
 @NgModule({
-  declarations: [PaymentComponent],
+  declarations: [PaymentComponent,
+  ],
   imports: [
     CommonModule,
-    PaymentRoutingModule
+    PaymentRoutingModule,
+    ComponentNavModule,
   ],
   exports:[
     PaymentComponent,
+    
   ],
 })
 export class PaymentModule { }

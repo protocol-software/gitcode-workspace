@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PrivatePrRoutingModule } from './private-pr-routing.module';
 import { PrivatePrComponent } from './private-pr.component';
+import {ComponentNavComponent} from '../../component-nav/component-nav.component';
 
 import {TranslateModule } from '@ngx-translate/core';
 import {LayoutModule } from '../../layout/layout.module';
@@ -38,7 +39,8 @@ import {PullRequestSummaryComponent} from './pull-request-summary/pull-request-s
 // import {PublicPrResolver} from './public-pr.routing.resolver';
 
 @NgModule({
-  declarations: [PrivatePrComponent,PullRequestSummaryComponent],
+  declarations: [PrivatePrComponent,PullRequestSummaryComponent, 
+    ComponentNavComponent],
   imports: [
     CommonModule,
     PrivatePrRoutingModule,

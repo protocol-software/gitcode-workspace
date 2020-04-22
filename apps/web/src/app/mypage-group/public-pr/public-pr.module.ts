@@ -1,5 +1,8 @@
 import {CommonModule } from '@angular/common';
 import {NgModule } from '@angular/core';
+
+import {ComponentNavModule} from '../../custom-module/component-nav/component-nav.module';
+
 import {TranslateModule } from '@ngx-translate/core';
 import {LayoutModule } from '../../layout/layout.module';
 import {PublicPRComponent } from './public-pr.component';
@@ -80,6 +83,7 @@ import { PullRequestRatingDialogModule } from '../../pull-request-rating-dialog/
     StarRatingModule.forChild(),
     MatGridListModule,
     CustomModuleModule,
+    ComponentNavModule,
     
   ],
   declarations: [PublicPRComponent,PullRequestSummaryComponent,

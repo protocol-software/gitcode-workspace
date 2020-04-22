@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PrivatePrRoutingModule } from './private-pr-routing.module';
 import { PrivatePrComponent } from './private-pr.component';
-import {ComponentNavModule} from '../../component-nav/component-nav.module';
+import {ComponentNavModule} from '../../custom-module/component-nav/component-nav.module';
 
 import {TranslateModule } from '@ngx-translate/core';
 import {LayoutModule } from '../../layout/layout.module';

@@ -25,7 +25,6 @@ import {MatFormFieldModule } from '@angular/material';
 import {StarRatingModule } from 'angular-star-rating';
 
 
-
 @NgModule({
   declarations: [],
   imports: [

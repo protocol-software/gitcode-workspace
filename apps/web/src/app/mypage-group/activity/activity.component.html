@@ -1,60 +1,9 @@
-<div class="mr-3 mt-5 border-solid border-gray-500 border rounded-md bg-white">
+<div class="mr-3 mt-5 border-solid border-gray-500 border rounded-md bg-white" style="width:900px">
   <div class="">
-      <mat-card class="bg-light-gray mt10 mb10">
-        <mat-card-content class="mt10 mb10">
-          <mat-grid-list cols="5" rowHeight="60px">
-            <mat-grid-tile [colspan]="1">
-              <table align="left" width="100%" class="beforeborder">
-                <tr>
-                  <td><b>My Rating 3.0</b></td>
-                </tr>
-                <tr>
-                  <td align="left">
-                    <star-rating class="score" [starType]="'svg'" size="medium" [rating]="3"></star-rating>
-                  </td>
-                </tr>
-              </table>
-            </mat-grid-tile>
-
-            
-            <mat-grid-tile [colspan]="2">
-              <table align="left" width="100%">
-                <tr>
-                  <td>Private PR</td>
-                  <td>
-                    <star-rating class="score" [starType]="'svg'" size="medium" [rating]="0"></star-rating>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Public PR </td>
-                  <td>
-                    <star-rating class="score" [starType]="'svg'" size="medium" [rating]="3"></star-rating>
-                  </td>
-                </tr>
-              </table>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="2">
-              <table width="100%">
-                <tr>
-                  <td align="center">Written rate</td>
-                  <td align="center">Receive rate</td>
-                </tr>
-                <tr>
-                  <td align="center">
-                    <font size="5"><b>21</b></font>
-                  </td>
-                  <td align="center">
-                    <font size="5"><b>7</b></font>
-                  </td>
-                </tr>
-              </table>
-            </mat-grid-tile>
-          </mat-grid-list>
-        </mat-card-content>
-      </mat-card>
+      
       <div class="bg-gray-100 justify-between items-center md:flex md:items-center mx-6 mt-5 pl-6 pr-6 py-6 ">
-        <div class="flex justify-between">
-          <div>
+        <div class="flex w-full">
+          <div class="w-8/12">
             <div class="text-sm text-gray-900 font-bold mb-2 ml-2">My rating 3.0</div>
             <div class="flex">
               <star-rating class="mr-10 pt-3" [starType]="'svg'" size=large [rating]="3" ></star-rating>
@@ -62,7 +11,7 @@
               <div>
                 <div class="flex justify-between">
                   <div class="mb-2">Private PR</div>
-                  <star-rating [starType]="'svg'" size=medium [rating]="3" ></star-rating>
+                  <star-rating [starType]="'svg'" size=medium [rating]="3" class="ml-5"></star-rating>
                 </div>
                 <div class="flex justify-between">
                   <div>Public PR</div>
@@ -71,627 +20,145 @@
               </div>
             </div>
           </div>
-          <div>
-            <div class="flex items-center">
-              <div>
+          <div class="w-4/12">
+            <div class="flex justify-center mt-5">
+              <div class="text-center mr-12">
                 <div class="text-gray-700">Written rate</div>
-                <div class="text-4xl">21</div>
+                <div class="text-4xl ">21</div>
               </div>
-              <div>
+              <div class="text-center">
                 <div class="text-gray-700">Receive rate</div>
                 <div class="text-4xl">7</div>
               </div>
             </div>  
           </div>
-          
         </div>      
       </div>
 
       <mat-tab-group mat-align-tabs="center" class="mt10 mb10">
         <mat-tab label="Written rate" class="mt10 mb10">
-          <mat-card class="mt10 mb10 pb10">
-            <mat-card-content>
-              <mat-grid-list cols="5" rowHeight="80px">
-                <mat-grid-tile [colspan]="2">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Reviewer</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <table>
-                          <tr>
-                            <td>
-                              <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                                class="user-img">
-                            </td>
-                            <td>
-                              Username
-                            </td>
-                            <td>
-                              <star-rating class="score" [starType]="'svg'" size="medium" [rating]="3">
-                              </star-rating>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="3">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Request</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="javascript:void();">network: DHCPv6 client add support for prepix delegration
-                          <br />prefixnetwork: DHCPv6 client add support for...</a>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-              </mat-grid-list>
-              <table width="100%">
-                <tr>
-                  <td colspan="2">
-                    <mat-divider></mat-divider>
-                  </td>
-                </tr>
-                <tr class="height90">
-                  <td colspan="2" align="center" class="font-size-12 font-color-lightgray">There are no
-                    registered comments.</td>
-                </tr>
-              </table>
-            </mat-card-content>
-          </mat-card>
-          <mat-card class="mt10 mb10 pb10">
-            <mat-card-content>
-              <mat-grid-list cols="5" rowHeight="80px">
-                <mat-grid-tile [colspan]="2">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Reviewer</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <table>
-                          <tr>
-                            <td>
-                              <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                                class="user-img">
-                            </td>
-                            <td>
-                              Username
-                            </td>
-                            <td>
-                              <star-rating class="score" [starType]="'svg'" size="medium" [rating]="3">
-                              </star-rating>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="3">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Request</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="javascript:void();">network: DHCPv6 client add support for prepix delegration
-                          <br />prefixnetwork: DHCPv6 client add support for...</a>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-              </mat-grid-list>
-              <table width="100%">
-                <tr>
-                  <td colspan="2">
-                    <mat-divider></mat-divider>
-                  </td>
-                </tr>
-                <tr class="height90">
-                  <td colspan="2" align="left" class="font-size-12 font-color-lightgray">Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                    sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                </tr>
-              </table>
-            </mat-card-content>
-          </mat-card>
-          <mat-card class="mt10 mb10 pb10">
-            <mat-card-content>
-              <mat-grid-list cols="5" rowHeight="80px">
-                <mat-grid-tile [colspan]="2">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Reviewer</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <table>
-                          <tr>
-                            <td>
-                              <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                                class="user-img">
-                            </td>
-                            <td>
-                              Username
-                            </td>
-                            <td>
-                              <star-rating class="score" [starType]="'svg'" size="medium" [rating]="3">
-                              </star-rating>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="3">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Request</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="javascript:void();">network: DHCPv6 client add support for prepix delegration
-                          <br />prefixnetwork: DHCPv6 client add support for...</a>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-              </mat-grid-list>
-              <table width="100%">
-                <tr>
-                  <td colspan="2">
-                    <mat-divider></mat-divider>
-                  </td>
-                </tr>
-                <tr class="height90">
-                  <td colspan="2" align="left" class="font-size-12 font-color-lightgray">Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                    sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                </tr>
-              </table>
-            </mat-card-content>
-          </mat-card>
-          <mat-card class="mt10 mb10 pb10">
-            <mat-card-content>
-              <mat-grid-list cols="5" rowHeight="80px">
-                <mat-grid-tile [colspan]="2">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Reviewer</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <table>
-                          <tr>
-                            <td>
-                              <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                                class="user-img">
-                            </td>
-                            <td>
-                              Username
-                            </td>
-                            <td>
-                              <star-rating class="score" [starType]="'svg'" size="medium" [rating]="3">
-                              </star-rating>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="3">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Request</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="javascript:void();">network: DHCPv6 client add support for prepix delegration
-                          <br />prefixnetwork: DHCPv6 client add support for...</a>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-              </mat-grid-list>
-              <table width="100%">
-                <tr>
-                  <td colspan="2">
-                    <mat-divider></mat-divider>
-                  </td>
-                </tr>
-                <tr class="height90">
-                  <td colspan="2" align="left" class="font-size-12 font-color-lightgray">Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                    sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                </tr>
-              </table>
-            </mat-card-content>
-          </mat-card>
-          <mat-card class="mt10 mb10 pb10">
-            <mat-card-content>
-              <mat-grid-list cols="5" rowHeight="80px">
-                <mat-grid-tile [colspan]="2">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Reviewer</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <table>
-                          <tr>
-                            <td>
-                              <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                                class="user-img">
-                            </td>
-                            <td>
-                              Username
-                            </td>
-                            <td>
-                              <star-rating class="score" [starType]="'svg'" size="medium" [rating]="3">
-                              </star-rating>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="3">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Request</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="javascript:void();">network: DHCPv6 client add support for prepix delegration
-                          <br />prefixnetwork: DHCPv6 client add support for...</a>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-              </mat-grid-list>
-              <table width="100%">
-                <tr>
-                  <td colspan="2">
-                    <mat-divider></mat-divider>
-                  </td>
-                </tr>
-                <tr class="height90">
-                  <td colspan="2" align="left" class="font-size-12 font-color-lightgray">Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                    sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                </tr>
-              </table>
-            </mat-card-content>
-          </mat-card>
-          
+          <!-- Written rate card-->
+          <div class="mx-5 mt-12 mb-5 hover-shadow">
+            <div class="flex">
+              <div class="w-2/12 flex mt-5 ml-5">
+                <div>
+                  <div class="text-orange-500 text-xs mb-2">Reviewer</div>
+                  <img _ngcontent-pro-c27="" class="w-10" src="/assets/images/github-avatar.svg">
+                </div>
+                <div class="text-gray-700" style="margin-top:36px">Lion Cho</div>
+              </div>
+              <star-rating class="w-2/12 p-5" style="padding-top:46px" [starType]="'svg'" size="large" [rating]="3"></star-rating>
+              <div class="w-6/12 ml-32 mt-6 mr-5 ">
+                <div class="text-orange-500 text-xs ">Request</div>
+                <div class="text-gray-900 underline overflow-2line">Please check my code it is coded by kotlin, I really don't know why it has security issues.Please check my code it is coded by kotlin, I really don't know why it has security issues.</div>
+              </div>
+            </div>
+            <div class="border-b mx-5"></div>
+            <div class="text-gray-500 text-sm text-center py-12 px-5">There are two many comments here, Ultrices natoque mus mattis, aliquam, cras in pellentesque
+              tincidunt elit purus lectus, vel ut aliquet, elementum nunc
+              nunc rhoncus placerat urna! Sit est sed! Ut penatibus turpis
+              mus tincidunt! Dapibus sed aenean, magna sagittis, lorem velit.Ultrices natoque mus mattis, aliquam, cras in pellentesque
+              tincidunt elit purus lectus, vel ut aliquet, elementum nunc
+              nunc rhoncus placerat urna! Sit est sed! Ut penatibus turpis
+              mus tincidunt! Dapibus sed aenean, magna sagittis, lorem velit</div>
+          </div>
+          <div class="mx-5 mt-6 mb-5 hover-shadow">
+            <div class="flex">
+              <div class="w-2/12 flex mt-5 ml-5">
+                <div>
+                  <div class="text-orange-500 text-xs mb-2">Reviewer</div>
+                  <img _ngcontent-pro-c27="" class="w-10" src="/assets/images/github-avatar.svg">
+                </div>
+                <div class="text-gray-700" style="margin-top:36px">Long name Cho</div>
+              </div>
+              <star-rating class="w-2/12 p-5" style="padding-top:46px" [starType]="'svg'" size="large" [rating]="3"></star-rating>
+              <div class="w-6/12 ml-32 mt-6 mr-5 ">
+                <div class="text-orange-500 text-xs ">Request</div>
+                <div class="text-gray-900 underline overflow-2line">Please check my code it is coded by kotlin, I really don't know why it has security issues.Please check my code it is coded by kotlin, I really don't know why it has security issues.</div>
+              </div>
+            </div>
+            <div class="border-b mx-5"></div>
+            <div class="text-gray-500 text-sm text-center py-12">There are no registered comments</div>
+          </div>
+          <div class="mx-5 mt-6 mb-5 hover-shadow">
+            <div class="flex">
+              <div class="w-2/12 flex mt-5 ml-5">
+                <div>
+                  <div class="text-orange-500 text-xs mb-2">Reviewer</div>
+                  <img _ngcontent-pro-c27="" class="w-10" src="/assets/images/github-avatar.svg">
+                </div>
+                <div class="text-gray-700" style="margin-top:36px">Different lenth Lion Cho</div>
+              </div>
+              <star-rating class="w-2/12 p-5" style="padding-top:46px" [starType]="'svg'" size="large" [rating]="3"></star-rating>
+              <div class="w-6/12 ml-32 mt-6 mr-5 ">
+                <div class="text-orange-500 text-xs ">Request</div>
+                <div class="text-gray-900 underline overflow-2line">Please check my code it is coded by kotlin, I really don't know why it has security issues.Please check my code it is coded by kotlin, I really don't know why it has security issues.</div>
+              </div>
+            </div>
+            <div class="border-b mx-5"></div>
+            <div class="text-gray-500 text-sm text-center py-12">There are no registered comments</div>
+          </div>
         </mat-tab>
-        <mat-tab label="Receive rate">
-          <mat-card class="mt10 mb10 pb10">
-            <mat-card-content>
-              <mat-grid-list cols="5" rowHeight="80px">
-                <mat-grid-tile [colspan]="2">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Reviewer</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <table>
-                          <tr>
-                            <td>
-                              <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                                class="user-img">
-                            </td>
-                            <td>
-                              Username
-                            </td>
-                            <td>
-                              <star-rating class="score" [starType]="'svg'" size="medium" [rating]="3">
-                              </star-rating>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="3">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Request</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="javascript:void();">network: DHCPv6 client add support for prepix delegration
-                          <br />prefixnetwork: DHCPv6 client add support for...</a>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-              </mat-grid-list>
-              <table width="100%">
-                <tr>
-                  <td colspan="2">
-                    <mat-divider></mat-divider>
-                  </td>
-                </tr>
-                <tr class="height90">
-                  <td colspan="2" align="center" class="font-size-12 font-color-lightgray">There are no
-                    registered comments.</td>
-                </tr>
-              </table>
-            </mat-card-content>
-          </mat-card>
-          <mat-card class="mt10 mb10 pb10">
-            <mat-card-content>
-              <mat-grid-list cols="5" rowHeight="80px">
-                <mat-grid-tile [colspan]="2">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Reviewer</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <table>
-                          <tr>
-                            <td>
-                              <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                                class="user-img">
-                            </td>
-                            <td>
-                              Username
-                            </td>
-                            <td>
-                              <star-rating class="score" [starType]="'svg'" size="medium" [rating]="3">
-                              </star-rating>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="3">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Request</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="javascript:void();">network: DHCPv6 client add support for prepix delegration
-                          <br />prefixnetwork: DHCPv6 client add support for...</a>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-              </mat-grid-list>
-              <table width="100%">
-                <tr>
-                  <td colspan="2">
-                    <mat-divider></mat-divider>
-                  </td>
-                </tr>
-                <tr class="height90">
-                  <td colspan="2" align="left" class="font-size-12 font-color-lightgray">Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                    sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                </tr>
-              </table>
-            </mat-card-content>
-          </mat-card>
-          <mat-card class="mt10 mb10 pb10">
-            <mat-card-content>
-              <mat-grid-list cols="5" rowHeight="80px">
-                <mat-grid-tile [colspan]="2">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Reviewer</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <table>
-                          <tr>
-                            <td>
-                              <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                                class="user-img">
-                            </td>
-                            <td>
-                              Username
-                            </td>
-                            <td>
-                              <star-rating class="score" [starType]="'svg'" size="medium" [rating]="3">
-                              </star-rating>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="3">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Request</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="javascript:void();">network: DHCPv6 client add support for prepix delegration
-                          <br />prefixnetwork: DHCPv6 client add support for...</a>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-              </mat-grid-list>
-              <table width="100%">
-                <tr>
-                  <td colspan="2">
-                    <mat-divider></mat-divider>
-                  </td>
-                </tr>
-                <tr class="height90">
-                  <td colspan="2" align="left" class="font-size-12 font-color-lightgray">Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                    sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                </tr>
-              </table>
-            </mat-card-content>
-          </mat-card>
-          <mat-card class="mt10 mb10 pb10">
-            <mat-card-content>
-              <mat-grid-list cols="5" rowHeight="80px">
-                <mat-grid-tile [colspan]="2">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Reviewer</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <table>
-                          <tr>
-                            <td>
-                              <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                                class="user-img">
-                            </td>
-                            <td>
-                              Username
-                            </td>
-                            <td>
-                              <star-rating class="score" [starType]="'svg'" size="medium" [rating]="3">
-                              </star-rating>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="3">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Request</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="javascript:void();">network: DHCPv6 client add support for prepix delegration
-                          <br />prefixnetwork: DHCPv6 client add support for...</a>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-              </mat-grid-list>
-              <table width="100%">
-                <tr>
-                  <td colspan="2">
-                    <mat-divider></mat-divider>
-                  </td>
-                </tr>
-                <tr class="height90">
-                  <td colspan="2" align="left" class="font-size-12 font-color-lightgray">Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                    sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                </tr>
-              </table>
-            </mat-card-content>
-          </mat-card>
-          <mat-card class="mt10 mb10 pb10">
-            <mat-card-content>
-              <mat-grid-list cols="5" rowHeight="80px">
-                <mat-grid-tile [colspan]="2">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Reviewer</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <table>
-                          <tr>
-                            <td>
-                              <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                                class="user-img">
-                            </td>
-                            <td>
-                              Username
-                            </td>
-                            <td>
-                              <star-rating class="score" [starType]="'svg'" size="medium" [rating]="3">
-                              </star-rating>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="3">
-                  <table width="100%">
-                    <tr>
-                      <td class="font-color-yellow font-size-12">Request</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="javascript:void();">network: DHCPv6 client add support for prepix delegration
-                          <br />prefixnetwork: DHCPv6 client add support for...</a>
-                      </td>
-                    </tr>
-                  </table>
-                </mat-grid-tile>
-              </mat-grid-list>
-              <table width="100%">
-                <tr>
-                  <td colspan="2">
-                    <mat-divider></mat-divider>
-                  </td>
-                </tr>
-                <tr class="height90">
-                  <td colspan="2" align="left" class="font-size-12 font-color-lightgray">Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                    sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                </tr>
-              </table>
-            </mat-card-content>
-          </mat-card>
-          
-            
-        </mat-tab>
-      </mat-tab-group>
 
+        <mat-tab label="Receive rate">
+          <div class="mx-5 mt-12 mb-5 hover-shadow">
+            <div class="flex">
+              <div class="w-2/12 flex mt-5 ml-5">
+                <div>
+                  <div class="text-orange-500 text-xs mb-2">Reviewer</div>
+                  <img _ngcontent-pro-c27="" class="w-10" src="/assets/images/github-avatar.svg">
+                </div>
+                <div class="text-gray-700" style="margin-top:36px">Lion Cho</div>
+              </div>
+              <star-rating class="w-2/12 p-5" style="padding-top:46px" [starType]="'svg'" size="large" [rating]="3"></star-rating>
+              <div class="w-6/12 ml-32 mt-6 mr-5 ">
+                <div class="text-orange-500 text-xs ">Request</div>
+                <div class="text-gray-900 underline overflow-2line">Please check my code it is coded by kotlin, I really don't know why it has security issues.Please check my code it is coded by kotlin, I really don't know why it has security issues.</div>
+              </div>
+            </div>
+            <div class="border-b mx-5"></div>
+            <div class="text-gray-500 text-sm text-center py-12">There are no registered comments</div>
+          </div>
+          <div class="mx-5 mt-6 mb-5 hover-shadow">
+            <div class="flex">
+              <div class="w-2/12 flex mt-5 ml-5">
+                <div>
+                  <div class="text-orange-500 text-xs mb-2">Reviewer</div>
+                  <img _ngcontent-pro-c27="" class="w-10" src="/assets/images/github-avatar.svg">
+                </div>
+                <div class="text-gray-700" style="margin-top:36px">Long name Cho</div>
+              </div>
+              <star-rating class="w-2/12 p-5" style="padding-top:46px" [starType]="'svg'" size="large" [rating]="3"></star-rating>
+              <div class="w-6/12 ml-32 mt-6 mr-5 ">
+                <div class="text-orange-500 text-xs ">Request</div>
+                <div class="text-gray-900 underline overflow-2line">Please check my code it is coded by kotlin, I really don't know why it has security issues.Please check my code it is coded by kotlin, I really don't know why it has security issues.</div>
+              </div>
+            </div>
+            <div class="border-b mx-5"></div>
+            <div class="text-gray-500 text-sm text-center py-12">There are no registered comments</div>
+          </div>
+          <div class="mx-5 mt-6 mb-5 hover-shadow">
+            <div class="flex">
+              <div class="w-2/12 flex mt-5 ml-5">
+                <div>
+                  <div class="text-orange-500 text-xs mb-2">Reviewer</div>
+                  <img _ngcontent-pro-c27="" class="w-10" src="/assets/images/github-avatar.svg">
+                </div>
+                <div class="text-gray-700" style="margin-top:36px">Different lenth Lion Cho</div>
+              </div>
+              <star-rating class="w-2/12 p-5" style="padding-top:46px" [starType]="'svg'" size="large" [rating]="3"></star-rating>
+              <div class="w-6/12 ml-32 mt-6 mr-5 ">
+                <div class="text-orange-500 text-xs ">Request</div>
+                <div class="text-gray-900 underline overflow-2line">Please check my code it is coded by kotlin, I really don't know why it has security issues.Please check my code it is coded by kotlin, I really don't know why it has security issues.</div>
+              </div>
+            </div>
+            <div class="border-b mx-5"></div>
+            <div class="text-gray-500 text-sm text-center py-12">There are no registered comments</div>
+          </div>
+          </mat-tab>
+      </mat-tab-group>
   </div>
   <app-component-nav></app-component-nav>
-</div>
 
-      
-        
+  <div class="bg-gray-200 hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:shadow-outline focus:border-gray-300 w-16"></div>
+</div>

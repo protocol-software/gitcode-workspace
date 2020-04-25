@@ -39,6 +39,7 @@
             "styles": [
               "apps/web/src/styles.scss",
               "apps/web/src/styles/theme.scss",
+              "apps/web/src/styles/tailwind.scss",
               "node_modules/css-star-rating/css/star-rating.min.css"
             ],
             "scripts": []

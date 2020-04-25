@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { MyprofitRoutingModule } from './myprofit-routing.module';
 import { MyprofitComponent } from './myprofit.component';
-
+import { CustomModuleModule} from '../../custom-module/custom-module.module';
 
 @NgModule({
   declarations: [MyprofitComponent],
   imports: [
     CommonModule,
-    MyprofitRoutingModule
+    MyprofitRoutingModule,
+    CustomModuleModule,
   ],
   exports: [
     MyprofitComponent,

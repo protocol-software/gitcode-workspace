@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, HostBinding, Inject, OnDestroy, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ILicense, IPaymentHistoryItem, IPromotionalCode, IPromotionalCodeUsage, IUser } from '@re-code-io/data';
 import { AuthService, PaymentHistoryService, PromotionalCodeUsageService, UserService } from '@re-code-io/ui';
 import * as moment from 'moment';

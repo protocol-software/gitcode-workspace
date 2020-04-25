@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
-import {
-  MatButtonModule,
-  MatCheckboxModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatRadioModule,
-} from '@angular/material';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+
 import { LaunchSubscriptionService, UiModule } from '@re-code-io/ui';
 import { environment } from '../../../environments/environment';
 import { LaunchSubscriptionComponent } from './launch-subscription.component';

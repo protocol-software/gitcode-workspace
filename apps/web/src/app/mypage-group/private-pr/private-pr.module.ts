@@ -21,7 +21,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatRadioModule} from '@angular/material/radio';
-import {MatRippleModule} from '@angular/material';
+import {MatRippleModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -30,7 +30,7 @@ import {CustomModuleModule} from '../../custom-module/custom-module.module';
 import {ReactiveFormsModule } from '@angular/forms';
 import {
   MatFormFieldModule,
-} from '@angular/material';
+} from '@angular/material/form-field';
 import {UiModule } from '@re-code-io/ui';
 import {MomentModule } from 'ngx-moment';
 import {PullRequestRatingDialogModule } from '../../pull-request-rating-dialog/pull-request-rating-dialog.module';

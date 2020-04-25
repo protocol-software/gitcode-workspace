@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RequestClaimComponent } from './request-claim.component';
 import { RequestClaimDialogComponent } from './request-claim-dialog/request-claim.dialog.component';
 import { CompleteClaimDialogComponent } from './complete-claim-dialog/complete-claim.dialog.component';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes:Routes = [{
@@ -23,4 +23,3 @@ const routes:Routes = [{
     entryComponents:[RequestClaimDialogComponent,CompleteClaimDialogComponent]
   })
   export class RequestClaimModule {}
-  

@@ -1,7 +1,4 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { MatRadioChange, MatGridList } from '@angular/material';
-import { FormGroup } from '@angular/forms';
-
 
 @Component({
   selector: 'app-mypage-public-pr',

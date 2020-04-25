@@ -1,5 +1,5 @@
 import { Direction } from '@angular/cdk/bidi';
-import { DialogRole } from '@angular/material';
+import { DialogRole } from '@angular/material/dialog';
 
 export const AppConfig = {
   defaultLang: 'en',

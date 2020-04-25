@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs/Observable';
 import { AppConfig } from '../../config/app-config';
 import { ContactUsDialogComponent } from './contact-us-dialog.component';

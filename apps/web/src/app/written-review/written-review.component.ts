@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, HostBinding, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { MatRadioChange, MatGridList } from '@angular/material';
-import { FormGroup } from '@angular/forms';
+import { MatRadioChange } from '@angular/material/radio';
 
 export interface Tile {
   color: string;

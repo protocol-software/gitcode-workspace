@@ -14,11 +14,11 @@ import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  // { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'logout', pathMatch: 'full', resolve: { result: LogoutResolver }, children: [] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
-  { path: 'landing', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule) },
+  { path: 'home', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule) },
   {
     path: 'how-it-works',
     loadChildren: () => import('./how-it-works/how-it-works.module').then(m => m.HowItWorksModule),
@@ -58,7 +58,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       anchorScrolling: 'enabled',
       scrollPositionRestoration: 'enabled',
-      useHash: true,
+      // useHash: true,
     }),
   ],
   exports: [RouterModule],

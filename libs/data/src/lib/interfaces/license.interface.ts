@@ -10,4 +10,5 @@ export interface ILicense {
   lastUpdatedDate?: Date | Timestamp;
   phone: string;
   plan: string;
+  paymentMethod?: string;
 }

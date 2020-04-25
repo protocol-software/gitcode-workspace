@@ -20,7 +20,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { UiModule } from '@re-code-io/ui';
-import { NumeralModule } from 'ngx-numeral';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -69,7 +68,6 @@ export function createTranslateLoader(http: HttpClient) {
     AngularFireAuthModule,
     BrowserAnimationsModule, // imports firebase/auth, only needed for auth features
     MatDialogModule,
-    NumeralModule.forRoot(),
     
     TranslateModule.forRoot({
       loader: {

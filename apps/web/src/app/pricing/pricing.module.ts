@@ -4,7 +4,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TranslateModule } from '@ngx-translate/core';
 import { UiModule } from '@re-code-io/ui';
-import { NumeralModule } from 'ngx-numeral';
 import { ContactUsDialogModule } from '../contact-us-dialog/contact-us-dialog.module';
 import { LayoutModule } from '../layout/layout.module';
 import { PaymentDialogModule } from '../payment-dialog/payment-dialog.module';
@@ -21,7 +20,6 @@ import { PricingRoutingModule } from './pricing.routing.module';
     PricingRoutingModule,
     MatTabsModule,
     MatButtonModule,
-    NumeralModule,
     PaymentDialogModule,
     PricingRequestDialogModule,
     TranslateModule,

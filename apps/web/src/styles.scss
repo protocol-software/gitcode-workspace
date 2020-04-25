@@ -167,12 +167,18 @@ star-rating{
   -webkit-box-orient: vertical;
 }
 
-.claim-btn{
-  @apply bg-transparent text-blue-700 font-semibold;  
-  &:hover{
-    @apply bg-blue-500 text-white border-transparent;
-  }
-  @apply py-2 px-4 border border-blue-500 rounded
-}
+// .claim-btn{
+//   @apply bg-transparent text-blue-700 font-semibold;  
+//   &:hover{
+//     @apply bg-blue-500 text-white border-transparent;
+//   }
+//   @apply py-2 px-4 border border-blue-500 rounded
+// }
 
+.cal-btn {
+background: linear-gradient(180deg, #FAFBFC 0%, #EFF3F6 100%), #EFF3F6;
+border: 1px solid rgba(27, 31, 35, 0.2);
+box-sizing: border-box;
+border-radius: 3px;
+}
 // end from lion , custom tailwind css 

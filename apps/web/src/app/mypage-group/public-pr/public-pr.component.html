@@ -1,65 +1,55 @@
-<div class="activity">
-    <div class="w-full float-left mr-3 mt-5 border-solid border-gray-500 border rounded-md">
-      <div class="w73 right-card">
-        <mat-card>
-          <mat-card-subtitle class="mt10 mb10 pb10">
-            <div class="w-full ">
-              <ul class="w-10/12 mx-auto mx-auto mt-10">
-                <li class="xl:w-1/5 float-left text-center">All 
-                  <a href="#" class="text-blue-600">
-                  129 
-                </a>
-              </li>
-              <li class="float-left text-center"> 
-                |
-              </li>
-              
-                <li class="xl:w-1/6 float-left text-center">Open
-                <a href="#" class="text-blue-600">
-                  1
-                </a>
-                </li>
-                <li class="xl:w-1/6 float-left text-center">In Review
-                <a href="#" class="text-blue-600">
-                  1
-                </a>
-                </li >
-                <li class="xl:w-1/6 float-left text-center">Close
-                <a href="#" class="text-blue-600">
-                  1
-                </a>
-                </li >
-                <li class="xl:w-1/6 float-left text-center">Reopen
-                <a href="#" class="text-blue-600">
-                  126
-                </a>
-                </li>
-              </ul>                
-            </div>
-          </mat-card-subtitle >
-          <mat-card-content>  
-            <ul class="pull-request-list">
-              <li class="pull-request-item" >
-                <!-- <app-pull-request-summary ></app-pull-request-summary> -->
-              </li>
-            </ul>
-            
-            <nav role="navigation">
-              <ul class="cd-pagination no-space animated-buttons custom-icons">
-                <li class="button"><a href="#0"><i>Previous</i></a></li>
-                <li><a class="current" href="#0">1</a></li>
-                <li><a href="#0">2</a></li>
-                <li><a href="#0">3</a></li>
-                <li><span>...</span></li>
-                <li><a href="#0">8</a></li>
-                <li><a href="#0">9</a></li>
-                <li><a href="#0">10</a></li>
-                <li class="button"><a href="#0"><i>Next</i></a></li>
-              </ul>
-            </nav>
-          </mat-card-content>
-        </mat-card>
-  
-      </div>
-    </div> 
- </div>
+<div class="w-full">
+  <div class="mr-3 mt-5 border-solid border-gray-500 border rounded-md">
+    <mat-card >
+      <mat-card-subtitle class="mt10 mb10 pb10 h-5" >
+        <div class="w-full ">
+          <ul class="w-10/12 mx-auto mx-auto mt-10">
+            <li class="xl:w-1/5 float-left text-center text-xs">All 
+              <a href="#" class="text-blue-600 underline">
+              129 
+            </a>
+          </li>
+          <li class="float-left text-center"> 
+            |
+          </li>
+          
+            <li class="xl:w-1/6 float-left text-center text-xs">Open
+            <a href="#" class="text-blue-600 underline">
+              1
+            </a>
+            </li>
+            <li class="xl:w-1/6 float-left text-center text-xs">In Review
+            <a href="#" class="text-blue-600 underline">
+              1
+            </a>
+            </li >
+            <li class="xl:w-1/6 float-left text-center text-xs">Close
+            <a href="#" class="text-blue-600 underline">
+              1
+            </a>
+            </li >
+            <li class="xl:w-1/6 float-left text-center text-xs">Reopen
+            <a href="#" class="text-blue-600 underline">
+              126
+            </a>
+            </li>
+          </ul>                
+        </div>
+      </mat-card-subtitle >
+      <mat-card-content class="mt-10">  
+        <ul class="pull-request-list">
+          <li class="pull-request-item" >
+            <app-pull-request-summary ></app-pull-request-summary>
+          </li>
+        </ul>
+        
+        <!-- NAV COMPONENT-->
+        <app-component-nav></app-component-nav>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div> 
+
+
+

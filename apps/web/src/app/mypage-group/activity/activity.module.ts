@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CustomModuleModule} from '../../custom-module/custom-module.module';
 import { ActivityRoutingModule } from './activity-routing.module';
 import { ActivityComponent } from './activity.component';
+import {ComponentNavModule} from '../../custom-module/component-nav/component-nav.module';
 
 @NgModule({
   declarations: [ActivityComponent],
@@ -10,6 +11,7 @@ import { ActivityComponent } from './activity.component';
     CommonModule,
     ActivityRoutingModule,
     CustomModuleModule,
+    ComponentNavModule,
   ],
   exports:[ 
     ActivityComponent,

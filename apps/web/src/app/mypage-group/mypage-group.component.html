@@ -1,8 +1,4 @@
-<mat-tab-group [selectedIndex]="0"   mat-align-tabs="start" 
-class="main-content
-  written-review
-  float-left  bg-gray-100
-  float-right" >
+<mat-tab-group [selectedIndex]="3" mat-align-tabs="start">
   <mat-tab label="Public PR" >  
     <app-public-pr></app-public-pr>
   </mat-tab>
@@ -13,9 +9,7 @@ class="main-content
     <app-payment></app-payment>
   </mat-tab>
   <mat-tab label="Activity">
-    <div class="activity">
-      <app-activity></app-activity>
-    </div>  
+    <app-activity></app-activity>
   </mat-tab>
   <mat-tab label="My Profit">
     <app-myprofit></app-myprofit>

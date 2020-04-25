@@ -145,3 +145,26 @@ p {
 }
 
 
+// start rom lion , custom tailwind css 
+.hover-shadow { // recode name , card-border
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  &:hover{
+    box-shadow: 0 1px 4px 2px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+  }
+}
+
+tar-rating{
+
+}
+
+.overflow-2line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+// end from lion , custom tailwind css 

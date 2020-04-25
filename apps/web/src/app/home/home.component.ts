@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, HostBinding, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
-import 'core-js/es6';
-import 'core-js/es7/reflect';
+// import 'core-js/es6';
+// import 'core-js/es7/reflect';
 import "zone.js/dist/zone";
 
 @Component({

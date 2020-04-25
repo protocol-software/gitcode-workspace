@@ -1,5 +1,6 @@
 import { Component, HostBinding, Inject, OnDestroy, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatRadioChange } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatRadioChange } from '@angular/material/radio';
 import { IPullRequest, IRating } from '@re-code-io/data';
 import { ImageService } from '@re-code-io/ui';
 import { PullRequestsService } from '../pull-requests/pull-requests.service';

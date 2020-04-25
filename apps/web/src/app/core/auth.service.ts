@@ -13,7 +13,7 @@ export class AuthService {
   doFacebookLogin() {
     return new Promise<any>((resolve, reject) => {
       const provider = new firebase.auth.FacebookAuthProvider();
-      this.afAuth.auth
+      this.afAuth
           .signInWithPopup(provider)
           .then(res => {
             resolve(res);
@@ -27,7 +27,7 @@ export class AuthService {
   doTwitterLogin() {
     return new Promise<any>((resolve, reject) => {
       const provider = new firebase.auth.TwitterAuthProvider();
-      this.afAuth.auth
+      this.afAuth
           .signInWithPopup(provider)
           .then(res => {
             resolve(res);
@@ -43,7 +43,7 @@ export class AuthService {
       const provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('profile');
       provider.addScope('email');
-      this.afAuth.auth
+      this.afAuth
           .signInWithPopup(provider)
           .then(res => {
             resolve(res);
@@ -59,7 +59,7 @@ export class AuthService {
       const provider = new firebase.auth.GithubAuthProvider();
       provider.addScope('profile');
       provider.addScope('email');
-      this.afAuth.auth
+      this.afAuth
           .signInWithPopup(provider)
           .then(res => {
             resolve(res);
@@ -91,7 +91,7 @@ export class AuthService {
   doLogout() {
     return new Promise((resolve, reject) => {
       if (firebase.auth().currentUser) {
-        this.afAuth.auth.signOut();
+        this.afAuth.signOut();
         resolve();
       } else {
         reject();

@@ -12,7 +12,9 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSelectChange } from '@angular/material';
+
+import { MatSelectChange } from '@angular/material/select';
+
 import { TranslateService } from '@ngx-translate/core';
 import { IGitHubRepo, IUser } from '@re-code-io/data';
 import { GitHubService } from '@re-code-io/ui';

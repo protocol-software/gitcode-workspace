@@ -80,7 +80,7 @@ export class AuthService {
     // provider.addScope('profile');
     // provider.addScope('email');
 
-    const userCredential = await this.afAuth.auth.signInWithPopup(provider);
+    const userCredential = await this.afAuth.signInWithPopup(provider);
     const providerUserData = await this.getProviderUserData(oauthProvider, userCredential);
 
     return this.updateUserData(userCredential, oauthProvider, providerUserData);
@@ -139,7 +139,7 @@ export class AuthService {
 
   public async signOut(): Promise<void> {
     localStorage.clear();
-    await this.afAuth.auth.signOut();
+    await this.afAuth.signOut();
     await this.router.navigate(['/']);
   }
 }

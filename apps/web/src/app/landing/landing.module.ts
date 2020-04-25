@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '../layout/layout.module';
 import { LandingComponent } from './landing.component';
 import { LandingResolver } from './landing.resolver';

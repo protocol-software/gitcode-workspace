@@ -6,5 +6,8 @@ export interface ILaunchSubscriber {
   isForEducational?: boolean;
   purposes?: string[];
 
+  phone?: string;
+  registerDate?: Date;
+
   isSelected?: boolean;
 }

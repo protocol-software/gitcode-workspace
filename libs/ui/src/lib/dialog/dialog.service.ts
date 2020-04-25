@@ -1,6 +1,6 @@
 import { Direction } from '@angular/cdk/bidi';
 import { Injectable } from '@angular/core';
-import { DialogRole, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
+import { DialogRole, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';

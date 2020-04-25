@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MatDialog, MatDialogConfig} from "@angular/material";
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {RequestClaimDialogComponent } from './request-claim-dialog/request-claim.dialog.component';
 import { CompleteClaimDialogComponent } from './complete-claim-dialog/complete-claim.dialog.component';
 

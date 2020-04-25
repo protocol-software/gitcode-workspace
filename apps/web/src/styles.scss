@@ -175,4 +175,8 @@ star-rating{
   @apply py-2 px-4 border border-blue-500 rounded
 }
 
-// end from lion , custom tailwind css 
+// end from lion , custom tailwind css
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

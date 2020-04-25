@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatTabsModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { TranslateModule } from '@ngx-translate/core';
 import { UiModule } from '@re-code-io/ui';
 import { NumeralModule } from 'ngx-numeral';

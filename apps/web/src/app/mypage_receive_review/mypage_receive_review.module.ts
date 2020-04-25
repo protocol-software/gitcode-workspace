@@ -20,7 +20,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import { LayoutModule } from '../layout/layout.module';
-import { FormsModule } from '@angular/forms';
+
 import { MypageReceiveReviewComponent } from './mypage_receive_review.component';
 import { MypageReceiveReviewRoutingModule } from './mypage_receive_review.routing.module';
 import { StarRatingModule } from 'angular-star-rating';

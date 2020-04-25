@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ILicense, IPaymentHistoryItem, IPromotionalCode, IPromotionalCodeUsage, IUser } from '@re-code-io/data';
 import { AuthService, PaymentHistoryService, PromotionalCodeUsageService, UserService } from '@re-code-io/ui';
 import * as moment from 'moment';
-import * as generate from 'nanoid/generate';
+import { nanoid } from 'nanoid';
 import { forkJoin } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { IPricingCard } from '../pricing/pricing-card/pricing-card.interface';
@@ -67,9 +67,10 @@ export class PaymentDialogComponent implements OnInit, OnDestroy {
       transaction: data.details,
     };
 
+    // 1234567890abcdef
     const licenseCode = this.user.license
-                        ? this.user.license.code || generate('1234567890abcdef', 32)
-                        : generate('1234567890abcdef', 32);
+                        ? this.user.license.code || nanoid(32)
+                        : nanoid(32);
 
     let expirationDate = moment().add(9999, 'day').endOf('day').toDate();
 

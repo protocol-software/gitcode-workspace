@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material";
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: "complete-claim-dialog",

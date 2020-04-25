@@ -1,0 +1,20 @@
+{
+    "target": "es5",
+    "extends": "../../tsconfig.json",
+    "include": ["**/*.ts"],
+
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "downlevelIteration": true,
+        "lib": [
+            "es2018",
+            "dom"
+        ],
+        "types": ["node", "jest"]
+    },
+
+    "angularCompilerOptions": {
+        "fullTemplateTypeCheck": true,
+        "strictInjectionParameters": true
+    }
+}

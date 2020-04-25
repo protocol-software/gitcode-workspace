@@ -1,8 +1,7 @@
-@import "variables";
-@import "../../styles/app-colors";
+@import 'treo';
 
 .toolbar {
-  background-color: $color-dark-background;
+  background-color: $background;
   position: relative;
 
   .sidenav-toggle {
@@ -70,7 +69,7 @@
     @include flex-row();
 
     padding: 1.5rem 0;
-    border-bottom: solid thin $light-dividers;
+    //border-bottom: solid thin $light-dividers;
 
     .titles {
       @include flex-column();
@@ -81,7 +80,7 @@
 }
 
 .sidenav {
-  background-color: $color-dark-background;
+  background-color: $background;
   width: 80%;
 
   @media #{$medium-up} {

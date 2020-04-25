@@ -1,5 +1,4 @@
-@import "variables";
-@import "../../../styles/app-colors.scss";
+@import 'treo';
 
 form {
   @include flex-column(center);
@@ -21,11 +20,11 @@ ul {
 
     &::before {
       content: 'check';
-      font-family: "Material Icons";
+      //font-family: "Material Icons";
       position: absolute;
       top: .2em;
       left: -1em;
-      color: map_get($mat-primary, 500);
+      //color: map_get($mat-primary, 500);
     }
   }
 }

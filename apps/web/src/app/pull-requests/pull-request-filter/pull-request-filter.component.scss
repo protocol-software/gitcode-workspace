@@ -1,4 +1,4 @@
-@import "variables";
+@import 'treo';
 
 form {
   @include flex-column();
@@ -7,26 +7,6 @@ form {
   @media #{$medium-up} {
     @include flex-row(center);
     justify-content: space-between;
-  }
-
-  ::ng-deep .mat-checkbox {
-    margin-bottom: 1rem;
-
-    @media #{$medium-up} {
-      margin-bottom: 0;
-    }
-  }
-
-  ::ng-deep .mat-form-field-wrapper {
-    @media #{$medium-up} {
-      padding-bottom: 0;
-    }
-  }
-
-  ::ng-deep button.mat-stroked-button {
-    @media #{$medium-up} {
-      height: rem(51px);
-    }
   }
 }
 

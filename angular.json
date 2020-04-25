@@ -32,15 +32,13 @@
               "apps/web/src/manifest.webmanifest"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "libs/shared-styles"
-              ]
+              "includePaths": ["apps/web/src/@treo/styles", "libs/styles"]
             },
             "styles": [
-              "apps/web/src/styles.scss",
-              "apps/web/src/styles/theme.scss",
-              "apps/web/src/styles/tailwind.scss",
-              "node_modules/css-star-rating/css/star-rating.min.css"
+              "apps/web/src/styles/vendors.scss",
+              "apps/web/src/@treo/styles/main.scss",
+              "apps/web/src/styles/styles.scss",
+              "apps/web/src/styles/tailwind.scss"
             ],
             "scripts": []
           },
@@ -103,10 +101,7 @@
               "apps/web/tsconfig.app.json",
               "apps/web/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/web/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/web/**"]
           }
         },
         "test": {
@@ -140,13 +135,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/web-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/web-e2e/**"
-            ]
+            "tsConfig": ["apps/web-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/web-e2e/**"]
           }
         }
       }
@@ -164,9 +154,7 @@
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": [
-              "apps/api/src/assets"
-            ]
+            "assets": ["apps/api/src/assets"]
           },
           "configurations": {
             "production": {
@@ -195,10 +183,7 @@
               "apps/api/tsconfig.app.json",
               "apps/api/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/api/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/api/**"]
           }
         },
         "test": {
@@ -223,10 +208,7 @@
               "libs/data/tsconfig.lib.json",
               "libs/data/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/data/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/data/**"]
           }
         },
         "test": {
@@ -251,10 +233,7 @@
               "libs/ui/tsconfig.lib.json",
               "libs/ui/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ui/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/ui/**"]
           }
         },
         "test": {
@@ -322,9 +301,7 @@
               "apps/admin/src/manifest.webmanifest"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "libs/shared-styles"
-              ]
+              "includePaths": ["libs/shared-styles"]
             },
             "styles": [
               "apps/admin/src/styles.scss",
@@ -390,10 +367,7 @@
               "apps/admin/tsconfig.app.json",
               "apps/admin/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/admin/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/admin/**"]
           }
         },
         "test": {
@@ -427,13 +401,144 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/admin-e2e/tsconfig.e2e.json"
+            "tsConfig": ["apps/admin-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/admin-e2e/**"]
+          }
+        }
+      }
+    },
+    "webapp": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/webapp",
+      "sourceRoot": "apps/webapp/src",
+      "prefix": "protocol",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/webapp",
+            "index": "apps/webapp/src/index.html",
+            "main": "apps/webapp/src/main.ts",
+            "polyfills": "apps/webapp/src/polyfills.ts",
+            "tsConfig": "apps/webapp/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/webapp/src/favicon-16x16.png",
+              "apps/webapp/src/favicon-32x32.png",
+              "apps/webapp/src/assets"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/admin-e2e/**"
-            ]
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "apps/webapp/src/@treo/styles",
+                "libs/styles"
+              ]
+            },
+            "styles": [
+              "apps/webapp/src/styles/vendors.scss",
+              "apps/webapp/src/@treo/styles/main.scss",
+              "apps/webapp/src/styles/styles.scss",
+              "apps/webapp/src/styles/tailwind.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/webapp/src/environments/environment.ts",
+                  "with": "apps/webapp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "5mb",
+                  "maximumError": "8mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "60kb",
+                  "maximumError": "100kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "webapp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "webapp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "webapp:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/webapp/tsconfig.app.json",
+              "apps/webapp/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/webapp/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/webapp/jest.config.js",
+            "tsConfig": "apps/webapp/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/webapp/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "webapp-e2e": {
+      "root": "apps/webapp-e2e",
+      "sourceRoot": "apps/webapp-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/webapp-e2e/cypress.json",
+            "tsConfig": "apps/webapp-e2e/tsconfig.e2e.json",
+            "devServerTarget": "webapp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "webapp:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/webapp-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/webapp-e2e/**"]
           }
         }
       }

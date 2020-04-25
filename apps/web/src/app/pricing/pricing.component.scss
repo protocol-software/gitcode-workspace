@@ -1,4 +1,4 @@
-@import "variables";
+@import 'treo';
 
 .hero {
   @include flex-center();
@@ -68,7 +68,7 @@ ul.plans {
   width: 100%;
   min-height: calc(100vh - 56px - 79px);
   //background-image: linear-gradient(#1E455C, #25292D);
-  //background-color: $color-dark-background;
+  background-color: $background;
   position: relative;
 
   @media #{$medium-up} {

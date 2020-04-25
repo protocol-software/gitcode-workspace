@@ -1,9 +1,8 @@
-@import "variables";
-@import "../../styles/app-colors";
+@import 'treo';
 
 .hero {
   @include flex-column(center);
-  background-color: $color-dark-background;
+  background-color: $background;
   padding: 3.5rem 1rem 1.5rem;
 
   @media #{$medium-up} {
@@ -33,8 +32,8 @@
       width: 8rem;
 
       ::ng-deep &.mat-raised-button {
-        background-color: map_get($mat-primary, 500);
-        color: mat-contrast($mat-primary, 500);
+        //background-color: map_get($mat-primary, 500);
+        //color: mat-contrast($mat-primary, 500);
 
         &:disabled {
           background-color: rgba(white, .2);
@@ -198,7 +197,7 @@ ul.stats {
 
     .underline {
       width: rem(50px);
-      border: solid 7px map_get($mat-primary, 500);
+      //border: solid 7px map_get($mat-primary, 500);
       border-radius: 9999px;
       margin: .25rem 0;
     }
@@ -230,8 +229,8 @@ ul.stats {
     width: 8rem;
 
     ::ng-deep &.mat-raised-button {
-      background-color: map_get($mat-primary, 500);
-      color: mat-contrast($mat-primary, 500);
+      //background-color: map_get($mat-primary, 500);
+      //color: mat-contrast($mat-primary, 500);
 
       &:disabled {
         background-color: rgba(white, .2);
@@ -245,7 +244,7 @@ ul.stats {
   width: 100%;
   min-height: calc(100vh - 56px);
   //background-image: linear-gradient(#1E455C, #25292D);
-  //background-color: $color-dark-background;
+  background-color: $background;
   position: relative;
 
   @media #{$medium-up} {

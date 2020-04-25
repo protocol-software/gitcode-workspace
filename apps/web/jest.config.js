@@ -1,5 +1,5 @@
 module.exports = {
-  name: 're-code-io',
+  name: 'protocol-network',
   preset: '../../jest.config.js',
   coverageDirectory: '../../coverage/apps/web',
   snapshotSerializers: [

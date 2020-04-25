@@ -45,6 +45,8 @@ import { RequestClaimComponent } from './request-claim/request-claim.component';
 import { RequestClaimDialogComponent } from './request-claim/request-claim-dialog/request-claim.dialog.component';
 import { CompleteClaimDialogComponent } from './request-claim/complete-claim-dialog/complete-claim.dialog.component';
 
+import { TreoModule } from '../@treo';
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -67,6 +69,9 @@ export function createTranslateLoader(http: HttpClient) {
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule,
     BrowserAnimationsModule, // imports firebase/auth, only needed for auth features
+
+    TreoModule,
+
     MatDialogModule,
     
     TranslateModule.forRoot({

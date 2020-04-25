@@ -80,9 +80,6 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "customWebpackConfig": {
-              "path": "./webpack.config.js"
-            },
             "browserTarget": "web:build",
             "proxyConfig": "apps/web/proxy.conf.json"
           },

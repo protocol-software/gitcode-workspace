@@ -4,6 +4,7 @@ import { SharedModule } from '../../../../shared/shared.module';
 import {PublicCodeReviewRoutes} from './public-code-review.routing';
 import {PublicCodeReviewComponent} from './public-code-review.component';
 import {MatButtonModule} from '@angular/material/button';
+import {RequestCodeReviewModule} from './request-code-review/request-code-review.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import {MatButtonModule} from '@angular/material/button';
     imports: [
         RouterModule.forChild(PublicCodeReviewRoutes),
         SharedModule,
-        MatButtonModule
+        MatButtonModule,
+        RequestCodeReviewModule
     ]
 })
 export class PublicCodeReviewModule

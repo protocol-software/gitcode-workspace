@@ -40,7 +40,7 @@ export const appRoutes: Route[] = [
                 path: 'search-code',
                 children: [
                     { path: '', loadChildren: () => import('./modules/app/search-code/search-code.module').then(m => m.SearchCodeModule) },
-                    { path: 'search/:query', loadChildren: () => import('./modules/app/search-code/result/result.module').then(m => m.ResultModule) }
+                    { path: 'q/:query', loadChildren: () => import('./modules/app/search-code/result/result.module').then(m => m.ResultModule) }
                 ]
             },
             {

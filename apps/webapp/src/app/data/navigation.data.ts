@@ -80,13 +80,13 @@ export const horizontalNavigation: TreoNavigationItem[] = [
                 id   : 'codeReview.publicCodeReview',
                 title: '퍼블릭 코드리뷰',
                 type : 'basic',
-                link : '/public-code-review'
+                link : '/code-review/public'
             },
             {
                 id   : 'codeReview.publicCodeReview',
                 title: '프라이빗 코드리뷰',
                 type : 'basic',
-                link : '/private-code-review'
+                link : '/code-review/private'
             }
         ]
     },

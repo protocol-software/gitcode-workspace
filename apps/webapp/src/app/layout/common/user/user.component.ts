@@ -62,8 +62,6 @@ export class UserComponent implements OnInit, OnDestroy
         this.authService.user$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((user: IUser) => {
-                console.log(user);
-
                 this.user = user;
             });
     }
@@ -103,6 +101,10 @@ export class UserComponent implements OnInit, OnDestroy
     {
         // this._router.navigate(['/sign-out']);
         this.authService.signOut();
+    }
+    moveTo(path: string): void
+    {
+        this._router.navigate([path]);
     }
 
     public signUp(event: MouseEvent): void {

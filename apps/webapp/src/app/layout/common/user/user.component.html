@@ -32,17 +32,11 @@
 <!--            </span>-->
 <!--        </button>-->
 <!--        <mat-divider class="my-2"></mat-divider>-->
-        <button mat-menu-item (click)="moveTo('/my-page/profile')">
-            <mat-icon [svgIcon]="'account_circle'"></mat-icon>
-            <span>나의 정보 관리</span>
+        <button mat-menu-item (click)="moveTo('/settings/profile')">
+            <span>나의 정보</span>
         </button>
-        <button mat-menu-item (click)="moveTo('/my-page/review-history')">
-            <mat-icon [svgIcon]="'account_circle'"></mat-icon>
-            <span>나의 리뷰 관리</span>
-        </button>
-        <button mat-menu-item (click)="moveTo('/my-page/payment-history')">
-            <mat-icon [svgIcon]="'account_circle'"></mat-icon>
-            <span>나의 결제 관리</span>
+        <button mat-menu-item (click)="moveTo('/settings/billing')">
+            <span>나의 결제</span>
         </button>
 <!--        <button mat-menu-item>-->
 <!--            <mat-icon [svgIcon]="'settings'"></mat-icon>-->
@@ -56,7 +50,6 @@
         <mat-divider class="my-2"></mat-divider>
         <button mat-menu-item
                 (click)="signOut()">
-            <mat-icon [svgIcon]="'power_settings_new'"></mat-icon>
             <span>로그아웃</span>
         </button>
     </mat-menu>

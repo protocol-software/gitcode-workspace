@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RequestCodeReviewService} from './request-code-review/request-code-review.service';
 
 @Component({
   selector: 'protocol-public-code-review',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicCodeReviewComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+      private requestCodeReviewService: RequestCodeReviewService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  createReview(event: MouseEvent): void {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    const dialogClosed = this.requestCodeReviewService.open();
+    dialogClosed.subscribe(
+        (result) => {
+          if (!result) {
+            return;
+          }
+        },
+    );
   }
 
 }

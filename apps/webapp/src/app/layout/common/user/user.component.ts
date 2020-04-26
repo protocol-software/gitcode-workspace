@@ -1,16 +1,17 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { User } from '../../../layout/common/user/user.types';
-import { UserService } from '../../../layout/common/user/user.service';
+import {SignUpDialogService} from '../../../shared/sign-up-dialog/sign-up-dialog.service';
+import {IUser, OAuthProvider} from '@re-code-io/data';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
     selector       : 'user',
     templateUrl    : './user.component.html',
     styleUrls      : ['./user.component.scss'],
     encapsulation  : ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    // changeDetection: ChangeDetectionStrategy.OnPush,
     exportAs       : 'user'
 })
 export class UserComponent implements OnInit, OnDestroy
@@ -20,19 +21,19 @@ export class UserComponent implements OnInit, OnDestroy
 
     // Private
     private _unsubscribeAll: Subject<any>;
-    private _user: User;
+    public user: IUser;
 
     /**
      * Constructor
      *
      * @param {ChangeDetectorRef} _changeDetectorRef
      * @param {Router} _router
-     * @param {UserService} _userService
      */
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
-        private _userService: UserService
+        private signUpDialogService: SignUpDialogService,
+        private authService: AuthService,
     )
     {
         // Set the private defaults
@@ -40,30 +41,6 @@ export class UserComponent implements OnInit, OnDestroy
 
         // Set the defaults
         this.showAvatar = true;
-    }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Setter and getter for user
-     *
-     * @param value
-     */
-    @Input()
-    set user(value: User)
-    {
-        // Save the user
-        this._user = value;
-
-        // Store the user in the service
-        this._userService.user = value;
-    }
-
-    get user(): User
-    {
-        return this._user;
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -76,10 +53,18 @@ export class UserComponent implements OnInit, OnDestroy
     ngOnInit(): void
     {
         // Subscribe to user changes
-        this._userService.user$
+        // this._userService.user$
+        //     .pipe(takeUntil(this._unsubscribeAll))
+        //     .subscribe((user: IUser) => {
+        //         this._user = user;
+        //     });
+
+        this.authService.user$
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((user: User) => {
-                this._user = user;
+            .subscribe((user: IUser) => {
+                console.log(user);
+
+                this.user = user;
             });
     }
 
@@ -105,10 +90,10 @@ export class UserComponent implements OnInit, OnDestroy
     updateUserStatus(status): void
     {
         // Update the user data
-        this.user.status = status;
+        // this.user.status = status;
 
         // Update the user on the server
-        this._userService.update(this.user);
+        // this._userService.update(this.user);
     }
 
     /**
@@ -116,6 +101,34 @@ export class UserComponent implements OnInit, OnDestroy
      */
     signOut(): void
     {
-        this._router.navigate(['/sign-out']);
+        // this._router.navigate(['/sign-out']);
+        this.authService.signOut();
+    }
+
+    public signUp(event: MouseEvent): void {
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        const dialogClosed = this.signUpDialogService.open();
+        dialogClosed.subscribe(
+            (result) => {
+                if (!result) {
+                    return;
+                }
+
+                this.authService.signInOAuth(OAuthProvider.GITHUB);
+            },
+        );
+    }
+
+    public signIn(event: MouseEvent): void {
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        this.authService.signInOAuth(OAuthProvider.GITHUB);
     }
 }

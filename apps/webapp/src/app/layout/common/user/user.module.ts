@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { UserComponent } from '../../../layout/common/user/user.component';
+import { UserComponent } from './user.component';
 import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({

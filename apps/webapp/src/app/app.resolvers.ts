@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { forkJoin, Observable } from 'rxjs';
+import {forkJoin, Observable, of} from 'rxjs';
 import { map } from 'rxjs/operators';
+import {compactNavigation, defaultNavigation, futuristicNavigation, horizontalNavigation} from "./data/navigation.data";
+import * as _ from 'lodash';
+import {AuthService} from './services/auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +18,8 @@ export class InitialDataResolver implements Resolve<any>
      * @param {HttpClient} _httpClient
      */
     constructor(
-        private _httpClient: HttpClient
+        private _httpClient: HttpClient,
+        private authService: AuthService,
     )
     {
     }
@@ -31,7 +35,10 @@ export class InitialDataResolver implements Resolve<any>
      */
     private _loadMessages(): Observable<any>
     {
-        return this._httpClient.get('api/common/messages');
+        // return this._httpClient.get('api/common/messages');
+        return of({
+            messages: []
+        });
     }
 
     /**
@@ -41,7 +48,12 @@ export class InitialDataResolver implements Resolve<any>
      */
     private _loadNavigation(): Observable<any>
     {
-        return this._httpClient.get('api/common/navigation');
+        return of({
+            compact   : _.cloneDeep(compactNavigation),
+            default   : _.cloneDeep(defaultNavigation),
+            futuristic: _.cloneDeep(futuristicNavigation),
+            horizontal: _.cloneDeep(horizontalNavigation)
+        });
     }
 
     /**
@@ -51,7 +63,10 @@ export class InitialDataResolver implements Resolve<any>
      */
     private _loadNotifications(): Observable<any>
     {
-        return this._httpClient.get('api/common/notifications');
+        // return this._httpClient.get('api/common/notifications');
+        return of({
+            notifications: []
+        });
     }
 
     /**
@@ -61,7 +76,10 @@ export class InitialDataResolver implements Resolve<any>
      */
     private _loadShortcuts(): Observable<any>
     {
-        return this._httpClient.get('api/common/shortcuts');
+        // return this._httpClient.get('api/common/shortcuts');
+        return of({
+            shortcuts: []
+        });
     }
 
     /**
@@ -71,7 +89,10 @@ export class InitialDataResolver implements Resolve<any>
      */
     private _loadUser(): Observable<any>
     {
-        return this._httpClient.get('api/common/user');
+        // return this._httpClient.get('api/common/user');
+        return of({
+            user: null
+        });
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -101,7 +122,7 @@ export class InitialDataResolver implements Resolve<any>
             this._loadShortcuts(),
 
             // User
-            this._loadUser()
+            // this._loadUser()
         ]).pipe(
             map((data) => {
 
@@ -115,7 +136,7 @@ export class InitialDataResolver implements Resolve<any>
                     },
                     notifications: data[2].notifications,
                     shortcuts    : data[3].shortcuts,
-                    user         : data[4].user
+                    user         : {}
                 };
             })
         );

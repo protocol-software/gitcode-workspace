@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Message } from '../../../layout/common/messages/messages.types';
+import { Message } from './messages.types';
 import { map, switchMap, take } from 'rxjs/operators';
 
 @Injectable({

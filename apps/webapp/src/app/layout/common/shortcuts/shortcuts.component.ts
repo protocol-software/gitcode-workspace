@@ -5,8 +5,8 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import { MatButton } from '@angular/material/button';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { Shortcut } from '../../../layout/common/shortcuts/shortcuts.types';
-import { ShortcutsService } from '../../../layout/common/shortcuts/shortcuts.service';
+import { Shortcut } from './shortcuts.types';
+import { ShortcutsService } from './shortcuts.service';
 
 @Component({
     selector       : 'shortcuts',

@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ShortcutsComponent } from '../../../layout/common/shortcuts/shortcuts.component';
+import { ShortcutsComponent } from './shortcuts.component';
 
 @NgModule({
     declarations: [

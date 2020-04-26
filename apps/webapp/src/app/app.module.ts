@@ -15,13 +15,20 @@ import { appRoutes } from './app.routing';
 import {HttpClient} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {SignUpDialogModule} from './shared/sign-up-dialog/sign-up-dialog.module';
+import {TermsDialogModule} from './shared/terms-dialog/terms-dialog.module';
+import {PolicyDialogModule} from './shared/policy-dialog/policy-dialog.module';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
     preloadingStrategy       : PreloadAllModules
 };
 
-export function createTranslateLoader(http: HttpClient) {
+export function createTranslateLoader(http: HttpClient): any {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
@@ -34,7 +41,11 @@ export function createTranslateLoader(http: HttpClient) {
         BrowserAnimationsModule,
         RouterModule.forRoot(appRoutes, routerConfig),
 
-        // Treo & Treo Mock API
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+        AngularFireAuthModule,
+
+        // Treo
         TreoModule,
         TreoConfigModule.forRoot(appConfig),
 
@@ -54,6 +65,10 @@ export function createTranslateLoader(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
+
+        SignUpDialogModule,
+        TermsDialogModule,
+        PolicyDialogModule,
     ],
     bootstrap   : [
         AppComponent

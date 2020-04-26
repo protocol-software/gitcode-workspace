@@ -5,7 +5,7 @@ import { PortalModule } from '@angular/cdk/portal';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MessagesComponent } from '../../../layout/common/messages/messages.component';
+import { MessagesComponent } from './messages.component';
 import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({

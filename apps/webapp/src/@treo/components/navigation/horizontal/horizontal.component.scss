@@ -162,8 +162,12 @@ treo-horizontal-navigation {
                     &:hover {
 
                         .treo-horizontal-navigation-item-wrapper {
-                            background: map-get($background, hover);
+                            //background: map-get($background, hover);
+                            color: $bg-yellow;
                         }
+                    }
+                    .treo-horizontal-navigation-item-active {
+                        color: $bg-yellow;
                     }
                 }
             }
@@ -174,7 +178,8 @@ treo-horizontal-navigation {
                 .treo-horizontal-navigation-menu-active {
 
                     .treo-horizontal-navigation-item-wrapper {
-                        background: map-get($background, hover);
+                        //background: map-get($background, hover);
+                        color: $bg-yellow;
                     }
                 }
             }

@@ -24,6 +24,6 @@ export interface AppConfig
  */
 export const appConfig: AppConfig = {
     theme : 'light',
-    layout: 'modern',
+    layout: 'basic',
     defaultLang: 'ko',
 };

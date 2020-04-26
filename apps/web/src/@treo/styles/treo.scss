@@ -18,7 +18,8 @@
 @import '../../styles/themes';
 
 
-@import 'utilities/functions';
-@import 'utilities/media-queries';
-@import 'utilities/mixins';
-@import 'utilities/utilities';
+@import 'protocol-custom/functions';
+@import 'protocol-custom/media-queries';
+@import 'protocol-custom/mixins';
+@import 'protocol-custom/utilities';
+@import 'protocol-custom/dialog';

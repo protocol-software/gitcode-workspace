@@ -70,6 +70,9 @@ export const appRoutes: Route[] = [
         canActivate: [NoAuthGuard],
         canActivateChild: [NoAuthGuard],
         component  : BasicLayoutComponent,
+        resolve    : {
+            initialData: InitialDataResolver,
+        },
         children   : [
             {path: 'public-code-review', loadChildren: () => import('./modules/app/code-review/public-code-review/public-code-review.module').then(m => m.PublicCodeReviewModule)},
         ]
@@ -79,8 +82,23 @@ export const appRoutes: Route[] = [
         canActivate: [NoAuthGuard],
         canActivateChild: [NoAuthGuard],
         component  : BasicLayoutComponent,
+        resolve    : {
+            initialData: InitialDataResolver,
+        },
         children   : [
             {path: 'private-code-review', loadChildren: () => import('./modules/app/code-review/private-code-review/private-code-review.module').then(m => m.PrivateCodeReviewModule)},
+        ]
+    },
+    {
+        path: '',
+        canActivate: [NoAuthGuard],
+        canActivateChild: [NoAuthGuard],
+        component  : BasicLayoutComponent,
+        resolve    : {
+            initialData: InitialDataResolver,
+        },
+        children   : [
+            {path: 'my-page', loadChildren: () => import('./modules/app/my-page/my-page.module').then(m => m.MyPageModule)},
         ]
     },
 ];

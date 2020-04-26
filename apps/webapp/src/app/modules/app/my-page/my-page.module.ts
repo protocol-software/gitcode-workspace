@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterModule} from "@angular/router";
+import { SharedModule } from '../../../shared/shared.module';
+import { MyPageRoutes} from './my-page.routing';
 import { MyPageComponent } from './my-page.component';
-
-
 
 @NgModule({
   declarations: [MyPageComponent],
   imports: [
-    CommonModule
+    RouterModule.forChild(MyPageRoutes),
+    SharedModule,
   ]
 })
 export class MyPageModule { }

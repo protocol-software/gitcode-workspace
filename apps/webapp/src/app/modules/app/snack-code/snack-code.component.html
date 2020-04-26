@@ -3,7 +3,8 @@
         <protocol-side-nav></protocol-side-nav>
 
         <div class="ml-5">
-            <protocol-list></protocol-list>
+            <protocol-list *ngIf="!snackCodeId"></protocol-list>
+            <protocol-detail *ngIf="snackCodeId"></protocol-detail>
         </div>
     </div>
 </div>

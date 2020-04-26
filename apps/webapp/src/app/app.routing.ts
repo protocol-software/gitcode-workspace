@@ -9,6 +9,7 @@ import {BasicLayoutComponent} from './layout/layouts/basic/basic.component';
 // tslint:disable:max-line-length
 export const appRoutes: Route[] = [
     { path: '', pathMatch : 'full', redirectTo: 'home' },
+    { path: 'settings', pathMatch : 'full', redirectTo: 'settings/profile' },
 
     {
         path: '',
@@ -41,15 +42,12 @@ export const appRoutes: Route[] = [
                     { path: 'search/:query', loadChildren: () => import('./modules/app/search-code/result/result.module').then(m => m.ResultModule) }
                 ]
             },
-            { path: 'pricing', loadChildren: () => import('./modules/app/payment/pricing/pricing.module').then(m => m.PricingModule) },
             {
-                path: 'my-page',
+                path: 'settings',
                 canActivate: [NoAuthGuard], canActivateChild: [NoAuthGuard],
                 children: [
-                    { path: '', loadChildren: () => import('./modules/app/my-page/my-page.module').then(m => m.MyPageModule) },
-                    { path: 'profile', data: { tab: 'profile' }, loadChildren: () => import('./modules/app/my-page/my-page.module').then(m => m.MyPageModule) },
-                    { path: 'payment-history', data: { tab: 'payment-history' }, loadChildren: () => import('./modules/app/my-page/my-page.module').then(m => m.MyPageModule) },
-                    { path: 'review-history', data: { tab: 'review-history' }, loadChildren: () => import('./modules/app/my-page/my-page.module').then(m => m.MyPageModule) },
+                    { path: 'profile', data: { tab: 'profile' }, loadChildren: () => import('./modules/app/settings/settings.module').then(m => m.SettingsModule) },
+                    { path: 'billing', data: { tab: 'billing' }, loadChildren: () => import('./modules/app/settings/settings.module').then(m => m.SettingsModule) },
                 ]
             }
         ]

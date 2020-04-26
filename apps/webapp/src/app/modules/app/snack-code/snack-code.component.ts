@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'protocol-snack-code',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SnackCodeComponent implements OnInit {
 
-  constructor() { }
+  categoryItems: string;
+  constructor(route: ActivatedRoute) {
+    route.params.subscribe((params) => {
+      this.categoryItems = params['categoryItems'];
+    });
+  }
 
   ngOnInit(): void {
   }

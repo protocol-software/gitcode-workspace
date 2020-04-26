@@ -1,0 +1,12 @@
+<div class="">
+    <div *ngFor="let categoryItem of categoryList">
+        <div class="text-sm text-gray-600">
+            {{ categoryItem.name }}
+        </div>
+        <div *ngFor="let subCategoryItem of categoryItem.subCategoryList">
+            <div class="px-3 py-2 hover:bg-gray-200 cursor-pointer">
+                {{ subCategoryItem.name }}
+            </div>
+        </div>
+    </div>
+</div>

@@ -78,4 +78,13 @@ export const appRoutes: Route[] = [
             {path: 'private-code-review', loadChildren: () => import('./modules/app/code-review/private-code-review/private-code-review.module').then(m => m.PrivateCodeReviewModule)},
         ]
     },
+    {
+        path: '',
+        canActivate: [NoAuthGuard],
+        canActivateChild: [NoAuthGuard],
+        component  : ModernLayoutComponent,
+        children   : [
+            {path: 'my-page', loadChildren: () => import('./modules/app/my-page/my-page.module').then(m => m.MyPageModule)},
+        ]
+    },
 ];

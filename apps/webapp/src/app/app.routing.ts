@@ -42,7 +42,6 @@ export const appRoutes: Route[] = [
                 ]
             },
             { path: 'pricing', loadChildren: () => import('./modules/app/payment/pricing/pricing.module').then(m => m.PricingModule) },
-
             {
                 path: 'my-page',
                 canActivate: [NoAuthGuard], canActivateChild: [NoAuthGuard],

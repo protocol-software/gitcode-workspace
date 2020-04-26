@@ -91,12 +91,6 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         link : '/search-code',
     },
     {
-        id      : 'pricing',
-        title   : '요금',
-        type    : 'basic',
-        link : '/pricing',
-    },
-    {
         id      : 'howItWorks',
         title   : '어떻게 동작하나요?',
         type    : 'basic',

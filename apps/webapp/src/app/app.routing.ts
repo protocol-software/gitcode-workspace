@@ -10,60 +10,49 @@ import {BasicLayoutComponent} from './layout/layouts/basic/basic.component';
 export const appRoutes: Route[] = [
     { path: '', pathMatch : 'full', redirectTo: 'home' },
 
-    // Landing routes
     {
+        path: '',
         canActivate: [NoAuthGuard], canActivateChild: [NoAuthGuard],
         component  : BasicLayoutComponent, resolve    : { initialData: InitialDataResolver },
-        path: 'home', loadChildren: () => import('./modules/landing/home/home.module').then(m => m.LandingHomeModule)
-    },
-    {
-        canActivate: [NoAuthGuard], canActivateChild: [NoAuthGuard],
-        component  : BasicLayoutComponent, resolve    : { initialData: InitialDataResolver },
-        path: 'how-it-works', loadChildren: () => import('./modules/landing/how-it-works/how-it-works.module').then(m => m.HowItWorksModule)
-    },
+        children: [
+            // landing routes
+            { path: 'home', loadChildren: () => import('./modules/landing/home/home.module').then(m => m.LandingHomeModule) },
+            { path: 'how-it-works', loadChildren: () => import('./modules/landing/how-it-works/how-it-works.module').then(m => m.HowItWorksModule) },
 
-    // app routes
-    {
-        path: 'code-review',
-        canActivate: [NoAuthGuard], canActivateChild: [NoAuthGuard],
-        component  : BasicLayoutComponent, resolve    : { initialData: InitialDataResolver },
-        children: [
-            { path: 'public', loadChildren: () => import('./modules/app/code-review/public-code-review/public-code-review.module').then(m => m.PublicCodeReviewModule) },
-            { path: 'private', loadChildren: () => import('./modules/app/code-review/private-code-review/private-code-review.module').then(m => m.PrivateCodeReviewModule) },
-        ]
-    },
-    {
-        path: 'snack-code',
-        canActivate: [NoAuthGuard], canActivateChild: [NoAuthGuard],
-        component: BasicLayoutComponent, resolve: { initialData: InitialDataResolver },
-        children: [
-            { path: '', loadChildren: () => import('./modules/app/snack-code/snack-code.module').then(m => m.SnackCodeModule) },
-            { path: ':id', loadChildren: () => import('./modules/app/snack-code/detail/detail.module').then(m => m.DetailModule) }
-        ]
-    },
-    {
-        path: 'search-code',
-        canActivate: [NoAuthGuard], canActivateChild: [NoAuthGuard],
-        component: BasicLayoutComponent, resolve: { initialData: InitialDataResolver },
-        children: [
-            { path: '', loadChildren: () => import('./modules/app/search-code/search-code.module').then(m => m.SearchCodeModule) },
-            { path: 'search/:query', loadChildren: () => import('./modules/app/search-code/result/result.module').then(m => m.ResultModule) }
-        ]
-    },
-    {
-        canActivate: [NoAuthGuard], canActivateChild: [NoAuthGuard],
-        component: BasicLayoutComponent, resolve: { initialData: InitialDataResolver },
-        path: 'pricing', loadChildren: () => import('./modules/app/payment/pricing/pricing.module').then(m => m.PricingModule)
-    },
-    {
-        path: 'my-page',
-        canActivate: [NoAuthGuard], canActivateChild: [NoAuthGuard],
-        component: BasicLayoutComponent, resolve: { initialData: InitialDataResolver },
-        children: [
-            { path: '', loadChildren: () => import('./modules/app/my-page/my-page.module').then(m => m.MyPageModule) },
-            { path: 'profile', data: { tab: 'profile' }, loadChildren: () => import('./modules/app/my-page/my-page.module').then(m => m.MyPageModule) },
-            { path: 'payment-history', data: { tab: 'payment-history' }, loadChildren: () => import('./modules/app/my-page/my-page.module').then(m => m.MyPageModule) },
-            { path: 'review-history', data: { tab: 'review-history' }, loadChildren: () => import('./modules/app/my-page/my-page.module').then(m => m.MyPageModule) },
+            // app routes
+            {
+                path: 'code-review',
+                children: [
+                    { path: 'public', loadChildren: () => import('./modules/app/code-review/public-code-review/public-code-review.module').then(m => m.PublicCodeReviewModule) },
+                    { path: 'private', loadChildren: () => import('./modules/app/code-review/private-code-review/private-code-review.module').then(m => m.PrivateCodeReviewModule) },
+                ]
+            },
+            {
+                path: 'snack-code',
+                children: [
+                    { path: '', loadChildren: () => import('./modules/app/snack-code/snack-code.module').then(m => m.SnackCodeModule) },
+                    { path: ':id', loadChildren: () => import('./modules/app/snack-code/detail/detail.module').then(m => m.DetailModule) }
+                ]
+            },
+            {
+                path: 'search-code',
+                children: [
+                    { path: '', loadChildren: () => import('./modules/app/search-code/search-code.module').then(m => m.SearchCodeModule) },
+                    { path: 'search/:query', loadChildren: () => import('./modules/app/search-code/result/result.module').then(m => m.ResultModule) }
+                ]
+            },
+            { path: 'pricing', loadChildren: () => import('./modules/app/payment/pricing/pricing.module').then(m => m.PricingModule) },
+
+            {
+                path: 'my-page',
+                canActivate: [NoAuthGuard], canActivateChild: [NoAuthGuard],
+                children: [
+                    { path: '', loadChildren: () => import('./modules/app/my-page/my-page.module').then(m => m.MyPageModule) },
+                    { path: 'profile', data: { tab: 'profile' }, loadChildren: () => import('./modules/app/my-page/my-page.module').then(m => m.MyPageModule) },
+                    { path: 'payment-history', data: { tab: 'payment-history' }, loadChildren: () => import('./modules/app/my-page/my-page.module').then(m => m.MyPageModule) },
+                    { path: 'review-history', data: { tab: 'review-history' }, loadChildren: () => import('./modules/app/my-page/my-page.module').then(m => m.MyPageModule) },
+                ]
+            }
         ]
     },
 ];

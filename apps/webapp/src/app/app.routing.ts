@@ -46,8 +46,7 @@ export const appRoutes: Route[] = [
                 path: 'settings',
                 canActivate: [NoAuthGuard], canActivateChild: [NoAuthGuard],
                 children: [
-                    { path: 'profile', data: { tab: 'profile' }, loadChildren: () => import('./modules/app/settings/settings.module').then(m => m.SettingsModule) },
-                    { path: 'billing', data: { tab: 'billing' }, loadChildren: () => import('./modules/app/settings/settings.module').then(m => m.SettingsModule) },
+                    { path: ':activePath', loadChildren: () => import('./modules/app/settings/settings.module').then(m => m.SettingsModule) },
                 ]
             }
         ]

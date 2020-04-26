@@ -1,9 +1,11 @@
 <div class="content-layout fullwidth-standard-normal-scroll">
-    <div class="flex">
+    <div class="wrapper flex mx-auto my-5">
         <protocol-side-nav></protocol-side-nav>
 
-        <protocol-profile></protocol-profile>
-        <protocol-billing></protocol-billing>
+        <div class="ml-5">
+            <protocol-profile *ngIf="activePath === 'profile'"></protocol-profile>
+            <protocol-billing *ngIf="activePath === 'billing'"></protocol-billing>
+        </div>
 
     </div>
 </div>

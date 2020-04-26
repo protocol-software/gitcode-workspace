@@ -69,7 +69,10 @@
 
             <!-- Title & Subtitle -->
             <div class="treo-horizontal-navigation-item-title-wrapper">
-                <div class="treo-horizontal-navigation-item-title">{{item.title}}</div>
+                <div class="treo-horizontal-navigation-item-title flex items-center">
+                    <div>{{item.title}}</div>
+                    <mat-icon [svgIcon]="'arrow_drop_down'"></mat-icon>
+                </div>
                 <div class="treo-horizontal-navigation-item-subtitle text-hint"
                      *ngIf="item.subtitle">
                     {{item.subtitle}}

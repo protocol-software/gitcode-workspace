@@ -46,5 +46,9 @@ export class CoreModule
         this._matIconRegistry.addSvgIconSetInNamespace('dripicons', this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/dripicons.svg'));
         this._matIconRegistry.addSvgIconSetInNamespace('feather', this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/feather.svg'));
         this._matIconRegistry.addSvgIconSetInNamespace('heroicons', this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/heroicons.svg'));
+
+        this._matIconRegistry.addSvgIcon('notifications-protocol', this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/notifications-protocol.svg'));
+        this._matIconRegistry.addSvgIcon('notifications-active-protocol', this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/notifications-active-protocol.svg'));
+
     }
 }

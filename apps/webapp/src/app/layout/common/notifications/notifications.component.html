@@ -4,9 +4,10 @@
         (click)="openPanel()"
         #notificationsOrigin>
     <mat-icon *ngIf="unreadCount > 0"
-              [svgIcon]="'notifications_active'"></mat-icon>
+              [svgIcon]="'notifications-active-protocol'"></mat-icon>
     <mat-icon *ngIf="unreadCount === 0"
-              [svgIcon]="'notifications'"></mat-icon>
+              [svgIcon]="'notifications-protocol'"></mat-icon>
+
 </button>
 
 <!-- Notifications panel -->

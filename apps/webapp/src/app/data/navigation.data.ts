@@ -60,20 +60,8 @@ export const futuristicNavigation: TreoNavigationItem[] = [
 ];
 export const horizontalNavigation: TreoNavigationItem[] = [
     {
-        id      : 'howItWorks',
-        title   : '어떻게 동작하나?',
-        type    : 'basic',
-        link : '/how-it-works',
-    },
-    {
-        id      : 'pricing',
-        title   : '요금',
-        type    : 'basic',
-        link : '/pricing',
-    },
-    {
         id      : 'codeReview',
-        title   : '리뷰',
+        title   : '코드리뷰',
         type    : 'group',
         children: [
             {
@@ -98,8 +86,20 @@ export const horizontalNavigation: TreoNavigationItem[] = [
     },
     {
         id      : 'searchCode',
-        title   : '검색',
+        title   : '코드검색',
         type    : 'basic',
         link : '/search-code',
+    },
+    {
+        id      : 'pricing',
+        title   : '요금',
+        type    : 'basic',
+        link : '/pricing',
+    },
+    {
+        id      : 'howItWorks',
+        title   : '어떻게 동작하나요?',
+        type    : 'basic',
+        link : '/how-it-works',
     },
 ];

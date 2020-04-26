@@ -89,6 +89,12 @@ treo-horizontal-navigation {
 
             .treo-horizontal-navigation-item-title-wrapper {
 
+                .treo-horizontal-navigation-item-title {
+                    mat-icon {
+                        color: white;
+                    }
+                }
+
                 .treo-horizontal-navigation-item-subtitle {
                     font-size: 12px;
                 }

@@ -2,35 +2,98 @@
   <mat-icon>close</mat-icon>
 </button>
 
-<mat-dialog-content>
+<mat-dialog-content >
+  <!-- TODO-SPOCK 회원가입 타이틀 bold 빼야함, 닫기버튼 강조해야함, 수정하려면 tailwinds 로안되고 css수정해야함 -->
   <div class="title" [innerHtml]="'signUpDialog.title' | translate"></div>
   <div class="content">
-    <form [formGroup]="formGroup"
-          (ngSubmit)="onFormSubmit($event, formGroup.value)">
-      <h4 [innerHtml]="'signUpDialog.agreementTitle' | translate"></h4>
-      <mat-checkbox formControlName="isAgreed" required>
-        <span [innerHtml]="'signUpDialog.agreementStart' | translate"></span>
-        <a href="#" (click)="displayTerms($event)" [innerHtml]="'signUpDialog.agreementTerms' | translate"></a>
-        <span [innerHtml]="'signUpDialog.agreementAnd' | translate"></span>
-        <a href="#" (click)="displayPolicy($event)" [innerHtml]="'signUpDialog.agreementPolicy' | translate"></a>
-        <span [innerHtml]="'signUpDialog.agreementEnd' | translate"></span>
-      </mat-checkbox>
-      <div class="form-control-alert" [innerHtml]="'signUpDialog.agreementRequired' | translate"></div>
-      <h4 [innerHtml]="'signUpDialog.githubRegistrationTitle' | translate"></h4>
-      <p [innerHtml]="'signUpDialog.githubRegistrationMessage' | translate">If you are not registered on Github, please register first.</p>
-      <a href="https://github.com/join" target="_blank" [innerHtml]="'signUpDialog.githubSignUpLink' | translate"></a>
-
-      <div class="form-actions">
-        <button mat-stroked-button
-                class="form-action"
-                type="submit"
-                [disabled]="!formGroup?.valid">
-          <img src="/assets/images/github-mark.svg" alt="GitHub">
-          <span [innerHtml]="'signUpDialog.githubSignIn' | translate"></span>
-        </button>
+    <div class="w-full border bg-indigo-100 py-3 text-center rounded border-indigo-200 text-sm"><span class="font-bold text-base">Protocol</span> 에 아직 가입하지 않으셨군요!<br>
+    서비스 이용을 위해서 회원으로 가입해주세요.</div>
+    <div class="text-black mt-5 mb-2 rounded text-sm">이메일 주소를 입력하고 인증해주세요.</div>
+    <div class="flex">
+      <input placeholder="    Ex. honggildong@email.com" class="border rounded w-9/12 py-1 leading-loose mr-1">
+      <!-- TODO-SPOCK : placeholder 수정 -->
+      <div class="border rounded text-blue-600 font-bold w-3/12 text-center py-1 leading-loose">인증코드발송</div>
+    </div>
+    <div class="text-black mt-8 mb-2 rounded text-sm">인증번호를 입력해주세요.</div>
+    <div class="flex">
+      <input placeholder="    인증번호 입력" class="border rounded w-8/12 py-1 leading-loose mr-1">
+      <!-- TODO-SPOCK : placeholder 수정 -->
+      <div class="border rounded text-gray-600 font-bold w-2/12 text-center py-1 leading-loose">확인</div>
+    </div>
+    <div class="mt-5">
+      <div class="text-gray-900">인증번호의 유효시간은 5분입니다.<span class="text-blue-600 ml-3 mr-5">04:35</span><span class="text-blue-600 underline">인증코드 재발송</span></div>
+    </div>
+    <div class="mt-5 flex">
+      <div class="mr-2 mt-1 text-sm">
+        <img src="/assets/icons/information-protocol.svg">
       </div>
+      <div>
+        <div class="text-gray-900  mb-1">만약 인증 메일이 오지 않는다면?</div>
+        <div class="text-gray-600">스팸 메일함을 확인해보세요.<br>메일링 서비스에 따라 스팸메일로 분류될 수 있습니다.</div>
+      </div>
+    </div>
+    <form [formGroup]="formGroup"
+          (ngSubmit)="onFormSubmit($event, formGroup.value)" class="mt-8">
+      <h4 [innerHtml]="'signUpDialog.agreementTitle' | translate" class="text-sm mb-5"></h4>
+<!--      <mat-checkbox formControlName="isAgreed" required>-->
+<!--        <span [innerHtml]="'signUpDialog.agreementStart' | translate"></span>-->
+<!--        <a href="#" (click)="displayTerms($event)" [innerHtml]="'signUpDialog.agreementTerms' | translate"></a>-->
+<!--        <span [innerHtml]="'signUpDialog.agreementAnd' | translate"></span>-->
+<!--        <a href="#" (click)="displayPolicy($event)" [innerHtml]="'signUpDialog.agreementPolicy' | translate"></a>-->
+<!--        <span [innerHtml]="'signUpDialog.agreementEnd' | translate"></span>-->
+<!--      </mat-checkbox>-->
+<!--      <div class="form-control-alert" [innerHtml]="'signUpDialog.agreementRequired' | translate"></div>-->
+      <div class="flex items-center mx-auto">
+        <div class="border-gray-400 rounded border py-1 w-8/12 text-sm text-gray-400 mr-2 pl-5 flex ">
+          <mat-icon class="mr-1 text-gray-500" style="color:#cbd5e0">check</mat-icon>
+<!--          TODO-SPOCK : mat-icon을 custom 해야만하는건가 -->
+          <div>서비스 이용약관에 동의합니다.</div>
+        </div>
+        <div class="underline text-blue-600 w-4/12 text-xs">서비스 이용약관 보기</div>
+      </div>
+      <div class="flex items-center mx-auto mt-2">
+        <div class="border-gray-400 rounded border py-1 w-8/12 text-sm text-gray-400 mr-2 pl-5 flex ">
+          <mat-icon class="mr-1 text-gray-500" style="color:#cbd5e0">check</mat-icon>
+<!--          TODO-SPOCK : mat-icon을 custom 해야만하는건가 -->
+          <div>개인정보취급방침에 동의합니다.</div>
+        </div>
+        <div class="underline text-blue-600 w-4/12 text-xs">개인정보취급방침 보기</div>
+      </div>
+      <div class="flex items-center mx-auto">
+        <div class="bg-blue-500 border-gray-400 rounded border py-1 w-8/12 text-sm text-white mr-2 pl-5 flex ">
+          <mat-icon class="mr-1 text-gray-500" style="color:white">check</mat-icon>
+          <!--          TODO-SPOCK : mat-icon을 custom 해야만하는건가 -->
+          <div>서비스 이용약관에 동의합니다.</div>
+        </div>
+        <div class="underline text-blue-600 w-4/12 text-xs">서비스 이용약관 보기</div>
+      </div>
+      <div class="flex items-center mx-auto mt-2">
+        <div class="bg-blue-500 border-gray-400 rounded border py-1 w-8/12 text-sm text-white mr-2 pl-5 flex ">
+          <mat-icon class="mr-1 text-gray-500" style="color:white">check</mat-icon>
+          <!--          TODO-SPOCK : mat-icon을 custom 해야만하는건가 -->
+          <div>개인정보취급방침에 동의합니다.</div>
+        </div>
+        <div class="underline text-blue-600 w-4/12 text-xs">개인정보취급방침 보기</div>
+      </div>
+
+
+<!--      <h4 [innerHtml]="'signUpDialog.githubRegistrationTitle' | translate"></h4>-->
+<!--      <p [innerHtml]="'signUpDialog.githubRegistrationMessage' | translate">If you are not registered on Github, please register first.</p>-->
+<!--      <a href="https://github.com/join" target="_blank" [innerHtml]="'signUpDialog.githubSignUpLink' | translate"></a>-->
+
+<!--      <div class="form-actions w-full">-->
+<!--        <button mat-stroked-button-->
+<!--                class="form-action"-->
+<!--                type="submit"-->
+<!--                [disabled]="!formGroup?.valid">-->
+<!--          <img src="/assets/images/github-mark.svg" alt="GitHub">-->
+<!--          <span [innerHtml]="'signUpDialog.githubSignIn' | translate"></span>-->
+<!--        </button>-->
+<!--      </div>-->
     </form>
   </div>
+  <div class="bg-gray-400 text-white text-center py-6">가입하기</div>
+  <div class="bg-gray-700 text-white text-center py-6">가입하기</div>
 </mat-dialog-content>
 
 <mat-dialog-actions *ngIf="false">

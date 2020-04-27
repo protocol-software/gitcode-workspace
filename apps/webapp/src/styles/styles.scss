@@ -4,3 +4,28 @@
 // @ Styles from this file will override anything from 'vendors.scss' file allowing customizations and
 //  modifications of third party libraries.
 // -----------------------------------------------------------------------------------------------------
+
+.text-charcoal {
+  color:#444A52;
+}
+.text-yellow {
+  color:#F7C243;
+}
+.text-pink {
+  color:#DA507A
+}
+.text-green {
+  color:#C0D99A;
+}
+.text-blue {
+  color:#2E76DF;
+}
+
+.protocol-box{
+  background: linear-gradient(180deg, #FAFAFC 0%, #EFF3F6 100%), #EFF3F6;
+  /* Default/gray/400 */
+
+  border: 1px solid #CBD5E0;
+  box-sizing: border-box;
+  border-radius: 4px;
+}

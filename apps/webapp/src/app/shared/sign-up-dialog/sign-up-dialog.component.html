@@ -95,6 +95,19 @@
   <div class="bg-gray-400 text-white text-center py-6">가입하기</div>
   <div class="bg-gray-700 text-white text-center py-6">가입하기</div>
 </mat-dialog-content>
+<mat-dialog-content >
+
+  <div class="title" [innerHtml]="'signUpDialog.title' | translate"></div>
+  <div class="container">
+    <div class="mx-auto pt-15 text-center">
+      <div class="text-charcoal text-4xl font-bold pb-3 pt-32">Protocol</div>
+      <div class="text-charcoal">회원가입이 완료되었습니다!</div>
+      <div class="text-charcoal">감사합니다.</div>
+      <div class="protocol-box text-charcoal w-1/3 mx-auto mt-5 py-1">프로토콜에서 자주 만나요!</div>
+    </div>
+  </div>
+
+</mat-dialog-content>
 
 <mat-dialog-actions *ngIf="false">
   <div class="dialog-actions">

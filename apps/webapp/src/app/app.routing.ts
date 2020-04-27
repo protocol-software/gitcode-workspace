@@ -33,14 +33,14 @@ export const appRoutes: Route[] = [
                 children: [
                     { path: '', loadChildren: () => import('./modules/app/snack-code/snack-code.module').then(m => m.SnackCodeModule) },
                     { path: ':categoryItems', loadChildren: () => import('./modules/app/snack-code/snack-code.module').then(m => m.SnackCodeModule) },
-                    { path: 'detail/:id', loadChildren: () => import('./modules/app/snack-code/detail/detail.module').then(m => m.DetailModule) }
+                    { path: 'detail/:snackCodeId', loadChildren: () => import('./modules/app/snack-code/snack-code.module').then(m => m.SnackCodeModule) }
                 ]
             },
             {
                 path: 'search-code',
                 children: [
                     { path: '', loadChildren: () => import('./modules/app/search-code/search-code.module').then(m => m.SearchCodeModule) },
-                    { path: 'search/:query', loadChildren: () => import('./modules/app/search-code/result/result.module').then(m => m.ResultModule) }
+                    { path: 'q/:query', loadChildren: () => import('./modules/app/search-code/result/result.module').then(m => m.ResultModule) }
                 ]
             },
             {

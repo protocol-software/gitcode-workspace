@@ -63,8 +63,7 @@ export class UserComponent implements OnInit, OnDestroy
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((user: IUser) => {
                 this.user = user;
-                // test for ui TODO
-                this.signUp(null);
+
             });
     }
 

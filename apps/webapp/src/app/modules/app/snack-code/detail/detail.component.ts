@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'protocol-detail',
@@ -7,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailComponent implements OnInit {
 
+  @Input('snackCodeId') snackCodeId: string;
+  contentPath: string;
+
   constructor() {
   }
 
   ngOnInit(): void {
+    this.contentPath = `/assets/snack-code/contents/${this.snackCodeId}.md`;
   }
 
 }

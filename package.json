@@ -75,7 +75,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.5.5",
     "rxjs-compat": "^6.5.3",
-    "url-assembler": "^2.1.0",
+    "url-assembler": "^2.1.1",
     "web-animations-js": "^2.3.2",
     "zone.js": "^0.10.3"
   },

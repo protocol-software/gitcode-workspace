@@ -13,6 +13,9 @@ import { PolicyDialogModule } from '../policy-dialog/policy-dialog.module';
 import { TermsDialogModule } from '../terms-dialog/terms-dialog.module';
 import { SignUpDialogComponent } from './sign-up-dialog.component';
 import { SignUpDialogService } from './sign-up-dialog.service';
+import {OtpService} from '../../services/otp.service';
+import {HttpService} from '../../services/http.service';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   imports: [
@@ -24,6 +27,7 @@ import { SignUpDialogService } from './sign-up-dialog.service';
     MatDialogModule,
     MatIconModule,
     MatFormFieldModule,
+    MatInputModule,
     TranslateModule,
 
     PolicyDialogModule,
@@ -32,6 +36,8 @@ import { SignUpDialogService } from './sign-up-dialog.service';
   declarations: [SignUpDialogComponent],
   providers: [
     SignUpDialogService,
+    OtpService,
+    HttpService,
   ],
   exports: [SignUpDialogComponent],
   entryComponents: [SignUpDialogComponent],

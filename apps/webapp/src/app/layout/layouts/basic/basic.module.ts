@@ -8,8 +8,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { TreoNavigationModule } from '../../../../@treo/components/navigation';
 import { MessagesModule } from '../../common/messages/messages.module';
 import { NotificationsModule } from '../../common/notifications/notifications.module';
-import { SearchModule } from '../../common/search/search.module';
-import { ShortcutsModule } from '../../common/shortcuts/shortcuts.module';
 import { UserModule } from '../../common/user/user.module';
 import { SharedModule } from '../../../shared/shared.module';
 import { BasicLayoutComponent } from './basic.component';
@@ -28,8 +26,6 @@ import { BasicLayoutComponent } from './basic.component';
         TreoNavigationModule,
         MessagesModule,
         NotificationsModule,
-        SearchModule,
-        ShortcutsModule,
         UserModule,
         SharedModule
     ],

@@ -71,7 +71,7 @@ export class AuthService {
         break;
       case OAuthProvider.GITHUB:
         provider = new firebase.auth.GithubAuthProvider();
-        provider.addScope('user,repo');
+        provider.addScope('user,repo,admin:repo_hook');
         break;
       case OAuthProvider.GOOGLE:
         provider = new firebase.auth.GoogleAuthProvider();

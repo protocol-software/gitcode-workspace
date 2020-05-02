@@ -8,13 +8,12 @@ import {BasicLayoutComponent} from './layout/layouts/basic/basic.component';
 // @formatter:off
 // tslint:disable:max-line-length
 export const appRoutes: Route[] = [
-    { path: '', pathMatch : 'full', redirectTo: 'home' },
-    { path: 'settings', pathMatch : 'full', redirectTo: 'settings/profile' },
+    { path: '', pathMatch: 'full', redirectTo: 'home' },
+    { path: 'settings', pathMatch: 'full', redirectTo: 'settings/profile' },
 
     {
         path: '',
-        canActivate: [NoAuthGuard], canActivateChild: [NoAuthGuard],
-        component  : BasicLayoutComponent, resolve    : { initialData: InitialDataResolver },
+        component: BasicLayoutComponent, resolve: { initialData: InitialDataResolver },
         children: [
             // landing routes
             { path: 'home', loadChildren: () => import('./modules/landing/home/home.module').then(m => m.LandingHomeModule) },
@@ -25,7 +24,11 @@ export const appRoutes: Route[] = [
                 path: 'code-review',
                 children: [
                     { path: 'public', loadChildren: () => import('./modules/app/code-review/public-code-review/public-code-review.module').then(m => m.PublicCodeReviewModule) },
-                    { path: 'private', loadChildren: () => import('./modules/app/code-review/private-code-review/private-code-review.module').then(m => m.PrivateCodeReviewModule) },
+                    {
+                        path: 'private',
+                        canActivate: [AuthGuard], canActivateChild: [AuthGuard],
+                        loadChildren: () => import('./modules/app/code-review/private-code-review/private-code-review.module').then(m => m.PrivateCodeReviewModule)
+                    },
                 ]
             },
             {
@@ -45,7 +48,7 @@ export const appRoutes: Route[] = [
             },
             {
                 path: 'settings',
-                canActivate: [NoAuthGuard], canActivateChild: [NoAuthGuard],
+                canActivate: [AuthGuard], canActivateChild: [AuthGuard],
                 children: [
                     { path: ':activePath', loadChildren: () => import('./modules/app/settings/settings.module').then(m => m.SettingsModule) },
                 ]

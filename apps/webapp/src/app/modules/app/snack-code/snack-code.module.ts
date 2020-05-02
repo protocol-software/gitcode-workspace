@@ -6,6 +6,7 @@ import {SnackCodeRoutes} from './snack-code.routing';
 import {SideNavComponent} from './side-nav/side-nav.component';
 import {ListComponent} from './list/list.component';
 import {DetailComponent} from './detail/detail.component';
+import {MarkdownModule} from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {DetailComponent} from './detail/detail.component';
   ],
   imports: [
     RouterModule.forChild(SnackCodeRoutes),
-    CommonModule
+    CommonModule,
+    MarkdownModule,
   ]
 })
 export class SnackCodeModule { }

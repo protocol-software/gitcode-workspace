@@ -4,7 +4,7 @@
 
         <div class="ml-5">
             <protocol-list *ngIf="!snackCodeId"></protocol-list>
-            <protocol-detail *ngIf="snackCodeId"></protocol-detail>
+            <protocol-detail *ngIf="snackCodeId" [snackCodeId]="snackCodeId"></protocol-detail>
         </div>
     </div>
 </div>

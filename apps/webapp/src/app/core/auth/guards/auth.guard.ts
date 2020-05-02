@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { AuthService } from '../../../core/auth/auth.service';
 import { switchMap } from 'rxjs/operators';
+import {AuthService} from '../../../services/auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -43,7 +43,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad
                            if ( !authenticated )
                            {
                                // Redirect to the sign-in page
-                               this._router.navigate(['sign-in'], {queryParams: {redirectURL}});
+                               // this._router.navigate(['sign-in'], {queryParams: {redirectURL}});
 
                                // Prevent the access
                                return of(false);

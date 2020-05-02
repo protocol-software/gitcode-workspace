@@ -6,23 +6,35 @@
   <mat-icon>close</mat-icon>
 </button>
 
-<mat-dialog-content >
+<mat-dialog-content>
   <!-- TODO-SPOCK 회원가입 타이틀 bold 빼야함, 닫기버튼 강조해야함, 수정하려면 tailwinds 로안되고 css수정해야함 -->
   <div class="title" [innerHtml]="'signUpDialog.title' | translate"></div>
   <div class="content">
-    <div class="w-full border bg-indigo-100 py-3 text-center rounded border-indigo-200 text-sm"><span class="font-bold text-base">Protocol</span> 에 아직 가입하지 않으셨군요!<br>
-    서비스 이용을 위해서 회원으로 가입해주세요.</div>
+
+    <form [formGroup]="formGroup" (ngSubmit)="onFormSubmit($event, formGroup.value)" class="mt-8">
+
+    <div class="w-full border bg-indigo-100 py-3 text-center rounded border-indigo-200 text-sm">
+      <div>
+        <span class="font-bold text-base">Protocol</span>
+        <span> 에 아직 가입하지 않으셨군요!</span>
+      </div>
+      <div>
+        서비스 이용을 위해서 회원으로 가입해주세요.
+      </div>
+    </div>
     <div class="text-black mt-5 mb-2 rounded text-sm">이메일 주소를 입력하고 인증해주세요.</div>
     <div class="flex">
-      <input placeholder="    Ex. honggildong@email.com" class="border rounded w-9/12 py-1 leading-loose mr-1">
-      <!-- TODO-SPOCK : placeholder 수정 -->
-      <div class="border rounded text-blue-600 font-bold w-3/12 text-center py-1 leading-loose">인증코드발송</div>
+      <mat-form-field class="treo-mat-dense treo-mat-no-subscript w-9/12 mr-1">
+        <input matInput formControlName="email" placeholder="Ex. steve@wozniak.com" class="border rounded py-1 leading-loose pl-3">
+      </mat-form-field>
+      <div class="border rounded text-blue-600 font-bold w-3/12 text-center py-1 leading-loose cursor-pointer" (click)="sendOtp($event)">인증코드발송</div>
     </div>
     <div class="text-black mt-8 mb-2 rounded text-sm">인증번호를 입력해주세요.</div>
     <div class="flex">
-      <input placeholder="    인증번호 입력" class="border rounded w-8/12 py-1 leading-loose mr-1">
-      <!-- TODO-SPOCK : placeholder 수정 -->
-      <div class="border rounded text-gray-600 font-bold w-2/12 text-center py-1 leading-loose">확인</div>
+      <mat-form-field class="treo-mat-dense treo-mat-no-subscript w-8/12 mr-1">
+        <input matInput formControlName="otpCode" placeholder="인증번호 입력" class="border rounded py-1 leading-loose pl-3">
+      </mat-form-field>
+      <div class="border rounded text-gray-600 font-bold w-2/12 text-center py-1 leading-loose cursor-pointer" (click)="verifyOtp($event)">확인</div>
     </div>
     <div class="mt-5">
       <div class="text-gray-900">인증번호의 유효시간은 5분입니다.<span class="text-blue-600 ml-3 mr-5">04:35</span><span class="text-blue-600 underline">인증코드 재발송</span></div>
@@ -36,8 +48,6 @@
         <div class="text-gray-600">스팸 메일함을 확인해보세요.<br>메일링 서비스에 따라 스팸메일로 분류될 수 있습니다.</div>
       </div>
     </div>
-    <form [formGroup]="formGroup"
-          (ngSubmit)="onFormSubmit($event, formGroup.value)" class="mt-8">
       <h4 [innerHtml]="'signUpDialog.agreementTitle' | translate" class="text-sm mb-5"></h4>
 <!--      <mat-checkbox formControlName="isAgreed" required>-->
 <!--        <span [innerHtml]="'signUpDialog.agreementStart' | translate"></span>-->

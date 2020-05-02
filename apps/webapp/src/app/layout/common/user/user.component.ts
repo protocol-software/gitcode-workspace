@@ -33,6 +33,7 @@ export class UserComponent implements OnInit, OnDestroy
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
         private signUpDialogService: SignUpDialogService,
+
         private authService: AuthService,
     )
     {

@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { TreoMediaWatcherService } from '../../../../@treo/services/media-watcher';
 import { TreoNavigationService } from '../../../../@treo/components/navigation';
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
     selector     : 'basic-layout',
@@ -15,6 +16,7 @@ export class BasicLayoutComponent implements OnInit, OnDestroy
 {
     data: any;
     isScreenSmall: boolean;
+    authenticated = false;
 
     @HostBinding('class.fixed-header')
     fixedHeader: boolean;
@@ -37,7 +39,8 @@ export class BasicLayoutComponent implements OnInit, OnDestroy
         private _activatedRoute: ActivatedRoute,
         private _treoMediaWatcherService: TreoMediaWatcherService,
         private _treoNavigationService: TreoNavigationService,
-        private _router: Router
+        private _router: Router,
+        private authService: AuthService,
     )
     {
         // Set the private defaults
@@ -46,6 +49,12 @@ export class BasicLayoutComponent implements OnInit, OnDestroy
         // Set the defaults
         this.fixedHeader = false;
         this.fixedFooter = false;
+
+        this.authService.check()
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe(result => {
+            this.authenticated = result;
+        })
     }
 
     // -----------------------------------------------------------------------------------------------------

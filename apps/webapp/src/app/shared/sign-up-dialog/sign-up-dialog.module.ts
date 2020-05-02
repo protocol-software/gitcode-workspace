@@ -42,4 +42,6 @@ import {MatInputModule} from '@angular/material/input';
   exports: [SignUpDialogComponent],
   entryComponents: [SignUpDialogComponent],
 })
-export class SignUpDialogModule {}
+export class SignUpDialogModule {
+
+}

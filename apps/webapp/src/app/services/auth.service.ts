@@ -7,6 +7,7 @@ import * as firebase from 'firebase';
 import { Observable, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { GitHubService } from './github.service';
+import {AuthUtils} from "../core/auth/auth.utils";
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,8 @@ import { GitHubService } from './github.service';
 export class AuthService {
   public user$: Observable<IUser>;
   protected collectionName = 'users';
+  public _authenticated = false;
+  public accessToken;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -35,7 +38,10 @@ export class AuthService {
 
                 if (authUser.providerUserData[OAuthProvider.GITHUB]) {
                   this.gitHubService.AccessToken = authUser.accessToken;
-                  localStorage.setItem('githubAccessToken', authUser.accessToken);
+                  localStorage.setItem('accessToken', authUser.accessToken);
+
+                  this._authenticated = true;
+                  this.accessToken = authUser.accessToken;
                 }
               },
             ),
@@ -149,7 +155,34 @@ export class AuthService {
 
   public async signOut(): Promise<void> {
     localStorage.clear();
+
+    this._authenticated = false;
+    this.accessToken = null;
+
     await this.afAuth.signOut();
     await this.router.navigate(['/']);
+  }
+
+  check(): Observable<boolean>
+  {
+    // Check if the user is logged in
+    if ( this._authenticated )
+    {
+      return of(true);
+    }
+
+    // Check the access token availability
+    if ( !this.accessToken )
+    {
+      return of(false);
+    }
+
+    // Check the access token expire date
+    if ( AuthUtils.isTokenExpired(this.accessToken) )
+    {
+      return of(false);
+    }
+
+    return of(false);
   }
 }

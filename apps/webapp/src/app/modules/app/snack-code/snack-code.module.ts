@@ -7,6 +7,7 @@ import {SideNavComponent} from './side-nav/side-nav.component';
 import {ListComponent} from './list/list.component';
 import {DetailComponent} from './detail/detail.component';
 import {MarkdownModule} from 'ngx-markdown';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {MarkdownModule} from 'ngx-markdown';
     RouterModule.forChild(SnackCodeRoutes),
     CommonModule,
     MarkdownModule,
+    MatIconModule,
   ]
 })
 export class SnackCodeModule { }

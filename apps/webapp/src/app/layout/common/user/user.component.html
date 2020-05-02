@@ -10,7 +10,7 @@
 </ng-container>
 
 <ng-container *ngIf="user">
-    <span class="avatar mr-2">
+    <span class="avatar mr-3">
         <img *ngIf="showAvatar && user.photoURL"
              [src]="user.photoURL">
         <mat-icon *ngIf="!showAvatar || !user.photoURL"

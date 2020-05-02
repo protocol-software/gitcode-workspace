@@ -1,16 +1,28 @@
 <!-- Notifications toggle -->
-<button class="notifications-toggle"
-        mat-icon-button
-        (click)="openPanel()"
-        #notificationsOrigin>
-    <mat-icon *ngIf="unreadCount > 0"
-              [svgIcon]="'notifications-active-protocol'"><div class="h-1">1</div></mat-icon>
-    <mat-icon *ngIf="unreadCount === 0"
-              [svgIcon]="'notifications-protocol'"></mat-icon>
-<!-- TODO:   -->
-</button>
-<!-- Notifications panel -->
-<ng-template #notificationsPanel>
+    <button class="notifications-toggle"
+            mat-icon-button
+            (click)="openPanel()"
+            #notificationsOrigin>
+
+        <div *ngIf="unreadCount === 0" class="active">
+<!--            <div  class="absolute right-0 top-0 rounded-full bg-yellow text-sm font-bold w-4 h-4" style="padding:1px; margin:4px 15px;">N</div>-->
+            <mat-icon
+                      [svgIcon]="'notifications-active-protocol'">
+        <!--        <div class="flex w-full">-->
+        <!--            <div class="h-1">N</div>-->
+        <!--        </div>-->
+        <!--        TODO-SPOCK : N circle만들어야하는데 잘안되네. -->
+            </mat-icon>
+        </div>
+        <div *ngIf="unreadCount === 0">
+            <mat-icon [svgIcon]="'notifications-protocol'"></mat-icon>
+        </div>
+
+    <!-- TODO:   -->
+    </button>
+
+    <!-- Notifications panel -->
+    <ng-template #notificationsPanel>
 
     <div class="notifications-panel">
 
@@ -122,4 +134,15 @@
 
     </div>
 
-</ng-template>
+    </ng-template>
+
+
+<!--    <div class="w-64 h-20 bg-indigo-100 rounded border-indigo-200 absolute top-0">-->
+<!--        <div class="py-5 pl-5 flex justify-between">-->
+<!--            <div class="text-charcoal text-sms mt-1 ">-->
+<!--                요청하신 코드리뷰에 전문가가 <br>매칭되었습니다.-->
+<!--            </div>-->
+<!--            <div class="mr-5"><mat-icon>close</mat-icon></div>-->
+<!--        </div>-->
+
+<!--    </div>-->

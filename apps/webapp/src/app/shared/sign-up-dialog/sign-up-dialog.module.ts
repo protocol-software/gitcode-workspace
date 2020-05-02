@@ -36,4 +36,6 @@ import { SignUpDialogService } from './sign-up-dialog.service';
   exports: [SignUpDialogComponent],
   entryComponents: [SignUpDialogComponent],
 })
-export class SignUpDialogModule {}
+export class SignUpDialogModule {
+
+}

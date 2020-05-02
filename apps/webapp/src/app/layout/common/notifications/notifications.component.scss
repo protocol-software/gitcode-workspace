@@ -5,6 +5,17 @@ notifications {
     align-items: center;
 }
 
+.notifications-toggle {
+    .mat-icon {
+        @include treo-icon-size-w(27);
+        @include treo-icon-size-h(25);
+    }
+    .active .mat-icon {
+        @include treo-icon-size-w(32);
+        @include treo-icon-size-h(25);
+    }
+}
+
 // Notifications panel
 .notifications-panel {
     min-width: 360px !important;

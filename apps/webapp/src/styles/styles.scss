@@ -21,6 +21,23 @@
   color:#2E76DF;
 }
 
+
+.bg-charcoal {
+  background:#444A52;
+}
+.bg-yellow {
+  background:#F7C243;
+}
+.bg-pink {
+  background:#DA507A
+}
+.bg-green {
+  background:#C0D99A;
+}
+.bg-blue {
+  background:#2E76DF;
+}
+
 .protocol-box{
   background: linear-gradient(180deg, #FAFAFC 0%, #EFF3F6 100%), #EFF3F6;
   /* Default/gray/400 */
@@ -29,3 +46,5 @@
   box-sizing: border-box;
   border-radius: 4px;
 }
+
+body{background:white!important; }

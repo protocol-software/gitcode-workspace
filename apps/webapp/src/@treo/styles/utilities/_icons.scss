@@ -22,3 +22,21 @@
         height: #{($size) + 'px'} if($important, !important, null);
     }
 }
+
+@mixin treo-icon-size-w($size, $important: false) {
+    width: #{($size) + 'px'} if($important, !important, null);
+    min-width: #{($size) + 'px'} if($important, !important, null);
+
+    svg {
+        width: #{($size) + 'px'} if($important, !important, null);
+    }
+}
+
+@mixin treo-icon-size-h($size, $important: false) {
+    height: #{($size) + 'px'} if($important, !important, null);
+    min-height: #{($size) + 'px'} if($important, !important, null);
+
+    svg {
+        height: #{($size) + 'px'} if($important, !important, null);
+    }
+}

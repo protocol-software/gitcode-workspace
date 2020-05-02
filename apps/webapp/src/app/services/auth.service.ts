@@ -80,13 +80,17 @@ export class AuthService {
     // provider.addScope('profile');
     // provider.addScope('email');
 
-    const userCredential = await this.afAuth.signInWithPopup(provider);
-    const providerUserData = await this.getProviderUserData(oauthProvider, userCredential);
+    const userCredential = await this.afAuth.signInWithPopup(provider);   
 
-    return this.updateUserData(userCredential, oauthProvider, providerUserData);
+    //가입여부 체크
+    const existsUserData = await this.getSignedUserData(userCredential);
+    const isSigned = existsUserData.exists;
+
+    // const providerUserData = await this.getProviderUserData(oauthProvider, userCredential);    
+    // return this.updateUserData(userCredential, oauthProvider, providerUserData);
   }
 
-  private getProviderUserData(oauthProvider: OAuthProvider, userCredential: firebase.auth.UserCredential): Promise<any> {
+  public getProviderUserData(oauthProvider: OAuthProvider, userCredential: firebase.auth.UserCredential): Promise<any> {
     let providerUserData;
 
     switch (oauthProvider) {
@@ -108,7 +112,7 @@ export class AuthService {
     return providerUserData;
   }
 
-  private updateUserData(
+  public updateUserData(
     userCredential: firebase.auth.UserCredential,
     oauthProvider: OAuthProvider,
     providerUserData: any,
@@ -135,6 +139,12 @@ export class AuthService {
     }
 
     return userRef.set(userData, { merge: true });
+  }
+
+  public getSignedUserData (
+    userCredential: firebase.auth.UserCredential,    
+  ): Promise<any> {
+    return this.afs.doc(`${this.collectionName}/${userCredential.user.uid}`).get().toPromise()
   }
 
   public async signOut(): Promise<void> {

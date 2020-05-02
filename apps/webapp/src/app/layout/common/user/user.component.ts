@@ -109,6 +109,7 @@ export class UserComponent implements OnInit, OnDestroy
     }
 
     public signUp(event: MouseEvent): void {
+        console.log('onclickSignup')
         if (event) {
             event.preventDefault();
             event.stopPropagation();
@@ -127,6 +128,7 @@ export class UserComponent implements OnInit, OnDestroy
     }
 
     public signIn(event: MouseEvent): void {
+        console.log('onclickSignin')
         if (event) {
             event.preventDefault();
             event.stopPropagation();

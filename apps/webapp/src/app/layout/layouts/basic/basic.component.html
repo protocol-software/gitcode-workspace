@@ -45,27 +45,17 @@
             <mat-icon [svgIcon]="'menu'"></mat-icon>
         </button>
 
-        <!-- Spacer -->
         <div class="spacer"></div>
 
-        <!-- Search -->
-<!--        <search [appearance]="'bar'"></search>-->
+        <div *ngIf="authenticated">
+            <messages [messages]="data?.messages"></messages>
+            <notifications [notifications]="data?.notifications"></notifications>
+        </div>
 
-        <!-- Shortcuts -->
-<!--        <shortcuts [shortcuts]="data?.shortcuts"></shortcuts>-->
-
-        <!-- Messages -->
-        <messages [messages]="data?.messages"></messages>
-
-        <!-- Notifications -->
-        <notifications [notifications]="data?.notifications"></notifications>
-
-        <!-- User -->
-        <user class="mr-8"></user>
+        <user></user>
 
     </div>
 
-    <!-- Content -->
     <div class="content">
 
         <!-- *ngIf="true" hack is required here for router-outlet to work correctly. Otherwise,

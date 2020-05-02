@@ -10,20 +10,17 @@
 </ng-container>
 
 <ng-container *ngIf="user">
-    <span class="avatar mr-8">
+    <span class="avatar mr-2">
         <img *ngIf="showAvatar && user.photoURL"
              [src]="user.photoURL">
         <mat-icon *ngIf="!showAvatar || !user.photoURL"
                   [svgIcon]="'account_circle'"></mat-icon>
         <!--        <span class="status" [ngClass]="user?.status"></span>-->
     </span>
-    <button class="icon-button"
-            mat-icon-button
-            [matMenuTriggerFor]="userActions">
-        Username
-<!--        Todo-from-lion: need to get username  -->
+    <span class="cursor-pointer flex items-center" [matMenuTriggerFor]="userActions" style="margin-top:-2px;">
+        <span>{{ user.displayName }}</span>
         <mat-icon [svgIcon]="'arrow_drop_down'"></mat-icon>
-    </button>
+    </span>
 
     <mat-menu class="user-actions-menu"
               [xPosition]="'before'"

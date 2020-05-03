@@ -33,7 +33,6 @@ export class UserComponent implements OnInit, OnDestroy
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
         private signUpDialogService: SignUpDialogService,
-
         private authService: AuthService,
     )
     {
@@ -62,9 +61,11 @@ export class UserComponent implements OnInit, OnDestroy
 
         this.authService.user$
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((user: IUser) => {
-                this.user = user;
-
+            .subscribe((user: IUser) => {                                
+                this.user = user;    
+                if(!user) return;
+                const replaceName = (user.email) ? user.email.split('@')[0] : null;
+                this.user.displayName = (this.user.displayName) ? this.user.displayName : replaceName;
             });
     }
 
@@ -107,34 +108,27 @@ export class UserComponent implements OnInit, OnDestroy
     moveTo(path: string): void
     {
         this._router.navigate([path]);
-    }
+    }    
 
-    public signUp(event: MouseEvent): void {
-        console.log('onclickSignup')
+    public async signIn(event: MouseEvent): Promise<void> {        
         if (event) {
             event.preventDefault();
             event.stopPropagation();
         }
-
-        const dialogClosed = this.signUpDialogService.open();
-        dialogClosed.subscribe(
-            (result) => {
-                if (!result) {
-                    return;
-                }
-
-                this.authService.signInOAuth(OAuthProvider.GITHUB);
-            },
-        );
+        const oauthProvider = OAuthProvider.GITHUB        
+        //github 인증
+        const userCredential = await this.authService.signInOAuth(oauthProvider);                
+        const signedUserData = await this.authService.getSignedUserData(userCredential);                
+        if(!signedUserData.exists) {
+            this.signUpDialogService.open({userCredential: userCredential, oauthProvider: oauthProvider})
+            return
+        }           
+        const providerUserData = await this.authService.getProviderUserData(oauthProvider, userCredential);
+        await this.authService.updateUserData(userCredential, oauthProvider, providerUserData);        
     }
 
-    public signIn(event: MouseEvent): void {
-        console.log('onclickSignin')
-        if (event) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-
-        this.authService.signInOAuth(OAuthProvider.GITHUB);
+    public async deleteMember (event): Promise<void> {
+        await this.authService.deleteUserData(this.user.uid)
+        this.authService.signOut()
     }
 }

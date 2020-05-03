@@ -47,4 +47,24 @@
   border-radius: 4px;
 }
 
+.overflow-2line{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-green{
+  background: linear-gradient(180deg, #33CE57 0%, #29AC47 100%);
+  border: 1px solid #2DA449;
+  box-sizing: border-box;
+  border-radius: 4px;
+  color:white!important;
+
+}
+
+.w-wrapper{
+  width:1200px;
+}
 body{background:white!important; }

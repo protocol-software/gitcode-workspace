@@ -32,7 +32,7 @@ export class SignUpDialogService {
   constructor(private dialog: MatDialog) {
   }
 
-  public open(data?: any): Observable<any> {
+  public open(data?: any, ): Observable<any> {
     const config: MatDialogConfig = this.dialogConfig;
     config.maxWidth = '31.25rem';
     config.panelClass = ['app-dialog'];

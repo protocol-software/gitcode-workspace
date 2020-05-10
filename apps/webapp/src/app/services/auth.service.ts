@@ -26,7 +26,7 @@ export class AuthService {
   ) {
     // Get the auth state, then fetch the Firestore user document or return null
     this.user$ = this.afAuth.authState.pipe(
-      switchMap(user => {
+      switchMap(user => {        
         // Logged in
         if (user) {
           return this.afs.doc<IUser>(`${this.collectionName}/${user.uid}`).valueChanges().pipe(
@@ -62,7 +62,7 @@ export class AuthService {
     return await firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
-  public async signInOAuth(oauthProvider: OAuthProvider): Promise<void> {
+  public async signInOAuth(oauthProvider: OAuthProvider): Promise<any> {
     let provider;
 
     switch (oauthProvider) {
@@ -71,6 +71,7 @@ export class AuthService {
         break;
       case OAuthProvider.GITHUB:
         provider = new firebase.auth.GithubAuthProvider();
+        provider.setCustomParameters({prompt: 'login'});
         provider.addScope('user,repo,admin:repo_hook');
         break;
       case OAuthProvider.GOOGLE:
@@ -86,13 +87,17 @@ export class AuthService {
     // provider.addScope('profile');
     // provider.addScope('email');
 
-    const userCredential = await this.afAuth.signInWithPopup(provider);
-    const providerUserData = await this.getProviderUserData(oauthProvider, userCredential);
+    return await this.afAuth.signInWithPopup(provider);   
 
-    return this.updateUserData(userCredential, oauthProvider, providerUserData);
+    //가입여부 체크
+    // const existsUserData = await this.getSignedUserData(userCredential);
+    // const isSigned = existsUserData.exists;
+
+    // const providerUserData = await this.getProviderUserData(oauthProvider, userCredential);    
+    // return this.updateUserData(userCredential, oauthProvider, providerUserData);
   }
 
-  private getProviderUserData(oauthProvider: OAuthProvider, userCredential: firebase.auth.UserCredential): Promise<any> {
+  public getProviderUserData(oauthProvider: OAuthProvider, userCredential: firebase.auth.UserCredential): Promise<any> {
     let providerUserData;
 
     switch (oauthProvider) {
@@ -114,7 +119,7 @@ export class AuthService {
     return providerUserData;
   }
 
-  private updateUserData(
+  public updateUserData(
     userCredential: firebase.auth.UserCredential,
     oauthProvider: OAuthProvider,
     providerUserData: any,
@@ -141,6 +146,18 @@ export class AuthService {
     }
 
     return userRef.set(userData, { merge: true });
+  }
+
+  public getSignedUserData (
+    userCredential: firebase.auth.UserCredential,    
+  ): Promise<any> {
+    return this.afs.doc(`${this.collectionName}/${userCredential.user.uid}`).get().toPromise()
+  }
+
+  public deleteUserData (
+    userUid: String
+  ): Promise<void> {
+    return this.afs.doc(`${this.collectionName}/${userUid}`).delete()
   }
 
   public async signOut(): Promise<void> {

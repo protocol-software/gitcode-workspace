@@ -1,6 +1,12 @@
 // Configurations
 export * from './lib/configurations/validation-pattern';
 
+// Otps
+export * from './lib/dtos/email.dto';
+export * from './lib/dtos/otp.dto';
+export * from './lib/dtos/code-tag.dto';
+export * from './lib/dtos/code-query.dto';
+
 // Interfaces
 export * from './lib/interfaces/contact-us.interface';
 export * from './lib/interfaces/github-repo.interface';
@@ -19,6 +25,10 @@ export * from './lib/interfaces/pull-request.interface';
 export * from './lib/interfaces/query-params.interface';
 export * from './lib/interfaces/rating.interface';
 export * from './lib/interfaces/user.interface';
+export * from './lib/interfaces/otp.interface';
+export * from './lib/interfaces/code-tag.interface';
+export * from './lib/interfaces/code-content-item.interface';
+export * from './lib/interfaces/code-suggest-query.interface';
 
 // Enums
 export * from './lib/enums/oauth-provider.enum';

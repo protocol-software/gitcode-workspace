@@ -8,12 +8,6 @@
     "nx.json": "*"
   },
   "projects": {
-    "web-e2e": {
-      "tags": []
-    },
-    "web": {
-      "tags": []
-    },
     "api": {
       "tags": []
     },

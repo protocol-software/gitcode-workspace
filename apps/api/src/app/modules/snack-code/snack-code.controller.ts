@@ -13,7 +13,7 @@ export class SnackCodeController {
   }
 
   @Post('contents')
-  public async getContents(@Body() codeTag: [CodeTagDto]): Promise<any> {
+  public async getContents(@Body() codeTag: []): Promise<any> {
     return await this.snackCodeService.getContents(codeTag);
   }
 }

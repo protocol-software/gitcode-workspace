@@ -3,7 +3,6 @@ import {Router} from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
 import {categoryList} from '../snack-code.data';
 import {SnackCodeService} from '../../../../services/snack-code.service';
-
 @Component({
   selector: 'protocol-side-nav',
   templateUrl: './side-nav.component.html',
@@ -15,7 +14,7 @@ export class SideNavComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _service: SnackCodeService) {      
+    private _service: SnackCodeService) {            
       _route.queryParams.subscribe(params => {
         const categoryItems = params['categoryItems']
         this.checkedCategories = (categoryItems) ? categoryItems.split(',') : []
@@ -28,8 +27,9 @@ export class SideNavComponent implements OnInit {
   }
 
   private async loadTags () {
-    let tags = await this._service.getTags()
-    console.log(tags)
+    this._service.getTags().subscribe(result => {
+      console.log(result);
+    });
   }
 
   private initCategories () { 

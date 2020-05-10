@@ -8,7 +8,7 @@ import {ApiEndpoint} from '../../../../../libs/data/src/lib/configurations/api-e
 @Injectable({
     providedIn: 'root',
 })
-export class OtpService {
+export class SnackCodeService {
     constructor(private httpService: HttpService) {
 
     }

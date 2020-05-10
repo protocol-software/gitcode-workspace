@@ -1,21 +1,23 @@
 <div class="">
-    <div *ngFor="let categoryItem of categoryList" >
+    <div *ngFor="let cateItem of categoryOptions" >
         <div class="text-base text-gray-800 font-medium mb-2">
-            {{ categoryItem.name }}
+            {{ cateItem.name }}
         </div>
-        <div *ngFor="let subCategoryItem of categoryItem.subCategoryList" class="mb-12">
-            <div class="rounded-l text-white text-base  border-r bg-blue font-medium w-48 py-1 px-3 flex justify-between cursor-pointer mb-2">
-                {{ subCategoryItem.name }}
-                <mat-icon class="" style="color:white">close</mat-icon>
+        <div class="mb-12">
+            <div *ngFor="let subCateItem of cateItem.subCategoryList">
+                <div class="rounded-l text-white text-base  border-r bg-blue font-medium w-48 py-1 px-3 flex justify-between cursor-pointer mb-2"
+                    *ngIf="subCateItem.checked; else elseCaseTemp" (click)="toggleCateItem(subCateItem.name)">
+                    {{ subCateItem.name }}
+                    <mat-icon class="" style="color:white">close</mat-icon>
+                </div>
+                <ng-template #elseCaseTemp>
+                    <div class="rounded-l text-charcoal  border-r font-medium w-48 py-1 px-3 flex justify-between cursor-pointer mb-2 hover:bg-gray-200 cursor-pointer"
+                        (click)="toggleCateItem(subCateItem.name)">
+                        {{ subCateItem.name }}
+                    </div>
+                </ng-template>            
             </div>
-            <div>
-                <div class="text-charcoal text-base px-3 hover:bg-gray-200 cursor-pointer mb-2">Not checked</div>
-            </div>
-            <div class="rounded-l text-white text-base  border-r bg-blue font-medium w-48 py-1 px-3 flex justify-between cursor-pointer mb-2">
-                <div class="">Checked</div>
-                <mat-icon class="" style="color:white">close</mat-icon>
-            </div>
-        </div>
+        </div>        
     </div>
 
 </div>

@@ -4,26 +4,11 @@
         <div class="text-lg font-medium text-charcoal mb-2">전체보기</div>
         <div class="text-sm text-charcoal">총 2,122개의 콘텐츠가 있습니다.</div>
         <div class="flex my-5">
-            <div class="flex justify-between items-center w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2">
-                <div>Category1</div>
+            <div *ngFor="let item of checkedCategories" class="flex justify-between items-center w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2"
+                (click)="toggleCateItem(item)">
+                <div>{{ item }}</div>
                 <mat-icon class="" style="font-size:16px">close</mat-icon>
-            </div>
-            <div class="flex justify-between items-center w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2">
-                <div>Category1</div>
-                <mat-icon class="" style="font-size:16px">close</mat-icon>
-            </div>
-            <div class="flex justify-between items-center w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2">
-                <div>Category1</div>
-                <mat-icon class="" style="font-size:16px">close</mat-icon>
-            </div>
-            <div class="flex justify-between items-center w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2">
-                <div>Category1</div>
-                <mat-icon class="" style="font-size:16px">close</mat-icon>
-            </div>
-            <div class="flex justify-between items-center w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2">
-                <div>Category1</div>
-                <mat-icon class="" style="font-size:16px">close</mat-icon>
-            </div>
+            </div>            
         </div>
     </div>
     <div class="">

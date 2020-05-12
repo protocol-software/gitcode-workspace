@@ -15,7 +15,8 @@ export class PublicCodeReviewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.createReviewDetail(null); //for development
+    // this.createReviewDetail(null);
+    //for development
   }
 
   createReview(event: MouseEvent): void {

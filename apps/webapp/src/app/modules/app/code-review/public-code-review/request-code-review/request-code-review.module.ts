@@ -11,22 +11,27 @@ import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { RequestCodeReviewComponent } from './request-code-review.component';
 import { RequestCodeReviewService } from './request-code-review.service';
+import {MatRadioModule} from "@angular/material/radio";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
 
-    MatButtonModule,
-    MatCheckboxModule,
-    MatDialogModule,
-    MatIconModule,
-    MatFormFieldModule,
-    TranslateModule,
-  ],
+        MatButtonModule,
+        MatCheckboxModule,
+        MatDialogModule,
+        MatIconModule,
+        MatFormFieldModule,
+        TranslateModule,
+        MatRadioModule,
+        MatSelectModule,
+    ],
   declarations: [RequestCodeReviewComponent],
   providers: [
     RequestCodeReviewService,
+
   ],
   exports: [RequestCodeReviewComponent],
   entryComponents: [RequestCodeReviewComponent],

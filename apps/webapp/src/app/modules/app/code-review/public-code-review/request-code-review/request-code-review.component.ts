@@ -8,11 +8,15 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./request-code-review.component.scss']
 })
 export class RequestCodeReviewComponent implements OnInit {
+  // hideRequiredControl: any;
+  // floatLabelControl: any;
+  // options: any;
 
   constructor(
       public dialogRef: MatDialogRef<RequestCodeReviewComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
       private formBuilder: FormBuilder,
+
   ) { }
 
   ngOnInit(): void {

@@ -13,12 +13,15 @@ export class PublicCodeReviewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.createReview(null); //for development
   }
 
   createReview(event: MouseEvent): void {
+
     if (event) {
       event.preventDefault();
       event.stopPropagation();
+
     }
 
     const dialogClosed = this.requestCodeReviewService.open();

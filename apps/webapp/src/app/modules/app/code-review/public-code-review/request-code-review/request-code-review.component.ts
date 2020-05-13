@@ -25,13 +25,13 @@ export class RequestCodeReviewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-    public async createReviewStep2(event: MouseEvent) {
-      if (event) {
-        // event.preventDefault();
-        // event.stopPropagation();
-        this.isReviewRequestComplete = true
-      }
+  public async createReviewStep2(event: MouseEvent) {
+    if (event) {
+      // event.preventDefault();
+      // event.stopPropagation();
+      this.isReviewRequestComplete = true
     }
+  }
 
   public closePopup(event) {
     this.dialogRef.close(true);

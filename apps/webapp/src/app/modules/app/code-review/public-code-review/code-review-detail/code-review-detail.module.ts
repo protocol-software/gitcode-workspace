@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -11,8 +11,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import {MatRadioModule} from "@angular/material/radio";
 import {MatSelectModule} from "@angular/material/select";
 
-import { CodeReviewDetailComponent } from './code-review-detail.component';
+import { CodeReviewDetailComponent,CodeReviewDetailDialog } from './code-review-detail.component';
 import { CodeReviewDetailService } from './code-review-detail.service';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
 
@@ -29,13 +30,15 @@ import { CodeReviewDetailService } from './code-review-detail.service';
     TranslateModule,
     MatRadioModule,
     MatSelectModule,
+    MatMenuModule,
+    FormsModule,
   ],
-  declarations: [CodeReviewDetailComponent],
+  declarations: [CodeReviewDetailComponent,CodeReviewDetailDialog],
   providers: [
     CodeReviewDetailService,
 
   ],
   exports: [CodeReviewDetailComponent],
-  entryComponents: [CodeReviewDetailComponent],
+  entryComponents: [CodeReviewDetailComponent,CodeReviewDetailDialog],
 })
 export class CodeReviewDetailModule { }

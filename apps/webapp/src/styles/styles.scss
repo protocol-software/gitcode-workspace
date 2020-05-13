@@ -80,26 +80,26 @@
     margin-right:5px;
   }
 }
-.box-comment{
-  //<div class="flex mt-5">
-  //                <div class="">
-  //                    <img class="w-8 h-8 mr-5" src="/assets/icons/avatar-a.svg">
-  //                </div>
-  //                <div class="ml-4">
-  //                    <div class="container border-t border-r border-l border-gray-400 bg-indigo-100 flex items-center">
-  //                        <div class="font-bold text-sm text-charcoal pr-2 ml-3 py-2">Username</div>
-  //                        <span class="text-xs text-gray-600">commented 1hour ago</span>
-  //                    </div>
-  //                    <div class="border border-gray-400 px-3 py-5 text-sm text-charcoal">By default Tailwind only provides 0 and auto top/right/bottom/left/inset utilities. You can change, add, or remove these by editing the theme.inset section of your tailwind.config.js file.</div>
-  //                </div>
-  //            </div>
-}
 .icon-reply{
  width:18px;
  height:11.18px;
+  margin-right:5px;
 
 }
-.btn-blue-reviewing{
+.btn-pr-open{
+  background: #F7C243;
+  border-radius: 5px;
+  display:flex;
+  color:white;
+  height:26px;
+  padding: 3px 10px;
+  img{
+    margin-right:5px;
+    width:14px;
+  }
+  align-items: center;
+}
+.btn-pr-reviewing{
   background: #2E76DF;
   border-radius: 5px;
   display:flex;
@@ -108,6 +108,33 @@
   padding: 3px 10px;
   img{
     width:23px;
+    margin-right:5px;
+  }
+  align-items: center;
+}
+
+.btn-pr-done{
+  background: #444A52;
+  border-radius: 5px;
+  display:flex;
+  color:white;
+  height:26px;
+  padding: 3px 10px;
+  img{
+    width:15px;
+    margin-right:5px;
+  }
+  align-items: center;
+}
+.btn-pr-reopen{
+  background: #DA507A;
+  border-radius: 5px;
+  display:flex;
+  color:white;
+  height:26px;
+  padding: 3px 10px;
+  img{
+    width:17px;
     margin-right:5px;
   }
   align-items: center;

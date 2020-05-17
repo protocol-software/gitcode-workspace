@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
-import {categoryList} from '../snack-code.data';
 import {SnackCodeService} from '../../../../services/snack-code.service';
+
 @Component({
   selector: 'protocol-side-nav',
   templateUrl: './side-nav.component.html',
@@ -11,30 +11,44 @@ import {SnackCodeService} from '../../../../services/snack-code.service';
 export class SideNavComponent implements OnInit {    
   private checkedCategories = []
   public categoryOptions = [];    
+  private categoryList = [];
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _service: SnackCodeService) {            
-      _route.queryParams.subscribe(params => {
-        const categoryItems = params['categoryItems']
-        this.checkedCategories = (categoryItems) ? categoryItems.split(',') : []
-        this.initCategories()
-      })      
+            
   }
 
-  ngOnInit(): void {
-    this.loadTags()
+  async ngOnInit() {    
+    await this.loadTags()
+    this._route.queryParams.subscribe(params => {
+      const categoryItems = params['categoryItems']
+      this.checkedCategories = (categoryItems) ? categoryItems.split(',') : []
+      this.initCategories()
+    })
   }
 
   private async loadTags () {
-    this._service.getTags().subscribe(result => {
-      console.log(result);
-    });
+    let tags = await this._service.getTags().toPromise();
+    const categoryList = tags.reduce((acc, item)=>{
+      const key = item.categoryType
+      const subItem = {name: item.tagName, checked: false}
+      if(!acc[key]) {
+        acc[key] = {
+          name: key,
+          subCategoryList: [subItem]
+        }
+      }else{
+        acc[key].subCategoryList.push(subItem)
+      }
+      return acc
+    }, {})
+    this.categoryList = Object.values(categoryList)    
   }
 
   private initCategories () { 
     this.categoryOptions = []   
-    for(let item of categoryList) {
+    for(let item of this.categoryList) {
       for(let subItem of item.subCategoryList) {        
         subItem.checked = (this.checkedCategories.indexOf(subItem.name) > -1)
       }

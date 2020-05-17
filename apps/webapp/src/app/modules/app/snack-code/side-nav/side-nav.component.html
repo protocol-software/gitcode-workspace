@@ -3,7 +3,7 @@
         <div class="text-base text-gray-800 font-medium mb-2">
             {{ cateItem.name }}
         </div>
-        <div class="mb-12">
+        <div class="mb-5">
             <div *ngFor="let subCateItem of cateItem.subCategoryList">
                 <div class="rounded-l text-white text-base  border-r bg-blue font-medium w-48 py-1 px-3 flex justify-between cursor-pointer mb-2"
                     *ngIf="subCateItem.checked; else elseCaseTemp" (click)="toggleCateItem(subCateItem.name)">

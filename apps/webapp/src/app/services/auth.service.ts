@@ -7,7 +7,7 @@ import * as firebase from 'firebase';
 import { Observable, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { GitHubService } from './github.service';
-import {AuthUtils} from "../core/auth/auth.utils";
+import {AuthUtils} from '../core/auth/auth.utils';
 
 @Injectable({
   providedIn: 'root',
@@ -89,7 +89,7 @@ export class AuthService {
 
     return await this.afAuth.signInWithPopup(provider);   
 
-    //가입여부 체크
+    // 가입여부 체크
     // const existsUserData = await this.getSignedUserData(userCredential);
     // const isSigned = existsUserData.exists;
 
@@ -155,7 +155,7 @@ export class AuthService {
   }
 
   public deleteUserData (
-    userUid: String
+    userUid: string
   ): Promise<void> {
     return this.afs.doc(`${this.collectionName}/${userUid}`).delete()
   }

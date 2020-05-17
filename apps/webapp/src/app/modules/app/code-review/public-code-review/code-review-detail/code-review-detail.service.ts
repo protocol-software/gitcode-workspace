@@ -2,14 +2,15 @@ import { Direction } from '@angular/cdk/bidi';
 import { Injectable } from '@angular/core';
 import { DialogRole, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs/Observable';
-import { RequestCodeReviewComponent } from './request-code-review.component';
+import { CodeReviewDetailComponent } from './code-review-detail.component';
+
+
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class RequestCodeReviewService {
-  private dialogRef: MatDialogRef<RequestCodeReviewComponent>;
-
+export class CodeReviewDetailService {
+  private dialogRef: MatDialogRef<CodeReviewDetailComponent>;
   private dialogConfig = {
     autoFocus: false,
     // backdropClass: 'cdk-overlay-dark-backdrop',
@@ -31,14 +32,13 @@ export class RequestCodeReviewService {
 
   constructor(private dialog: MatDialog) {
   }
-
   public open(data?: any): Observable<any> {
     const config: MatDialogConfig = this.dialogConfig;
     // config.maxWidth = '31.25rem';
     config.panelClass = ['app-dialog'];
     config.data = data || {};
 
-    this.dialogRef = this.dialog.open(RequestCodeReviewComponent, config);
+    this.dialogRef = this.dialog.open(CodeReviewDetailComponent, config);
     return this.dialogRef.afterClosed();
   }
 

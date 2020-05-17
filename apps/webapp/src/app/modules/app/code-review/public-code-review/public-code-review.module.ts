@@ -6,6 +6,7 @@ import {PublicCodeReviewComponent} from './public-code-review.component';
 import {MatButtonModule} from '@angular/material/button';
 import {RequestCodeReviewModule} from './request-code-review/request-code-review.module';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {CodeReviewDetailModule} from "./code-review-detail/code-review-detail.module";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
         SharedModule,
         MatButtonModule,
         RequestCodeReviewModule,
+        CodeReviewDetailModule,
         MatCheckboxModule
     ]
 })

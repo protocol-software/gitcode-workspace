@@ -2,166 +2,30 @@
 <div class="content-layout fullwidth-standard-normal-scroll ">
     <div class="pl-16 pt-5 border-b ">
         <div class="text-lg font-medium text-charcoal mb-2">전체보기</div>
-        <div class="text-sm text-charcoal">총 2,122개의 콘텐츠가 있습니다.</div>
-        <div class="flex my-5">
-            <div class="flex justify-between items-center w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2">
-                <div>Category1</div>
+        <div class="text-sm text-charcoal mb-2">총 2,122개의 콘텐츠가 있습니다.</div>
+        <div class="flex pb-5" style="max-width: 960px; overflow: auto;">
+            <div *ngFor="let item of checkedCategories" class="flex justify-between items-center w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2"
+                (click)="toggleCateItem(item)">
+                <div>{{ item }}</div>
                 <mat-icon class="" style="font-size:16px">close</mat-icon>
-            </div>
-            <div class="flex justify-between items-center w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2">
-                <div>Category1</div>
-                <mat-icon class="" style="font-size:16px">close</mat-icon>
-            </div>
-            <div class="flex justify-between items-center w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2">
-                <div>Category1</div>
-                <mat-icon class="" style="font-size:16px">close</mat-icon>
-            </div>
-            <div class="flex justify-between items-center w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2">
-                <div>Category1</div>
-                <mat-icon class="" style="font-size:16px">close</mat-icon>
-            </div>
-            <div class="flex justify-between items-center w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2">
-                <div>Category1</div>
-                <mat-icon class="" style="font-size:16px">close</mat-icon>
-            </div>
+            </div>            
         </div>
     </div>
     <div class="">
-        <div class="pl-20 px-3 py-3 hover:bg-gray-200 cursor-pointer border-b border-gray-200 mb-3 "
+        <div *ngFor="let item of contentList" class="pl-20 px-3 py-3 hover:bg-gray-200 cursor-pointer border-b border-gray-200 mb-3 "
              routerLink="/snack-code/detail/20200429-content" routerLinkActive="font-semibold">
-            <div class="text-base font-bold text-charcoal">What is material for codereview</div>
+            <div class="text-base font-bold text-charcoal">
+                {{ item.title }}
+            </div>
             <div class="overflow-2line" style="width:800px;height:45px">
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
+                {{ item.snipet }}
             </div>
             <div class="flex my-5 ">
-                <div class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
-                    <div>Category1</div>
+                <div *ngFor="let tagItem of item.tags" class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
+                    <div>{{ tagItem }}</div>
                 </div>
-                <div class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
-                    <div>short</div>
-                </div>
-                <div class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
-                    <div>ToooooLooooong</div>
-                </div>
-
             </div>
-        </div>
-        <div class="pl-20 px-3 py-2 hover:bg-gray-200 cursor-pointer border-b border-gray-200  mb-3 "
-             routerLink="/snack-code/detail/20200429-content" routerLinkActive="font-semibold">
-            <div class="text-base font-bold text-charcoal">What is material for codereview</div>
-            <div class="overflow-2line" style="width:800px;height:45px">
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-            </div>
-            <div class="flex my-5 ">
-                <div class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
-                    <div>Category1</div>
-                </div>
-                <div class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
-                    <div>short</div>
-                </div>
-                <div class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
-                    <div>ToooooLooooong</div>
-                </div>
-
-            </div>
-        </div>
-        <div class="pl-20 px-3 py-2 hover:bg-gray-200 cursor-pointer border-b border-gray-200  mb-3 "
-             routerLink="/snack-code/detail/20200429-content" routerLinkActive="font-semibold">
-            <div class="text-base font-bold text-charcoal">What is material for codereview</div>
-            <div class="overflow-2line" style="width:800px;height:45px">
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-            </div>
-            <div class="flex my-5 ">
-                <div class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
-                    <div>Category1</div>
-                </div>
-                <div class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
-                    <div>short</div>
-                </div>
-                <div class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
-                    <div>ToooooLooooong</div>
-                </div>
-
-            </div>
-        </div>
-        <div class="pl-20 px-3 py-2 hover:bg-gray-200 cursor-pointer border-b border-gray-200  mb-3 "
-             routerLink="/snack-code/detail/20200429-content" routerLinkActive="font-semibold">
-            <div class="text-base font-bold text-charcoal">What is material for codereview</div>
-            <div class="overflow-2line" style="width:800px;height:45px">
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-            </div>
-            <div class="flex my-5 ">
-                <div class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
-                    <div>Category1</div>
-                </div>
-                <div class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
-                    <div>short</div>
-                </div>
-                <div class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
-                    <div>ToooooLooooong</div>
-                </div>
-
-            </div>
-        </div>
-        <div class="pl-20 px-3 py-2 hover:bg-gray-200 cursor-pointer border-b border-gray-200  mb-3 "
-             routerLink="/snack-code/detail/20200429-content" routerLinkActive="font-semibold">
-            <div class="text-base font-bold text-charcoal">What is material for codereview</div>
-            <div class="overflow-2line" style="width:800px;height:45px">
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-                Material icons are delightful, beautifully crafted symbols for common actions and items. Download on desktop to use them in your digital products for Android, iOS, and web.
-            </div>
-            <div class="flex my-5 ">
-                <div class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
-                    <div>Category1</div>
-                </div>
-                <div class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
-                    <div>short</div>
-                </div>
-                <div class="flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
-                    <div>ToooooLooooong</div>
-                </div>
-
-            </div>
-        </div>
+        </div>        
     </div>
 
     <div class="flex justify-center my-12">

@@ -7,12 +7,10 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./snack-code.component.scss']
 })
 export class SnackCodeComponent implements OnInit {
-
-  categoryItems: string;
-  snackCodeId: string;
-  constructor(route: ActivatedRoute) {
-    route.params.subscribe((params) => {
-      this.categoryItems = params['categoryItems'];
+  
+  snackCodeId: string;  
+  constructor(route: ActivatedRoute) {    
+    route.params.subscribe((params) => {      
       this.snackCodeId = params['snackCodeId'];
     });
   }

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import {forkJoin, Observable, of} from 'rxjs';
 import { map } from 'rxjs/operators';
-import {compactNavigation, defaultNavigation, futuristicNavigation, horizontalNavigation} from "./data/navigation.data";
+import {compactNavigation, defaultNavigation, futuristicNavigation, horizontalNavigation} from './data/navigation.data';
 import * as _ from 'lodash';
 import {AuthService} from './services/auth.service';
 

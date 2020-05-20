@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {RequestCodeReviewService} from './request-code-review/request-code-review.service';
+import {CodeReviewDetailService} from "./code-review-detail/code-review-detail.service";
+
 
 @Component({
   selector: 'protocol-private-code-review',
@@ -7,10 +9,14 @@ import {RequestCodeReviewService} from './request-code-review/request-code-revie
   styleUrls: ['./private-code-review.component.scss']
 })
 export class PrivateCodeReviewComponent implements OnInit {
-
   constructor(
-      private requestCodeReviewService: RequestCodeReviewService
+      private requestCodeReviewService: RequestCodeReviewService,
+      private codeReviewDeatilService: CodeReviewDetailService,
+
   ) { }
+
+
+
 
   ngOnInit(): void {
   }
@@ -22,6 +28,23 @@ export class PrivateCodeReviewComponent implements OnInit {
     }
 
     const dialogClosed = this.requestCodeReviewService.open();
+    dialogClosed.subscribe(
+        (result) => {
+          if (!result) {
+            return;
+          }
+        },
+    );
+  }
+
+  createReviewDetail(event: MouseEvent) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+    }
+
+    const dialogClosed = this.codeReviewDeatilService.open();
     dialogClosed.subscribe(
         (result) => {
           if (!result) {

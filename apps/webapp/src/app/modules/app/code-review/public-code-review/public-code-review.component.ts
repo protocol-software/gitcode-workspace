@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {RequestCodeReviewService} from './request-code-review/request-code-review.service';
 import {CodeReviewDetailService} from "./code-review-detail/code-review-detail.service";
+import {
+  CodeReviewDetailComponent,
+  CodeReviewDetailDialogBestreview
+} from "./code-review-detail/code-review-detail.component";
+
 
 
 @Component({
@@ -9,15 +14,18 @@ import {CodeReviewDetailService} from "./code-review-detail/code-review-detail.s
   styleUrls: ['./public-code-review.component.scss']
 })
 export class PublicCodeReviewComponent implements OnInit {
-
+  // private test:  CodeReviewDetailDialogBestreview;
+  // private test2: CodeReviewDetailComponent;
   constructor(
       private requestCodeReviewService: RequestCodeReviewService,
       private codeReviewDeatilService: CodeReviewDetailService,
   ) { }
 
   ngOnInit(): void {
-    // this.createReviewDetail(null);
+
     //for development
+    // this.test2.openDialogBestreview(null);
+    // this.test.confirmBox();
   }
 
   createReview(event: MouseEvent): void {
@@ -38,7 +46,6 @@ export class PublicCodeReviewComponent implements OnInit {
     );
   }
   createReviewDetail(event: MouseEvent): void {
-
     if (event) {
       event.preventDefault();
       event.stopPropagation();

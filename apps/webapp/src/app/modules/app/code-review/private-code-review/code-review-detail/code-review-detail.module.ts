@@ -10,22 +10,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import {MatRadioModule} from "@angular/material/radio";
 import {MatSelectModule} from "@angular/material/select";
+import {MatMenuModule} from "@angular/material/menu";
 
 import { CodeReviewDetailComponent,CodeReviewDetailDialog, CodeReviewDetailDialogBestreview } from './code-review-detail.component';
 import { CodeReviewDetailService } from './code-review-detail.service';
-import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
 
   imports: [
     CommonModule,
     MatIconModule,
-    MatDialogModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatCheckboxModule,
     MatDialogModule,
-    MatIconModule,
     MatFormFieldModule,
     TranslateModule,
     MatRadioModule,

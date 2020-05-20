@@ -8,6 +8,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./request-code-review.component.scss']
 })
 export class RequestCodeReviewComponent implements OnInit {
+  public isReviewRequestComplete: Boolean = false;
 
   constructor(
       public dialogRef: MatDialogRef<RequestCodeReviewComponent>,
@@ -17,5 +18,15 @@ export class RequestCodeReviewComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  public async createReviewStep2(event: MouseEvent) {
+    if (event) {
+      // event.preventDefault();
+      // event.stopPropagation();
+      this.isReviewRequestComplete = true
+    }
+  }
 
+  public closePopup(event) {
+    this.dialogRef.close(true);
+  }
 }

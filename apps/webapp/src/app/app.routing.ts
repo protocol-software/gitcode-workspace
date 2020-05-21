@@ -49,7 +49,7 @@ export const appRoutes: Route[] = [
             },
             {
                 path: 'settings',
-                canActivate: [AuthGuard], canActivateChild: [AuthGuard],
+                // canActivate: [AuthGuard], canActivateChild: [AuthGuard], // TODO:spock authguard makes infinite loop.
                 children: [
                     { path: ':activePath', loadChildren: () => import('./modules/app/settings/settings.module').then(m => m.SettingsModule) },
                 ]

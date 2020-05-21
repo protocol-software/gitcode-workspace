@@ -21,12 +21,15 @@
     <mat-menu class="user-actions-menu"
               [xPosition]="'before'"
               #userActions="matMenu">
-        <button mat-menu-item (click)="moveTo('/settings/profile')">
-            <span>나의 정보</span>
-        </button>
-        <button mat-menu-item (click)="moveTo('/settings/billing')">
-            <span>나의 결제</span>
-        </button>
+<!--        <button mat-menu-item (click)="moveTo('/settings/profile')">-->
+<!--            <span>나의 정보</span>-->
+<!--        </button>-->
+<!--        <button mat-menu-item (click)="moveTo('/settings/billing')">-->
+<!--            <span>나의 결제</span>-->
+<!--        </button>-->
+            <button mat-menu-item (click)="moveTo('/settings/setting')">
+                <span>설정</span>
+            </button>
         <button mat-menu-item (click)="deleteMember($event)">
             <span>회원탈퇴(임시)</span>
         </button>

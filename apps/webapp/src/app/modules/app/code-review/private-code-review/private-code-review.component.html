@@ -30,10 +30,10 @@
             <!--List -->
             <div class="mt-5 mb-12  " >
                 <!-- list 0 -->
-                <div class="flex-shrink md:flex mb-3 p-5 border-gray-300 border rounded-md ">
+                <div class="flex-shrink md:flex mb-3 p-5 border-gray-300 border rounded-md cursor-pointer">
                     <div class="md:w-8/12 md:mb-0 mb-2">
                         <div class="flex">
-                            <div class="text-base text-charcoal font-medium">So awesome code review</div>
+                            <div class="text-base text-charcoal font-medium" (click)="createReviewDetail($event)">So awesome code review</div>
                             <div class="ml-2 flex items-center">
                                 <img class="h-6" src="/assets/icons/code-review-matching.svg" *ngIf="false">
                                 <img class="h-6" src="/assets/icons/code-review-matched.svg" *ngIf="false">

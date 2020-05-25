@@ -2,31 +2,38 @@
 import { TreoNavigationItem } from '../../@treo/components/navigation';
 
 export const defaultNavigation: TreoNavigationItem[] = [
+
+
     {
-        id      : 'starter',
-        title   : 'Starter',
-        subtitle: 'Treo Starter Kit',
-        type    : 'group',
-        icon    : 'apps',
-        children: [
-            {
-                id   : 'starter.example',
-                title: 'Example component',
-                type : 'basic',
-                link : '/example'
-            },
-            {
-                id   : 'starter.dummy.1',
-                title: 'Dummy menu item #1',
-                type : 'basic'
-            },
-            {
-                id   : 'starter.dummy.2',
-                title: 'Dummy menu item #1',
-                type : 'basic'
-            }
-        ]
-    }
+        id   : 'codeReview.publicCodeReview',
+        title: '퍼블릭 코드리뷰',
+        type : 'basic',
+        link : '/code-review/public'
+    },
+    {
+        id   : 'codeReview.publicCodeReview',
+        title: '프라이빗 코드리뷰',
+        type : 'basic',
+        link : '/code-review/private'
+    },
+    {
+        id      : 'snackCode',
+        title   : '스낵코드',
+        type    : 'basic',
+        link : '/snack-code',
+    },
+    {
+        id      : 'searchCode',
+        title   : '코드검색',
+        type    : 'basic',
+        link : '/search-code',
+    },
+    {
+        id      : 'howItWorks',
+        title   : '어떻게 동작하나요?',
+        type    : 'basic',
+        link : '/how-it-works',
+    },
 ];
 export const compactNavigation: TreoNavigationItem[] = [
     {

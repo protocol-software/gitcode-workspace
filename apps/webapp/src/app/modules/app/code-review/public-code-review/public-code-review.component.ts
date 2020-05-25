@@ -20,12 +20,17 @@ export class PublicCodeReviewComponent implements OnInit {
       private requestCodeReviewService: RequestCodeReviewService,
       private codeReviewDeatilService: CodeReviewDetailService,
   ) { }
+  public dummyData = [
+    {"id":1,"itemsName":"how it works 1","status":"open",}
+  ];
 
-  ngOnInit(): void {
+  ngOnInit() {
 
     //for development
     // this.test2.openDialogBestreview(null);
     // this.test.confirmBox();
+
+
   }
 
   createReview(event: MouseEvent): void {

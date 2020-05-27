@@ -14,9 +14,9 @@ import {Direction} from "@angular/cdk/bidi";
   styleUrls: ['./setting.component.scss']
 })
 export class SettingComponent implements OnInit {
-  public dummyPayment = false; // TODO: delete dummy data
-  public dummyRepository = false; // TODO: delete dummy data
-  public dummySubscribe = false; // TODO: delete dummy data
+  public dummyPayment = true; // TODO: delete dummy data
+  public dummyRepository = true; // TODO: delete dummy data
+  public dummySubscribe = true; // TODO: delete dummy data
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','symbol2','symbol3'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -82,7 +82,12 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  // {position: '2020-02-01', name: 'ON-DEMAND CODE-REVIEW', weight: '2020-05-01~2020-05-31', symbol: '신용카드 ****5678',symbol2: '1,000,000원',symbol3: '1,100,000원'},
+  {position: '2020-02-01', name: 'ON-DEMAND CODE-REVIEW', weight: '2020-05-01~2020-05-31', symbol: '신용카드 ****5678',symbol2: '1,000,000원',symbol3: '1,100,000원'},
+  {position: '2020-02-01', name: 'ON-DEMAND CODE-REVIEW', weight: '2020-05-01~2020-05-31', symbol: '신용카드 ****5678',symbol2: '1,000,000원',symbol3: '1,100,000원'},
+  {position: '2020-02-01', name: 'ON-DEMAND CODE-REVIEW', weight: '2020-05-01~2020-05-31', symbol: '신용카드 ****5678',symbol2: '1,000,000원',symbol3: '1,100,000원'},
+  {position: '2020-02-01', name: 'ON-DEMAND CODE-REVIEW', weight: '2020-05-01~2020-05-31', symbol: '신용카드 ****5678',symbol2: '1,000,000원',symbol3: '1,100,000원'},
+  {position: '2020-02-01', name: 'ON-DEMAND CODE-REVIEW', weight: '2020-05-01~2020-05-31', symbol: '신용카드 ****5678',symbol2: '1,000,000원',symbol3: '1,100,000원'},
+  {position: '2020-02-01', name: 'ON-DEMAND CODE-REVIEW', weight: '2020-05-01~2020-05-31', symbol: '신용카드 ****5678',symbol2: '1,000,000원',symbol3: '1,100,000원'},
 ];
 
 

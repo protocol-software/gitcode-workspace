@@ -4,7 +4,7 @@ import { SharedModule } from '../../../../shared/shared.module';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from "@angular/material/icon";
-import {MatDialogModule} from "@angular/material/dialog";
+import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {MatRadioModule} from "@angular/material/radio";
 
 import {PrivateCodeReviewRoutes} from './private-code-review.routing';
@@ -35,6 +35,12 @@ import {TextFieldModule} from "@angular/cdk/text-field";
         MatFormFieldModule,
         TextFieldModule,
         MatInputModule,
+    ],
+    providers: [
+        {
+            provide: MatDialogRef,
+            useValue: {}
+        },
     ]
 })
 export class PrivateCodeReviewModule

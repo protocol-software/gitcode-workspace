@@ -8,6 +8,9 @@ import {ListComponent} from './list/list.component';
 import {DetailComponent} from './detail/detail.component';
 import {MarkdownModule} from 'ngx-markdown';
 import { MatIconModule } from '@angular/material/icon';
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -16,11 +19,14 @@ import { MatIconModule } from '@angular/material/icon';
     ListComponent,
     DetailComponent,
   ],
-  imports: [
-    RouterModule.forChild(SnackCodeRoutes),
-    CommonModule,
-    MarkdownModule,
-    MatIconModule,
-  ]
+    imports: [
+        RouterModule.forChild(SnackCodeRoutes),
+        CommonModule,
+        MarkdownModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatOptionModule,
+        MatSelectModule,
+    ]
 })
 export class SnackCodeModule { }

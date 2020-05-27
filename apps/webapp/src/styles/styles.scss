@@ -67,6 +67,7 @@
   background: linear-gradient(180deg, #FFFFFF 0%, #E2E8F0 100%);
   box-sizing: border-box;
 }
+
 .btn-gray-400{
   background: linear-gradient(180deg, #FAFAFC 0%, #EFF3F6 100%), #EFF3F6;
   border-radius: 4px;
@@ -80,6 +81,14 @@
     margin-right:5px;
   }
 }
+.btn-gray-400-2{
+  background: linear-gradient(180deg, #FAFAFC 0%, #EFF3F6 100%), #EFF3F6;
+  border-radius: 4px;
+  display:flex;
+  border: 1px solid #CBD5E0;
+  box-sizing: border-box;
+}
+
 .btn-gray-500{
   background: #A0AEC0;
   border-radius: 4px;

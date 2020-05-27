@@ -7,15 +7,19 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./snack-code.component.scss']
 })
 export class SnackCodeComponent implements OnInit {
-  
-  snackCodeId: string;  
-  constructor(route: ActivatedRoute) {    
-    route.params.subscribe((params) => {      
-      this.snackCodeId = params['snackCodeId'];
-    });
+
+  snackCodeId: string;
+  isSmallScreen: boolean;
+
+  constructor(
+      route: ActivatedRoute,
+  )
+  {
+
   }
 
   ngOnInit(): void {
   }
+
 
 }

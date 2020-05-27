@@ -38,6 +38,7 @@ export const appRoutes: Route[] = [
                     { path: '', loadChildren: () => import('./modules/app/snack-code/snack-code.module').then(m => m.SnackCodeModule) },
                     { path: ':categoryItems', loadChildren: () => import('./modules/app/snack-code/snack-code.module').then(m => m.SnackCodeModule) },
                     { path: 'detail/:snackCodeId', loadChildren: () => import('./modules/app/snack-code/snack-code.module').then(m => m.SnackCodeModule) }
+
                 ]
             },
             {

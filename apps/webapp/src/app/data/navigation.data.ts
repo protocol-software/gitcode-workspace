@@ -34,6 +34,12 @@ export const defaultNavigation: TreoNavigationItem[] = [
         type    : 'basic',
         link : '/how-it-works',
     },
+    {
+        id      : 'settings',
+        title   : '설정',
+        type    : 'basic',
+        link : '/settings',
+    },
 ];
 export const compactNavigation: TreoNavigationItem[] = [
     {

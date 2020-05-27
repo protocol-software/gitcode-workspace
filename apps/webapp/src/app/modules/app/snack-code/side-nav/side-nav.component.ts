@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
 import {SnackCodeService} from '../../../../services/snack-code.service';
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'protocol-side-nav',
@@ -12,6 +13,9 @@ export class SideNavComponent implements OnInit {
   private checkedCategories = []
   public categoryOptions = [];    
   private categoryList = [];
+  toppings = new FormControl();
+
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];;
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,

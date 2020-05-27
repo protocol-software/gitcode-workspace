@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {RequestCodeReviewService} from './request-code-review/request-code-review.service';
 import {CodeReviewDetailService} from "./code-review-detail/code-review-detail.service";
-
+import {PaymentDialogService} from '../../../../shared/payment-dialog/payment-dialog.service'
 
 @Component({
   selector: 'protocol-private-code-review',
@@ -9,16 +9,16 @@ import {CodeReviewDetailService} from "./code-review-detail/code-review-detail.s
   styleUrls: ['./private-code-review.component.scss']
 })
 export class PrivateCodeReviewComponent implements OnInit {
+
+
   constructor(
       private requestCodeReviewService: RequestCodeReviewService,
       private codeReviewDeatilService: CodeReviewDetailService,
-
-  ) { }
-
-
-
+      private paymentDialogService: PaymentDialogService,
+) { }
 
   ngOnInit(): void {
+      this.paymentDialogService.open();
   }
 
   createReview(event: MouseEvent): void {
@@ -54,4 +54,7 @@ export class PrivateCodeReviewComponent implements OnInit {
     );
   }
 
+    createDialogPayment() {
+        this.paymentDialogService.open();
+    }
 }

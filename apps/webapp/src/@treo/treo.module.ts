@@ -21,7 +21,7 @@ import { TreoSplashScreenModule } from './services/splash-screen/splash-screen.m
 export class TreoModule
 {
     /**
-     * Constructor
+     * Constructorw
      *
      * @param parentModule
      */

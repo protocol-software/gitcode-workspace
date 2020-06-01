@@ -4,7 +4,6 @@
 // @ Styles from this file will override anything from 'vendors.scss' file allowing customizations and
 //  modifications of third party libraries.
 // -----------------------------------------------------------------------------------------------------
-
 .text-charcoal {
   color:#444A52;
 }
@@ -249,4 +248,19 @@
 .w-wrapper{
   width:1200px;
 }
-body{background:white!important; }
+
+
+body{
+  background:white!important;
+  /* Keyword values */
+  text-size-adjust: none;
+  text-size-adjust: auto;
+
+  /* <percentage> value */
+  text-size-adjust: 80%;
+
+  /* Global values */
+  text-size-adjust: inherit;
+  text-size-adjust: initial;
+  text-size-adjust: unset;
+}

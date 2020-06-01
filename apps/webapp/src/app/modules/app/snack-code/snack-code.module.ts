@@ -11,6 +11,9 @@ import { MatIconModule } from '@angular/material/icon';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import {MatSelectModule} from "@angular/material/select";
         ReactiveFormsModule,
         MatOptionModule,
         MatSelectModule,
+        MatPaginatorModule,
+        MatTableModule,
+        NgxPaginationModule,
     ]
 })
 export class SnackCodeModule { }

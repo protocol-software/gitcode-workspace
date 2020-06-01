@@ -3,15 +3,15 @@
 
 # Run
 
-`yarn start web`  
+`yarn start webapp`  
 `yarn start admin`
 
 # Build
 
-`yarn build web --prod`  
+`yarn build webapp --prod`  
 `yarn build admin --prod`
 
 # Deploy
 
-`yarn deploy:web`  
+`yarn deploy:webapp`  
 `yarn deploy:admin`

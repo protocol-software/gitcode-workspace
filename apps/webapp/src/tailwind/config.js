@@ -442,7 +442,7 @@ module.exports = {
     plugins: [
 
         // Custom plugins required by Treo
-        ...require('../@treo/tailwind/plugins')
+
 
         // Other third party and custom plugins can be required here
         // ...

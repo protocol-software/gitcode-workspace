@@ -18,7 +18,7 @@ export class PrivateCodeReviewComponent implements OnInit {
 ) { }
 
   ngOnInit(): void {
-      this.paymentDialogService.open();
+
   }
 
   createReview(event: MouseEvent): void {

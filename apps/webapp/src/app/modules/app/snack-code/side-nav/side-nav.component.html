@@ -4,15 +4,16 @@
         <div class="text-base text-gray-800 font-medium mb-2">
             {{ cateItem.name }}
         </div>
-        <div class="mb-5">
-            <div *ngFor="let subCateItem of cateItem.subCategoryList">
-                <div class="rounded-l text-white text-base  border-r bg-blue font-medium w-48 py-1 px-3 flex justify-between cursor-pointer mb-2"
+        <div class="mb-5 cursor-pointer">
+            <div *ngFor="let subCateItem of cateItem.subCategoryList" class="cursor-pointer">
+                <div class="rounded-l text-white text-base bg-blue font-medium w-48 py-1 px-3 flex whitespace-no-wrap justify-between cursor-pointer mb-2"
                     *ngIf="subCateItem.checked; else elseCaseTemp" (click)="toggleCateItem(subCateItem.name)">
                     {{ subCateItem.name }}
-                    <mat-icon class="" style="color:white">close</mat-icon>
+                    <mat-icon class="cursor-pointer" style="color:white">close</mat-icon>
                 </div>
+                <!-- non checked all list -->
                 <ng-template #elseCaseTemp>
-                    <div class="rounded-l text-charcoal  border-r font-medium w-48 py-1 px-3 flex justify-between cursor-pointer mb-2 hover:bg-gray-200 cursor-pointer"
+                    <div class="rounded-l text-charcoal  font-medium w-48 py-1 px-3 flex justify-between cursor-pointer mb-2 hover:bg-gray-200 cursor-pointer"
                         (click)="toggleCateItem(subCateItem.name)">
                         {{ subCateItem.name }}
                     </div>

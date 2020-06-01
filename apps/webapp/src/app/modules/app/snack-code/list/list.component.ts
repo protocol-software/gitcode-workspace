@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Router} from '@angular/router';
 import {SnackCodeService} from '../../../../services/snack-code.service';
@@ -7,7 +7,7 @@ import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {Observable} from "rxjs";
 import {PaginatePipeArgs} from "ngx-pagination/dist/paginate.pipe";
-
+import {BasicLayoutComponent} from "../../../../layout/layouts/basic/basic.component"
 
 @Component({
   selector: 'protocol-list',
@@ -15,9 +15,10 @@ import {PaginatePipeArgs} from "ngx-pagination/dist/paginate.pipe";
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-
-    // data$:({ content_title: string; snippet: string; vote_down: string; id: string; tag: string[]; vote_up: string } | { content_title: string; snippet: string; vote_down: string; id: string; tag: string[]; vote_up: string } | { content_title: string; snippet: string; vote_down: string; id: string; tag: string[]; vote_up: string } | { content_title: string; snippet: string; vote_down: string; id: string; tag: string[]; vote_up: string } | { content_title: string; snippet: string; vote_down: string; id: string; tag: string[]; vote_up: string } | { content_title: string; snippet: string; vote_down: string; id: string; tag: string[]; vote_up: string } | { content_title: string; snippet: string; vote_down: string; id: string; tag: string[]; vote_up: string })[];
-
+  // @Output() myEvent = new EventEmitter();
+  // function2(){
+  //     this.isScreenSmall
+  // }
   public checkedCategories = [];
   public contentList = [
       {
@@ -453,16 +454,13 @@ export class ListComponent implements OnInit {
           vote_up:'77',
           vote_down:'4',
       },
-
-
-
-
-
-  ]
+  ];
   itemsPerPage: PaginatePipeArgs;
   p: string | number;
   collection=[];
-    res: string | number;
+  res: string | number;
+
+
 
 
   constructor(
@@ -474,7 +472,7 @@ export class ListComponent implements OnInit {
     this._route.queryParams.subscribe(params => {
       const categoryItems = params['categoryItems'];
       this.checkedCategories = (categoryItems) ? categoryItems.split(',') : [];
-      this.loadContentList();
+      // this.loadContentList();
       for(let i=1;i<=100;i++){
           this.collection.push(i);
       };
@@ -483,6 +481,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
+      // console.log{this.checkedCategories}
   }
 
   private async loadContentList () {

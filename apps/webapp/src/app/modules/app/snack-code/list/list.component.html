@@ -1,4 +1,10 @@
 <style>
+    .pagination /deep/ .ngx-pagination .pagination-previous a::before,
+    .pagination /deep/  .ngx-pagination .pagination-previous.disabled::before {
+        background-color: #f7fafc;
+        display: inline-block;
+        margin-right: 0.5rem; }
+
     .pagination /deep/ .ngx-pagination{
         border:1px solid #e2e8f0;
         border-top-left-radius: 0.25rem;
@@ -42,27 +48,33 @@
 
 
 </style>
+
 <div class="content-layout fullwidth-standard-normal-scroll " >
     <div class="pl-2 md:pl-16 pt-5 border-b ">
         <div class="text-lg font-medium text-charcoal mb-2">전체보기</div>
         <div class="text-sm text-charcoal mb-2"><span class="mr-1">총</span><span>{{contentList.length}}</span><span class="mr-1">개의 콘텐츠가 있습니다.</span></div>
-        <div class="flex pb-5" style="max-width: 960px; overflow: auto;" *ngIf="false">
-            <div *ngFor="let item of checkedCategories" class="flex justify-between items-center md:w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2"
-                (click)="toggleCateItem(item)">
-                <div>
-                    {{ item }}
+        <div *ngIf="checkedCategories !=null; else elseItem" class="flex pb-5" style="max-width: 960px; overflow: auto;" >
+                <div *ngFor="let checkedItem of checkedCategories" class="cursor-pointer flex whitespace-no-wrap justify-between items-center md:w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2" (click)="toggleCateItem(checkedItem)">
+                    <div>
+                        {{ checkedItem}}
+                    </div>
+                    <mat-icon class="" style="font-size:16px">close</mat-icon>
                 </div>
-                <mat-icon class="" style="font-size:16px">close</mat-icon>
-            </div>
         </div>
-        <div class="flex pb-5" style="max-width: 960px; overflow: auto;" *ngIf="true">
-            <div  class="flex justify-between items-center w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2">
-                <div>
-                    aaa
-                </div>
-                <mat-icon class="" style="font-size:16px">close</mat-icon>
+        <ng-template #elseItem>
+            <div>
+                선택된 것이 없습니다.
             </div>
-        </div>
+        </ng-template>
+
+<!--        <div class="flex pb-5" style="max-width: 960px; overflow: auto;" *ngIf="true">-->
+<!--            <div  class="flex justify-between items-center w-32 bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2">-->
+<!--                <div>-->
+<!--                    aaa-->
+<!--                </div>-->
+<!--                <mat-icon class="" style="font-size:16px">close</mat-icon>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
     <div class="">
         <div >
@@ -108,18 +120,53 @@
 <!--        </ul>-->
 <!--    </nav>-->
 
-    <nav class=" flex-shrink flex justify-center my-12">
-        <pagination-controls class="pagination" (pageChange)="p =$event"
+<!--    <nav class=" flex-shrink flex justify-center my-12">-->
+<!--        <pagination-controls class="pagination" (pageChange)="p =$event"-->
+<!--                             maxSize="5"-->
+<!--                             directionLinks="true"-->
+<!--                             autoHide="false"-->
+<!--                             responsive="false"-->
+<!--                             previousLabel="이전"-->
+<!--                             nextLabel="다음"-->
+<!--                             screenReaderPaginationLabel="Pagination"-->
+<!--                             screenReaderPageLabel="page"-->
+<!--                             screenReaderCurrentLabel="You're on page">-->
+<!--        </pagination-controls>-->
+<!--    </nav>-->
+
+
+
+
+    <nav class="flex-shrink md:flex justify-center my-12" >
+        <pagination-template #pT="paginationApi" class="flex items-center justify-center"
                              maxSize="5"
-                             directionLinks="true"
-                             autoHide="false"
-                             responsive="false"
-                             previousLabel="이전"
-                             nextLabel="다음"
-                             screenReaderPaginationLabel="Pagination"
-                             screenReaderPageLabel="page"
-                             screenReaderCurrentLabel="You're on page">
-        </pagination-controls>
+                             (pageChange)="p = $event">
+
+            <div class="pagination-previous" [class.disabled]="pT.isFirstPage()" >
+                <a *ngIf="pT.isFirstPage() else isFirstPageElse" (click)="pT.previous()" class="rounded-l border-l border-t border-b px-6 py-1 text-gray-400 bg-gray-100 font-medium border-r"> 이전 </a>
+                <ng-template #isFirstPageElse>
+                    <a (click)="pT.previous()" class="rounded-l border-l border-t border-b px-6 py-1 text-gray-900 bg-gray-100 font-medium border-r"> 이전 </a>
+                </ng-template>
+            </div>
+
+            <div *ngFor="let page of pT.pages" [class.current]="pT.getCurrent() === page.value" >
+                <a (click)="pT.setCurrent(page.value)" *ngIf="pT.getCurrent() !== page.value" class="border-t border-b border-r px-3 py-1" >
+                    <span>{{ page.label }}</span>
+                </a>
+                <div *ngIf="pT.getCurrent() === page.value" class="border-t border-b border-r px-3 py-1 bg-charcoal text-white">
+                    <span>{{ page.label }}</span>
+                </div>
+            </div>
+
+            <div class="pagination-next" [class.disabled]="pT.isLastPage()">
+                <a *ngIf="pT.isLastPage(); else isLastPageElse" (click)="pT.next()" class="border-t border-b border-r px-5 py-1"> 다음 </a>
+                <ng-template #isLastPageElse>
+                    <a (click)="pT.next()" class="border-t border-b border-r px-5 py-1"> 다음 </a>
+                </ng-template>
+
+            </div>
+
+        </pagination-template>
     </nav>
 </div>
 

@@ -14,6 +14,9 @@ export class SnackCodeService {
   public async getTags(): Promise<any> {
     const tags: ICodeTag[] = [
       { tagName: 'Angular', categoryType: 'Framework', count: 10 },
+      { tagName: 'AngularJS', categoryType: 'Framework', count: 10 },
+      { tagName: 'Angular 2+', categoryType: 'Framework', count: 10 },
+      { tagName: 'Angular 9', categoryType: 'Framework', count: 10 },
       { tagName: 'React', categoryType: 'Library', count: 10 },
       { tagName: 'VueJS', categoryType: 'Library', count: 10 },
 

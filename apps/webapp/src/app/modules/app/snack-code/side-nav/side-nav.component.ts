@@ -10,7 +10,7 @@ import {FormControl} from "@angular/forms";
   styleUrls: ['./side-nav.component.scss']
 })
 export class SideNavComponent implements OnInit {    
-  private checkedCategories = []
+  private checkedCategories = [];
   public categoryOptions = [];    
   private categoryList = [];
   toppings = new FormControl();
@@ -20,7 +20,6 @@ export class SideNavComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _service: SnackCodeService) {            
-            
   }
 
   async ngOnInit() {    

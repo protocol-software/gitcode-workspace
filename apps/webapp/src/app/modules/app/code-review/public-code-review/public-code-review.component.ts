@@ -10,8 +10,7 @@ import {IPublicCodeReviewList, PublicCodeReviewService} from "../../../../servic
 })
 export class PublicCodeReviewComponent implements OnInit {
   contentList : IPublicCodeReviewList[] = [];
-
-  serverContentList : any = [];
+  contentListLength : any = [];
   itemsPerPage = 5;
   currentPage;
   totalItems;
@@ -27,8 +26,9 @@ export class PublicCodeReviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fetch(1);
     this.publicCodeReviewList();
+    this.fetch(1);
+
   }
 
   private publicCodeReviewList(){
@@ -41,8 +41,8 @@ export class PublicCodeReviewComponent implements OnInit {
 
   private fetch(pageNo): void {
     this.currentPage = pageNo;
-    this.contentList = this.serverContentList.slice(this.itemsPerPage * (this.currentPage-1), this.itemsPerPage * this.currentPage);
-    this.totalItems = this.serverContentList.length;
+    this.contentListLength = this.contentListLength.slice(this.itemsPerPage * (this.currentPage-1), this.itemsPerPage * this.currentPage);
+    this.totalItems = this.contentListLength.length;
   }
 
   public pageChange(pageNo): void {

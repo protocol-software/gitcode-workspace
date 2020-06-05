@@ -10,6 +10,7 @@ export class PaginationComponent implements OnInit {
   private isScreenSmall: boolean;
 
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
+  isUnchanged: any;
 
   constructor() { }
 

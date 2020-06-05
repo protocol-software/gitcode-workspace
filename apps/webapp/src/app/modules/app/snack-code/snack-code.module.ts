@@ -13,8 +13,8 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
+import {SharedModule} from "../../../shared/shared.module";
 import {NgxPaginationModule} from "ngx-pagination";
-
 @NgModule({
   declarations: [
     SnackCodeComponent,
@@ -32,7 +32,9 @@ import {NgxPaginationModule} from "ngx-pagination";
         MatSelectModule,
         MatPaginatorModule,
         MatTableModule,
+        SharedModule,
         NgxPaginationModule,
+
     ]
 })
 export class SnackCodeModule { }

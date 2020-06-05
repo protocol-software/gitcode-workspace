@@ -1,12 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {RequestCodeReviewService} from './request-code-review/request-code-review.service';
 import {CodeReviewDetailService} from "./code-review-detail/code-review-detail.service";
-import {
-  CodeReviewDetailComponent,
-  CodeReviewDetailDialogBestreview
-} from "./code-review-detail/code-review-detail.component";
-
-
+import {IPublicCodeReviewList, PublicCodeReviewService} from "../../../../services/public-code-review.service";
 
 @Component({
   selector: 'protocol-public-code-review',
@@ -14,23 +9,44 @@ import {
   styleUrls: ['./public-code-review.component.scss']
 })
 export class PublicCodeReviewComponent implements OnInit {
-  // private test:  CodeReviewDetailDialogBestreview;
-  // private test2: CodeReviewDetailComponent;
+  contentList : IPublicCodeReviewList[] = [];
+
+  serverContentList : any = [];
+  itemsPerPage = 5;
+  currentPage;
+  totalItems;
+  public errorMsg;
+
   constructor(
       private requestCodeReviewService: RequestCodeReviewService,
       private codeReviewDeatilService: CodeReviewDetailService,
-  ) { }
-  public dummyData = [
-    {"id":1,"itemsName":"how it works 1","status":"open",}
-  ];
+      private publicCodeReviewService: PublicCodeReviewService,
+
+  ) {
+
+  }
 
   ngOnInit() {
+    this.fetch(1);
+    this.publicCodeReviewList();
+  }
 
-    //for development
-    // this.test2.openDialogBestreview(null);
-    // this.test.confirmBox();
+  private publicCodeReviewList(){
+    this.publicCodeReviewService.getPublicCodeReviewList()
+        .subscribe(data => this.contentList= data,
+            error => this.errorMsg = error);{
+              console.log(this.contentList);
+    }
+  }
 
+  private fetch(pageNo): void {
+    this.currentPage = pageNo;
+    this.contentList = this.serverContentList.slice(this.itemsPerPage * (this.currentPage-1), this.itemsPerPage * this.currentPage);
+    this.totalItems = this.serverContentList.length;
+  }
 
+  public pageChange(pageNo): void {
+    this.fetch(pageNo);
   }
 
   createReview(event: MouseEvent): void {
@@ -67,5 +83,8 @@ export class PublicCodeReviewComponent implements OnInit {
     );
   }
 
-
+  filterItemOfType(postId:number) {
+    return this.contentList.filter(data=> data.postId == postId);
+  }
 }
+

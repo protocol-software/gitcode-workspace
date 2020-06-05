@@ -13,6 +13,8 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import {NgxPaginationModule} from "ngx-pagination";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -30,6 +32,11 @@ import {MatInputModule} from "@angular/material/input";
         MatButtonModule,
         MatFormFieldModule,
         MatInputModule,
+        NgxPaginationModule,
+        HttpClientModule,
+
+    ]
+    ,providers:[
     ]
 })
 export class PublicCodeReviewModule

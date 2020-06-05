@@ -25,6 +25,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {PaymentModule} from './modules/app/payment/payment.module';
 import {PaymentDialogModule} from "./shared/payment-dialog/payment-dialog.module";
 import {SnackCodeModule} from "./modules/app/snack-code/snack-code.module";
+import {PaginationModule} from "./shared/pagination/pagination.module";
 
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
@@ -75,6 +76,7 @@ export function createTranslateLoader(http: HttpClient): any {
         PaymentModule,
         PaymentDialogModule,
         SnackCodeModule,
+        PaginationModule,
     ],
     bootstrap   : [
         AppComponent

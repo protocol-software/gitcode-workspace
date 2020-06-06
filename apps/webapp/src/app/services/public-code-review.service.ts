@@ -50,10 +50,17 @@ export interface IPublicCodeReviewList {
     ]
 }
 
+export interface IStatusList {
+    lang : [{
+        label: string,
+        select:[]
+    }]
+}
+
 
 @Pipe({ name: 'myPostFilter' })
 export class MyPostFilterPipe implements PipeTransform {
-        transform(contents: IPublicCodeReviewList[],isSelectedMyPost:boolean) {
+        transform(contents: IPublicCodeReviewList[],isSelectedMyPost:boolean)  {
             if (isSelectedMyPost==true) {
                 return contents.filter(contents => contents.author.name === myPostValue);
             } else {

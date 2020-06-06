@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {RequestCodeReviewService} from './request-code-review/request-code-review.service';
 import {CodeReviewDetailService} from "./code-review-detail/code-review-detail.service";
-import {IPublicCodeReviewList, PublicCodeReviewService} from "../../../../services/public-code-review.service";
+import {IStatusList, IPublicCodeReviewList, PublicCodeReviewService} from "../../../../services/public-code-review.service";
 import {FormControl} from "@angular/forms";
 import { Pipe, PipeTransform } from '@angular/core';
 import {MatCheckboxChange} from "@angular/material/checkbox";
@@ -22,7 +22,35 @@ export class PublicCodeReviewComponent implements OnInit {
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato','Tomato','Tomato','Tomato','Tomato','Tomato','Tomato','Tomato','Tomato'];
   frameworks = new FormControl();
   frameworksList: string[] = ['Angular','AngularJS','Angular 2+','Angular 8+','Angular 9','Laravel','Express','Django','Rails','Spring','React','React','Vue','Ember','Backbone'];
-  isSelectedMyPost = false;
+  listStatuses = new FormControl();
+  // listStatusesList = [
+  //   {
+  //     "lang": {
+  //       "label": "kr",
+  //       "select": {
+  //         "kr1": "코드리뷰 중",
+  //         "kr2": "오픈",
+  //         "kr3": "종료",
+  //         "kr4": "재오픈"
+  //       }
+  //     }
+  //   }];
+  // listStatusesList = [{0:"코드리뷰중",1:"",2:"",3:""}];
+  listStatusesList = [
+    {key : "코드리뷰중", value : 'reviewing'},
+    {key : "오픈", value : 'open'},
+    {key : "종료", value : 'close'},
+    {key : "재오픈", value : 're-open'}
+  ];
+
+  // answer: Answer[];
+  // this.answer = new Array<Answer>();
+  isSelectedMyPost: boolean = false;
+  isSelectedStatus: boolean = false;
+  isSelectedMyPost2 :any =[];
+  contentList2: IStatusList[] = [];
+
+
 
   constructor(
       private requestCodeReviewService: RequestCodeReviewService,
@@ -98,8 +126,8 @@ export class PublicCodeReviewComponent implements OnInit {
   }
 
   getCheckboxes() {
-    console.log(this.isSelectedMyPost);
-    return this.isSelectedMyPost;
+    console.log(this.isSelectedStatus);
+    return this.isSelectedStatus;
   }
 }
 

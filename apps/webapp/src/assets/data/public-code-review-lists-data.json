@@ -4,11 +4,11 @@
       "contentTitle":"1 So awesome code review",
       "reviewStatus": "re-open",
       "tags":[
-        "angularJS",
-        "typescript",
-        "firebase",
-        "angular9",
-        "mongoDB",
+        "Angular",
+        "Typescript",
+        "Firebase",
+        "Angular9",
+        "MongoDB",
         "AWS"
       ],
       "author": {
@@ -176,8 +176,8 @@
       "reviewers": []
     },
     {
-    "postId": "5",
-    "contentTitle":"5 postSo awesome code review",
+    "postId": "4",
+    "contentTitle":"4 postSo awesome code review",
     "reviewStatus": "close",
     "tags":[
       "angularJS",
@@ -189,7 +189,7 @@
     ],
     "author": {
       "id": 3,
-      "name": "Lion",
+      "name": "None",
       "photoUrl": "/assets/images/dummy-data/profile3.svg"
     },
     "reviewers": [
@@ -232,8 +232,8 @@
       ]
     },
     {
-      "postId": "5",
-      "contentTitle":"5 postSo awesome code review",
+      "postId": "6",
+      "contentTitle":"6 postSo awesome code review",
       "reviewStatus": "close",
       "tags":[
         "angularJS",
@@ -254,14 +254,19 @@
           "name": "Greg",
           "photoUrl": "/assets/images/dummy-data/profile5.svg",
           "isBestReviewer": true
+        },{
+          "id":4,
+          "name": "Greg",
+          "photoUrl": "/assets/images/dummy-data/profile5.svg",
+          "isBestReviewer": true
         }
 
 
       ]
     },
     {
-      "postId": "5",
-      "contentTitle":"5 postSo awesome code review",
+      "postId": "7",
+      "contentTitle":"7 postSo awesome code review",
       "reviewStatus": "close",
       "tags":[
         "angularJS",
@@ -278,6 +283,16 @@
       },
       "reviewers": [
         {
+          "id":4,
+          "name": "Greg",
+          "photoUrl": "/assets/images/dummy-data/profile5.svg",
+          "isBestReviewer": true
+        },{
+          "id":4,
+          "name": "Greg",
+          "photoUrl": "/assets/images/dummy-data/profile5.svg",
+          "isBestReviewer": true
+        },{
           "id":4,
           "name": "Greg",
           "photoUrl": "/assets/images/dummy-data/profile5.svg",

@@ -23,32 +23,16 @@ export class PublicCodeReviewComponent implements OnInit {
   frameworks = new FormControl();
   frameworksList: string[] = ['Angular','AngularJS','Angular 2+','Angular 8+','Angular 9','Laravel','Express','Django','Rails','Spring','React','React','Vue','Ember','Backbone'];
   listStatuses = new FormControl();
-  // listStatusesList = [
-  //   {
-  //     "lang": {
-  //       "label": "kr",
-  //       "select": {
-  //         "kr1": "코드리뷰 중",
-  //         "kr2": "오픈",
-  //         "kr3": "종료",
-  //         "kr4": "재오픈"
-  //       }
-  //     }
-  //   }];
-  // listStatusesList = [{0:"코드리뷰중",1:"",2:"",3:""}];
-  listStatusesList = [
-    {key : "코드리뷰중", value : 'reviewing'},
-    {key : "오픈", value : 'open'},
-    {key : "종료", value : 'close'},
-    {key : "재오픈", value : 're-open'}
-  ];
+  data: Object;
+
 
   // answer: Answer[];
   // this.answer = new Array<Answer>();
   isSelectedMyPost: boolean = false;
-  isSelectedStatus: boolean = false;
+  isSelectedStatus: string ;
   isSelectedMyPost2 :any =[];
-  contentList2: IStatusList[] = [];
+  contentStatusList: IStatusList[] = [];
+  peopleFilter: [];
 
 
 
@@ -63,8 +47,8 @@ export class PublicCodeReviewComponent implements OnInit {
 
   ngOnInit() {
     this.publicCodeReviewList();
+    this.statusesList();
     this.fetch(1);
-    // this.contentList =
 
   }
 
@@ -73,9 +57,16 @@ export class PublicCodeReviewComponent implements OnInit {
     this.publicCodeReviewService.getPublicCodeReviewList()
         .subscribe(data => this.contentList= data,
             error => this.errorMsg = error);{
-              console.log(this.contentList);
     }
   }
+
+  private statusesList(){
+    this.publicCodeReviewService.getStatusList()
+        .subscribe(data => this.contentStatusList= data,
+            error => this.errorMsg = error);{
+    }
+  }
+
 
   private fetch(pageNo): void {
     this.currentPage = pageNo;

@@ -206,7 +206,7 @@
     {
       "postId": "5",
       "contentTitle":"5 postSo awesome code review",
-      "reviewStatus": "close",
+      "reviewStatus": "reviewing",
       "tags":[
         "angularJS",
         "typescript",

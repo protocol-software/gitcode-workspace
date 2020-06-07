@@ -27,6 +27,7 @@ import {PaymentDialogModule} from "./shared/payment-dialog/payment-dialog.module
 import {SnackCodeModule} from "./modules/app/snack-code/snack-code.module";
 import {PaginationModule} from "./shared/pagination/pagination.module";
 
+
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
     preloadingStrategy       : PreloadAllModules
@@ -77,6 +78,7 @@ export function createTranslateLoader(http: HttpClient): any {
         PaymentDialogModule,
         SnackCodeModule,
         PaginationModule,
+
     ],
     bootstrap   : [
         AppComponent

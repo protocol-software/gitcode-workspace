@@ -12,7 +12,9 @@ const myPostValue = "Lion"
 export class PublicCodeReviewService {
 
     private urlPublicCodeReviewLists: string = "/assets/data/public-code-review-lists-data.json";
+    private urlListStatuses: string = "/assets/data/list-statuses-data.json";
     public publicCodeReviewList : any = [] ;
+    public statusList : any = [] ;
     constructor(
         private http: HttpClient,
     ) {
@@ -23,10 +25,63 @@ export class PublicCodeReviewService {
 
     getPublicCodeReviewList(): Observable<IPublicCodeReviewList[]> {
         this.publicCodeReviewList = this.http.get<IPublicCodeReviewList[]>(this.urlPublicCodeReviewLists).catch(this.errorHandler);
-        console.log(this.publicCodeReviewList);
         return this.publicCodeReviewList;
     }
 
+    getStatusList(): Observable<IStatusList[]> {
+        this.statusList = this.http.get<IStatusList[]>(this.urlListStatuses).catch(this.errorHandler);
+        return this.statusList;
+    }
+
+}
+
+@Pipe({ name: 'myPostFilter' })
+export class MyPostFilterPipe implements PipeTransform {
+        transform(contents: IPublicCodeReviewList[],isSelectedMyPost:boolean)  {
+            if (isSelectedMyPost==true) {
+                return contents.filter(contents => contents.author.name === myPostValue);
+            } else {
+                return contents.filter(contents => contents);
+            }
+        }
+}
+
+@Pipe({ name: 'statusFilter' })
+export class StatusPipe implements PipeTransform {
+    transform(contents: IPublicCodeReviewList[],isSelectedStatus) {
+            if (isSelectedStatus=="코드리뷰중") {
+                return contents.filter(contents => contents.reviewStatus == "reviewing");
+            }
+            else if (isSelectedStatus=="종료") {
+                return contents.filter(contents => contents.reviewStatus == "close");
+            }
+            else if (isSelectedStatus=="오픈") {
+                return contents.filter(contents => contents.reviewStatus == "open");
+            }
+            else if (isSelectedStatus=="재오픈") {
+                return contents.filter(contents => contents.reviewStatus == "re-open");
+            } else {
+                return contents.filter(contents => contents);
+            }
+    }
+}
+// TODO:spock multi checkbox filter
+@Pipe({
+    name: 'testFilter'
+})
+export class FilterPipe implements PipeTransform {
+    transform(items: Array<any>, filter: {[key: string]: any }): Array<any> {
+        return items.filter(item => {
+            let notMatchingField = Object.keys(filter)
+                .find(key => item[key] !== filter[key]);
+            return !notMatchingField; // true if matches all fields
+        });
+    }
+}
+
+@Pipe({ name: 'langStatusFilter' })
+export class LangStatusPipe implements PipeTransform {
+    transform(contents: IStatusList[]){return contents.filter(contents => contents); }
 }
 
 export interface IPublicCodeReviewList {
@@ -51,22 +106,8 @@ export interface IPublicCodeReviewList {
 }
 
 export interface IStatusList {
-    lang : [{
-        label: string,
-        select:[]
-    }]
+    key: number,
+    value: string
 }
 
-
-@Pipe({ name: 'myPostFilter' })
-export class MyPostFilterPipe implements PipeTransform {
-        transform(contents: IPublicCodeReviewList[],isSelectedMyPost:boolean)  {
-            if (isSelectedMyPost==true) {
-                return contents.filter(contents => contents.author.name === myPostValue);
-            } else {
-                return contents.filter(contents => contents);
-            }
-        }
-
-}
 

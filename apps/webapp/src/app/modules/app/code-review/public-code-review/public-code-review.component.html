@@ -63,14 +63,16 @@
                     <div>
                         <mat-form-field class="treo-mat-dense mr-3 " >
                             <mat-label>Status</mat-label>
-                            <mat-select [formControl]="listStatuses" multiple [(ngModel)]="isSelectedStatus" (selectionChange)="getCheckboxes()">
+                            <mat-select [formControl]="listStatuses" multiple [(ngModel)]="isSelectedStatus">
                                 <mat-select-trigger>
                                     {{listStatuses.value ? listStatuses.value[0] : ''}}
                                     <span *ngIf="listStatuses.value?.length > 1" class="example-additional-selection">
                                     (+{{listStatuses.value.length - 1}} {{listStatuses.value?.length === 2 ? 'other' : 'others'}})
                                     </span>
                                 </mat-select-trigger>
-                                <mat-option *ngFor="let listStatus of listStatusesList" [value]="listStatus.value">{{listStatus.key}}</mat-option>
+                                <mat-option *ngFor="let listStatus of contentStatusList" [value]="listStatus.key">
+                                    {{listStatus.key}}
+                                </mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -89,7 +91,7 @@
             <!--List -->
             <div class="mt-5 mb-12  ">
                 <!-- list 0 -->
-                <div *ngFor="let item of contentList | myPostFilter:isSelectedMyPost  | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems}  ; let no=index;"
+                <div *ngFor="let item of contentList | statusFilter:isSelectedStatus | myPostFilter:isSelectedMyPost  | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems}  ; let no=index;"
                      class="flex-shrink md:flex mb-3 p-5 border-gray-300 border rounded-md ">
                     <div class="md:w-8/12 md:mb-0 mb-2">
                         <div class="flex">

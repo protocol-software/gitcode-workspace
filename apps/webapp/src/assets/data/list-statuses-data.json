@@ -1,0 +1,14 @@
+
+
+[
+    {"key" : "코드리뷰중", "value" : "reviewing"},
+    {
+      "key" : "오픈", "value" : "open"
+    },
+    {
+      "key" : "종료", "value" : "close"
+    },
+    {
+      "key" : "재오픈", "value" : "re-open"
+    }
+]

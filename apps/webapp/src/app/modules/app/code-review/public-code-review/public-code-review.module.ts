@@ -18,11 +18,16 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {HttpClientModule} from "@angular/common/http";
 import {MatSelectModule} from "@angular/material/select";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
-import {MyPostFilterPipe} from "../../../../services/public-code-review.service";
+import {
+    FilterPipe,
+    LangStatusPipe,
+    MyPostFilterPipe,
+    StatusPipe
+} from "../../../../services/public-code-review.service";
 
 @NgModule({
   declarations: [
-    PublicCodeReviewComponent,ExpertEvaluationComponent,ConfirmExpertDialog,SelectFrameworksPipe,MyPostFilterPipe
+    PublicCodeReviewComponent,ExpertEvaluationComponent,ConfirmExpertDialog,SelectFrameworksPipe,MyPostFilterPipe,LangStatusPipe,StatusPipe,FilterPipe
   ],
     imports: [
         RouterModule.forChild(PublicCodeReviewRoutes),
@@ -42,6 +47,8 @@ import {MyPostFilterPipe} from "../../../../services/public-code-review.service"
         MatSelectModule,
         MatAutocompleteModule,
         MatPseudoCheckboxModule,
+
+
 
     ]
     ,providers:[

@@ -1,0 +1,19 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../../dist/out-tsc",
+        "types": []
+    },
+    "files": [
+      "src/main.ts",
+      "src/polyfills.ts",
+      "../../node_modules/cypress/types/index.d.ts"
+    ],
+    "include": [
+        "src/**/*.d.ts"
+    ],
+    "exclude": [
+        "src/tailwind/**",
+        "src/test-setup.ts", "**/*.spec.ts"
+    ]
+}

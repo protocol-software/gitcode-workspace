@@ -1,0 +1,245 @@
+{
+  "languageSelector": {
+    "cn": "中文",
+    "en": "English",
+    "ko": "한국어",
+    "th": "ภาษาไทย",
+    "vn": "Tiếng Việt"
+  },
+  "layout": {
+    "signIn": "Sign in",
+    "signUp": "Sign up"
+  },
+  "signUpDialog": {
+    "title": "Sign Up",
+    "agreementTitle": "Please accept the terms and conditions",
+    "agreementStart": "I agree to the ",
+    "agreementTerms": "RE-CODE Terms & Condition",
+    "agreementAnd": "and ",
+    "agreementPolicy": "Privacy Policy",
+    "agreementEnd": "",
+    "agreementRequired": "This is a required consent.",
+    "githubRegistrationTitle": "RE-CODE can be registered with Github account.",
+    "githubRegistrationMessage": "If you are not registered on Github, please register first.",
+    "githubSignUpLink": "Github Sign up",
+    "githubSignIn": "Github Sign in"
+  },
+  "howItWorks": {
+    "pageTitle": "How it works",
+    "section1": {
+      "title": "GitHub It's easy to sign up with your account.",
+      "message": "RE-CODE can be registered with Github account without complicated input or authentication process."
+    },
+    "section2": {
+      "title": "Please connect the repository.",
+      "message": "Connect one or more repositories to use the RE-CODE service among the repositories you have on Github. In order to request a code review, the repository must be linked.",
+      "subsection": {
+        "title": "Is security a problem when connecting to a repository?",
+        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque ipsum lectus eget lectus in eu blandit. Est, sit nulla sapien sapien aliquet viverra id."
+      }
+    },
+    "section3": {
+      "title": "Please select your product and pay.",
+      "message": "You can choose the right product for your individual, team, or company. You can request a code review as soon as your payment is completed.",
+      "subsection": {
+        "title": "How is the payment made for the RE-CODE?",
+        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque ipsum lectus eget lectus in eu blandit. Est, sit nulla sapien sapien aliquet viverra id."
+      }
+    },
+    "section4": {
+      "title": "Pull Request will automatically request a code review and match the reviewer.",
+      "message": "No need for complicated code review. If you request a pull request with RE-CODE, the code review application will be completed automatically.",
+      "subsection": {
+        "title": "Can I make a private request when requesting a code review?",
+        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque ipsum lectus eget lectus in eu blandit. Est, sit nulla sapien sapien aliquet viverra id."
+      }
+    },
+    "section5": {
+      "title": "Check the completed code review and rate the reviewer.",
+      "message": "The Reviewer will complete the review within 24 hours after receiving the code review request. After receiving the code review completion notification, please rate your satisfaction with the reviewer and the reviewer.",
+      "subsection": {
+        "title": "리뷰어",
+        "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque ipsum lectus eget lectus in eu blandit. Est, sit nulla sapien sapien aliquet viverra id."
+      }
+    },
+    "agreement": {
+      "title": "When requesting a code review, please accept content creation.",
+      "message": "In RE-CODE, contents are produced with the contents of code review completed. In the case of source code accepted by the member, it is provided as contents through Learn to code of RE-CODE after completion of code review. As your content gets more views, you'll receive additional rewards. Share your good reviews and earn extra revenue."
+    }
+  },
+  "pricing": {
+    "pageTitle": "Pricing",
+    "slogan": "Top Class Developers at Reasonable Prices<br>Get a code review.",
+    "category": {
+      "individual": "Individual",
+      "corporation": "Corporation"
+    },
+    "contactUs": {
+      "message": "Request for web / app UI/UX wireframe, design and development besides code review<br>Please submit it through the following inquiry.",
+      "buttonText": "Contact us"
+    },
+    "pricingCard": {
+      "individual": {
+        "subscription": {
+          "chip": "Individual",
+          "title": "ON-DEMAND CODE-REVIEW",
+          "description": "Recommended for developers who would like to receive code reviews of their source.<br>Get advice from top class senior developers at a reasonable price.",
+          "benefits": [
+            "Code review via Github",
+            "Reviews up to 300 lines per month",
+            "Top Class Reviewer Matching",
+            "Code review within 24 hours"
+          ]
+        },
+        "onDemand": {
+          "chip": "Small Team/Project",
+          "title": "SMALL PROJECT CODE-REVIEW",
+          "description": "Recommended for those who want to get code reviews for small projects.<br>* Separate estimates are set according to the size, complexity, and language of the project.",
+          "benefits": [
+            "Code review via Github",
+            "Unlimited Project Full Review",
+            "Top Class Reviewer Matching",
+            "Code review within 24 hours"
+          ]
+        }
+      },
+      "corporation": {
+        "subscription": {
+          "chip": "Group/Team",
+          "title": "TEAM CODE-REVIEW",
+          "description": "Recommended for those who want a team code review of 5 or more.<br>Get advice from top class senior developers at a reasonable price.",
+          "benefits": [
+            "Code review via Github",
+            "Reviews up to 300 lines per month",
+            "Top Class Reviewer Matching",
+            "Code review within 24 hours"
+          ]
+        },
+        "onDemand": {
+          "chip": "Project/Corporation",
+          "title": "GROUP PROJECT CODE-REVIEW",
+          "description": "Recommended for large teams, companies, or for large project code reviews.<br>* Separate estimates are set according to the size, complexity, and language of the project.",
+          "benefits": [
+            "Code review via Github",
+            "Unlimited Project Full Review",
+            "Top Class Reviewer Matching",
+            "Code review within 24 hours"
+          ]
+        }
+      },
+      "plan": {
+        "subscription": "Monthly subscription",
+        "onDemand": "Minimum"
+      },
+      "action": {
+        "purchase": "Purchase",
+        "signIn": "Sign in to purchase",
+        "request": "Request"
+      }
+    }
+  },
+  "contactUsDialog": {
+    "title": "Request for consultation"
+  },
+  "contactUsForm": {
+    "projectName": {
+      "label": "Project name",
+      "placeholder": "Please enter the project name."
+    },
+    "companyName": {
+      "label": "Team/Company name",
+      "placeholder": "Please enter your team or company name."
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Please enter your email address."
+    },
+    "phone": {
+      "label": "Phone",
+      "placeholder": "Please enter your phone number."
+    },
+    "topics": {
+      "title": "Select the service you want to request.",
+      "options": {
+        "wireframe": "UI/UX wireframe",
+        "design": "Design",
+        "development": "Development",
+        "others": "Others"
+      }
+    },
+    "detail": {
+      "label": "Detail",
+      "placeholder": "Please provide details about your project and your requirements."
+    },
+    "submit": "Request"
+  },
+  "contactUsAlert": {
+    "success": {
+      "title": "Request completed",
+      "message": "Thank you!<br>We have received your consultation successfully.<br>A representative will contact you after confirmation.",
+      "ok": "Close"
+    }
+  },
+  "pricingRequestDialog": {
+    "title": "Request for consultation"
+  },
+  "pricingRequestForm": {
+    "projectName": {
+      "label": "Project Name",
+      "placeholder": "Please enter the project name"
+    },
+    "companyName": {
+      "label": "Team/Company Name",
+      "placeholder": "Please enter your team or company name"
+    },
+    "email": {
+      "label": "Email Address",
+      "placeholder": "Please enter your email address"
+    },
+    "phone": {
+      "label": "Phone Number",
+      "placeholder": "Please enter your phone number"
+    },
+    "sizeTitle": "* Please select the size of the team that will use the code review service.",
+    "note": {
+      "label": "Note",
+      "placeholder": "Please enter details about your project"
+    },
+    "submit": "Request"
+  },
+  "pricingRequestAlert": {
+    "success": {
+      "title": "Request Completed",
+      "message": "Thank you!<br>We have received your consultation successfully.<br>A representative will contact you after confirmation.",
+      "ok": "Confirm"
+    }
+  },
+  "pullRequests": {
+    "pageTitle": "PRs",
+    "pullRequestFilter": {
+      "isOnlySelfPRs": "View only my PR",
+      "status": {
+        "label": "Status",
+        "option": {
+          "all": "All"
+        }
+      },
+      "language": {
+        "label": "Language",
+        "option": {
+          "all": "All"
+        }
+      },
+      "framework": {
+        "label": "Framework",
+        "option": {
+          "all": "All"
+        }
+      },
+      "search": {
+        "label": "Search",
+        "submit": "Submit"
+      }
+    }
+  }
+}

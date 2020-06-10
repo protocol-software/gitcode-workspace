@@ -1,0 +1,26 @@
+<nav class="flex-shrink md:flex justify-center my-12" *ngIf="true" >
+    <pagination-template #pT="paginationApi" class="flex items-center justify-center"
+                         [maxSize]="maxSizeNumber"
+                         (pageChange)="pageChange.emit($event)">
+        <div class="pagination-previous" [class.disabled]="pT.isFirstPage()" >
+            <a *ngIf="pT.isFirstPage() else isFirstPageElse"  class="cursor-pointer rounded-l border-l border-t border-b px-6 py-1 text-gray-400 bg-gray-100 font-medium border-r"> 이전 </a>
+            <ng-template #isFirstPageElse>
+                <a (click)="pT.previous()" class="cursor-pointer rounded-l border-l border-t border-b px-6 py-1 text-gray-900 bg-gray-100 font-medium border-r"> 이전 </a>
+            </ng-template>
+        </div>
+        <div *ngFor="let page of pT.pages" [class.current]="pT.getCurrent() === page.value" >
+            <a (click)="pT.setCurrent(page.value)" *ngIf="pT.getCurrent() !== page.value" class="cursor-pointer border-t border-b border-r px-3 py-1" >
+                <span>{{ page.label }}</span>
+            </a>
+            <div *ngIf="pT.getCurrent() === page.value" class="cursor-pointer border-t border-b border-r px-3 py-1 bg-charcoal text-white">
+                <span>{{ page.label }}</span>
+            </div>
+        </div>
+        <div class="pagination-next" [class.disabled]="pT.isLastPage()">
+            <a *ngIf="pT.isLastPage(); else isLastPageElse" class=" cursor-pointer border-t border-b border-r px-5 py-1 text-gray-400 bg-gray-100"> 다음 </a>
+            <ng-template #isLastPageElse>
+                <a (click)="pT.next()" class="cursor-pointer border-t border-b border-r px-5 py-1"> 다음 </a>
+            </ng-template>
+        </div>
+    </pagination-template>
+</nav>

@@ -81,7 +81,8 @@ export class CommonService {
       ReplyToAddresses: null,
     };
 
-    return await new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(sesParams).promise();
+    const result = await new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(sesParams).promise();
+    return result;
   }
 
   public async sendOtpEmail(otpDto: OtpDto): Promise<any> {
@@ -96,9 +97,8 @@ export class CommonService {
       bodyHtml: otpDto.bodyHtml.replace('OTPCODE', otpCode),
     };
 
-    await this.sendEmail(params);
-
-    return true;
+    const result = await this.sendEmail(params);
+    return result;
   }
 
   public async verifyOtp(otpDto: OtpDto): Promise<any> {

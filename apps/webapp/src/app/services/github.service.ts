@@ -43,4 +43,8 @@ export class GitHubService {
 
     return this.http.get<IGitHubRepo[]>(endpoint, { headers: this.requestHeaders });
   }
+
+  public createPR(): void {
+
+  }
 }

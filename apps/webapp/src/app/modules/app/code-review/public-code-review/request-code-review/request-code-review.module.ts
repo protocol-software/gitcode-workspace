@@ -13,6 +13,7 @@ import { RequestCodeReviewComponent } from './request-code-review.component';
 import { RequestCodeReviewService } from './request-code-review.service';
 import {MatRadioModule} from "@angular/material/radio";
 import {MatSelectModule} from "@angular/material/select";
+import {GitHubService} from "../../../../../services/github.service";
 
 @NgModule({
     imports: [
@@ -31,6 +32,7 @@ import {MatSelectModule} from "@angular/material/select";
   declarations: [RequestCodeReviewComponent],
   providers: [
     RequestCodeReviewService,
+      GitHubService,
 
   ],
   exports: [RequestCodeReviewComponent],

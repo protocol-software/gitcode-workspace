@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import {Observable, Subject} from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {SignUpDialogService} from '../../../shared/sign-up-dialog/sign-up-dialog.service';
-import {IUser, OAuthProvider} from '@re-code-io/data';
+import {IUser, OAuthProvider} from '@protocol/data';
 import {AuthService} from '../../../services/auth.service';
 
 @Component({

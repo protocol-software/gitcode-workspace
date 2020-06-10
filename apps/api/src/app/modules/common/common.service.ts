@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { IOtp } from './interfaces/otp-document.interface';
 
 import * as AWS from 'aws-sdk';
-import {EmailDto, OtpDto} from "@re-code-io/data";
+import {EmailDto, OtpDto} from "@protocol/data";
 
 @Injectable()
 export class CommonService {

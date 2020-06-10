@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SnackCodeService} from '../../../services/snack-code.service';
-import {CodeTagDto} from '@re-code-io/data';
+import {CodeTagDto} from '@protocol/data';
 
 @Component({
   selector: 'protocol-search-code',

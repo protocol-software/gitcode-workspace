@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 
 import { CommonService } from './common.service';
-import {EmailDto, OtpDto} from "@re-code-io/data";
+import {EmailDto, OtpDto} from "@protocol/data";
 
 @Controller('common')
 export class CommonController {

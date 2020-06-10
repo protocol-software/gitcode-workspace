@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IGitHubRepo, IGitHubUser } from '@re-code-io/data';
+import { IGitHubRepo, IGitHubUser } from '@protocol/data';
 import { Observable } from 'rxjs';
 import * as UrlAssembler from 'url-assembler';
 

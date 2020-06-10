@@ -4,7 +4,7 @@ import * as SafeUrlAssembler from 'url-assembler';
 import {environment} from '../../environments/environment';
 import {Injectable} from '@angular/core';
 import {ApiEndpoint} from '../../../../../libs/data/src/lib/configurations/api-endpoint';
-import {ICodeContentItem, ICodeTag} from '@re-code-io/data';
+import {ICodeContentItem, ICodeTag} from '@protocol/data';
 
 @Injectable({
     providedIn: 'root',

@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, ViewChild, Output, HostListener}
 import {ActivatedRoute} from '@angular/router';
 import {Router} from '@angular/router';
 import {SnackCodeService} from '../../../../services/snack-code.service';
-import {CodeTagDto} from '@re-code-io/data';
+import {CodeTagDto} from '@protocol/data';
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {Observable, Subject} from "rxjs";

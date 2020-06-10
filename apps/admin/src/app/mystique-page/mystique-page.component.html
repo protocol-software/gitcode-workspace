@@ -1,9 +1,0 @@
-<h1>{{ pageName | titlecase }}</h1>
-<app-mystique-page-filter [filterSource]="filterSource" [dataList]="dataList"
-    [shouldResetFilter]="shouldResetFilter"
-    (filterChanged)="onFilterChanged($event)"
-    (deleteRequested)="onDeleteRequested($event)"></app-mystique-page-filter>
-<app-mystique-page-list [listSource]="listSource"
-    [dataList]="dataList" [pagination]="dataListPagination"
-    (dataSelected)="onDataSelected($event)"
-    (pageChanged)="onPageChanged($event)"></app-mystique-page-list>

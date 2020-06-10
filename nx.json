@@ -1,5 +1,5 @@
 {
-  "npmScope": "re-code-io",
+  "npmScope": "protocol-network",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": "*",
@@ -17,18 +17,8 @@
     "ui": {
       "tags": []
     },
-    "admin-e2e": {
-      "tags": []
-    },
-    "admin": {
-      "tags": []
-    },
     "webapp": {
       "tags": []
-    },
-    "webapp-e2e": {
-      "tags": [],
-      "implicitDependencies": ["webapp"]
     }
   }
 }

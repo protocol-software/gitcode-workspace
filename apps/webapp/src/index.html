@@ -17,6 +17,9 @@
         <!-- Icon Fonts -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=block" rel="stylesheet">
 
+        <!-- Animation -->
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
         <!-- Splash screen styles -->
         <style>
             body treo-splash-screen {
@@ -118,6 +121,15 @@
         <!-- App root -->
         <app-root></app-root>
 
+        <!-- Animation -->
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                offset: 300,
+                duration: 1000
+                }
+            );
+        </script>
     </body>
 
 </html>

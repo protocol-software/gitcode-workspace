@@ -1,257 +1,97 @@
 @import 'treo';
 
-.hero {
-  @include flex-center();
-  height: rem(138px);
-  background-color: #444A52;
-  color: white;
-
-  @media #{$medium-up} {
-    height: rem(240px);
-  }
-
-  .page-title {
-    margin: 0;
-    font-size: rem(32px);
-
-    @media #{$medium-up} {
-      font-size: rem(64px);
-    }
-  }
+.Line-Absolute-Center {
+  display: flex; // make us of Flexbox
+  align-items: center; // does vertically center the desired content
+  justify-content: center; // horizontally centers single line items
+  text-align: center; // optional, but helps horizontally center text that breaks into multiple lines
+  background:linear-gradient(#53f0ef 0%,#1DB5B5 100%);
+  transform: rotate(90deg);
+  width: 180px;
+  height: 1px;
+  stroke-linecap: round;
+}
+.Line2 {
+  background:linear-gradient(#20C6C6 0%,#169393 100%);
+  transform: rotate(90deg);
+  width: 180px;
+  height: 1px;
 }
 
-section {
-  @include flex-column();
-  width: 100%;
-  max-width: rem(1090px);
-  margin: 0 auto 1rem;
-  padding: 0 1rem 1rem;
+.Line {
+
+  background:linear-gradient(#1DB5B5 0%,#08A9A9 100%);
+  width: 224px;
+  height: 1px;
+}
+
+
+.pr-button {
+  background: linear-gradient(116.78deg, #EBF4FF 0.63%, #CDE2FF 100%);
+  border-radius: 5px;
+
+}
+
+.bg01{
+  @media (min-width:768px) {height:700px!important;}
+  height:450px!important;
+}
+
+._bggray{
+  @media (min-width:768px) {
+    height:900px!important;
+    background-image : url(http://172.30.1.29:7100/assets/images/how-it-works-bg-gray.svg);
+  }
+  height:450px!important;
+  background-image : none;
+}
+._bggray2{
+  @media (min-width:768px) {
+    background-image : none;
+  }
+
+  width:365px;
+  max-width: 365px;
+  min-width: 365px;
+  background-image : url(http://172.30.1.29:7100/assets/images/how-it-works-bg-gray.svg);
+
+}
+
+.__heading-animation-container{
+
+}
+
+.__heading-animation{
   position: relative;
-
-  &:not(:nth-of-type(1)) {
-    @media #{$medium-up} {
-      padding: 0 1rem 10rem;
-    }
-  }
-
-  &:nth-of-type(1) {
-    &::before {
-      content: '';
-      position: absolute;
-      left: -2rem;
-      display: none;
-      background: url("/assets/images/how-it-works-pattern1.svg") no-repeat;
-      width: 4rem;
-      height: 100%;
-
-      @media #{$medium-up} {
-        display: block;
-      }
-    }
-  }
-
-  &:nth-of-type(2) {
-    &::before {
-      content: '';
-      position: absolute;
-      right: 0;
-      display: none;
-      background: url("/assets/images/how-it-works-pattern2.svg") no-repeat;
-      width: 4rem;
-      height: 100%;
-
-      @media #{$medium-up} {
-        display: block;
-      }
-    }
-  }
-
-  &:nth-of-type(3) {
-    &::before {
-      content: '';
-      position: absolute;
-      left: -2rem;
-      display: none;
-      background: url("/assets/images/how-it-works-pattern3.svg") no-repeat;
-      width: 4rem;
-      height: 100%;
-
-      @media #{$medium-up} {
-        display: block;
-      }
-    }
-  }
-
-  &:nth-of-type(4) {
-    &::before {
-      content: '';
-      position: absolute;
-      right: -3rem;
-      display: none;
-      background: url("/assets/images/how-it-works-pattern4.svg") no-repeat;
-      width: 4rem;
-      height: 100%;
-
-      @media #{$medium-up} {
-        display: block;
-      }
-    }
-  }
-
-  &:nth-of-type(5) {
-    &::before {
-      content: '';
-      position: absolute;
-      left: -2rem;
-      display: none;
-      background: url("/assets/images/how-it-works-pattern5.svg") no-repeat;
-      width: 4rem;
-      height: 100%;
-
-      @media #{$medium-up} {
-        display: block;
-      }
-    }
-  }
-
-  &:first-of-type {
-    padding-top: 2rem;
-  }
-
-  .section-title {
-    @include flex-row(center);
-    position: relative;
-    font-size: rem(18px);
-    font-weight: 700;
-    //padding-left: 2.5rem;
-    margin: 1rem 0;
-    width: 100%;
-    max-width: rem(1090px);
-
-    @media #{$medium-up} {
-      font-size: rem(20px);
-    }
-
-    //&::before {
-    //  content: '';
-    //  width: rem(58px);
-    //  height: rem(74px);
-    //  display: block;
-    //  position: absolute;
-    //  top: -.35rem;
-    //  left: -2rem;
-    //  //background: url("/assets/images/curved-branch.svg") no-repeat;
-    //  //background-size: contain;
-    //}
-
-    .icon {
-      width: rem(24px);
-      height: rem(24px);
-      object-fit: contain;
-      margin-right: .5rem;
-
-      @media #{$medium-up} {
-        width: rem(30px);
-        height: rem(30px);
-      }
-    }
-  }
-
-  .section-image {
-    @include flex-column();
-    width: 100%;
-
-    @media #{$medium-up} {
-      @include flex-row(center);
-    }
-
-    img {
-      width: 100%;
-      max-width: rem(524px);
-      height: auto;
-      object-fit: contain;
-      margin: 1rem 0;
-
-      + .faq {
-        @media #{$medium-up} {
-          padding-left: 5rem;
-        }
-      }
-    }
-
-    .faq {
-      .subsection-title {
-        @include flex-row(center);
-        position: relative;
-        padding-left: 2rem;
-
-        &::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          width: rem(20px);
-          height: rem(20px);
-          background: url("/assets/icons/help.svg") no-repeat;
-          background-size: cover;
-        }
-      }
-    }
-  }
-
-  .subsection-title {
-    font-size: rem(14px);
-  }
-
-  p {
-    font-size: rem(14px);
-  }
+  animation: heading;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+@keyframes heading{
+  0% {top: -200px}
+  100% {top: 0px}
 }
 
-.agreement {
-  margin-top: 1rem;
-
-  @media #{$medium-up} {
-    padding-left: 5rem;
-  }
-}
-
-.agreement-title {
-  @include flex-row(center);
+.__content-animation{
   position: relative;
-  padding-left: 2rem;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: rem(20px);
-    height: rem(20px);
-    background: url("/assets/icons/agreement.svg") no-repeat;
-    background-size: cover;
-  }
-
-  + p {
-    @media #{$medium-up} {
-      padding-left: 2rem;
-    }
-  }
+  animation-name: content;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
 }
 
-:host(.how-it-works) {
-  @include flex-column();
-  width: 100%;
-  min-height: calc(100vh - 56px - 79px);
-  //background-image: linear-gradient(#1E455C, #25292D);
-  //background-color: $background
-  // ;
-  position: relative;
+@keyframes content {
+  0% {bottom: -500px}
+  100% {bottom: 0px;}
+}
 
-  @media #{$medium-up} {
-    min-width: rem(900px);
-    min-height: calc(100vh - 64px - 79px);
-  }
-
-  &.light-theme {
-    background-color: white;
-  }
+.fade-in {
+  animation: fadeIn ease 2s;
+  -webkit-animation: fadeIn ease 0.5s;
+  -moz-animation: fadeIn ease 0.5s;
+  -o-animation: fadeIn ease 0.5s;
+  -ms-animation: fadeIn ease 0.5s;
+}
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
 }

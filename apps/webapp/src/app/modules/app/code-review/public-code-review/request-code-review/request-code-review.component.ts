@@ -12,14 +12,21 @@ import {IGitHubBranch, IGitHubRepo} from "@protocol/data";
   styleUrls: ['./request-code-review.component.scss']
 })
 export class RequestCodeReviewComponent implements OnInit {
-  // hideRequiredControl: any;
-  // floatLabelControl: any;
-  // options: any;
+  public formGroup: FormGroup;
   public isReviewRequestComplete = false;
 
   public ownerName: string;
   public personalPublicRepos = [];
   public branchesOnRepo = [];
+
+  repoName: string = '';
+  branchName: string = '';
+  proficiency: string;
+  title: string;
+  description: string;
+  purpose: string;
+
+  targetBranchName: string;
 
   constructor(
       public dialogRef: MatDialogRef<RequestCodeReviewComponent>,
@@ -29,9 +36,18 @@ export class RequestCodeReviewComponent implements OnInit {
       private gitHubService: GitHubService,
       private authService: AuthService,
   ) {
+    this.formGroup = this.formBuilder.group({
+      repoName: ['', Validators.compose([Validators.required])],
+      branchName: ['', Validators.compose([Validators.required])],
+      proficiency: [undefined, Validators.compose([Validators.required])],
+      title: ['', Validators.compose([Validators.required])],
+      description: ['', Validators.compose([Validators.required])],
+      purpose: ['', Validators.compose([Validators.required])],
+    });
   }
 
   ngOnInit(): void {
+    this.targetBranchName = `gitcode/pr-${(new Date()).getTime()}`;
     this.authService.user$.subscribe((user) => {
       this.ownerName = user.providerUserData.github.login;
 
@@ -42,10 +58,34 @@ export class RequestCodeReviewComponent implements OnInit {
   }
 
   repoChanged(event): void {
-    const selectedRepo = event.source.value;
+    this.repoName = event.source.value;
+    this.branchName = '';
+    this.branchesOnRepo = [];
 
-    this.gitHubService.getBranches(this.ownerName, selectedRepo.name).subscribe((result: IGitHubBranch[]) => {
+    if(this.repoName === '') {
+      return;
+    }
+
+    this.gitHubService.getBranches(this.ownerName, this.repoName).subscribe((result: IGitHubBranch[]) => {
       this.branchesOnRepo = result;
+    });
+  }
+
+  public async requestCreateReview(event) {
+    const ref = await this.gitHubService.getRef(this.ownerName, this.repoName, 'master');
+    await this.gitHubService.createBranch(this.ownerName, this.repoName, this.targetBranchName, ref.object.sha);
+
+    const payload = {
+      title: this.title,
+      head: this.branchName,
+      base: this.targetBranchName,
+      body: `${this.description}\n\n${this.purpose}`,
+      maintainer_can_modify: true,
+      draft: false,
+    };
+
+    this.gitHubService.createPR(this.ownerName, this.repoName, payload).subscribe((result: any) => {
+      console.log(result);
     });
   }
 

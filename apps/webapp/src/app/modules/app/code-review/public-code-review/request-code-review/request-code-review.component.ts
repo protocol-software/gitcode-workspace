@@ -12,14 +12,19 @@ import {IGitHubBranch, IGitHubRepo} from "@protocol/data";
   styleUrls: ['./request-code-review.component.scss']
 })
 export class RequestCodeReviewComponent implements OnInit {
-  // hideRequiredControl: any;
-  // floatLabelControl: any;
-  // options: any;
+  public formGroup: FormGroup;
   public isReviewRequestComplete = false;
 
   public ownerName: string;
   public personalPublicRepos = [];
   public branchesOnRepo = [];
+
+  repoName: string = '';
+  branchName: string = '';
+  proficiency: string;
+  title: string;
+  description: string;
+  purpose: string;
 
   constructor(
       public dialogRef: MatDialogRef<RequestCodeReviewComponent>,
@@ -29,6 +34,14 @@ export class RequestCodeReviewComponent implements OnInit {
       private gitHubService: GitHubService,
       private authService: AuthService,
   ) {
+    this.formGroup = this.formBuilder.group({
+      repoName: ['', Validators.compose([Validators.required])],
+      branchName: ['', Validators.compose([Validators.required])],
+      proficiency: [undefined, Validators.compose([Validators.required])],
+      title: ['', Validators.compose([Validators.required])],
+      description: ['', Validators.compose([Validators.required])],
+      purpose: ['', Validators.compose([Validators.required])],
+    });
   }
 
   ngOnInit(): void {
@@ -42,9 +55,15 @@ export class RequestCodeReviewComponent implements OnInit {
   }
 
   repoChanged(event): void {
-    const selectedRepo = event.source.value;
+    this.repoName = event.source.value;
+    this.branchName = '';
+    this.branchesOnRepo = [];
 
-    this.gitHubService.getBranches(this.ownerName, selectedRepo.name).subscribe((result: IGitHubBranch[]) => {
+    if(this.repoName === '') {
+      return;
+    }
+
+    this.gitHubService.getBranches(this.ownerName, this.repoName).subscribe((result: IGitHubBranch[]) => {
       this.branchesOnRepo = result;
     });
   }

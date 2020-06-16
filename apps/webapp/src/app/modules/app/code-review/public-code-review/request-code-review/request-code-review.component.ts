@@ -26,6 +26,8 @@ export class RequestCodeReviewComponent implements OnInit {
   description: string;
   purpose: string;
 
+  targetBranchName: string;
+
   constructor(
       public dialogRef: MatDialogRef<RequestCodeReviewComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
@@ -45,6 +47,7 @@ export class RequestCodeReviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.targetBranchName = `gitcode/pr-${(new Date()).getTime()}`;
     this.authService.user$.subscribe((user) => {
       this.ownerName = user.providerUserData.github.login;
 
@@ -65,6 +68,24 @@ export class RequestCodeReviewComponent implements OnInit {
 
     this.gitHubService.getBranches(this.ownerName, this.repoName).subscribe((result: IGitHubBranch[]) => {
       this.branchesOnRepo = result;
+    });
+  }
+
+  public async requestCreateReview(event) {
+    const ref = await this.gitHubService.getRef(this.ownerName, this.repoName, 'master');
+    await this.gitHubService.createBranch(this.ownerName, this.repoName, this.targetBranchName, ref.object.sha);
+
+    const payload = {
+      title: this.title,
+      head: this.branchName,
+      base: this.targetBranchName,
+      body: `${this.description}\n\n${this.purpose}`,
+      maintainer_can_modify: true,
+      draft: false,
+    };
+
+    this.gitHubService.createPR(this.ownerName, this.repoName, payload).subscribe((result: any) => {
+      console.log(result);
     });
   }
 

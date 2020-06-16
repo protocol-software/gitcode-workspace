@@ -39,7 +39,7 @@ export class BasicLayoutComponent implements OnInit, OnDestroy
         private _activatedRoute: ActivatedRoute,
         private _treoMediaWatcherService: TreoMediaWatcherService,
         private _treoNavigationService: TreoNavigationService,
-        private _router: Router,
+        public _router: Router,
         private authService: AuthService,
     )
     {
@@ -91,6 +91,11 @@ export class BasicLayoutComponent implements OnInit, OnDestroy
                 // Check if the breakpoint is 'lt-md'
                 this.isScreenSmall = matchingAliases.includes('lt-md');
             });
+
+        // Home , Header Color make different
+        this._router.url;
+        console.log(this._router.url);
+        return
     }
 
     /**

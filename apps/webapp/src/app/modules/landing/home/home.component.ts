@@ -14,4 +14,11 @@ export class LandingHomeComponent
     constructor()
     {
     }
+    /**
+     * Getter for current year
+     */
+    get currentYear(): number
+    {
+        return new Date().getFullYear();
+    }
 }

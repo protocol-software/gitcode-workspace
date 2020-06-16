@@ -1,116 +1,40 @@
-<div class="content-layout fullwidth-standard-normal-scroll">
-    <div class="hero dark-theme">
-        <div class="tag-line">Built for flawless<br>development</div>
-        <div class="actions">
-            <button mat-raised-button
-                    color="primary"
-                    type="button"
-                    disabled
-                    class="action">코드리뷰 신청
-            </button>
-            <button mat-raised-button
-                    color="primary"
-                    type="button"
-                    disabled
-                    class="action">리뷰어 지원
-            </button>
+<div class="content-layout fullwidth-standard-normal-scroll " *ngIf="true">
+    <div class="main-bg flex justify-center" style="background:url(http://172.30.1.29:7100/assets/images/main-background.jpg)">
+        <div class="relative">
+            <div class="max-w-5xl relative top-0 md:mt-20 md:pb-48 ">
+                <img src="/assets/images/main-border.png" class="hidden md:block  main-border-position">
+            </div>
+            <div class="border-6 border-solid md:pt-48 md:pl-10 md:pr-10 md:pb-20 m-12 md:absolute top-0">
+                <div class="md:flex items-center justify-center">
+                    <div class="md:mr-40">
+                        <div class="font-medium text-3xl mb-8 text-white ">코드리뷰, 경험해보셨나요?</div>
+                        <div class="font-medium text-lg text-gray-400">개발자로서의 레벨 업을 위해 코드 리뷰는 필수입니다.<br>
+                            gitcode를 통해서 여러 개발자들과<br>
+                            나의 소스코드에 대한 다양한 의견을 나눠보세요.</div>
+                        <div><button class="main-button mt-4">퍼블릭 코드리뷰 시작하기</button></div>
+                    </div>
+                    <div>
+                        <div>
+                            <img src="/assets/images/main-img-right.svg" style="width:365px">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="branch">
-            <img src="/assets/images/branch-horizontal.svg" alt="Branch">
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-header">코드리뷰를 통한 <a href="#">스킬-업</a>을 시작하세요.</h2>
-        <p class="section-introduction">소스코드에 대한 점검이 필요한 개발자, 풍부한 경험을 나누고 싶은 시니어<br>모두 {{ "RE: {CODE};" }} 로 연결되어 있습니다.</p>
-    </div>
-
-    <ul class="testimonials">
-        <li class="testimonial">
-            <img class="avatar"
-                 src="/assets/images/person.png"
-                 alt="Person"
-                 >
-            <div class="message">
-                많은 고민을 하고 만든 소스지만 아직 경험이 부족해서 누군가 내가 작업한 부분에 대한 전문적인 조언을 듣고 싶었어요. 리코드를 통해서 경험이 많은 시니어를 만나 문제를 해결하고 좋은 코딩을 위한 꿀 조언도
-                얻을 수 있어서 너무 좋아요.
+        <div class="absolute bottom-0">
+            <div class="" >
+                <div class="mx-auto text-center px-2 py-10">
+                    <div class="mb-3 text-charcoal">Gitcode &copy; {{currentYear}} All Right Reserved</div>
+                    <div class="flex-shrink lg:flex justify-center text-gray-600">
+                        <div class="mr-1">테크로드 | 사업자등록번호: 156-14-01139 </div>
+                        <div> | 대표자명: 조중현 |</div>
+                    </div>
+                    <div class="flex-shrink lg:flex justify-center text-gray-600">
+                        <div>서울특별시 강남구 역삼로 215, 2층 | </div>
+                        <div>개인정보보호책임: 조중현 | 고객센터: @Gitcode</div>
+                    </div>
+                </div>
             </div>
-            <div class="name">스타트업 주니어 개발자 A씨</div>
-        </li>
-        <li class="testimonial">
-            <img class="avatar"
-                 src="/assets/images/person.png"
-                 alt="Person"
-                 >
-            <div class="message">
-                Github 와 연결되어 있어서 편하고 깔끔하고 심플하게 경력관리를 할 수 있어서 좋습니다! 나의 PR 이력과 스킬을 한 눈에 보여줄 수 있기 때문에 프로젝트 수주 때마다 많은 도움을 받고 있습니다!
-            </div>
-            <div class="name">SI개발사 시니어 개발자 B씨</div>
-        </li>
-        <li class="testimonial">
-            <img class="avatar"
-                 src="/assets/images/person.png"
-                 alt="Person"
-                 >
-            <div class="message">
-                코드리뷰는 효율적인 개발을 위한 필수 단계가 되어야 합니다.그동안의 경험들로 리뷰어로서 활동하게 되어 너무나 기쁩니다. 실제 코드를 통해 의견을 주고 받으며 함께 스킬업 할 수 있는 좋은 기회를 얻을 수
-                있다는 것이 이 서비스의 최고 장점이라고 할 수 있습니다.
-            </div>
-            <div class="name">SI개발사 시니어 개발자 C씨</div>
-        </li>
-        <li class="testimonial">
-            <img class="avatar"
-                 src="/assets/images/person.png"
-                 alt="Person"
-                 >
-            <div class="message">
-                빠른 시간에 내 코드에 대한 리뷰를 받을 수 있어서 매우 좋네요. 궁금하던 부분도 해결하고 품질 높은 소스코드를 만들 수 있어서 좋아요. 만족합니다.
-            </div>
-            <div class="name">프리랜서 개발자 D씨</div>
-        </li>
-    </ul>
-
-    <div class="section">
-        <h2 class="section-header">지금 이 시간에도 <a href="#">{{ "RE: {CODE};" }}</a>는<br class="small-only"> 진행되고 있습니다.</h2>
-        <p class="section-remark">* 2018년 Github 이용 통계 기준</p>
-    </div>
-
-    <ul class="stats">
-        <li class="stat">
-            <div class="stat-value"><span class="number">31</span><span class="unit">M+</span></div>
-            <div class="underline"></div>
-            <div class="stat-label">Developers</div>
-        </li>
-        <li class="stat">
-            <div class="stat-value"><span class="number">2.1</span><span class="unit">M+</span></div>
-            <div class="underline"></div>
-            <div class="stat-label">Organizations</div>
-        </li>
-        <li class="stat">
-            <div class="stat-value"><span class="number">96</span><span class="unit">M+</span></div>
-            <div class="underline"></div>
-            <div class="stat-label">Repositories</div>
-        </li>
-        <li class="stat">
-            <div class="stat-value"><span class="number">200</span><span class="unit">M+</span></div>
-            <div class="underline"></div>
-            <div class="stat-label">Pull Requests</div>
-        </li>
-    </ul>
-
-    <div class="pr-samples">
-        <img class="pr-sample" src="/assets/images/pr-01.png" alt="PR">
-        <img class="pr-sample" src="/assets/images/pr-02.png" alt="PR">
-    </div>
-
-    <div class="section">
-        <h2 class="section-header">{{ "RE: {CODE};" }} 에 가입하고<br>지금 바로 코드리뷰를 시작하세요.</h2>
-        <div class="section-actions">
-            <button mat-raised-button
-                    color="primary"
-                    type="button"
-                    class="section-action">가입하기
-            </button>
         </div>
     </div>
 </div>

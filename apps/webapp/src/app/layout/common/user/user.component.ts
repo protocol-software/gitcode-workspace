@@ -115,16 +115,8 @@ export class UserComponent implements OnInit, OnDestroy
             event.preventDefault();
             event.stopPropagation();
         }
-        const oauthProvider = OAuthProvider.GITHUB        
-        //github 인증
-        const userCredential = await this.authService.signInOAuth(oauthProvider);                
-        const signedUserData = await this.authService.getSignedUserData(userCredential);                
-        if(!signedUserData.exists) {
-            this.signUpDialogService.open({userCredential: userCredential, oauthProvider: oauthProvider})
-            return
-        }           
-        const providerUserData = await this.authService.getProviderUserData(oauthProvider, userCredential);
-        await this.authService.updateUserData(userCredential, oauthProvider, providerUserData);        
+
+        await this.authService.signIn();
     }
 
     public async deleteMember (event): Promise<void> {

@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {RequestCodeReviewService} from "./request-code-review.service";
 import {GitHubService} from "../../../../../services/github.service";
 import {AuthService} from "../../../../../services/auth.service";
-import {IGitHubRepo} from "@protocol/data";
+import {IGitHubBranch, IGitHubRepo} from "@protocol/data";
 
 @Component({
   selector: 'protocol-request-code-review',
@@ -16,6 +16,10 @@ export class RequestCodeReviewComponent implements OnInit {
   // floatLabelControl: any;
   // options: any;
   public isReviewRequestComplete = false;
+
+  public ownerName: string;
+  public personalPublicRepos = [];
+  public branchesOnRepo = [];
 
   constructor(
       public dialogRef: MatDialogRef<RequestCodeReviewComponent>,
@@ -29,9 +33,19 @@ export class RequestCodeReviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.user$.subscribe((user) => {
-      this.gitHubService.getRepositories(user.providerUserData.github.login).subscribe((result: IGitHubRepo[]) => {
-        console.log(result);
+      this.ownerName = user.providerUserData.github.login;
+
+      this.gitHubService.getRepositories(this.ownerName).subscribe((result: IGitHubRepo[]) => {
+        this.personalPublicRepos = result;
       });
+    });
+  }
+
+  repoChanged(event): void {
+    const selectedRepo = event.source.value;
+
+    this.gitHubService.getBranches(this.ownerName, selectedRepo.name).subscribe((result: IGitHubBranch[]) => {
+      this.branchesOnRepo = result;
     });
   }
 

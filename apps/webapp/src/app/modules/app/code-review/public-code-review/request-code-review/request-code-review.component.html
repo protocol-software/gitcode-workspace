@@ -7,29 +7,18 @@
         <div class="title ">코드리뷰 요청하기</div>
         <!-- begin content-->
         <div class="mx-8 my-8">
-            <div class="text-xs font-bold text-charcoal">코드리뷰가 필요한 Branch 를 선택하세요</div>
+            <div class="text-xs font-bold text-charcoal">코드리뷰를 요청할 Repository를 선택하세요.</div>
             <div>
-                <mat-form-field appearance="fill"
-
-                                class="w-48 h-8"><!-- TODO:spock can't change height size-->
-                    <!--                <mat-label>코드리뷰 요청 Branch 선택</mat-label> -->
-                    <!-- TODO:spock can't label fill in box-->
-                    <mat-select>
-                        <mat-option value="option">Default Branch</mat-option>
-                        <mat-option value="option">develop</mat-option>
-                        <mat-option value="option">Other Branch</mat-option>
-                        <mat-option value="option">Origin/test-12</mat-option>
-                        <mat-option value="option">Origin/test-12</mat-option>
-                        <mat-option value="option">Origin/test-12</mat-option>
-                        <mat-option value="option">Origin/test-12</mat-option>
-                        <mat-option value="option">Origin/test-12</mat-option>
-                        <mat-option value="option">Origin/test-12</mat-option>
+                <mat-form-field appearance="fill" floatLabel="always" class="w-48">
+<!--                    <mat-label>Repository</mat-label>-->
+                    <mat-select (selectionChange)="repoChanged($event)">
+                        <mat-option selected>Repository 선택</mat-option>
+                        <mat-option [value]="repo" *ngFor="let repo of personalPublicRepos">
+                            {{ repo.full_name }}
+                        </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <!-- TODO:spock make it more detail perfectly-->
-
-
-
             </div>
             <div class="text-xs font-bold text-charcoal mb-2 mt-5 md:mt-0">코드리뷰를 요청할 범위를 선택하세요.</div>
             <div class="flex">
@@ -41,19 +30,14 @@
                 </div>
                 <div class="flex items-center mx-3"><img src="/assets/icons/code-request-arrow-right.svg"></div>
                 <div>
-                    <mat-form-field appearance="fill" class="w-40 h-8"><!-- TODO:spock can't change height size-->
+                    <mat-form-field appearance="fill" class="w-40">
                         <!-- <mat-label>비교할 Branch 를 선택하세요.</mat-label> -->
                         <!-- TODO:spock can't label fill in box-->
                         <mat-select>
-                            <mat-option value="option">Default Branch</mat-option>
-                            <mat-option value="option">develop</mat-option>
-                            <mat-option value="option">Other Branch</mat-option>
-                            <mat-option value="option">Origin/test-12</mat-option>
-                            <mat-option value="option">Origin/test-12</mat-option>
-                            <mat-option value="option">Origin/test-12</mat-option>
-                            <mat-option value="option">Origin/test-12</mat-option>
-                            <mat-option value="option">Origin/test-12</mat-option>
-                            <mat-option value="option">Origin/test-12</mat-option>
+                            <mat-option selected>Branch 선택</mat-option>
+                            <mat-option [value]="branch" *ngFor="let branch of branchesOnRepo">
+                                {{ branch.name }}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>

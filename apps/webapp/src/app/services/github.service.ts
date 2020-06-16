@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IGitHubRepo, IGitHubUser } from '@protocol/data';
+import {IGitHubBranch, IGitHubRepo, IGitHubUser} from '@protocol/data';
 import { Observable } from 'rxjs';
 import * as UrlAssembler from 'url-assembler';
 
@@ -38,10 +38,18 @@ export class GitHubService {
 
   public getRepositories(userName: string): Observable<IGitHubRepo[]> {
     const endpoint = UrlAssembler(this.baseApiUrl)
-      .template(`/users/${userName}/repos`)
-      .toString();
+        .template(`/users/${userName}/repos`)
+        .toString();
 
     return this.http.get<IGitHubRepo[]>(endpoint, { headers: this.requestHeaders });
+  }
+
+  public getBranches(owner: string, repo: string): Observable<IGitHubBranch[]> {
+    const endpoint = UrlAssembler(this.baseApiUrl)
+        .template(`/repos/${owner}/${repo}/branches`)
+        .toString();
+
+    return this.http.get<IGitHubBranch[]>(endpoint, { headers: this.requestHeaders });
   }
 
   public createPR(): void {

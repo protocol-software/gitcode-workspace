@@ -5,6 +5,10 @@ import {IStatusList, IPublicCodeReviewList, PublicCodeReviewService} from "../..
 import {FormControl} from "@angular/forms";
 import { Pipe, PipeTransform } from '@angular/core';
 import {MatCheckboxChange} from "@angular/material/checkbox";
+import {AuthService} from "../../../../services/auth.service";
+import {takeUntil} from "rxjs/operators";
+import {IUser} from "@protocol/data";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'protocol-public-code-review',
@@ -34,15 +38,16 @@ export class PublicCodeReviewComponent implements OnInit {
   contentStatusList: IStatusList[] = [];
   peopleFilter: [];
 
-
+  private _unsubscribeAll: Subject<any>;
+  public user: IUser;
 
   constructor(
       private requestCodeReviewService: RequestCodeReviewService,
       private codeReviewDeatilService: CodeReviewDetailService,
       private publicCodeReviewService: PublicCodeReviewService,
-
+      private authService: AuthService,
   ) {
-
+    this._unsubscribeAll = new Subject();
   }
 
   ngOnInit() {
@@ -50,8 +55,18 @@ export class PublicCodeReviewComponent implements OnInit {
     this.statusesList();
     this.fetch(1);
 
+    this.authService.user$
+        .pipe(takeUntil(this._unsubscribeAll))
+        .subscribe((user: IUser) => {
+          this.user = user;
+        });
   }
-
+  ngOnDestroy(): void
+  {
+    // Unsubscribe from all subscriptions
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
+  }
 
   private publicCodeReviewList(){
     this.publicCodeReviewService.getPublicCodeReviewList()
@@ -78,12 +93,19 @@ export class PublicCodeReviewComponent implements OnInit {
     this.fetch(pageNo);
   }
 
-  createReview(event: MouseEvent): void {
-
+  async createReview(event: MouseEvent): Promise<void> {
     if (event) {
       event.preventDefault();
       event.stopPropagation();
+    }
 
+    let signdeIn = !!this.user;
+    if(!signdeIn) {
+      signdeIn = await this.authService.signIn();
+
+      if(!signdeIn) {
+        return;
+      }
     }
 
     const dialogClosed = this.requestCodeReviewService.open();

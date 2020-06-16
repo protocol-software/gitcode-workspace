@@ -11,6 +11,7 @@ export * from './lib/dtos/code-query.dto';
 export * from './lib/interfaces/contact-us.interface';
 export * from './lib/interfaces/github-repo.interface';
 export * from './lib/interfaces/github-user.interface';
+export * from './lib/interfaces/github-branch.interface';
 export * from './lib/interfaces/launch-subscriber.interface';
 export * from './lib/interfaces/message';
 export * from './lib/interfaces/inbox-message.interface';

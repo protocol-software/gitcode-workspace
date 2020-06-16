@@ -8,6 +8,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { GitHubService } from './github.service';
 import {AuthUtils} from '../core/auth/auth.utils';
+import {SignUpDialogService} from "../shared/sign-up-dialog/sign-up-dialog.service";
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,7 @@ export class AuthService {
     private afs: AngularFirestore,
     private router: Router,
     private gitHubService: GitHubService,
+    private signUpDialogService: SignUpDialogService,
   ) {
     // Get the auth state, then fetch the Firestore user document or return null
     this.user$ = this.afAuth.authState.pipe(
@@ -54,13 +56,13 @@ export class AuthService {
     );
   }
 
-  public async register(email: string, password: string): Promise<firebase.auth.UserCredential> {
-    return await firebase.auth().createUserWithEmailAndPassword(email, password);
-  }
-
-  public async signIn(email: string, password: string): Promise<firebase.auth.UserCredential> {
-    return await firebase.auth().signInWithEmailAndPassword(email, password);
-  }
+  // public async register(email: string, password: string): Promise<firebase.auth.UserCredential> {
+  //   return await firebase.auth().createUserWithEmailAndPassword(email, password);
+  // }
+  //
+  // public async signIn(email: string, password: string): Promise<firebase.auth.UserCredential> {
+  //   return await firebase.auth().signInWithEmailAndPassword(email, password);
+  // }
 
   public async signInOAuth(oauthProvider: OAuthProvider): Promise<any> {
     let provider;
@@ -158,6 +160,22 @@ export class AuthService {
     userUid: string
   ): Promise<void> {
     return this.afs.doc(`${this.collectionName}/${userUid}`).delete()
+  }
+
+  public async signIn(): Promise<boolean> {
+    const oauthProvider = OAuthProvider.GITHUB;
+    const userCredential = await this.signInOAuth(oauthProvider);
+    const signedUserData = await this.getSignedUserData(userCredential);
+
+    if(!signedUserData.exists) {
+      this.signUpDialogService.open({userCredential: userCredential, oauthProvider: oauthProvider});
+      return false;
+    }
+
+    const providerUserData = await this.getProviderUserData(oauthProvider, userCredential);
+    await this.updateUserData(userCredential, oauthProvider, providerUserData);
+
+    return true;
   }
 
   public async signOut(): Promise<void> {

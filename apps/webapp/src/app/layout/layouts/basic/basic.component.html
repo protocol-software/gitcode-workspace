@@ -16,10 +16,10 @@
 </treo-vertical-navigation>
 
 <!-- Wrapper -->
-<div class="wrapper mx-auto" >
+<div class="wrapper mx-auto pt-5" >
 
     <!-- Header -->
-    <div class="header">
+    <div class="header ">
 
         <!-- Logo -->
         <div class="logo cursor-pointer" routerLink="/"
@@ -51,9 +51,10 @@
             <messages [messages]="data?.messages"></messages>
             <notifications [notifications]="data?.notifications"></notifications>
         </div>
-
         <user></user>
-
+        <div class="static">
+            <div class="absolute private-beta-class text-xs font-medium" style="right:30px">Private beta</div>
+        </div>
     </div>
 
     <div class="content">

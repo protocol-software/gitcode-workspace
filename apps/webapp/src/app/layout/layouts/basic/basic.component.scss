@@ -107,6 +107,14 @@ basic-layout {
                 height: 1px;
             }
 
+            .private-beta-class{
+                background: linear-gradient(90deg, #3ED9BD 0%, #60BD45 100%);
+                border-radius: 10px 0px;
+                padding: 4px 10px;
+                width: 95px;
+                height: 27px;
+                top:-20px;
+            }
             search {
                 margin-right: 8px;
             }

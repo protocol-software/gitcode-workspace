@@ -16,7 +16,7 @@
 </treo-vertical-navigation>
 
 <!-- Wrapper -->
-<div class="wrapper">
+<div class="wrapper mx-auto" *ngIf="_router.url=='/home'">
 
     <!-- Header -->
     <div class="header">
@@ -65,7 +65,7 @@
     </div>
 
     <!-- Footer -->
-    <div class="bg-gray-200">
+    <div class="bg-gray-200" *ngIf="_router.url!='/home'">
         <div class="mx-auto text-center px-2 py-10">
             <div class="mb-3 text-charcoal">Protocol &copy; {{currentYear}} All Right Reserved</div>
             <div class="flex-shrink lg:flex justify-center text-gray-600">
@@ -77,5 +77,8 @@
                 <div>개인정보보호책임: 조중현 | 고객센터: help@protocol.network</div>
             </div>
         </div>
+    </div>
+    <div class="bg-gray-200" *ngIf="_router.url=='/home'">
+
     </div>
 </div>

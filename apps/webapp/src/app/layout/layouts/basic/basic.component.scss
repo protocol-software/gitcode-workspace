@@ -30,6 +30,8 @@ basic-layout {
         flex-direction: column;
         flex: 1 1 auto;
         min-width: 0;
+        max-width:1200px;
+
 
         > .header {
             position: relative;
@@ -42,6 +44,7 @@ basic-layout {
             min-height: 64px;
             padding: 0 24px;
             z-index: 49;
+            max-width: 1200px;
 
             @include treo-breakpoint('lt-md') {
                 padding: 0 16px;
@@ -63,14 +66,14 @@ basic-layout {
                 }
 
                 img {
-                    width: 168px;
-                    min-width: 168px;
-                    max-width: 168px;
+                    width: 128px;
+                    min-width: 128px;
+                    max-width: 128px;
 
                     &.logo-base {
-                        width: 32px;
-                        min-width: 32px;
-                        max-width: 32px;
+                        width: 128px;
+                        min-width: 128px;
+                        max-width: 128px;
                     }
                 }
 
@@ -194,7 +197,7 @@ basic-layout {
                     //box-shadow: 0 1px 0 0 map-get($foreground, divider);
                 } @else {
                     //background: map-get($background, card);
-                    background: $bg-charcoal;
+                    background: black;
                     //@include treo-elevation();
                     color: #fff;
                 }

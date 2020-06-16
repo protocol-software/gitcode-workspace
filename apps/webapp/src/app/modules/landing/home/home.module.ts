@@ -11,7 +11,6 @@ import { LandingHomeRoutes } from './home.routing';
     ],
     imports     : [
         RouterModule.forChild(LandingHomeRoutes),
-        // RouterModule,
         MatButtonModule,
         SharedModule
     ]

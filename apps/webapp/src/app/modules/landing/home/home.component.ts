@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component, HostListener, ViewEncapsulation} from '@angular/core';
 
 @Component({
     selector     : 'landing-home',
@@ -8,6 +8,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class LandingHomeComponent
 {
+    public isScreenSmall=false;
     /**
      * Constructor
      */
@@ -21,4 +22,19 @@ export class LandingHomeComponent
     {
         return new Date().getFullYear();
     }
+    ngOnInit() { //detectScreenSize
+        this.detectScreenSize();
+    }
+
+    private detectScreenSize() {
+        if (this.isScreenSmall = window.innerWidth < 959){
+            return true;
+        } else return false;
+    }
+
+    @HostListener('window:resize', ['$event'])
+    private onResize(event) {
+        this.detectScreenSize();
+    }
+
 }

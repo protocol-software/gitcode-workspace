@@ -1,39 +1,39 @@
-<div class="content-layout fullwidth-standard-normal-scroll relative h-screen whitespace-no-wrap overflow-auto" *ngIf="true" style=" overflow-x: scroll;overflow-y:hidden; width:1200px;max-width: 1200px;min-width: 1200px; background:url(http://172.30.1.29:7100/assets/images/main-background.jpg)">
-
-    <div class="absolute main-bg justify-center w-full  container" ></div>
-    <div class="absolute top-0 ">
-        <div class="max-w-5xl  top-0 md:mt-32 md:pb-48 md:ml-32">
-            <img src="/assets/images/main-border.png" class="hidden md:block  main-border-position">
-        </div>
-    </div>
-    <div class="absolute top-0 border-6 border-solid md:pt-64 md:pl-40 md:pr-10 md:pb-20 m-12">
-        <div class="md:flex items-center justify-center">
-            <div class="md:mr-40">
-                <div class="font-medium text-3xl mb-8 text-white ">코드리뷰, 경험해보셨나요?</div>
-                <div class="font-medium text-lg text-gray-400">개발자로서의 레벨 업을 위해 코드 리뷰는 필수입니다.<br>
-                    gitcode를 통해서 여러 개발자들과<br>
-                    나의 소스코드에 대한 다양한 의견을 나눠보세요.</div>
-                <div><button class="main-button mt-4">퍼블릭 코드리뷰 시작하기</button></div>
+<div class="content-layout fullwidth-standard-normal-scroll  relative md:overflow-x-auto overflow-y-visible md:overflow-y-hidden overflow-hidden h-screen " >
+        <div class="absolute  justify-center w-full  container main-bg h-screen" ></div>
+        <div class="absolute top-0 ">
+            <div class="md:max-w-5xl top-0 md:mt-32 mt-8 md:pb-48 md:ml-32 ml-5 " >
+                <img src="/assets/images/main-border.png" class="main-border-position md:block hidden" >
+                <img src="/assets/images/main-border-mobile.png" class="main-border-position md:hidden block" style="">
             </div>
-            <div>
+        </div>
+        <div class="absolute top-0 border-6 border-solid md:pt-64 md:pl-40 md:pr-10 md:pb-20 m-12">
+            <div class="md:flex items-center justify-center mt-10 md:mt-0">
+                <div class="md:mr-40">
+                    <div class="font-medium md:text-3xl text-xl mb-8 text-white ">코드리뷰, 경험해보셨나요?</div>
+                    <div class="font-medium md:text-lg text-sm text-gray-400">개발자로서의 레벨 업을 위해<br class="md:hidden block"> 코드 리뷰는 필수입니다.<br >
+                        gitcode를 통해서 여러 개발자들과<br>
+                        나의 소스코드에 대한 다양한 의견을 나눠보세요.</div>
+                    <div><button class="main-button mt-4 mb-12 md:mb-0">퍼블릭 코드리뷰 시작하기</button></div>
+                </div>
                 <div>
-                    <img src="/assets/images/main-img-right.svg" style="width:365px">
+                    <div>
+                        <img src="/assets/images/main-img-right.svg" class="main-img-right" >
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="absolute bottom-0 mb-10" style="left:400px">
-        <div class="mx-auto text-center px-2 py-10" >
-            <div class="mb-3 text-charcoal">Gitcode &copy; {{currentYear}} All Right Reserved</div>
-            <div class="flex-shrink lg:flex justify-center text-gray-600">
-                <div class="mr-1">테크로드 | 사업자등록번호: 156-14-01139 </div>
-                <div> | 대표자명: 조중현 |</div>
-            </div>
-            <div class="flex-shrink lg:flex justify-center text-gray-600">
-                <div>서울특별시 강남구 역삼로 215, 2층 | </div>
-                <div>개인정보보호책임: 조중현 | 고객센터: @Gitcode</div>
+        <div class="absolute md:mb-10 main-footer" >
+            <div class="mx-auto text-center px-2 py-10 " >
+                <div class="mb-3 text-charcoal">Gitcode &copy; {{currentYear}} All Right Reserved</div>
+                <div class="flex-shrink lg:flex justify-center text-gray-600">
+                    <div class="mr-1">테크로드 | 사업자등록번호: 156-14-01139 </div>
+                    <div> | 대표자명: 조중현 |</div>
+                </div>
+                <div class="flex-shrink lg:flex justify-center text-gray-600">
+                    <div>서울특별시 강남구 역삼로 215, 2층 | </div>
+                    <div>개인정보보호책임: 조중현 | 고객센터: @Gitcode</div>
+                </div>
             </div>
         </div>
-    </div>
 
 </div>

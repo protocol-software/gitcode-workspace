@@ -21,11 +21,32 @@
   //background-attachment: fixed!important;
   //background-size: cover!important;
   background-size:contain!important;
-
+  background:url(/assets/images/main-background.jpg);
+  @media (min-width:768px) {
+    width:1200px;max-width: 1200px;min-width: 1200px;
+  }
+  width:600px;max-width: 600px;min-width: 800px;
+  position: absolute;
+  //right:300px;
 }
 
-
-body {
+body{
   background: black!important;
-  overflow: hidden!important; /* Hide scrollbars */
+}
+
+.main-footer{
+  @media (min-width:768px) {
+    left:400px;
+    bottom:0px;
+  }
+  bottom:-50px;
+  left:12%;
+}
+
+.main-img-right{
+  @media (min-width:768px) {
+    width:364px;
+  }
+  width:260px;
+
 }

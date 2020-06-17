@@ -5,6 +5,7 @@ import {GitHubService} from "../../../../../services/github.service";
 import {AuthService} from "../../../../../services/auth.service";
 import {IGitHubBranch, IGitHubRepo, IUser} from "@gitcode/data";
 import {AngularFirestore, AngularFirestoreDocument} from "@angular/fire/firestore";
+import {environment} from "../../../../../../environments/environment";
 
 @Component({
   selector: 'gitcode-request-code-review',
@@ -98,6 +99,7 @@ export class RequestCodeReviewComponent implements OnInit {
     this.gitHubService.createPR(this.ownerName, this.repoName, payload)
         .subscribe((result: any) => {
           this.postPR(result);
+          this.addWebhook();
 
           alert('PR이 생성되었습니다!');
           this.isReviewRequestComplete = true;
@@ -107,6 +109,30 @@ export class RequestCodeReviewComponent implements OnInit {
           this.formGroup.enable();
           this.creatingPR = false;
     });
+  }
+  private addWebhook(): void {
+    this.gitHubService.getWebhook(this.ownerName, this.repoName)
+        .subscribe((result: any[]) => {
+          const hasWebhook = result.filter(item => item.config.url === environment.github.webhookUrl).length > 0;
+
+          if(!hasWebhook) {
+            const payload = {
+              name: 'web',
+              config: {
+                url: environment.github.webhookUrl,
+                content_type: 'json',
+                insecure_ssl: 0,
+              },
+              events: ['pull_request', 'pull_request_review', 'pull_request_review_comment'],
+              active: true,
+            };
+
+            this.gitHubService.addWebhook(this.ownerName, this.repoName, payload)
+                .subscribe((result: any) => {
+                  console.log(result);
+                });
+          }
+        });
   }
   private postPR(prResponse: any): void {
     const doc = {

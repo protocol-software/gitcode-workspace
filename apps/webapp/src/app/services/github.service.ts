@@ -67,6 +67,22 @@ export class GitHubService {
     return this.http.post<any>(endpoint, payload, { headers: this.getHeaders() });
   }
 
+  public getWebhook(owner: string, repo: string): Observable<any> {
+    const endpoint = UrlAssembler(this.baseApiUrl)
+        .template(`/repos/${owner}/${repo}/hooks`)
+        .toString();
+
+    return this.http.get<any>(endpoint, { headers: this.getHeaders() });
+  }
+
+  public addWebhook(owner: string, repo: string, payload: any): Observable<any> {
+    const endpoint = UrlAssembler(this.baseApiUrl)
+        .template(`/repos/${owner}/${repo}/hooks`)
+        .toString();
+
+    return this.http.post<any>(endpoint, payload, { headers: this.getHeaders() });
+  }
+
   public async getRef(owner: string, repo: string, branchName: string): Promise<any> {
     const endpoint = UrlAssembler(this.baseApiUrl)
         .template(`/repos/${owner}/${repo}/git/ref/heads/${branchName}`)

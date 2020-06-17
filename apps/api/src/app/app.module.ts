@@ -8,6 +8,7 @@ import { CommonModule } from './modules/common/common.module';
 import { environment } from '../environments/environment';
 import {SnackCodeModule} from './modules/snack-code/snack-code.module';
 import {SearchCodeModule} from './modules/search-code/search-code.module';
+import {GithubModule} from "./modules/github/github.module";
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import {SearchCodeModule} from './modules/search-code/search-code.module';
       CommonModule,
       SnackCodeModule,
       SearchCodeModule,
+      GithubModule,
   ],
   controllers: [AppController],
   providers: [AppService]

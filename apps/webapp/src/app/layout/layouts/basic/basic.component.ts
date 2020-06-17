@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, HostBinding, HostListener, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -96,6 +96,9 @@ export class BasicLayoutComponent implements OnInit, OnDestroy
         this._router.url;
         console.log(this._router.url);
         return
+
+        // Dark or Light
+        this.detectScreenSize();
     }
 
     /**
@@ -128,4 +131,16 @@ export class BasicLayoutComponent implements OnInit, OnDestroy
             navigation.toggle();
         }
     }
+
+    private detectScreenSize() {
+        if (this.isScreenSmall = window.innerWidth < 959){
+            return true;
+        } else return false;
+    }
+
+    @HostListener('window:resize', ['$event'])
+    private onResize(event) {
+        this.detectScreenSize();
+    }
+
 }

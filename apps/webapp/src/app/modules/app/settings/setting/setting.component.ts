@@ -209,13 +209,13 @@ export class SettingsDialogEmail {
 
     const data = {
       identity: inputEmail,
-      subject: 'Protocol 회원가입 이메일 인증코드',
+      subject: 'Gitcode 회원가입 이메일 인증코드',
       bodyHtml: `<div>
         <div>아래 인증번호를 입력해 주세요.</div>
         <div>OTPCODE</div>
         <div>이 인증코드는 5분간 유효합니다.</div>
         <div>수신 후 5분이 경과했다면 인증코드 재발송을 해 주세요.</div>
-        <div>Protocol All Right Reserved.</div>
+        <div>Gitcode All Right Reserved.</div>
         </div>`,
     };
     this.isEmailSending = true;

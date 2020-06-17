@@ -4,8 +4,7 @@ import { ExpertEvaluationComponent } from '../expert-evaluation/expert-evaluatio
 import {Direction} from "@angular/cdk/bidi";
 
 export interface DialogData {
-  animal: string;
-  name: string;
+  item: any
 }
 
 @Component({
@@ -17,10 +16,13 @@ export class CodeReviewDetailComponent implements OnInit {
   isReviewRequestComplete: any;
   animal: string;
   name: string;
+  item: any;
 
   constructor(public dialog: MatDialog,
   public dialogRef: MatDialogRef<CodeReviewDetailDialog>,
-  @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    this.item = data.item;
+  }
 
   ngOnInit(): void {
 

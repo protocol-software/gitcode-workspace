@@ -72,31 +72,32 @@ export const futuristicNavigation: TreoNavigationItem[] = [
     }
 ];
 export const horizontalNavigation: TreoNavigationItem[] = [
-    {
-        id      : 'codeReview',
-        title   : '코드리뷰',
-        type    : 'group',
-        children: [
-            {
-                id   : 'codeReview.publicCodeReview',
-                title: '퍼블릭 코드리뷰',
-                type : 'basic',
-                link : '/code-review/public'
-            }
-            // ,{
-            //     id   : 'codeReview.publicCodeReview',
-            //     title: '프라이빗 코드리뷰',
-            //     type : 'basic',
-            //     link : '/code-review/private'
-            // }
-        ]
-    }, // TODO:spock if don't use nested 'Apeear dropdown arrow error'
     // {
+    //     id      : 'codeReview',
+    //     title   : '코드리뷰',
+    //     type    : 'group',
+    //     children: [
+    //         {
     //             id   : 'codeReview.publicCodeReview',
     //             title: '퍼블릭 코드리뷰',
     //             type : 'basic',
     //             link : '/code-review/public'
+    //         }
+    //         ,{
+    //             id   : 'codeReview.publicCodeReview',
+    //             title: '프라이빗 코드리뷰',
+    //             type : 'basic',
+    //             link : '/code-review/private'
+    //         }
+    //     ]
     // },
+    // TODO:spock if don't use nested 'Apeear dropdown arrow error'
+    {
+                id   : 'codeReview.publicCodeReview',
+                title: '퍼블릭 코드리뷰',
+                type : 'basic',
+                link : '/code-review/public'
+    },
     // {
     //     id      : 'snackCode',
     //     title   : '스낵코드',

@@ -4,7 +4,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {RequestCodeReviewService} from "./request-code-review.service";
 import {GitHubService} from "../../../../../services/github.service";
 import {AuthService} from "../../../../../services/auth.service";
-import {IGitHubBranch, IGitHubRepo} from "@protocol/data";
+import {IGitHubBranch, IGitHubRepo, IUser} from "@protocol/data";
+import {AngularFirestore, AngularFirestoreDocument} from "@angular/fire/firestore";
 
 @Component({
   selector: 'protocol-request-code-review',
@@ -12,6 +13,8 @@ import {IGitHubBranch, IGitHubRepo} from "@protocol/data";
   styleUrls: ['./request-code-review.component.scss']
 })
 export class RequestCodeReviewComponent implements OnInit {
+  user: IUser;
+
   public formGroup: FormGroup;
   public isReviewRequestComplete = false;
 
@@ -21,12 +24,14 @@ export class RequestCodeReviewComponent implements OnInit {
 
   repoName: string = '';
   branchName: string = '';
+  targetBranchName: string = '';
+
   proficiency: string;
   title: string;
   description: string;
   purpose: string;
 
-  targetBranchName: string;
+  private creatingPR = false;
 
   constructor(
       public dialogRef: MatDialogRef<RequestCodeReviewComponent>,
@@ -35,10 +40,12 @@ export class RequestCodeReviewComponent implements OnInit {
       private requestCodeReviewService: RequestCodeReviewService,
       private gitHubService: GitHubService,
       private authService: AuthService,
+      private angularFirestore: AngularFirestore,
   ) {
     this.formGroup = this.formBuilder.group({
       repoName: ['', Validators.compose([Validators.required])],
       branchName: ['', Validators.compose([Validators.required])],
+      targetBranchName: ['', Validators.compose([Validators.required])],
       proficiency: [undefined, Validators.compose([Validators.required])],
       title: ['', Validators.compose([Validators.required])],
       description: ['', Validators.compose([Validators.required])],
@@ -47,9 +54,11 @@ export class RequestCodeReviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.targetBranchName = `gitcode/pr-${(new Date()).getTime()}`;
+    // this.targetBranchName = `gitcode/pr-${(new Date()).getTime()}`;
+
     this.authService.user$.subscribe((user) => {
-      this.ownerName = user.providerUserData.github.login;
+      this.user = user;
+      this.ownerName = this.user.providerUserData.github.login;
 
       this.gitHubService.getRepositories(this.ownerName).subscribe((result: IGitHubRepo[]) => {
         this.personalPublicRepos = result;
@@ -72,8 +81,12 @@ export class RequestCodeReviewComponent implements OnInit {
   }
 
   public async requestCreateReview(event) {
-    const ref = await this.gitHubService.getRef(this.ownerName, this.repoName, 'master');
-    await this.gitHubService.createBranch(this.ownerName, this.repoName, this.targetBranchName, ref.object.sha);
+    if(this.creatingPR) return;
+
+    this.formGroup.disable();
+    this.creatingPR = true;
+    // const ref = await this.gitHubService.getRef(this.ownerName, this.repoName, 'master');
+    // await this.gitHubService.createBranch(this.ownerName, this.repoName, this.targetBranchName, ref.object.sha);
 
     const payload = {
       title: this.title,
@@ -84,17 +97,32 @@ export class RequestCodeReviewComponent implements OnInit {
       draft: false,
     };
 
-    this.gitHubService.createPR(this.ownerName, this.repoName, payload).subscribe((result: any) => {
-      console.log(result);
+    this.gitHubService.createPR(this.ownerName, this.repoName, payload)
+        .subscribe((result: any) => {
+          this.postPR(result);
+
+          alert('PR이 생성되었습니다!');
+          this.isReviewRequestComplete = true;
+        },(error: any) => {
+          alert(`PR 생성에 실패하였습니다.\n${error.statusText}`);
+    }, () => {
+          this.formGroup.enable();
+          this.creatingPR = false;
     });
   }
+  private postPR(prResponse: any): void {
+    const doc = {
+      title: this.title,
+      proficiency: this.proficiency,
+      description: this.description,
+      purpose: this.purpose,
+      author: this.user,
+      reviewers: [],
+      githubPR: prResponse,
+      createdAt: new Date()
+    };
 
-  public async createReviewStep2(event: MouseEvent) {
-    if (event) {
-      // event.preventDefault();
-      // event.stopPropagation();
-      this.isReviewRequestComplete = true
-    }
+    this.angularFirestore.collection('public-code-review').add(doc);
   }
 
   public closePopup(event) {

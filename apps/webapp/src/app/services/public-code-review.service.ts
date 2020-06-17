@@ -1,10 +1,9 @@
 import {Injectable, Pipe, PipeTransform} from '@angular/core';
 import { HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
-import 'rxjs/add/observable/throw'
-import 'rxjs/add/operator/catch'
-
-const myPostValue = "Lion"
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/catch';
+import {IUser} from "@protocol/data";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +14,7 @@ export class PublicCodeReviewService {
     private urlListStatuses: string = "/assets/data/list-statuses-data.json";
     public publicCodeReviewList : any = [] ;
     public statusList : any = [] ;
+
     constructor(
         private http: HttpClient,
     ) {
@@ -37,9 +37,9 @@ export class PublicCodeReviewService {
 
 @Pipe({ name: 'myPostFilter' })
 export class MyPostFilterPipe implements PipeTransform {
-        transform(contents: IPublicCodeReviewList[],isSelectedMyPost:boolean)  {
-            if (isSelectedMyPost==true) {
-                return contents.filter(contents => contents.author.name === myPostValue);
+        transform(contents: any[], isOnlyMyPR: boolean, uid:string)  {
+            if (isOnlyMyPR) {
+                return contents.filter(contents => contents.author.uid === uid);
             } else {
                 return contents.filter(contents => contents);
             }

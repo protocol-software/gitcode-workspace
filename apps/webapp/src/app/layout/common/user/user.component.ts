@@ -116,7 +116,11 @@ export class UserComponent implements OnInit, OnDestroy
             event.stopPropagation();
         }
 
-        await this.authService.signIn();
+        const result = await this.authService.signIn();
+
+        if(!result) {
+            this.signUpDialogService.open({userCredential: userCredential, oauthProvider: oauthProvider});
+        }
     }
 
     public async deleteMember (event): Promise<void> {

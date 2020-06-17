@@ -152,8 +152,8 @@ export class SignUpDialogComponent implements OnInit, OnDestroy {
 
   public async signUpUserData (event): Promise<void> {
     const providerUserData = await this.authService.getProviderUserData(this.data.oauthProvider, this.data.userCredential);
-    await this.authService.updateUserData(this.data.userCredential, this.data.oauthProvider, providerUserData);    
-    this.isSignupComplete = true
+    await this.authService.updateUserData(this.data.userCredential, this.data.oauthProvider, providerUserData);
+    this.isSignupComplete = true;
   }
 
   public closePopup (event) {

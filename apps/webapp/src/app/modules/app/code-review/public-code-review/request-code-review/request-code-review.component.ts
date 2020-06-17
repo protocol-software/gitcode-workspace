@@ -1,7 +1,6 @@
 import { Component, HostBinding, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {RequestCodeReviewService} from "./request-code-review.service";
 import {GitHubService} from "../../../../../services/github.service";
 import {AuthService} from "../../../../../services/auth.service";
 import {IGitHubBranch, IGitHubRepo, IUser} from "@gitcode/data";
@@ -37,7 +36,6 @@ export class RequestCodeReviewComponent implements OnInit {
       public dialogRef: MatDialogRef<RequestCodeReviewComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
       private formBuilder: FormBuilder,
-      private requestCodeReviewService: RequestCodeReviewService,
       private gitHubService: GitHubService,
       private authService: AuthService,
       private angularFirestore: AngularFirestore,

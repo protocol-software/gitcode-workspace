@@ -124,8 +124,8 @@ export class UserComponent implements OnInit, OnDestroy
         }
     }
 
-    public async deleteMember (event): Promise<void> {
-        await this.authService.deleteUserData(this.user.uid)
-        this.authService.signOut()
+    public async deleteMember(event): Promise<void> {
+        await this.authService.deleteUserData(this.user.uid);
+        this.authService.signOut();
     }
 }

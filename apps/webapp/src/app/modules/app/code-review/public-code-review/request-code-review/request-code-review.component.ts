@@ -97,20 +97,20 @@ export class RequestCodeReviewComponent implements OnInit {
     };
 
     this.gitHubService.createPR(this.ownerName, this.repoName, payload)
-        .subscribe((result: any) => {
-          this.postPR(result);
+        .subscribe(async (result: any) => {
+          await this.postPR(result);
           this.addWebhook();
 
           alert('PR이 생성되었습니다!');
           this.isReviewRequestComplete = true;
         },(error: any) => {
           alert(`PR 생성에 실패하였습니다.\n${error.statusText}`);
-    }, () => {
+        }, () => {
           this.formGroup.enable();
           this.creatingPR = false;
-    });
+        });
   }
-  private addWebhook(): void {
+  private addWebhook() {
     this.gitHubService.getWebhook(this.ownerName, this.repoName)
         .subscribe((result: any[]) => {
           const hasWebhook = result.filter(item => item.config.url === environment.github.webhookUrl).length > 0;
@@ -134,7 +134,7 @@ export class RequestCodeReviewComponent implements OnInit {
           }
         });
   }
-  private postPR(prResponse: any): void {
+  private async postPR(prResponse: any) {
     const prNodeId = prResponse.node_id;
 
     const doc = {
@@ -143,13 +143,15 @@ export class RequestCodeReviewComponent implements OnInit {
       proficiency: this.proficiency,
       description: this.description,
       purpose: this.purpose,
-      author: this.user,
       reviewers: [],
+      topics: prResponse.head.repo.topics || [],
+      author: this.user,
       githubPR: prResponse,
       createdAt: (new Date()).toISOString()
     };
 
-    this.angularFirestore.doc(`public-code-review/${prNodeId}`).set(doc, { merge: true });
+    console.log(doc);
+    await this.angularFirestore.doc(`public-code-review/${prNodeId}`).set(doc, { merge: true });
   }
 
   public closePopup(event) {

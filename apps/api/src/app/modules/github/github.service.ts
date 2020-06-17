@@ -36,18 +36,23 @@ export class GithubService {
     const action = body.action;   // created, edited, submitted
     const prNodeId = body.pull_request.node_id;
 
-    if(xGithubEvent === 'pull_request') {
-      const prState = body.pull_request.state;
-      const prData = {
-        state: prState,
-        updatedAt: (new Date()).toISOString()
-      };
+    const prDoc = (await firebaseAdmin.firestore().doc(`public-code-review/${prNodeId}`).get()).data();
 
-      await firebaseAdmin.firestore().doc(`public-code-review/${prNodeId}`).update(prData);
+    if(!prDoc) return;
+
+    const prData = { updatedAt: (new Date()).toISOString() };
+
+    if(xGithubEvent === 'pull_request') {
+      let prState = body.pull_request.state;
+      if(action === 'reopened') {
+        prState = action;
+      }
+      prData['state'] = prState;
     }
     else if(xGithubEvent === 'pull_request_review') {
       const review = body.review;
       const reviewNodeId = review.node_id;
+      prData['state'] = 'reviewing';
 
       const reviewData = {
         state: review.state,
@@ -63,20 +68,21 @@ export class GithubService {
 
       const reviewerNodeId = review.user.node_id;
       const reviewerData = {
-        userNodeId: reviewerNodeId,
-        userName: review.user.login,
-        userPhotoUrl: review.user.avatar_url,
-        userProfileUrl: review.user.html_url,
+        nodeId: reviewerNodeId,
+        name: review.user.login,
+        photoUrl: review.user.avatar_url,
+        profileUrl: review.user.html_url,
         createdAt: (new Date()).toISOString(),
       };
-      // await firebaseAdmin.firestore().doc(`public-code-review/${prNodeId}/reviewers/${reviewerNodeId}`).set(reviewerData, { merge: true });
 
-      const prDoc = (await firebaseAdmin.firestore().doc(`public-code-review/${prNodeId}`).get()).data();
-      const hasReviewer = prDoc.reviewers.filter(reviewer => reviewer.userNodeId === reviewerNodeId).length;
+      const authorNodeId = body.pull_request.user.node_id;
+      const hasReviewer = prDoc.reviewers.filter(reviewer => reviewer.nodeId === reviewerNodeId).length;
 
-      if(!hasReviewer) {
+      if(!hasReviewer && authorNodeId !== reviewerNodeId) {
         prDoc.reviewers.push(reviewerData);
-        await firebaseAdmin.firestore().doc(`public-code-review/${prNodeId}`).set({ reviewers: prDoc.reviewers }, {merge: true});
+        prData['reviewers'] = prDoc.reviewers;
+
+        // await firebaseAdmin.firestore().doc(`public-code-review/${prNodeId}`).set({ reviewers: prDoc.reviewers }, {merge: true});
       }
     }
     else if(xGithubEvent === 'pull_request_review_comment') {
@@ -94,6 +100,8 @@ export class GithubService {
       };
       await firebaseAdmin.firestore().doc(`public-code-review/${prNodeId}/comments/${commentNodeId}`).set(commentData, { merge: true });
     }
+
+    await firebaseAdmin.firestore().doc(`public-code-review/${prNodeId}`).set(prData, {merge: true});
 
     return null;
   }

@@ -99,17 +99,17 @@
                             <div class="text-base text-charcoal font-medium">
                                 {{ (no + 1) }}. {{ item.title }}
                             </div>
-                            <div class="ml-2 flex items-center" [ngSwitch]="item.reviewStatus">
+                            <div class="ml-2 flex items-center" [ngSwitch]="item.state">
                                 <button *ngSwitchCase="'reviewing'" class="btn-pr-reviewing">
                                     <img src="/assets/icons/pr-reviewing.svg">코드리뷰 중
                                 </button>
                                 <button *ngSwitchCase="'open'" class="btn-pr-open">
                                     <img src="/assets/icons/pr-open.svg">오픈
                                 </button>
-                                <button *ngSwitchCase="'close'" class="btn-pr-done">
+                                <button *ngSwitchCase="'closed'" class="btn-pr-done">
                                     <img src="/assets/icons/pr-done.svg">종료
                                 </button>
-                                <button *ngSwitchCase="'re-open'" class="btn-pr-reopen">
+                                <button *ngSwitchCase="'reopened'" class="btn-pr-reopen">
                                     <img src="/assets/icons/pr-reopen.svg">재오픈
                                 </button>
                             </div>
@@ -157,7 +157,7 @@
                                         <div class="flex">
                                             <div class="pr-2"><img class="w-10" src="{{reviewer.photoUrl}}"></div>
                                             <div>
-                                                <div class="text-xs text-gray-600 font-medium">작성자</div>
+                                                <div class="text-xs text-gray-600 font-medium">리뷰어</div>
                                                 <div class="font-medium text-base text-charcoal">{{reviewer.name}}</div>
                                             </div>
                                         </div>

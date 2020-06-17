@@ -21,8 +21,8 @@
     "baseUrl": ".",
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@protocol/data": ["libs/data/src/index.ts"],
-      "@protocol/ui": ["libs/ui/src/index.ts"]
+      "@gitcode/data": ["libs/data/src/index.ts"],
+      "@gitcode/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

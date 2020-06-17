@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'protocol-snack-code',
+  selector: 'gitcode-snack-code',
   templateUrl: './snack-code.component.html',
   styleUrls: ['./snack-code.component.scss']
 })

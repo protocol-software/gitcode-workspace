@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
-import {IUser} from "@protocol/data";
+import {IUser} from "@gitcode/data";
 
 @Injectable({
   providedIn: 'root'

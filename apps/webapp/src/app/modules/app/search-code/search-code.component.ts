@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {SnackCodeService} from '../../../services/snack-code.service';
-import {CodeTagDto} from '@protocol/data';
+import {CodeTagDto} from '@gitcode/data';
 
 @Component({
-  selector: 'protocol-search-code',
+  selector: 'gitcode-search-code',
   templateUrl: './search-code.component.html',
   styleUrls: ['./search-code.component.scss']
 })

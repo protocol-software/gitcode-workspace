@@ -4,7 +4,7 @@ import {CodeReviewDetailService} from "./code-review-detail/code-review-detail.s
 import {PaymentDialogService} from '../../../../shared/payment-dialog/payment-dialog.service'
 
 @Component({
-  selector: 'protocol-private-code-review',
+  selector: 'gitcode-private-code-review',
   templateUrl: './private-code-review.component.html',
   styleUrls: ['./private-code-review.component.scss']
 })

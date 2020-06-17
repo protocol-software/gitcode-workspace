@@ -22,8 +22,8 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
 
   const options = new DocumentBuilder()
-      .setTitle('Protocol API')
-      .setDescription('APIs available for Protocol.')
+      .setTitle('Gitcode API')
+      .setDescription('APIs available for Gitcode.')
       .setVersion('1.0')
       .addBearerAuth()
       .build();

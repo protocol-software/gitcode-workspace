@@ -6,7 +6,7 @@ import {take} from 'rxjs/operators';
 
 
 @Component({
-  selector: 'protocol-expert-evaluation',
+  selector: 'gitcode-expert-evaluation',
   templateUrl: './expert-evaluation.component.html',
   styleUrls: ['./expert-evaluation.component.scss']
 })

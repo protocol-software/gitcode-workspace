@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 
 import { SnackCodeService } from './snack-code.service';
-import {CodeTagDto} from "@protocol/data";
+import {CodeTagDto} from "@gitcode/data";
 
 @Controller('snack-code')
 export class SnackCodeController {

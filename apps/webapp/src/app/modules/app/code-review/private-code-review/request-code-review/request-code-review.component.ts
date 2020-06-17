@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'protocol-request-code-review',
+  selector: 'gitcode-request-code-review',
   templateUrl: './request-code-review.component.html',
   styleUrls: ['./request-code-review.component.scss']
 })

@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 
 import { SearchCodeService } from './search-code.service';
-import {CodeQueryDto} from "@protocol/data";
+import {CodeQueryDto} from "@gitcode/data";
 
 @Controller('search-code')
 export class SearchCodeController {

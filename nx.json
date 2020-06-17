@@ -1,5 +1,5 @@
 {
-  "npmScope": "protocol-network",
+  "npmScope": "gitcode",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": "*",

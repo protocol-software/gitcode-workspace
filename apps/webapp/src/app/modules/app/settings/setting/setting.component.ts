@@ -9,7 +9,7 @@ import {OtpService} from "../../../../services/otp.service";
 import {Direction} from "@angular/cdk/bidi";
 
 @Component({
-  selector: 'protocol-setting',
+  selector: 'gitcode-setting',
   templateUrl: './setting.component.html',
   styleUrls: ['./setting.component.scss']
 })
@@ -159,7 +159,7 @@ export class ConfirmDialogName {
 }
 
 @Component({
-  selector: 'protocol-settings-dialog-email',
+  selector: 'gitcode-settings-dialog-email',
   templateUrl: './setting-dialog-email.html',
 })
 export class SettingsDialogEmail {

@@ -7,12 +7,12 @@ import {IStatusList, IPublicCodeReviewList, PublicCodeReviewService} from "../..
 // import {MatCheckboxChange} from "@angular/material/checkbox";
 import {AuthService} from "../../../../services/auth.service";
 import {takeUntil} from "rxjs/operators";
-import {IUser} from "@protocol/data";
+import {IUser} from "@gitcode/data";
 import {Observable, Subject} from "rxjs";
 import {AngularFirestore} from "@angular/fire/firestore";
 
 @Component({
-  selector: 'protocol-public-code-review',
+  selector: 'gitcode-public-code-review',
   templateUrl: './public-code-review.component.html',
   styleUrls: ['./public-code-review.component.scss']
 })

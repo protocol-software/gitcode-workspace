@@ -120,7 +120,7 @@
       },
       "root": "apps/webapp",
       "sourceRoot": "apps/webapp/src",
-      "prefix": "protocol",
+      "prefix": "gitcode",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

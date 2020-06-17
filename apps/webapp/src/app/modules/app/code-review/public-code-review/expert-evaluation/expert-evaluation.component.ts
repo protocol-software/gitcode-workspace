@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
-  selector: 'protocol-expert-evaluation',
+  selector: 'gitcode-expert-evaluation',
   templateUrl: './expert-evaluation.component.html',
   styleUrls: ['./expert-evaluation.component.scss']
 })

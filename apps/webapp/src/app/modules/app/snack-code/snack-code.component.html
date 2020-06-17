@@ -14,11 +14,11 @@
                 </div>
             </div>
             <div class="flex items-start">
-                <protocol-side-nav></protocol-side-nav>
+                <gitcode-side-nav></gitcode-side-nav>
 
                 <div class="md:border-l border-0 container">
-                    <protocol-list *ngIf="!snackCodeId"></protocol-list>
-                    <protocol-detail *ngIf="snackCodeId" [snackCodeId]="snackCodeId"></protocol-detail>
+                    <gitcode-list *ngIf="!snackCodeId"></gitcode-list>
+                    <gitcode-detail *ngIf="snackCodeId" [snackCodeId]="snackCodeId"></gitcode-detail>
                 </div>
             </div>
         </div>

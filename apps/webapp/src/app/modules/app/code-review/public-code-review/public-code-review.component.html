@@ -89,8 +89,7 @@
                 </div>
             </div>
             <!--List -->
-            <div class="mt-5 mb-12" *ngIf="false">
-                <!-- list 0 -->
+            <div class="mt-5 mb-12">
 <!--                <div *ngFor="let item of contentList | async | statusFilter:isSelectedStatus | myPostFilter:isSelectedMyPost | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems}; let no=index;"-->
                 <div *ngFor="let item of contentList | async | myPostFilter:isOnlyMyPR:user?.uid; let no=index;"
                      class="flex-shrink md:flex mb-3 p-5 border-gray-300 border rounded-md cursor-pointer"
@@ -185,9 +184,9 @@
                         </div>
                     </div>
                 </div>
-<!--                <protocol-pagination (pageChange)="pageChange($event)"></protocol-pagination>-->
+<!--                <gitcode-pagination (pageChange)="pageChange($event)"></gitcode-pagination>-->
             </div>
-            <div *ngIf="true" class="text-center md:h-64 md:my-24 flex items-center justify-center text-gray-600 text-sm font-medium" >
+            <div class="text-center md:h-64 md:my-24 flex items-center justify-center text-gray-600 text-sm font-medium" >
                 <div>
                     아직 등록된 코드리뷰 요청이 없습니다.<br>
                     첫번째 코드리뷰 요청의 주인공이 되어보세요.

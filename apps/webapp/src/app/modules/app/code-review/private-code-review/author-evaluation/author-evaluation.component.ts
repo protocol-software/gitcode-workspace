@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'protocol-author-evaluation',
+  selector: 'gitcode-author-evaluation',
   templateUrl: './author-evaluation.component.html',
   styleUrls: ['./author-evaluation.component.scss']
 })

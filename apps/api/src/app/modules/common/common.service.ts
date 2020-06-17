@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { IOtp } from './interfaces/otp-document.interface';
 
 import * as AWS from 'aws-sdk';
-import {EmailDto, OtpDto} from "@protocol/data";
+import {EmailDto, OtpDto} from "@gitcode/data";
 import {environment} from "../../../environments/environment";
 
 @Injectable()
@@ -42,7 +42,7 @@ export class CommonService {
   }
 
   public async sendEmail(emailDto: EmailDto): Promise<any> {
-    if(!['no-reply@protocol.network'].includes(emailDto.from)) {
+    if(!['no-reply@gitcode.dev'].includes(emailDto.from)) {
       throw new Error(`${emailDto.from} is not valid email.`);
     }
     
@@ -90,7 +90,7 @@ export class CommonService {
     await this.saveOtp(otpDto.identity, otpCode);
 
     const params: EmailDto = {
-      from: 'no-reply@protocol.network',
+      from: 'no-reply@gitcode.dev',
       tos: [otpDto.identity],
       ccs: [],
       subject: otpDto.subject,

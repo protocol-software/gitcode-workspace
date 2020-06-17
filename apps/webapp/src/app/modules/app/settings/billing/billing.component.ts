@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'protocol-billing',
+  selector: 'gitcode-billing',
   templateUrl: './billing.component.html',
   styleUrls: ['./billing.component.scss']
 })

@@ -1,7 +1,7 @@
 import {Component, HostListener, Input, OnInit, Output, EventEmitter} from '@angular/core';
 
 @Component({
-  selector: 'protocol-pagination',
+  selector: 'gitcode-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })

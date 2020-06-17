@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, ViewChild, Output, HostListener}
 import {ActivatedRoute} from '@angular/router';
 import {Router} from '@angular/router';
 import {SnackCodeService} from '../../../../services/snack-code.service';
-import {CodeTagDto} from '@protocol/data';
+import {CodeTagDto} from '@gitcode/data';
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {Observable, Subject} from "rxjs";
@@ -13,7 +13,7 @@ import {BasicLayoutComponent} from "../../../../layout/layouts/basic/basic.compo
 import {CONTENT_LIST} from "../../../../data/dummy.data";
 
 @Component({
-  selector: 'protocol-list',
+  selector: 'gitcode-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })

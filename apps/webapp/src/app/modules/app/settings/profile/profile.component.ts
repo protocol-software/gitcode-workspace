@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'protocol-profile',
+  selector: 'gitcode-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })

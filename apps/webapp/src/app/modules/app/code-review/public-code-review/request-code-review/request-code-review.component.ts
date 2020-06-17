@@ -4,11 +4,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {RequestCodeReviewService} from "./request-code-review.service";
 import {GitHubService} from "../../../../../services/github.service";
 import {AuthService} from "../../../../../services/auth.service";
-import {IGitHubBranch, IGitHubRepo, IUser} from "@protocol/data";
+import {IGitHubBranch, IGitHubRepo, IUser} from "@gitcode/data";
 import {AngularFirestore, AngularFirestoreDocument} from "@angular/fire/firestore";
 
 @Component({
-  selector: 'protocol-request-code-review',
+  selector: 'gitcode-request-code-review',
   templateUrl: './request-code-review.component.html',
   styleUrls: ['./request-code-review.component.scss']
 })

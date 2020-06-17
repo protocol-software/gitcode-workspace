@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'protocol-detail',
+  selector: 'gitcode-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })

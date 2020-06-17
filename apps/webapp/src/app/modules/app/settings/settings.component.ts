@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'protocol-settings',
+  selector: 'gitcode-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })

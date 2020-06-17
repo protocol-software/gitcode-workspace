@@ -5,7 +5,7 @@ import {SnackCodeService} from '../../../../services/snack-code.service';
 import {FormControl} from "@angular/forms";
 
 @Component({
-  selector: 'protocol-side-nav',
+  selector: 'gitcode-side-nav',
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.scss']
 })

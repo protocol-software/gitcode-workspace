@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import {CodeTagDto, ICodeContentItem, ICodeTag} from "@protocol/data";
+import {CodeTagDto, ICodeContentItem, ICodeTag} from "@gitcode/data";
 
 @Injectable()
 export class SnackCodeService {

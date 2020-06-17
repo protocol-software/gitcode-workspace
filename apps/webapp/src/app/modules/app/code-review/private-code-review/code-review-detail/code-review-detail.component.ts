@@ -9,7 +9,7 @@ export interface DialogData {
 }
 
 @Component({
-  selector: 'protocol-code-review-detail',
+  selector: 'gitcode-code-review-detail',
   templateUrl: './code-review-detail.component.html',
   styleUrls: ['./code-review-detail.component.scss']
 })

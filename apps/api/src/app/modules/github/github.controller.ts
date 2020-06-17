@@ -7,7 +7,7 @@ export class GithubController {
   constructor(private readonly githubService: GithubService) {}
 
   @Post('webhook/pr')
-  public async receiveWebhook(@Headers('X-GitHub-Event') xGithubEvent: string, @Body() body: any): Promise<any> {
+  public async receiveWebhook(@Headers('x-github-event') xGithubEvent: string, @Body() body: any): Promise<any> {
     return await this.githubService.receiveWebhook(xGithubEvent, body);
   }
 }

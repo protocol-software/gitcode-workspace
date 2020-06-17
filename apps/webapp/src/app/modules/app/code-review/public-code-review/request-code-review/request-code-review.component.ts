@@ -135,7 +135,10 @@ export class RequestCodeReviewComponent implements OnInit {
         });
   }
   private postPR(prResponse: any): void {
+    const prNodeId = prResponse.node_id;
+
     const doc = {
+      state: 'open',
       title: this.title,
       proficiency: this.proficiency,
       description: this.description,
@@ -143,10 +146,10 @@ export class RequestCodeReviewComponent implements OnInit {
       author: this.user,
       reviewers: [],
       githubPR: prResponse,
-      createdAt: new Date()
+      createdAt: (new Date()).toISOString()
     };
 
-    this.angularFirestore.collection('public-code-review').add(doc);
+    this.angularFirestore.doc(`public-code-review/${prNodeId}`).set(doc, { merge: true });
   }
 
   public closePopup(event) {

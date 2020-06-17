@@ -134,15 +134,15 @@
                         <!-- begin reviewer-->
                         <div class="md:pl-10 pl-0 md:mr-5 w-1/2 text-center">
                             <!-- begin status: 0 person-->
-                            <div *ngIf="!item.reviewers || item.reviewers.length === 0">
+                            <div *ngIf="item.reviewers?.length === 0">
                                 <div class="w-4 mx-auto"><img src="/assets/icons/avatar-github.svg"></div>
                                 <div class="text-xs text-charcoal mt-1">코드리뷰를 기다립니다.</div>
                             </div>
                             <!-- begin status: 1 person-->
-                            <div *ngIf="item.reviewers.length === 1">
+                            <div *ngIf="item.reviewers?.length === 1">
                                 <div *ngFor="let reviewer of item.reviewers" class="flex">
                                     <!-- begin status: best true-->
-                                    <div class="flex" *ngIf="reviewer.isBestReviewer==true; else isElse">
+                                    <div class="flex" *ngIf="reviewer.isBestReviewer === true; else isElse">
                                         <div class="pr-2 relative">
                                             <img class="absolute top-0 -mt-3 -ml-3 w-8" src="/assets/icons/badge-best.svg">
                                             <img class="w-10" src="{{reviewer.photoUrl}}" *ngFor="let reviewer of item.reviewers">
@@ -165,9 +165,9 @@
                                 </div>
                             </div>
                             <!-- begin status:over 2 people-->
-                            <div *ngIf="item.reviewers.length > 1">
+                            <div *ngIf="item.reviewers?.length > 1">
                                 <div class="flex">
-                                    <div class="" *ngFor="let reviewer of item.reviewers ; let i = index">
+                                    <div class="" *ngFor="let reviewer of item.reviewers; let i = index">
                                         <div *ngIf="i < 5" class="w-10 -mr-5">
                                             <div>
                                                 <img src="{{reviewer.photoUrl}}" class="">

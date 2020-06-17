@@ -38,6 +38,8 @@ export class PublicCodeReviewService {
 @Pipe({ name: 'myPostFilter' })
 export class MyPostFilterPipe implements PipeTransform {
         transform(contents: any[], isOnlyMyPR: boolean, uid:string)  {
+            if(!contents) return [];
+
             if (isOnlyMyPR) {
                 return contents.filter(contents => contents.author.uid === uid);
             } else {
@@ -49,6 +51,8 @@ export class MyPostFilterPipe implements PipeTransform {
 @Pipe({ name: 'statusFilter' })
 export class StatusPipe implements PipeTransform {
     transform(contents: IPublicCodeReviewList[],isSelectedStatus) {
+            if(!contents) return [];
+
             if (isSelectedStatus=="코드리뷰중") {
                 return contents.filter(contents => contents.reviewStatus == "reviewing");
             }

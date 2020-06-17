@@ -74,6 +74,9 @@ export class PublicCodeReviewComponent implements OnInit {
 
   private publicCodeReviewList() {
     this.contentList = this.angularFirestore.collection('public-code-review').valueChanges();
+    this.contentList.subscribe((result) => {
+      console.log(result);
+    });
     // this.publicCodeReviewService.getPublicCodeReviewList()
     //     .subscribe(data => this.contentList = data,
     //         error => this.errorMsg = error);{

@@ -44,7 +44,11 @@ basic-layout {
             min-height: 77px;
             padding: 0 24px;
             z-index: 49;
-            //max-width: 1200px;
+
+            @media (min-width:768px) {
+                max-width: 1200px;
+            }
+
 
             @include treo-breakpoint('lt-md') {
                 padding: 0 16px;

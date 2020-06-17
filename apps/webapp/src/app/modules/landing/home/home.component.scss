@@ -7,13 +7,19 @@
 
 }
 
+.bg-border-class{
+  @media (min-width:768px) {
+    min-width:1200px;max-width: 1200px;
+  }
 
+}
 
-
-.border-class{
-  border-color: #F7C243;
-  border-radius: 50px 50px 50px 50px;
-  border-width:6px
+.bg-content-class{
+  @media (min-width:768px) {
+    min-width:1100px;max-width: 1100px;
+  }
+  min-width: 600px;
+  max-width: 600px;
 }
 
 .main-bg{
@@ -39,8 +45,9 @@
 
 .main-footer{
   @media (min-width:768px) {
-    left:250px;
+    //left:250px;
     top:736px;
+    left:500px
 
 
   }
@@ -56,11 +63,10 @@
 
 }
 
-
-.parent {
-}
-
-.child{
-
+.main-container-class{
+  @media (min-width:768px) {
+    left:20%;
+  }
+  left:0;
 }
 

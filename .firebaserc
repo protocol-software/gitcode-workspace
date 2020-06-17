@@ -5,8 +5,8 @@
   "targets": {
     "gitcode-prod": {
       "hosting": {
-        "webapp": [
-          "webapp"
+        "gitcode-prod": [
+          "gitcode-prod"
         ]
       }
     }

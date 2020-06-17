@@ -16,13 +16,13 @@
 </treo-vertical-navigation>
 
 <!-- Wrapper -->
-<div class="wrapper mx-auto pt-5" >
+<div class="wrapper" >
 
     <!-- Header -->
-    <div class="header ">
+    <div class="header mx-auto" style="min-width: 1200px;max-width: 1200px">
 
         <!-- Logo -->
-        <div class="logo cursor-pointer" routerLink="/"
+        <div class="logo cursor-pointer pt-5" routerLink="/"
              *ngIf="!isScreenSmall">
             <img class="logo-text"
                  src="assets/images/logo/logo-text.svg">
@@ -33,7 +33,7 @@
         </div>
 
         <!-- Horizontal navigation -->
-        <treo-horizontal-navigation *ngIf="!isScreenSmall"
+        <treo-horizontal-navigation class="pt-5" *ngIf="!isScreenSmall"
                                    [name]="'mainNavigation'"
                                     [navigation]="data?.navigation.horizontal"></treo-horizontal-navigation>
 
@@ -51,9 +51,9 @@
             <messages [messages]="data?.messages"></messages>
             <notifications [notifications]="data?.notifications"></notifications>
         </div>
-        <user></user>
+        <user class="pt-5"></user>
         <div class="static">
-            <div class="absolute private-beta-class text-xs font-medium" style="right:30px">Private beta</div>
+            <div class="absolute private-beta-class text-xs font-medium" style="right:5px;top:0px">Private beta</div>
         </div>
     </div>
 

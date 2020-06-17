@@ -1,5 +1,14 @@
 {
   "projects": {
-    "default": "webapp"
+    "prod": "gitcode-prod"
+  },
+  "targets": {
+    "gitcode-prod": {
+      "hosting": {
+        "webapp": [
+          "webapp"
+        ]
+      }
+    }
   }
 }

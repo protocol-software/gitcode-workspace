@@ -38,7 +38,9 @@
     "deploy:api:prod": "./deploy-api-prod.sh",
     "start:webapp": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng serve webapp --host 0.0.0.0 --port 7100",
     "build:webapp:dev": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build webapp --prod --configuration=development",
-    "build:webapp:prod": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build webapp --prod"
+    "build:webapp:prod": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build webapp --prod",
+    "deploy:webapp:dev": "./deploy-webapp-dev.sh",
+    "deploy:webapp:prod": "./deploy-webapp-prod.sh"
   },
   "private": true,
   "dependencies": {

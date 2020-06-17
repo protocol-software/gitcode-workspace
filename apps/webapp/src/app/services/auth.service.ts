@@ -161,16 +161,15 @@ export class AuthService {
   }
 
   public async signIn(): Promise<boolean> {
-    const oauthProvider = OAuthProvider.GITHUB;
-    const userCredential = await this.signInOAuth(oauthProvider);
+    const userCredential = await this.signInOAuth(OAuthProvider.GITHUB);
     const signedUserData = await this.getSignedUserData(userCredential);
 
     if(!signedUserData.exists) {
       return false;
     }
     else {
-      const providerUserData = await this.getProviderUserData(oauthProvider, userCredential);
-      await this.updateUserData(userCredential, oauthProvider, providerUserData);
+      const providerUserData = await this.getProviderUserData(OAuthProvider.GITHUB, userCredential);
+      await this.updateUserData(userCredential, OAuthProvider.GITHUB, providerUserData);
 
       return true;
     }

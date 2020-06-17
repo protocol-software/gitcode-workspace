@@ -119,7 +119,8 @@ export class UserComponent implements OnInit, OnDestroy
         const result = await this.authService.signIn();
 
         if(!result) {
-            this.signUpDialogService.open({userCredential: userCredential, oauthProvider: oauthProvider});
+            const userCredential = await this.authService.signInOAuth(OAuthProvider.GITHUB);
+            this.signUpDialogService.open({userCredential: userCredential, oauthProvider: OAuthProvider.GITHUB });
         }
     }
 

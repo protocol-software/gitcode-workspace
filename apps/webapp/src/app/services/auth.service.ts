@@ -8,7 +8,6 @@ import { Observable, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { GitHubService } from './github.service';
 import {AuthUtils} from '../core/auth/auth.utils';
-import {SignUpDialogService} from "../shared/sign-up-dialog/sign-up-dialog.service";
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +23,6 @@ export class AuthService {
     private afs: AngularFirestore,
     private router: Router,
     private gitHubService: GitHubService,
-    private signUpDialogService: SignUpDialogService,
   ) {
     // Get the auth state, then fetch the Firestore user document or return null
     this.user$ = this.afAuth.authState.pipe(
@@ -163,19 +161,18 @@ export class AuthService {
   }
 
   public async signIn(): Promise<boolean> {
-    const oauthProvider = OAuthProvider.GITHUB;
-    const userCredential = await this.signInOAuth(oauthProvider);
+    const userCredential = await this.signInOAuth(OAuthProvider.GITHUB);
     const signedUserData = await this.getSignedUserData(userCredential);
 
     if(!signedUserData.exists) {
-      this.signUpDialogService.open({userCredential: userCredential, oauthProvider: oauthProvider});
       return false;
     }
+    else {
+      const providerUserData = await this.getProviderUserData(OAuthProvider.GITHUB, userCredential);
+      await this.updateUserData(userCredential, OAuthProvider.GITHUB, providerUserData);
 
-    const providerUserData = await this.getProviderUserData(oauthProvider, userCredential);
-    await this.updateUserData(userCredential, oauthProvider, providerUserData);
-
-    return true;
+      return true;
+    }
   }
 
   public async signOut(): Promise<void> {

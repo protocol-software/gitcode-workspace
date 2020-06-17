@@ -116,11 +116,16 @@ export class UserComponent implements OnInit, OnDestroy
             event.stopPropagation();
         }
 
-        await this.authService.signIn();
+        const result = await this.authService.signIn();
+
+        if(!result) {
+            const userCredential = await this.authService.signInOAuth(OAuthProvider.GITHUB);
+            this.signUpDialogService.open({userCredential: userCredential, oauthProvider: OAuthProvider.GITHUB });
+        }
     }
 
-    public async deleteMember (event): Promise<void> {
-        await this.authService.deleteUserData(this.user.uid)
-        this.authService.signOut()
+    public async deleteMember(event): Promise<void> {
+        await this.authService.deleteUserData(this.user.uid);
+        this.authService.signOut();
     }
 }

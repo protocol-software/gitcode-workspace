@@ -36,11 +36,13 @@ body{
 
 .main-footer{
   @media (min-width:768px) {
-    left:400px;
-    bottom:0px;
+    left:250px;
+    top:736px;
+
+
   }
   bottom:-50px;
-  left:12%;
+  left:40px;
 }
 
 .main-img-right{
@@ -50,3 +52,12 @@ body{
   width:260px;
 
 }
+
+
+.parent {
+}
+
+.child{
+
+}
+

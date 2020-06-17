@@ -9,17 +9,18 @@
 
     <div treoVerticalNavigationContentHeader>
         <div class="logo">
-            <img src="assets/images/logo/logo-text-on-dark.svg">
+            <img src="assets/images/logo/logo-text-on-dark.svg" routerLink="/">
         </div>
     </div>
 
 </treo-vertical-navigation>
 
 <!-- Wrapper -->
-<div class="wrapper" >
+<div class="wrapper">
 
     <!-- Header -->
-    <div class="header mx-auto" style="min-width: 1200px;max-width: 1200px">
+    <div class="w-full bg-black">
+        <div class="header mx-auto" >
 
         <!-- Logo -->
         <div class="logo cursor-pointer pt-5" routerLink="/"
@@ -56,8 +57,9 @@
             <div class="absolute private-beta-class text-xs font-medium" style="right:5px;top:0px">Private beta</div>
         </div>
     </div>
+    </div>
 
-    <div class="content">
+    <div class="content" style="">
 
         <!-- *ngIf="true" hack is required here for router-outlet to work correctly. Otherwise,
              it won't register the changes on the layout and won't update the view. -->

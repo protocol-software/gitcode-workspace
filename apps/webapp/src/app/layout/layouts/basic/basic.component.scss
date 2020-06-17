@@ -30,10 +30,10 @@ basic-layout {
         flex-direction: column;
         flex: 1 1 auto;
         min-width: 0;
-        max-width:1200px;
+        //max-width:1200px;
         //background: black;
-
-        > .header {
+        position: relative;
+        .header {
             position: relative;
             display: flex;
             flex: 1 1 auto;
@@ -44,7 +44,11 @@ basic-layout {
             min-height: 77px;
             padding: 0 24px;
             z-index: 49;
-            max-width: 1200px;
+
+            @media (min-width:768px) {
+                max-width: 1200px;
+            }
+
 
             @include treo-breakpoint('lt-md') {
                 padding: 0 16px;
@@ -168,7 +172,7 @@ basic-layout {
 
         > .wrapper {
 
-            > .header {
+            .header {
                 position: sticky;
                 top: 0;
             }
@@ -199,7 +203,7 @@ basic-layout {
 
         > .wrapper {
 
-            > .header {
+            .header {
                 @if ($is-dark) {
                     //box-shadow: 0 1px 0 0 map-get($foreground, divider);
                 } @else {

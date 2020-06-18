@@ -23,20 +23,25 @@
         <div class="header mx-auto" >
 
         <!-- Logo -->
-        <div class="logo cursor-pointer pt-5" routerLink="/"
-             *ngIf="!isScreenSmall">
+        <div class="logo cursor-pointer pt-5" routerLink="/">
             <img class="logo-text"
                  src="assets/images/logo/logo-text.svg">
             <img class="logo-text-on-dark"
                  src="assets/images/logo/logo-text-on-dark.svg">
             <img class="logo-base"
                  src="assets/images/logo/logo.svg">
+
+            <img class="beta"
+                 src="assets/images/logo/gitcode-beta.png">
         </div>
+
 
         <!-- Horizontal navigation -->
         <treo-horizontal-navigation class="pt-5" *ngIf="!isScreenSmall"
-                                   [name]="'mainNavigation'"
+                                    [name]="'mainNavigation'"
                                     [navigation]="data?.navigation.horizontal"></treo-horizontal-navigation>
+
+        <div class="spacer"></div>
 
         <!-- Navigation toggle button -->
         <button class="navigation-toggle-button"
@@ -46,16 +51,16 @@
             <mat-icon [svgIcon]="'menu'"></mat-icon>
         </button>
 
-        <div class="spacer"></div>
-
         <div *ngIf="authenticated">
             <messages [messages]="data?.messages"></messages>
             <notifications [notifications]="data?.notifications"></notifications>
         </div>
-        <user class="pt-5"></user>
-        <div class="static">
-            <div class="absolute private-beta-class text-xs font-medium" style="right:5px;top:0px">Private beta</div>
-        </div>
+
+        <user *ngIf="!isScreenSmall" class="pt-5"></user>
+
+<!--        <div class="static">-->
+<!--            <div class="absolute private-beta-class text-xs font-medium" style="right:5px;top:0px">Private beta</div>-->
+<!--        </div>-->
     </div>
     </div>
 

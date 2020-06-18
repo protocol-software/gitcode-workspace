@@ -186,7 +186,8 @@
                 </div>
 <!--                <gitcode-pagination (pageChange)="pageChange($event)"></gitcode-pagination>-->
             </div>
-            <div class="text-center md:h-64 md:my-24 flex items-center justify-center text-gray-600 text-sm font-medium" >
+
+            <div class="text-center md:h-64 md:my-24 flex items-center justify-center text-gray-600 text-sm font-medium" *ngIf="hasContent === false">
                 <div>
                     아직 등록된 코드리뷰 요청이 없습니다.<br>
                     첫번째 코드리뷰 요청의 주인공이 되어보세요.

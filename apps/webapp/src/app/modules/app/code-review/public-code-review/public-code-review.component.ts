@@ -43,6 +43,7 @@ export class PublicCodeReviewComponent implements OnInit {
 
   private _unsubscribeAll: Subject<any>;
   public user: IUser;
+  hasContent: boolean = null;
 
   constructor(
       private requestCodeReviewService: RequestCodeReviewService,
@@ -74,8 +75,9 @@ export class PublicCodeReviewComponent implements OnInit {
 
   private publicCodeReviewList() {
     this.contentList = this.angularFirestore.collection('public-code-review').valueChanges();
+
     this.contentList.subscribe((result) => {
-      console.log(result);
+      this.hasContent = result.length > 0;
     });
     // this.publicCodeReviewService.getPublicCodeReviewList()
     //     .subscribe(data => this.contentList = data,

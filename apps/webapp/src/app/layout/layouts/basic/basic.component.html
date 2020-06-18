@@ -43,6 +43,13 @@
 
         <div class="spacer"></div>
 
+        <div *ngIf="authenticated">
+            <messages [messages]="data?.messages"></messages>
+            <notifications [notifications]="data?.notifications"></notifications>
+        </div>
+
+        <user class="pt-5"></user>
+
         <!-- Navigation toggle button -->
         <button class="navigation-toggle-button"
                 *ngIf="isScreenSmall"
@@ -50,17 +57,6 @@
                 (click)="toggleNavigation('mainNavigation')">
             <mat-icon [svgIcon]="'menu'"></mat-icon>
         </button>
-
-        <div *ngIf="authenticated">
-            <messages [messages]="data?.messages"></messages>
-            <notifications [notifications]="data?.notifications"></notifications>
-        </div>
-
-        <user *ngIf="!isScreenSmall" class="pt-5"></user>
-
-<!--        <div class="static">-->
-<!--            <div class="absolute private-beta-class text-xs font-medium" style="right:5px;top:0px">Private beta</div>-->
-<!--        </div>-->
     </div>
     </div>
 
@@ -75,7 +71,7 @@
     <!-- Footer -->
     <div class="bg-gray-200" *ngIf="_router.url!='/home'">
         <div class="mx-auto text-center px-2 py-10">
-            <div class="mb-3 text-charcoal">Gitcode &copy; {{currentYear}} All Right Reserved</div>
+            <div class="mb-3 text-charcoal">GitCode &copy; {{currentYear}} All Right Reserved</div>
 <!--            <div class="flex-shrink lg:flex justify-center text-gray-600">-->
 <!--                <div class="mr-1">테크로드 | 사업자등록번호: 156-14-01139 </div>-->
 <!--                <div> | 대표자명: 조중현 |</div>-->

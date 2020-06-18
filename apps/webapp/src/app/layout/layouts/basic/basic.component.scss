@@ -42,7 +42,7 @@ basic-layout {
             height: 77px;
             max-height: 77px;
             min-height: 77px;
-            padding: 0 24px;
+            //padding: 0 24px;
             z-index: 49;
 
             @media (min-width:768px) {
@@ -63,7 +63,7 @@ basic-layout {
             .logo {
                 display: flex;
                 align-items: center;
-                margin: 0 32px 0 8px;
+                margin: 0 32px 0 0px;
 
                 @include treo-breakpoint('lt-lg') {
                     margin-right: 8px;

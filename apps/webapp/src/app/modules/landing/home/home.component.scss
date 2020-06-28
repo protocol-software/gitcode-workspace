@@ -1,0 +1,40 @@
+.main-button{
+  background: linear-gradient(180deg, #FAFAFC 0%, #EFF3F6 100%), #EFF3F6;
+  border: 1px solid #CBD5E0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 7px 12px;
+
+}
+
+.main-bg{
+  -webkit-background-size: cover!important;
+  -moz-background-size: cover!important;
+  -o-background-size: cover!important;
+  background-repeat: no-repeat!important;
+  background:url("/assets/images/main-background.jpg");
+
+  .content-bg {
+    -webkit-background-size: cover!important;
+    -moz-background-size: cover!important;
+    -o-background-size: cover!important;
+    background-repeat: no-repeat!important;
+    background:url("/assets/images/main-border-mobile.png");
+    width: 335px;
+    height: 640px;
+
+    @media (min-width:768px) {
+      background:url("/assets/images/main-border.png");
+      width: 1200px;
+      height: 730px;
+    }
+
+    .content {
+      @media (min-width:768px) {
+        height: 730px;
+      }
+    }
+  }
+}
+
+

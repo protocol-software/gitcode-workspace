@@ -1,0 +1,39 @@
+<div class="content-layout fullwidth-standard-normal-scroll bg-black">
+    <div class="main-bg mt-10">
+        <div class="content-bg mx-auto" data-aos="zoom-in-right" >
+            <div class="content md:flex items-center justify-center">
+                <div class="mx-8 py-10 md:mx-0 md:py-0 md:w-1/2 md:ml-24"
+                     data-aos="fade-right"
+                     data-aos-offset="300"
+                     data-aos-easing="ease-in-sine">
+                    <div class="font-medium text-lg md:text-3xl mb-8 text-white">코드리뷰, 경험해보셨나요?</div>
+                    <div class="font-medium text-sm md:text-lg text-gray-400">
+                        개발자로서의 레벨 업을 위해 코드 리뷰는 필수입니다.<br/>
+                        GitCode를 통해서 여러 개발자들과<br/>
+                        나의 소스코드에 대한 다양한 의견을 나눠보세요.
+                    </div>
+                    <div>
+                        <button class="main-button mt-4 mb-0" routerLink="/code-review/public">퍼블릭 코드리뷰 시작하기</button>
+                    </div>
+                </div>
+                <div class="pt-10 mx-10 md:pt-0 md:mx-0 md:w-1/2" *ngIf="!isScreenSmall else rightCardElse"
+                     data-aos="fade-left"
+                     data-aos-offset="500"
+                     data-aos-easing="ease-in-sine">
+                    <img src="/assets/images/main-img-right.svg" class="md:w-3/4">
+                </div>
+                <ng-template #rightCardElse>
+                    <div class="pt-10 mx-10 md:pt-0 md:mx-0 md:w-1/2">
+                        <img src="/assets/images/main-img-right.svg" class="md:w-3/4">
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+
+        <div class="mx-auto text-center px-2 py-10">
+            <div class="text-xs text-charcoal">GitCode &copy; {{currentYear}} All Right Reserved</div>
+        </div>
+
+    </div>
+</div>
+

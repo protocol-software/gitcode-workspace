@@ -1,0 +1,157 @@
+<div class="content-layout" *ngIf="!(isComplete) else isCompleteElse" >
+  <div class="px-3 md:px-5 py-5">
+    <!-- BEGIN top -->
+    <!-- Title-->
+    <div class="flex-shrink items-center">
+      <div class="flex justify-between">
+        <div class="flex mr-16 items-start">
+          <div class="mr-2 mt-1"><img src="/assets/icons/code-review-icon-horizontal.svg" ></div>
+          <div class="text-center">
+            <div class="text-xl font-bold text-left" style="word-break: keep-all">프라이빗 코드리뷰 신청하기</div>
+          </div>
+        </div>
+        <div>
+          <button mat-dialog-close class="">
+            <mat-icon>close</mat-icon>
+        </button>
+        </div>
+      </div>
+      <div class="flex-shrink md:flex mt-5 md:mt-2 text-gray-600 text-base">
+        GitCode의 프라이빗 코드리뷰를 구독하시면 전문가의 코드리뷰를 받을 수 있습니다.
+      </div>
+    </div>
+    <!-- END top-->
+    <!-- BEGIN bottom-->
+    <div class="md:flex md:justify-center flex-1">
+      <!-- left   -->
+      <div class="">
+        <div class="mt-5 bg-gray-200 border-gray-300 border border-solid rounded py-5 px-2 ">
+          <div class="text-charcoal text-sm font-bold">
+            ON-DEMEND CODE-REVIEW
+          </div>
+          <div class="flex mt-5">
+            <div class="text-charcoal text-sm font-bold">월 구독요금 </div><div class="font-bold text-sm text-black">₩ 50,000</div>
+          </div>
+          <div class="">
+            <div class="flex flex-shrink mt-3">
+              <span class="material-icons text-pink mr-1">done</span><div>월 최대 300라인까지 코드리뷰 이용이 가능합니다. </div>
+            </div>
+            <div class="flex flex-shrink mt-2 ">
+              <span class="material-icons text-pink mr-1">done</span><div>코드리뷰 신청 후 최대 24시간 이내에 전문가가 매칭됩니다. </div>
+            </div>
+            <div class="flex flex-shrink mt-2">
+              <span class="material-icons text-pink mr-1">done</span><div>Github 레포지토리를 연결하여 효율적인 리뷰를 받을 수 있습니다.  </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-200 border-gray-300 border border-solid rounded py-5 px-2 mt-3">
+          <div class="flex items-center">
+            <div class="text-charcoal text-sm font-bold mr-5">
+              이용기간
+            </div>
+            <div>
+              <mat-form-field class="treo-mat-no-subscript treo-mat-emphasized-affix treo-mat-dense">
+                <mat-select>
+                  <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{food.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="ml-10">
+            <div class="text-charcoal text-xs mt-3">최소 1개월부터 선택 가능합니다. </div>
+            <div class="text-charcoal text-xs flex mt-2">
+              <div>1개월 이상 선택 시, 매 월 </div><span class="text-pink">31</span><div>일에 자동 결제됩니다.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- right   -->
+      <div class="mt-5 ml-5">
+        <div>
+          <div class="font-bold text-base text-charcoal">구매자 정보</div>
+          <div class="font-medium text-sm text-charcoal mt-3">Github ID</div>
+          <div class="bg-gray-200 border border-solid border-gray-400 mt-1 px-2 py-1">
+            <input placeholder="* iamlion">
+          </div>
+          <div class="font-medium text-sm text-charcoal mt-3">이메일 주소</div>
+          <div class="bg-white border border-solid border-gray-400 mt-1">
+            <input placeholder="* iamlion@gmail.com" class="placeholder-black px-2 py-1">
+          </div>
+          <div class="font-medium text-sm text-charcoal mt-3">전화번호</div>
+          <div class="bg-white border border-solid border-gray-400 mt-1 px-2 py-1">
+            <input placeholder="* ex) 010-1234-1234">
+          </div>
+        </div>
+        <div class="mt-8 text-xs">
+          <mat-checkbox class="border-gray-200"><span class="underline text-blue text-xs mr-1">상품 구매 약관</span><span>을 확인하였으며 구매 진행에 동의합니다.</span></mat-checkbox>
+        </div>
+        <div class="flex justify-center mt-10 mb-12 md:mb-5">
+        <button class="btn-gray-400-2 py-3 px-10" (click)="isComplete=true">
+          <img src="/assets/icons/paypal.svg">
+        </button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #isCompleteElse>
+  <div class="content-layout" >
+    <div class="px-3 md:px-5 py-5">
+      <div class="flex justify-end">
+        <button mat-dialog-close class="">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <div class="">
+        <!-- Title-->
+        <div class="flex justify-center">
+          <div class="flex-shrink items-center">
+          <div class="flex justify-between">
+            <div class="flex items-start">
+              <div class="mr-2 mt-1"><img src="/assets/icons/code-review-icon-horizontal.svg" ></div>
+              <div class="">
+                <div class="text-xl font-bold text-left" style="word-break: keep-all">프라이빗 코드리뷰 신청하기</div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-shrink md:flex justify-center md:mt-2 text-gray-600 text-base text-center">
+            코드리뷰 상품 구독이 완료되었습니다.
+          </div>
+        </div>
+        </div>
+        <div class="md:flex md:justify-center flex-1">
+          <div class="">
+            <div class="mt-5 bg-gray-200 border-gray-300 border border-solid rounded py-5 md:px-5 px-2 ">
+              <div class="text-charcoal text-sm font-bold">
+                ON-DEMEND CODE-REVIEW
+              </div>
+              <div class="flex mt-5">
+                <div class="text-charcoal text-sm font-bold w-20">월 구독요금 </div><div class="font-bold text-sm text-black mr-3">₩ 50,000</div>
+                <div class="text-charcoal text-sm font-bold mr-3">이용기간 </div><div class="font-bold text-sm text-black">12개월</div>
+              </div>
+              <div class="flex mt-3">
+                <div class="text-charcoal text-sm font-bold w-20">결제정보 </div><div class="text-sm text-black">신한카드</div><div>1234-****-****-5678</div>
+              </div>
+              <div class="flex mt-3">
+                <div class="text-charcoal text-sm font-bold w-20">결제일 </div><div class="text-sm text-black">매월 31</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <div class="my-5">
+            <div>구매에 대한 상세한 사항은 설정 페이지에서 확인 가능합니다.</div>
+            <div class="text-center mt-3">감사합니다.</div>
+            <div class="flex justify-center mt-5">
+              <button class="btn-gray-400-2 py-1 px-2" mat-dialog-close>
+                확인
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

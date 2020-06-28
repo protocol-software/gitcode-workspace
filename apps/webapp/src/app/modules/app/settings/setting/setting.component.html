@@ -1,0 +1,214 @@
+<div class="border border-solid bg-white border-gray-400 rounded p-5">
+    <div class="text-lg font-bold pb-6">설정</div>
+    <div class="font-bold text-sm pb-3">상품 구독 정보</div>
+    <div class="flex flex-wrap md:flex-no-wrap" *ngIf="dummySubscribe; else dummySubscribeElse">
+        <div class="md:pr-48 pr-0">
+            <div class="flex pb-2">
+                <div class="font-medium text-sm w-16">사용기간</div>
+                <div class="flex text-sm">
+                    <div>2020-01-01 00:00</div> ~ <div>2020-12-31 00:00</div>
+                </div>
+            </div>
+            <div class="flex pb-2">
+                <div class="font-medium text-sm w-16">상품명</div>
+                <div class="text-sm">ON-DEMAND CODE-REVIEW</div>
+            </div>
+            <div class="text-sm text-blue underline cursor-pointer">이용상품 변경/해지</div>
+        </div>
+        <div class="md:mt-0 mt-3">
+            <div class="flex justify-center">
+                <div class="md:pr-16 pr-3 ">
+                    <div class="text-xs text-charcoal">월 제한</div>
+                    <div class="flex items-end">
+                        <div class="font-black text-3xl">300</div><div class="text-xs text-charcoal pl-2">lines</div>
+                    </div>
+                </div>
+                <div class="md:pr-16 pr-3">
+                    <div class="text-xs text-charcoal">코드리뷰 요청</div>
+                    <div class="flex items-end">
+                        <div class="font-black text-3xl text-pink">132</div><div class="text-xs text-charcoal pl-2">lines</div>
+                    </div>
+                </div>
+                <div class="md:pr-12 pr-3">
+                    <div class="text-xs text-charcoal">남은line</div>
+                    <div class="flex items-end">
+                        <div class="font-black text-3xl">168</div><div class="text-xs text-charcoal pl-2">lines</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #dummySubscribeElse>
+        <div class="bg-gray-100 border-gray-300 border rounded p-5 mt-3 text-center h-24 flex justify-center items-center text-sm text-charcoal" >
+           구독 중인 상품이 없습니다.
+        </div>
+    </ng-template>
+    <div class="py-5">
+        <div class="font-bold text-sm text-gray-900 pb-3">Repository</div>
+        <div *ngIf="dummyRepository ; else dummyRepositoryElse" class="md:w-4/12 ">
+            <div class="flex items-start mb-2">
+                <div class="mr-2">
+                    <img src="/assets/icons/pr-repository.svg" class="w-3 mt-1" style="min-width:12px ">
+                </div>
+                <div class="md:max-w-xs  align-top align-text-top inline-block">lion-cho/lion-space</div>
+                <div class="ml-auto whitespace-no-wrap underline text-blue text-sm cursor-pointer">삭제</div>
+            </div>
+            <div class="flex items-start mb-2">
+                <div class="mr-2">
+                    <img src="/assets/icons/pr-repository.svg" class="w-3 mt-1" style="min-width:12px ">
+                </div>
+                <div class="md:max-w-xs align-top align-text-top inline-block">lion-cho/lion-space-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long</div>
+                <div class="ml-auto whitespace-no-wrap underline text-blue text-sm cursor-pointer">삭제</div>
+            </div>
+        </div>
+        <ng-template #dummyRepositoryElse>
+            <div class="my-5">추가된 Repository가 없습니다.</div>
+        </ng-template>
+        <div class="text-blue underline text-sm cursor-pointer">Repository 추가하기</div>
+    </div>
+    <!-- Part of Privacy -->
+    <div class="font-bold text-sm text-gray-900 mb-2">개인정보관리</div>
+    <div class="my-2 mb-5">
+        <div class="mb-2">
+            <div class="text-sm font-medium "><span class="text-red-600 mr-1">*</span>Github ID</div>
+        </div>
+        <div class="" style="font-size:12px">
+            <form class="flex flex-wrap items-center">
+                <div class="flex ">
+                    <input placeholder="iamlion" class="md:w-64 input-indigo-200 px-3 py-2 text-sm mr-1 " >
+                    <button mat-stroked-button color="primary" class="btn-blue-gitcode" (click)="dialogChange('github')">변경하기</button>
+                </div>
+                <div class="text-sm text-gray-600 ml-2">※ Github 아이디 변경시, Github 사이트의 재 로그인이 필요합니다.</div>
+            </form>
+        </div>
+    </div>
+    <div class="my-2 mb-5">
+        <div class="mb-2">
+            <div class="text-sm font-medium "><span class="text-red-600 mr-1">*</span>사용자 이름</div>
+        </div>
+        <div class="" style="font-size:12px">
+            <form class="flex flex-wrap items-center">
+                <div class="flex">
+                    <input placeholder="iamlion" class="md:w-64 input-white px-3 py-2  text-sm mr-1" >
+                    <button mat-stroked-button color="primary" class="btn-blue-gitcode" (click)="dialogChange('name')">변경하기</button>
+                </div>
+                <div class="text-sm text-gray-600 ml-2">※ GitCode에서 사용되는 사용자 이름만 변경됩니다.</div>
+            </form>
+        </div>
+    </div>
+    <div class="my-2 mb-5">
+        <div class="mb-2">
+            <div class="text-sm font-medium "><span class="text-red-600 mr-1">*</span>Email 주소</div>
+        </div>
+        <div class="" style="font-size:12px">
+            <form class="flex flex-wrap items-center">
+                <div class="flex">
+                    <input placeholder="iamlion@gmail.com" class="md:w-64 input-indigo-200 px-3 py-2  text-sm mr-1 " >
+                    <button mat-stroked-button color="primary" class="btn-blue-gitcode" (click)="dialogChange('email')">변경하기</button>
+                </div>
+                <div class="text-sm text-gray-600 ml-2">※ 이메일 주소 변경 시, 이메일 인증이 필요합니다.</div>
+            </form>
+        </div>
+    </div>
+    <!--  section of payment -->
+    <div>
+        <div class="text=sm font-bold">결제 정보</div>
+        <div class="bg-gray-100 border-gray-300 border rounded p-5 mt-3" *ngIf="dummyPayment; else dummyPaymentElse">
+            <div class="flex flex-wrap md:flex-nowrap text-sm text-charcoal">
+                <div>Username</div><div>님은 정기 결제 이용 중 입니다.</div><div>다음 결제일은</div><div class="text-blue cursor-pointer mx-1">2020-01-01</div><div>입니다.</div>
+            </div>
+            <div class="flex">
+                <div class="mr-5">신용카드</div>
+                <div>1234</div>-<div>****-****</div>-<div>5678</div>
+                <div class="underline text-blue-600 cursor-pointer ml-5">변경하기</div>
+            </div>
+        </div>
+        <ng-template #dummyPaymentElse>
+            <div class="bg-gray-100 border-gray-300 border rounded p-5 mt-3 text-center h-24 flex justify-center items-center text-sm text-charcoal" >
+                결제 정보가 없습니다.
+            </div>
+        </ng-template>
+    </div>
+
+
+    <!-- table   -->
+    <div class="max-w-xs md:max-w-none">
+        <div class="mt-8 overflow-auto whitespace-no-wrap" >
+            <table mat-table [dataSource]="dataSource" *ngIf="dataSource.data.length > 0" >
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef class="text-sm font-medium text-gray-800" > 날짜 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef class="text-sm font-medium text-gray-800"> 이용상품 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="weight">
+                    <th mat-header-cell *matHeaderCellDef class="text-sm font-medium text-gray-800"> 이용기간 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="symbol">
+                    <th mat-header-cell *matHeaderCellDef class="text-sm font-medium text-gray-800"> 결제수단 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                </ng-container>
+                <ng-container matColumnDef="symbol2">
+                    <th mat-header-cell *matHeaderCellDef class="text-sm font-medium text-gray-800"> 소계 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.symbol2}} <span class="text-gray-500 text-xs">+부가세 100,000원</span> </td>
+                </ng-container>
+                <ng-container matColumnDef="symbol3">
+                    <th mat-header-cell *matHeaderCellDef class="text-sm font-medium text-gray-800"> 총 결제금액 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.symbol3}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <table mat-table [dataSource]="dataSource" *ngIf="dataSource.data.length === 0" >
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef class="text-sm font-medium text-gray-800"> 날짜 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef class="text-sm font-medium text-gray-800"> 이용상품 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="weight">
+                    <th mat-header-cell *matHeaderCellDef class="text-sm font-medium text-gray-800"> 이용기간 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="symbol">
+                    <th mat-header-cell *matHeaderCellDef class="text-sm font-medium text-gray-800"> 결제수단 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                </ng-container>
+                <ng-container matColumnDef="symbol2">
+                    <th mat-header-cell *matHeaderCellDef class="text-sm font-medium text-gray-800"> 소계 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.symbol2}} <span class="text-gray-500 text-xs">+부가세 100,000원</span> </td>
+                </ng-container>
+                <ng-container matColumnDef="symbol3">
+                    <th mat-header-cell *matHeaderCellDef class="text-sm font-medium text-gray-800"> 총 결제금액 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.symbol3}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <div *ngIf="dataSource.data.length === 0" class="flex h-20" >
+                <div class="text-sm text-charcoal mx-auto mt-10">결제 이력이 없습니다.</div>
+            </div>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+</div>

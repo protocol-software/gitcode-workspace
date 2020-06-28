@@ -1,0 +1,125 @@
+<button mat-icon-button mat-dialog-close class="close-icon" tabindex="-1">
+    <mat-icon>close</mat-icon>
+</button>
+
+<mat-dialog-content>
+    <div class="title mb-8">코드리뷰 요청</div>
+    <div class="mx-8 my-8">
+        <button *ngIf="true" class="btn-pr-reviewing"><img src="/assets/icons/pr-reviewing.svg">코드리뷰 중</button>
+        <button *ngIf="false" class="btn-pr-open"><img src="/assets/icons/pr-open.svg">오픈</button>
+        <button *ngIf="false" class="btn-pr-done"><img src="/assets/icons/pr-done.svg">종료</button>
+        <button *ngIf="false" class="btn-pr-reopen"><img src="/assets/icons/pr-reopen.svg">재오픈</button>
+
+        <div class="font-medium text-base text-charcoal my-3">Ut cillum in mollit velit. Ut aute quis eu sint sit ut incididunt sunt ullamco in mollit deserunt.</div>
+        <div class="flex my-2 items-center">
+            <div class="flex ">
+                <div>
+                    <img src="/assets/icons/avatar-a.svg" class="w-5 mr-2">
+                </div>
+                <div class="flex flex-wrap">
+                    <div class="mr-1 text-sm text-charcoal">Username</div>
+                    <div class="mr-1 text-sm text-gray-500">2020-01-01 00:00</div>
+                    <div class="flex items-center">
+                        <div class="mr-1 font-medium text-xs text-green-600">//Intermediate</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-start mb-2 ml-auto">
+                <button mat-button [matMenuTriggerFor]="beforeMenu" class="flex justify-end items-start " style="padding:0px"><mat-icon class=""  style="margin-left:auto">more_vert</mat-icon></button>
+                <mat-menu #beforeMenu="matMenu" xPosition="before">
+                    <button mat-menu-item (click)="openDialog(1)">코드리뷰 종료</button>
+                    <button mat-menu-item (click)="openDialog(2)">수정</button>
+                    <button mat-menu-item>삭제</button>
+                </mat-menu> <!-- TODO:SPOCK make it exactly same.-->
+            </div>
+        </div>
+    </div>
+    <div class="border-b border-gray-300"></div>
+    <div class="mx-8 my-5 ">
+        <div class="flex">
+            <div class="tag-indigo mr-2">Angular</div>
+            <div class="tag-indigo mr-2">Firebase</div>
+            <div class="tag-indigo mr-2">Java</div>
+        </div>
+        <div>
+            <div class="text-xs font-bold text-charcoal mb-2 mt-5">프로젝트 설명</div>
+            <div clsas="text-sm text-gray-700">Eiusmod esse dolore sunt cillum excepteur laboris fugiat enim elit culpa deserunt incididunt. Commodo deserunt id nostrud proident fugiat id. Ipsum dolore nulla commodo dolore in sit labore in fugiat esse ex aliquip. Magna proident nulla est sunt enim quis duis ullamco mollit. Esse anim et nostrud irure amet culpa eu. Qui adipisicing est tempor ut ullamco dolor veniam. Cupidatat quis ipsum laborum ullamco esse.</div>
+            <div class="text-xs font-bold text-charcoal mb-2 mt-5">코드리뷰 요청사항</div>
+            <div clsas="text-sm text-gray-700">Eiusmod esse dolore sunt cillum excepteur laboris fugiat enim elit culpa deserunt incididunt. Commodo deserunt id nostrud proident fugiat id. Ipsum dolore nulla commodo dolore in sit labore in fugiat esse ex aliquip. Magna proident nulla est sunt enim quis duis ullamco mollit. Esse anim et nostrud irure amet culpa eu. Qui adipisicing est tempor ut ullamco dolor veniam. Cupidatat quis ipsum laborum ullamco esse.</div>
+        </div>
+        <div  class="flex justify-center my-6" *ngIf="false">
+            <button class="btn-gray-400 flex">
+                    <img src="/assets/icons/avatar-github.svg"><div class="pl-2">코드리뷰 참여하기</div>
+            </button>
+        </div>
+        <div class="flex justify-between bg-gray-200 rounded-lg py-3 px-3 my-5">
+            <div class="text-charcoal text-sm">
+                <div class="flex flex-wrap font-bold ">
+                    <div>Username<span class="mr-1">님의</span></div><div class="" > 코드리뷰가 완료되었습니다.</div>
+                </div>
+                <div  style="word-break: keep-all">리뷰 내용을 확인하시고, 평가와 소감을 남겨주세요.</div>
+            </div>
+            <div class="items-center flex">
+                <button class="font-bold text-sm text-charcoal bg-gray-200 border-gray-400 border border-solid rounded py-1 px-2" *ngIf="false">전문가 평가하기</button>
+                <button class="font-bold text-sm text-gray-600 bg-gray-300 border-gray-400 border border-solid rounded py-1 px-2 ml-3 whitespace-no-wrap" *ngIf="true">평가완료</button>
+            </div>
+        </div>
+    </div>
+    <div class="border-t border-b bg-gray-100 border-gray-300 flex px-8 py-2">
+<!--        <div class="mr-5">-->
+<!--            <span class="mr-2 text-xs font-bold text-gray-700 ">Reviewer</span><span class="font-medium text-sm text-blue">38</span>-->
+<!--        </div>-->
+        <div>
+            <span class="mr-2 text-xs font-bold text-gray-700 ">Comment</span><span class="font-medium text-sm text-blue">78</span>
+        </div>
+    </div>
+    <div class="px-8">
+        <div>
+            <div class="flex mt-5">
+                <div class="">
+                    <img class="w-8 h-8 mr-8" src="/assets/icons/avatar-a.svg">
+                </div>
+                <div class="ml-4">
+                    <div class="container border-t border-r border-l border-gray-400 bg-indigo-100 flex items-center px-3">
+                        <div class="font-bold text-sm text-charcoal mr-2 py-2">Username</div>
+                        <span class="text-xs text-gray-600">commented 1hour ago</span>
+                        <div class="ml-auto">
+
+                        </div>
+                    </div>
+                    <div class="border border-gray-400 px-3 py-5 text-sm text-charcoal">By default Tailwind only provides 0 and auto top/right/bottom/left/inset utilities. You can change, add, or remove these by editing the theme.inset section of your tailwind.config.js file.</div>
+                    <div class="my-2 flex">
+                        <div class="flex items-center mr-5">
+                            <img class="icon-reply" src="/assets/icons/reply.svg"><span class="font-medium text-xs text-gray-600">답글달기</span>
+                        </div>
+                        <div class="flex items-center">
+<!--                            <img class="icon-reply" src="/assets/icons/star.svg"><span class="font-medium text-xs text-gray-600 cursor-pointer" (click)="createReviewEvaluate($event)">베스트 리뷰 선정</span>-->
+                            <img class="icon-reply" src="/assets/icons/star.svg">
+                            <span class="font-medium text-xs text-gray-600 cursor-pointer"
+                                  (click)="openDialogBestreview($event)">리뷰 평가하기</span>
+
+                        </div>
+
+<!--                        <ng-template #isBestReview>-->
+<!--                            <div mat-dialog-content >-->
+<!--                                <div class="max-w-sm">-->
+<!--                                    <div class="font-bold text-base text-charcoal  pb-3">코드리뷰 종료</div>-->
+<!--                                    <div>-->
+<!--                                        <div class="text-sm text-charcoal h-20">-->
+<!--                                            코드리뷰의 상태가 종료로 변경되었습니다.-->
+<!--                                        </div>-->
+<!--                                        <div class="text-blue text-sm flex justify-end">-->
+<!--                                            <div class="cursor-pointer" (click)="closePopup($event)">확인</div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </ng-template>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-blue text-sm underline pt-8 pb-10">More</div>
+    </div>
+</mat-dialog-content>
+

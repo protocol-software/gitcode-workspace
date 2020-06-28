@@ -1,0 +1,266 @@
+// -----------------------------------------------------------------------------------------------------
+// @ You can use this file to import custom styles.
+//
+// @ Styles from this file will override anything from 'vendors.scss' file allowing customizations and
+//  modifications of third party libraries.
+// -----------------------------------------------------------------------------------------------------
+.text-charcoal {
+  color:#444A52;
+}
+.text-yellow {
+  color:#F7C243;
+}
+.text-pink {
+  color:#DA507A
+}
+.text-green {
+  color:#C0D99A;
+}
+.text-blue {
+  color:#2E76DF;
+}
+
+
+.bg-charcoal {
+  background:#444A52;
+}
+.bg-yellow {
+  background:#F7C243;
+}
+.bg-pink {
+  background:#DA507A
+}
+.bg-green {
+  background:#C0D99A;
+}
+.bg-blue {
+  background:#2E76DF;
+}
+
+.gitcode-box{
+  background: linear-gradient(180deg, #FAFAFC 0%, #EFF3F6 100%), #EFF3F6;
+  /* Default/gray/400 */
+
+  border: 1px solid #CBD5E0;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.overflow-2line{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-green{
+  background: linear-gradient(180deg, #33CE57 0%, #29AC47 100%);
+  border: 1px solid #2DA449;
+  box-sizing: border-box;
+  border-radius: 4px;
+  color:white!important;
+
+}
+.btn-gray-left{
+  background: linear-gradient(180deg, #FFFFFF 0%, #E2E8F0 100%);
+  box-sizing: border-box;
+}
+
+.btn-gray-400{
+  background: linear-gradient(180deg, #FAFAFC 0%, #EFF3F6 100%), #EFF3F6;
+  border-radius: 4px;
+  display:flex;
+  border: 1px solid #CBD5E0;
+  box-sizing: border-box;
+  height:40px;
+  padding: 10px 20px;
+  img{
+    width:18px;
+    margin-right:5px;
+  }
+}
+.btn-gray-400-2{
+  background: linear-gradient(180deg, #FAFAFC 0%, #EFF3F6 100%), #EFF3F6;
+  border-radius: 4px;
+  display:flex;
+  border: 1px solid #CBD5E0;
+  box-sizing: border-box;
+}
+
+.btn-gray-500{
+  background: #A0AEC0;
+  border-radius: 4px;
+  display:flex;
+  align-items: center;
+  border: 1px solid #CBD5E0;
+  box-sizing: border-box;
+  padding: 3px 10px;
+  img{
+    width:18px;
+    margin-right:5px;
+  }
+}
+.icon-reply{
+ width:18px;
+ height:11.18px;
+  margin-right:5px;
+
+}
+.btn-pr-open{
+  background: #F7C243;
+  border-radius: 5px;
+  display:flex;
+  color:white;
+  height:26px;
+  padding: 3px 10px;
+  img{
+    margin-right:5px;
+    width:14px;
+  }
+  align-items: center;
+}
+.btn-pr-reviewing{
+  background: #2E76DF;
+  border-radius: 5px;
+  display:flex;
+  color:white;
+  height:26px;
+  padding: 3px 10px;
+  img{
+    width:23px;
+    margin-right:5px;
+  }
+  align-items: center;
+}
+
+.btn-pr-done{
+  background: #444A52;
+  border-radius: 5px;
+  display:flex;
+  color:white;
+  height:26px;
+  padding: 3px 10px;
+  img{
+    width:15px;
+    margin-right:5px;
+  }
+  align-items: center;
+}
+.btn-pr-reopen{
+  background: #DA507A;
+  border-radius: 5px;
+  display:flex;
+  color:white;
+  height:26px;
+  padding: 3px 10px;
+  img{
+    width:17px;
+    margin-right:5px;
+  }
+  align-items: center;
+}
+.btn-yellow-full{
+  background: #F7C243;
+  border-radius: 100px;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 12px;
+  order: 1;
+  margin: 0px 0px;
+  padding: 2px 10px;
+  display: flex;
+  align-items: center;
+
+}
+
+.btn-white {
+  /* Auto Layout */
+
+  display: flex;
+  flex-direction: row;
+  padding: 7px 12px;
+  width: 76px;
+  height: 34px;
+
+  /* Default/White */
+
+  background: #FFFFFF;
+  /* Default/gray/400 */
+
+  border: 1px solid #CBD5E0;
+  box-sizing: border-box;
+  border-radius: 4px;
+
+}
+
+.btn-blue-gitcode{
+
+  color:#2E76DF!important;
+  font-weight:bold;
+  height:34px;
+  min-height: 34px!important;
+}
+.tag-indigo {
+  isplay: flex;
+  flex-direction: row;
+  padding: 3px 10px;
+  height: 23px;
+
+  /* default/indigo/100 */
+
+  background: #EBF4FF;
+  border-radius: 100px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  display: flex;
+  align-items: center;
+
+  /* Default/gray/700 */
+
+  color: #4A5568;
+}
+
+.input-indigo-200{
+  /* Default/gray/200 */
+
+  background: #EDF2F7!important;
+
+  border: 1px solid #D1D5DA;
+  box-sizing: border-box;
+  box-shadow: inset 0px 1px 2px rgba(27, 31, 35, 0.25);
+  border-radius: 3px;
+  height:34px;
+}
+
+.input-white{
+  /* Default/gray/200 */
+
+  background: white!important;
+  border: 1px solid #D1D5DA;
+  box-sizing: border-box;
+  box-shadow: inset 0px 1px 2px rgba(27, 31, 35, 0.25);
+  border-radius: 3px;
+  height:34px;
+}
+
+.w-wrapper{
+  width:1200px;
+}
+
+
+body{
+  background:white!important;
+  /* Keyword values */
+  text-size-adjust: none;
+  text-size-adjust: auto;
+
+  /* <percentage> value */
+  text-size-adjust: 80%;
+
+  /* Global values */
+  text-size-adjust: inherit;
+  text-size-adjust: initial;
+  text-size-adjust: unset;
+}

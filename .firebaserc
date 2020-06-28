@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "prod": "gitcode-prod"
+  },
+  "targets": {
+    "gitcode-prod": {
+      "hosting": {
+        "gitcode-prod": [
+          "gitcode-prod"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,203 @@
+<div class="content-layout">
+    <div class="mx-auto md:max-w-6xl container px-3">
+        <!-- Title-->
+        <div class="flex-shrink md:flex  mb-12 mt-12 items-center">
+            <div class="flex mr-16 items-center">
+                <div class="mr-2"><img src="/assets/icons/code-review-icon.svg"></div>
+                <div class="text-center">
+                    <div class="text-xl font-bold">퍼블릭 코드리뷰</div>
+                    <div class="-mt-2 text-base text-gray-500">Public code-review</div>
+                </div>
+            </div>
+            <div class="flex-shrink md:flex mt-5 md:mt-0 text-gray-600 text-base">
+                누구나 참여가 가능한 공개 코드리뷰 공간입니다.<br>리뷰를 원하는 코드를 공유하고 여러 사용자들에게 리뷰를 받아보세요.
+            </div>
+
+        </div>
+        <!-- body -->
+        <div class="  ">
+            <div class="flex justify-between">
+                <div class="flex">
+<!--                    <div>-->
+<!--                        <mat-form-field class="treo-mat-dense mr-3" >-->
+<!--                            <mat-label>Framework</mat-label>-->
+<!--                            <mat-select [formControl]="frameworks" multiple>-->
+<!--                                <mat-select-trigger>-->
+<!--                                    {{frameworks.value ? frameworks.value[0] : ''}}-->
+<!--                                    <span *ngIf="frameworks.value?.length > 1" class="example-additional-selection">-->
+<!--                                    (+{{frameworks.value.length - 1}} {{frameworks.value?.length === 2 ? 'other' : 'others'}})-->
+<!--                                    </span>-->
+<!--                                </mat-select-trigger>-->
+<!--                                <mat-option *ngFor="let framework of frameworksList" [value]="framework">{{framework}}</mat-option>-->
+<!--                            </mat-select>-->
+<!--                        </mat-form-field>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <mat-form-field class="treo-mat-dense mr-3">-->
+<!--                            <mat-label>Language</mat-label>-->
+<!--                            <mat-select [formControl]="toppings" multiple>-->
+<!--                                <mat-select-trigger>-->
+<!--                                    {{toppings.value ? toppings.value[0] : ''}}-->
+<!--                                    <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">-->
+<!--                                    (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})-->
+<!--                                    </span>-->
+<!--                                </mat-select-trigger>-->
+<!--                                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>-->
+<!--                            </mat-select>-->
+<!--                        </mat-form-field>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <mat-form-field class="treo-mat-dense mr-3 ">-->
+<!--                            <mat-label>Database</mat-label>-->
+<!--                            <mat-select [formControl]="toppings" multiple>-->
+<!--                                <mat-select-trigger>-->
+<!--                                    {{toppings.value ? toppings.value[0] : ''}}-->
+<!--                                    <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">-->
+<!--                                    (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})-->
+<!--                                    </span>-->
+<!--                                </mat-select-trigger>-->
+<!--                                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>-->
+<!--                            </mat-select>-->
+<!--                        </mat-form-field>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <mat-form-field class="treo-mat-dense mr-3 " >-->
+<!--                            <mat-label>Status</mat-label>-->
+<!--                            <mat-select [formControl]="listStatuses" multiple [(ngModel)]="isSelectedStatus">-->
+<!--                                <mat-select-trigger>-->
+<!--                                    {{listStatuses.value ? listStatuses.value[0] : ''}}-->
+<!--                                    <span *ngIf="listStatuses.value?.length > 1" class="example-additional-selection">-->
+<!--                                    (+{{listStatuses.value.length - 1}} {{listStatuses.value?.length === 2 ? 'other' : 'others'}})-->
+<!--                                    </span>-->
+<!--                                </mat-select-trigger>-->
+<!--                                <mat-option *ngFor="let listStatus of contentStatusList" [value]="listStatus.key">-->
+<!--                                    {{listStatus.key}}-->
+<!--                                </mat-option>-->
+<!--                            </mat-select>-->
+<!--                        </mat-form-field>-->
+<!--                    </div>-->
+                    <div class="flex items-center mt-2">
+                        <mat-checkbox [(ngModel)]="isOnlyMyPR"></mat-checkbox>
+                        <div>나의 게시물만 보기</div>
+                    </div>
+                </div>
+                <div class="flex items-center" >
+                    <button mat-raised-button (click)="createReview($event)"
+                            class="btn-green text-sm text-white font-bold">
+                        코드리뷰 요청하기
+                    </button>
+                </div>
+            </div>
+            <!--List -->
+            <div class="mt-5 mb-12">
+<!--                <div *ngFor="let item of contentList | async | statusFilter:isSelectedStatus | myPostFilter:isSelectedMyPost | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems}; let no=index;"-->
+                <div *ngFor="let item of contentList | async | myPostFilter:isOnlyMyPR:user?.uid; let no=index;"
+                     class="flex-shrink md:flex mb-3 p-5 border-gray-300 border rounded-md cursor-pointer"
+                    (click)="openReviewDetail($event, item)">
+                    <div class="md:w-8/12 md:mb-0 mb-2">
+                        <div class="flex">
+                            <div class="text-base text-charcoal font-medium">
+                                {{ (no + 1) }}. {{ item.title }}
+                            </div>
+                            <div class="ml-2 flex items-center" [ngSwitch]="item.state">
+                                <button *ngSwitchCase="'reviewing'" class="btn-pr-reviewing">
+                                    <img src="/assets/icons/pr-reviewing.svg">코드리뷰 중
+                                </button>
+                                <button *ngSwitchCase="'open'" class="btn-pr-open">
+                                    <img src="/assets/icons/pr-open.svg">오픈
+                                </button>
+                                <button *ngSwitchCase="'closed'" class="btn-pr-done">
+                                    <img src="/assets/icons/pr-done.svg">종료
+                                </button>
+                                <button *ngSwitchCase="'reopened'" class="btn-pr-reopen">
+                                    <img src="/assets/icons/pr-reopen.svg">재오픈
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div *ngFor="let tagItem of item.tags "
+                                 class="bg-indigo-100 text-gray-700 text-xs font-medium py-1 px-2 rounded-full mr-2 mt-2">
+                                <div>{{ tagItem }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                    <div *ngFor="let reviewer of filterItemOfType(item.postId)" ></div>-->
+                    <div class="md:w-4/12 flex items-center">
+                        <!-- begin author-->
+                        <div class="flex w-1/2">
+                            <div class="pr-2"><img class="w-10" src="{{item.author.photoURL}}"></div>
+                            <div>
+                                <div class="text-xs text-gray-600 font-medium">저자</div>
+                                <div class="font-medium text-base text-charcoal">{{item.author.displayName}}</div>
+                            </div>
+                        </div>
+                        <!-- begin reviewer-->
+                        <div class="md:pl-10 pl-0 md:mr-5 w-1/2 text-center">
+                            <!-- begin status: 0 person-->
+                            <div *ngIf="item.reviewers?.length === 0">
+                                <div class="w-4 mx-auto"><img src="/assets/icons/avatar-github.svg"></div>
+                                <div class="text-xs text-charcoal mt-1">코드리뷰를 기다립니다.</div>
+                            </div>
+                            <!-- begin status: 1 person-->
+                            <div *ngIf="item.reviewers?.length === 1">
+                                <div *ngFor="let reviewer of item.reviewers" class="flex">
+                                    <!-- begin status: best true-->
+                                    <div class="flex" *ngIf="reviewer.isBestReviewer === true; else isElse">
+                                        <div class="pr-2 relative">
+                                            <img class="absolute top-0 -mt-3 -ml-3 w-8" src="/assets/icons/badge-best.svg">
+                                            <img class="w-10" src="{{reviewer.photoUrl}}" *ngFor="let reviewer of item.reviewers">
+                                        </div>
+                                        <div>
+                                            <div class="text-xs text-blue font-medium">베스트 리뷰어</div>
+                                            <div class="font-medium text-base text-charcoal">{{reviewer.name}}</div>
+                                        </div>
+                                    </div>
+                                    <!-- begin status: false -->
+                                    <ng-template #isElse>
+                                        <div class="flex">
+                                            <div class="pr-2"><img class="w-10" src="{{reviewer.photoUrl}}"></div>
+                                            <div>
+                                                <div class="text-xs text-gray-600 font-medium">리뷰어</div>
+                                                <div class="font-medium text-base text-charcoal">{{reviewer.name}}</div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </div>
+                            </div>
+                            <!-- begin status:over 2 people-->
+                            <div *ngIf="item.reviewers?.length > 1">
+                                <div class="flex">
+                                    <div class="" *ngFor="let reviewer of item.reviewers; let i = index">
+                                        <div *ngIf="i < 5" class="w-10 -mr-5">
+                                            <div>
+                                                <img src="{{reviewer.photoUrl}}" class="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-xs text-pink flex items-end ml-8">
+                                        <div>+</div>
+                                        <div>{{item.reviewers.length}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+<!--                <gitcode-pagination (pageChange)="pageChange($event)"></gitcode-pagination>-->
+            </div>
+
+            <div class="text-center md:h-64 md:my-24 flex items-center justify-center text-gray-600 text-sm font-medium" *ngIf="hasContent === false">
+                <div>
+                    아직 등록된 코드리뷰 요청이 없습니다.<br>
+                    첫번째 코드리뷰 요청의 주인공이 되어보세요.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--TODO FILTER  -->
+<!--TODO REQUEST -->
+<!--TODO Checkbox-->

@@ -1,0 +1,97 @@
+@import 'treo';
+
+.Line-Absolute-Center {
+  display: flex; // make us of Flexbox
+  align-items: center; // does vertically center the desired content
+  justify-content: center; // horizontally centers single line items
+  text-align: center; // optional, but helps horizontally center text that breaks into multiple lines
+  background:linear-gradient(#53f0ef 0%,#1DB5B5 100%);
+  transform: rotate(90deg);
+  width: 180px;
+  height: 1px;
+  stroke-linecap: round;
+}
+.Line2 {
+  background:linear-gradient(#20C6C6 0%,#169393 100%);
+  transform: rotate(90deg);
+  width: 180px;
+  height: 1px;
+}
+
+.Line {
+
+  background:linear-gradient(#1DB5B5 0%,#08A9A9 100%);
+  width: 224px;
+  height: 1px;
+}
+
+
+.pr-button {
+  background: linear-gradient(116.78deg, #EBF4FF 0.63%, #CDE2FF 100%);
+  border-radius: 5px;
+
+}
+
+.bg01{
+  @media (min-width:768px) {height:700px!important;}
+  height:450px!important;
+}
+
+._bggray{
+  @media (min-width:768px) {
+    height:900px!important;
+    background-image : url(/assets/images/how-it-works-bg-gray.svg);
+  }
+  height:450px!important;
+  background-image : none;
+}
+._bggray2{
+  @media (min-width:768px) {
+    background-image : none;
+  }
+
+  width:365px;
+  max-width: 365px;
+  min-width: 365px;
+  background-image : url(/assets/images/how-it-works-bg-gray.svg);
+
+}
+
+.__heading-animation-container{
+
+}
+
+.__heading-animation{
+  position: relative;
+  animation: heading;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+@keyframes heading{
+  0% {top: -200px}
+  100% {top: 0px}
+}
+
+.__content-animation{
+  position: relative;
+  animation-name: content;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes content {
+  0% {bottom: -500px}
+  100% {bottom: 0px;}
+}
+
+.fade-in {
+  animation: fadeIn ease 2s;
+  -webkit-animation: fadeIn ease 0.5s;
+  -moz-animation: fadeIn ease 0.5s;
+  -o-animation: fadeIn ease 0.5s;
+  -ms-animation: fadeIn ease 0.5s;
+}
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}

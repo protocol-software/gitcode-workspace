@@ -1,0 +1,143 @@
+@import 'treo';
+
+user {
+    display: flex;
+    align-items: center;
+
+    .avatar {
+        position: relative;
+
+        img {
+            width: 30px;
+            min-width: 30px;
+            height: 30px;
+            min-height: 30px;
+            border-radius: 10%;
+        }
+
+        .mat-icon {
+
+            + .status {
+                right: 0;
+                bottom: 2px;
+            }
+        }
+
+        .status {
+            position: absolute;
+            right: -1px;
+            bottom: -1px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+    }
+
+    .info {
+        display: flex;
+        align-items: center;
+        margin-left: 12px;
+        overflow: hidden;
+
+        .name {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            line-height: 1;
+        }
+
+        .menu {
+            margin-left: 4px;
+            height: 20px;
+            min-height: 20px;
+            max-height: 20px;
+
+            .mat-icon {
+                @include treo-icon-size(20);
+            }
+        }
+    }
+    .icon-button{
+        mat-icon {color:white!important;}
+    }
+}
+
+.user-actions-menu {
+
+    .user-info {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+
+        .email {
+            margin-top: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+    }
+}
+
+.user-status-menu {
+
+    .status {
+        width: 16px;
+        height: 16px;
+        margin-right: 12px;
+        border-radius: 50%;
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Theming
+// -----------------------------------------------------------------------------------------------------
+@include treo-theme {
+
+    $background: map-get($theme, background);
+
+    user {
+
+        .avatar {
+
+            .status {
+
+                &.online {
+                    background: treo-color('green', 500);
+                }
+
+                &.away {
+                    background: treo-color('orange', 500);
+                }
+
+                &.busy {
+                    background: treo-color('red', 500);
+                }
+
+                &.not-visible {
+                    background: treo-color('cool-gray', 400);
+                }
+            }
+        }
+    }
+
+    .user-status-menu {
+
+        .status {
+
+            &.online {
+                background: treo-color('green', 500);
+            }
+
+            &.away {
+                background: treo-color('orange', 500);
+            }
+
+            &.busy {
+                background: treo-color('red', 500);
+            }
+
+            &.not-visible {
+                background: treo-color('cool-gray', 400);
+            }
+        }
+    }
+}

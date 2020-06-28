@@ -1,0 +1,88 @@
+<!-- Navigation -->
+<treo-vertical-navigation class="bg-cool-gray-900 theme-dark"
+                         *ngIf="isScreenSmall"
+                         [appearance]="'classic'"
+                         [mode]="'over'"
+                         [name]="'mainNavigation'"
+                         [navigation]="data?.navigation.default"
+                         [opened]="false">
+
+    <div treoVerticalNavigationContentHeader>
+        <div class="logo">
+            <img src="assets/images/logo/logo-text-on-dark.svg" routerLink="/">
+        </div>
+    </div>
+
+</treo-vertical-navigation>
+
+<!-- Wrapper -->
+<div class="wrapper">
+
+    <!-- Header -->
+    <div class="w-full bg-black">
+        <div class="header mx-auto" >
+
+        <!-- Logo -->
+        <div class="logo cursor-pointer pt-5" routerLink="/">
+            <img class="logo-text"
+                 src="assets/images/logo/logo-text.svg">
+            <img class="logo-text-on-dark"
+                 src="assets/images/logo/logo-text-on-dark.svg">
+            <img class="logo-base"
+                 src="assets/images/logo/logo.svg">
+
+            <img class="beta"
+                 src="assets/images/logo/gitcode-beta.png">
+        </div>
+
+
+        <!-- Horizontal navigation -->
+        <treo-horizontal-navigation class="pt-5" *ngIf="!isScreenSmall"
+                                    [name]="'mainNavigation'"
+                                    [navigation]="data?.navigation.horizontal"></treo-horizontal-navigation>
+
+        <div class="spacer"></div>
+
+        <div *ngIf="authenticated">
+            <messages [messages]="data?.messages"></messages>
+            <notifications [notifications]="data?.notifications"></notifications>
+        </div>
+
+        <user class="pt-5"></user>
+
+        <!-- Navigation toggle button -->
+        <button class="navigation-toggle-button"
+                *ngIf="isScreenSmall"
+                mat-icon-button
+                (click)="toggleNavigation('mainNavigation')">
+            <mat-icon [svgIcon]="'menu'"></mat-icon>
+        </button>
+    </div>
+    </div>
+
+    <div class="content" style="">
+
+        <!-- *ngIf="true" hack is required here for router-outlet to work correctly. Otherwise,
+             it won't register the changes on the layout and won't update the view. -->
+        <router-outlet *ngIf="true"></router-outlet>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-gray-200" *ngIf="_router.url!='/home'">
+        <div class="mx-auto text-center px-2 py-10">
+            <div class="mb-3 text-charcoal">GitCode &copy; {{currentYear}} All Right Reserved</div>
+<!--            <div class="flex-shrink lg:flex justify-center text-gray-600">-->
+<!--                <div class="mr-1">테크로드 | 사업자등록번호: 156-14-01139 </div>-->
+<!--                <div> | 대표자명: 조중현 |</div>-->
+<!--            </div>-->
+<!--            <div class="flex-shrink lg:flex justify-center text-gray-600">-->
+<!--                <div>서울특별시 강남구 역삼로 215, 2층 | </div>-->
+<!--                <div>개인정보보호책임: 조중현 | 고객센터: help@gitcode.dev</div>-->
+<!--            </div>-->
+        </div>
+    </div>
+    <div class="bg-gray-200" *ngIf="_router.url=='/home'">
+
+    </div>
+</div>

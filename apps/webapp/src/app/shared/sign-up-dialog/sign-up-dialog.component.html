@@ -1,0 +1,141 @@
+<button mat-icon-button mat-dialog-close class="close-icon" tabindex="-1">
+  <mat-icon>close</mat-icon>
+</button>
+
+<mat-dialog-content>
+  <!-- TODO-SPOCK 회원가입 타이틀 bold 빼야함, 닫기버튼 강조해야함, 수정하려면 tailwinds 로안되고 css수정해야함 -->
+  <div class="title" [innerHtml]="'signUpDialog.title' | translate"></div>
+  <div *ngIf="!isSignupComplete; else isSignupCompleteElse">
+    <div class="content">
+      <form [formGroup]="formGroup" (ngSubmit)="onFormSubmit($event, formGroup.value)" class="mt-8">
+  
+      <div class="w-full border bg-indigo-100 py-3 text-center rounded border-indigo-200 text-sm">
+        <div>
+          <span class="font-bold text-base">gitcode</span>
+          <span> 에 아직 가입하지 않으셨군요!</span>
+        </div>
+        <div>
+          서비스 이용을 위해서 회원으로 가입해주세요.
+        </div>
+      </div>
+      <div class="text-black mt-5 mb-2 rounded text-sm">이메일 주소를 입력하고 인증해주세요.</div>
+      <div class="flex">
+        <mat-form-field class="treo-mat-dense treo-mat-no-subscript w-9/12 mr-1">
+          <input matInput formControlName="email" placeholder="Ex. steve@wozniak.com" class="border rounded py-1 leading-loose pl-3">
+        </mat-form-field>
+        <button type="button" class="border rounded text-blue-600 font-bold w-3/12 text-center py-1 leading-loose cursor-pointer" 
+          *ngIf="!isEmailSending; else isEmailSendingElse"
+          (click)="sendOtp($event)">
+          인증코드발송
+        </button>
+        <ng-template #isEmailSendingElse>
+          <button type="button" class="border rounded text-gray-600 font-bold w-3/12 text-center py-1 leading-loose cursor-pointer">
+            발송중...
+          </button>
+        </ng-template>
+      </div>
+      <div *ngIf="inputEmailErrMsg">
+        <small class="text-red-600">{{ inputEmailErrMsg }}</small>
+      </div>
+      <div class="text-black mt-8 mb-2 rounded text-sm">인증번호를 입력해주세요.</div>
+      <div class="flex" *ngIf="!isValidatedEmail; else isValidatedEmailElse">
+        <mat-form-field class="treo-mat-dense treo-mat-no-subscript w-8/12 mr-1">
+          <input matInput formControlName="otpCode" placeholder="인증번호 입력" class="border rounded py-1 leading-loose pl-3">
+        </mat-form-field>
+        <button type="button" class="border rounded text-gray-600 font-bold w-2/12 text-center py-1 leading-loose cursor-pointer"           
+          (click)="verifyOtp($event)">
+          확인
+        </button>        
+      </div>
+      <ng-template #isValidatedEmailElse>
+        <div class="flex">
+          <mat-form-field class="treo-mat-dense treo-mat-no-subscript w-8/12 mr-1">
+            <input matInput formControlName="otpCode" placeholder="인증번호 입력" class="border rounded py-1 leading-loose pl-3" disabled>
+          </mat-form-field>
+          <button type="button" class="border rounded bg-blue-500 text-white font-bold w-4/12 text-center py-1 leading-loose cursor-pointer">
+            인증완료
+          </button>
+        </div>        
+      </ng-template>
+      <div *ngIf="inputCodeErrMsg">
+        <small class="text-red-600">{{ inputCodeErrMsg }}</small>
+      </div>
+      <div class="mt-5">
+        <div class="text-gray-900">인증번호의 유효시간은 {{ otpValidWaiting }}분입니다.
+          <span class="text-gray-400 ml-3 mr-5" *ngIf="!timerTxt; else timerTxtElse">00:00</span>
+          <ng-template #timerTxtElse>
+            <span class="text-blue-600 ml-3 mr-5">{{ timerTxt }}</span>
+          </ng-template>
+          <span class="text-blue-600 underline" (click)="sendOtp($event)">
+            인증코드 재발송
+          </span>
+        </div>
+      </div>
+      <div class="mt-5 mb-5 flex">
+        <div class="mr-2 mt-1 text-sm">
+          <img src="/assets/icons/information-gitcode.svg">
+        </div>
+        <div>
+          <div class="text-gray-900  mb-1">만약 인증 메일이 오지 않는다면?</div>
+          <div class="text-gray-600">스팸 메일함을 확인해보세요.<br>메일링 서비스에 따라 스팸메일로 분류될 수 있습니다.</div>
+        </div>
+      </div>
+        <h4 [innerHtml]="'signUpDialog.agreementTitle' | translate" class="text-sm mb-3"></h4>
+        <div class="flex items-center mx-auto">
+          <button class="bg-blue-500 border-gray-400 rounded border py-1 w-8/12 text-sm text-white mr-2 pl-5 flex " *ngIf="isAgreeUsePolicy; else isAgreeUsePolicyElse"
+          (click)="isAgreeUsePolicy=!isAgreeUsePolicy">
+            <mat-icon class="mr-1 text-gray-500" style="color:white">check</mat-icon>          
+            <div>서비스 이용약관에 동의합니다.</div>
+          </button>        
+          <ng-template #isAgreeUsePolicyElse>
+            <button type="button" class="border-gray-400 rounded border py-1 w-8/12 text-sm text-gray-400 mr-2 pl-5 flex "
+            (click)="isAgreeUsePolicy=!isAgreeUsePolicy">
+              <mat-icon class="mr-1 text-gray-500" style="color:#cbd5e0">check</mat-icon>
+              <div>서비스 이용약관에 동의합니다.</div>
+            </button>
+          </ng-template>        
+          <div class="underline text-blue-600 w-4/12 text-xs cursor-pointer" (click)="displayTerms($event)">서비스 이용약관 보기</div>
+        </div>      
+        <div class="flex items-center mx-auto mt-2">
+          <button type="button" class="bg-blue-500 border-gray-400 rounded border py-1 w-8/12 text-sm text-white mr-2 pl-5 flex " 
+            *ngIf="isAgreePersonPolicy; else isAgreePersonPolicyElse"
+            (click)="isAgreePersonPolicy=!isAgreePersonPolicy">
+            <mat-icon class="mr-1 text-gray-500" style="color:white">check</mat-icon>          
+            <div>개인정보취급방침에 동의합니다.</div>
+          </button>
+          <ng-template #isAgreePersonPolicyElse>
+            <button type="button" class="border-gray-400 rounded border py-1 w-8/12 text-sm text-gray-400 mr-2 pl-5 flex "
+            (click)="isAgreePersonPolicy=!isAgreePersonPolicy">
+              <mat-icon class="mr-1 text-gray-500" style="color:#cbd5e0">check</mat-icon>
+              <div>개인정보취급방침에 동의합니다.</div>
+            </button>
+          </ng-template>                
+          <div class="underline text-blue-600 w-4/12 text-xs cursor-pointer" (click)="displayPolicy($event)">개인정보취급방침 보기</div>
+        </div>
+      </form>
+    </div>
+    <div>
+      <button type="button" class="bg-gray-400 text-white text-center py-6 w-full" 
+        *ngIf="!(isValidatedEmail && isAgreeUsePolicy && isAgreePersonPolicy) else isReadySignupElse">가입하기</button>
+      <ng-template #isReadySignupElse>
+        <button type="button" class="bg-gray-700 text-white text-center py-6 w-full"
+        (click)="signUpUserData($event)">가입하기</button>
+      </ng-template>  
+    </div>
+  </div>  
+  <ng-template #isSignupCompleteElse>
+    <div class="container">
+      <div class="mx-auto pt-20 pb-20 text-center">
+        <div class="text-charcoal text-4xl font-bold pb-3 pt-3">
+          GitCode
+        </div>
+        <div class="text-charcoal">회원가입이 완료되었습니다!</div>
+        <div class="text-charcoal">감사합니다.</div>
+        <button type="button" class="gitcode-box text-charcoal w-1/3 mx-auto mt-5 py-1"
+          (click)="closePopup($event)">
+          GitCode에서 자주 만나요!
+        </button>
+      </div>
+    </div>
+  </ng-template>  
+</mat-dialog-content>

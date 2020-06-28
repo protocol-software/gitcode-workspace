@@ -1,0 +1,107 @@
+<!--<h1 mat-dialog-title>Hi {{data.name}}</h1>-->
+<!--<div mat-dialog-content>-->
+<!--    <p>What's your favorite animal?</p>-->
+<!--    <mat-form-field>-->
+<!--        <mat-label>Favorite Animal</mat-label>-->
+<!--        <input matInput [(ngModel)]="data.animal">-->
+<!--    </mat-form-field>-->
+<!--</div>-->
+<!--<div mat-dialog-actions>-->
+<!--    <button mat-button (click)="onNoClick()">No Thanks</button>-->
+<!--    <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>-->
+<!--</div>-->
+<div class="flex justify-end">
+    <button mat-dialog-close class="close-icon" tabindex="-1">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<div mat-dialog-content *ngIf="!isTrue; else isTrueElse">
+    <div class="max-w-sm">
+        <div class="font-bold text-base text-charcoal  pb-3">코드리뷰 종료</div>
+        <div>
+            <div class="text-sm text-charcoal h-20">
+                종료 이후에도 필요에 따라 재오픈 할 수 있습니다.<br>
+                이 코드리뷰를 종료 상태로 변경하시겠어요?
+            </div>
+            <div class="text-blue text-sm flex justify-end">
+                <div class="mr-3 cursor-pointer" (click)="confirmBox($event)">확인</div>
+                <div class="cursor-pointer">취소</div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #isTrueElse>
+    <div mat-dialog-content >
+        <div class="max-w-sm">
+            <div class="font-bold text-base text-charcoal  pb-3">코드리뷰 종료</div>
+            <div>
+                <div class="text-sm text-charcoal h-20">
+                    코드리뷰의 상태가 종료로 변경되었습니다.
+                </div>
+                <div class="text-blue text-sm flex justify-end">
+                    <div class="cursor-pointer" (click)="closePopup($event)">확인</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<!--<div mat-dialog-content >-->
+<!--    <div class="max-w-sm">-->
+<!--        <div class="font-bold text-base text-charcoal  pb-3">재오픈</div>-->
+<!--        <div>-->
+<!--            <div class="text-sm text-charcoal h-20">-->
+<!--               이 코드리뷰를 재오픈 할까요?-->
+<!--            </div>-->
+<!--            <div class="text-blue text-sm flex justify-end">-->
+<!--                <div class="mr-3">확인</div>-->
+<!--                <div>취소</div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div mat-dialog-content >-->
+<!--    <div class="max-w-sm">-->
+<!--        <div class="font-bold text-base text-charcoal  pb-3">재오픈</div>-->
+<!--        <div>-->
+<!--            <div class="text-sm text-charcoal h-20">-->
+<!--               코드리뷰요청이 재 오픈되었습니다.-->
+<!--            </div>-->
+<!--            <div class="text-blue text-sm flex justify-end">-->
+<!--                <div class="">확인</div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div mat-dialog-content >-->
+<!--    <div class="max-w-sm">-->
+<!--        <div class="font-bold text-base text-charcoal  pb-3">삭제</div>-->
+<!--        <div>-->
+<!--            <div class="text-sm text-charcoal h-20">-->
+<!--               삭제시 코드리뷰 요청 목록에서 삭제되며 기존 데이터는<br>-->
+<!--               저장되지않습니다.<br>-->
+<!--                이 코드리뷰를 삭제하시겠습니까?-->
+<!--            </div>-->
+<!--            <div class="text-blue text-sm flex justify-end">-->
+<!--                <div class="mr-3">확인</div>-->
+<!--                <div>취소</div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div mat-dialog-content >-->
+<!--    <div class="max-w-sm">-->
+<!--        <div class="font-bold text-base text-charcoal  pb-3">삭제</div>-->
+<!--        <div>-->
+<!--            <div class="text-sm text-charcoal h-20">-->
+<!--               삭제가 완료되었습니다.-->
+<!--            </div>-->
+<!--            <div class="text-blue text-sm flex justify-end">-->
+<!--                <div class="">확인</div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+

@@ -1,0 +1,295 @@
+@import 'animations';
+@import "media-queries";
+
+@mixin flex-column($align: stretch) {
+  display: flex;
+  flex-direction: column;
+  align-items: $align;
+  justify-content: flex-start;
+}
+
+@mixin flex-row($align: stretch) {
+  display: flex;
+  flex-direction: row;
+  align-items: $align;
+  justify-content: flex-start;
+}
+
+@mixin flex-row-inline($align: stretch) {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: $align;
+  justify-content: flex-start;
+}
+
+@mixin flex-center() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin box-shadow-default() {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+@mixin box-shadow-down-white() {
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
+}
+
+@mixin box-shadow-right() {
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.12);
+}
+
+@mixin translate-y-hide($delay: .225s) {
+  visibility: hidden;
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(-2em);
+  transform-origin: top;
+  z-index: -1;
+  transition: all $delay ease-in-out 0s, visibility 0s linear $delay, z-index 0s linear 0.01s;
+}
+
+@mixin translate-y-show($delay: .225s) {
+  visibility: visible;
+  opacity: 1;
+  max-height: 999px;
+  transform: translateY(0%);
+  transform-origin: top;
+  z-index: 1;
+  transition-delay: 0s, 0s, $delay;
+}
+
+@mixin translate-x-hide($delay: .225s) {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(-2em);
+  z-index: -1;
+  transition: all $delay ease-in-out 0s, visibility 0s linear $delay, z-index 0s linear 0.01s;
+}
+
+@mixin translate-x-show($delay: .225s) {
+  visibility: visible;
+  opacity: 1;
+  z-index: 1;
+  transform: translateX(0%);
+  transition-delay: 0s, 0s, $delay;
+}
+
+@mixin collapsible-hide() {
+  height: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform .225s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@mixin collapsible-show() {
+  height: auto;
+  transform: scaleY(1);
+}
+
+@mixin pseudo-arrow-base($color: currentColor) {
+  font-family: "Material Icons";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: .5em;
+  font-size: 1.25em;
+  transform: translateZ(0);
+  color: $color;
+  opacity: .54;
+}
+
+@mixin pseudo-arrow-base-animation() {
+  animation-duration: .3s, 1.5s;
+  animation-delay: 0s, .3s;
+  animation-timing-function: ease-out, ease-in-out;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: forwards;
+  animation-direction: normal, alternate;
+}
+
+@mixin pseudo-arrow-down($color: currentColor) {
+  @include pseudo-arrow-base($color);
+  content: "\E313";
+}
+
+@mixin pseudo-arrow-down-animation() {
+  @include pseudo-arrow-base-animation();
+  animation-name: hvr-icon-hang-sink, hvr-icon-hang;
+}
+
+@mixin pseudo-arrow-left($color: currentColor) {
+  @include pseudo-arrow-base($color);
+  content: "\E314";
+}
+
+@mixin pseudo-arrow-right($color: currentColor) {
+  @include pseudo-arrow-base($color);
+  content: "\E315";
+}
+
+@mixin pseudo-arrow-up($color: currentColor) {
+  @include pseudo-arrow-base($color);
+  content: "\E316";
+}
+
+@mixin pseudo-arrow-up-animation() {
+  @include pseudo-arrow-base-animation();
+  animation-name: hvr-icon-bob-float, hvr-icon-bob;
+}
+
+@mixin max-lines($value) {
+  display: -webkit-box;
+  -webkit-line-clamp: $value;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin pseudo-overlay() {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .8);
+}
+
+@mixin truncate($width: 100%) {
+  display: inline-block;
+  width: $width;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+@mixin fit-image($object-fit: cover) {
+  width: 100%;
+  height: 100%;
+  object-fit: $object-fit;
+}
+
+@mixin full-page($background-color: transparent) {
+  @include flex-column();
+  min-height: 100vh;
+  background-color: $background-color;
+}
+
+@mixin child-page($background-color: transparent) {
+  @include flex-column();
+  //min-height: 100vh;
+  margin-top: -56px;
+  padding-top: 56px;
+  background-color: $background-color;
+
+  @media #{$medium-up} {
+    margin-top: -64px;
+    padding-top: 64px;
+  }
+}
+
+@mixin arrow-up($color: CurrentColor, $size: 5px) {
+  width: 0;
+  height: 0;
+  border-left: $size solid transparent;
+  border-right: $size solid transparent;
+  border-bottom: ($size * 1.5) solid $color;
+}
+
+@mixin arrow-down($color: CurrentColor, $size: 5px) {
+  width: 0;
+  height: 0;
+  border-left: $size solid transparent;
+  border-right: $size solid transparent;
+  border-top: ($size * 1.5) solid $color;
+}
+
+@mixin arrow-left($color: CurrentColor, $size: 5px) {
+  width: 0;
+  height: 0;
+  border-top: $size solid transparent;
+  border-right: $size solid transparent;
+  border-bottom: ($size * 1.5) solid $color;
+}
+
+@mixin arrow-right($color: CurrentColor, $size: 5px) {
+  width: 0;
+  height: 0;
+  border-top: $size solid transparent;
+  border-left: $size solid transparent;
+  border-bottom: ($size * 1.5) solid $color;
+}
+
+@mixin expand-height($height, $unit) {
+  $unitName: $unit;
+  @if $unitName == '%' {
+    $unitName: 'p'
+  }
+
+  @keyframes expand-height-#{$unitName}-#{$height} {
+    0% {
+      height: 0;
+    }
+
+    50% {
+      height: #{$height * 1.1}#{$unit};
+    }
+
+    75% {
+      height: #{$height * .9}#{$unit};
+    }
+
+    100% {
+      height: #{$height}#{$unit};
+    }
+  }
+
+  animation: expand-height-#{$unitName}-#{$height} .75s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@mixin key-values {
+  @include flex-column();
+
+  .key-value {
+    @include flex-column();
+    margin: .25rem 0;
+
+    .key {
+      font-size: .7em;
+      font-weight: 300;
+    }
+  }
+
+  &.horizontal {
+    .key-value {
+      @include flex-row(center);
+      justify-content: space-between;
+
+      .key {
+        font-size: .85em;
+      }
+    }
+  }
+}
+
+@mixin responsive-grid-fill($min-width, $max-width: 1fr, $grid-gap: 1rem) {
+  --auto-grid-min-size: #{$min-width};
+  --auto-grid-max-size: #{$max-width};
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), var(--auto-grid-max-size)));
+  grid-gap: $grid-gap;
+}
+
+@mixin responsive-grid-fit($min-width, $max-width: 1fr, $grid-gap: 1rem) {
+  --auto-grid-min-size: #{$min-width};
+  --auto-grid-max-size: #{$max-width};
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--auto-grid-min-size), var(--auto-grid-max-size)));
+  grid-gap: $grid-gap;
+}

@@ -1,0 +1,25 @@
+// -----------------------------------------------------------------------------------------------------
+// @ Use this file to access to the core Angular Material and Treo utilities
+// -----------------------------------------------------------------------------------------------------
+
+// 1. Angular Material theming tools
+@import '~@angular/material/theming';
+
+// 2. Utilities
+@import '../tailwind/exported/variables';
+@import 'utilities/theming';
+@import 'utilities/breakpoints';
+@import 'utilities/colors';
+@import 'utilities/elevations';
+@import 'utilities/icons';
+@import 'utilities/keyframes';
+
+// 3. Themes definition file that includes $treo-themes map
+@import '../../styles/themes';
+
+
+@import 'gitcode-custom/functions';
+@import 'gitcode-custom/media-queries';
+@import 'gitcode-custom/mixins';
+@import 'gitcode-custom/utilities';
+@import 'gitcode-custom/dialog';

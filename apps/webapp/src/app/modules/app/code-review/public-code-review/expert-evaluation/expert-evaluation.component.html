@@ -1,0 +1,64 @@
+<button mat-icon-button mat-dialog-close class="close-icon" tabindex="-1">
+    <mat-icon>close</mat-icon>
+</button>
+
+<mat-dialog-content>
+    <div class="title mb-8">리뷰 평가</div>
+    <div class="m-8 ">
+        <div class="text-charcoal text-sm font-medium">Gitcode에서 만족할만한 리뷰를 받으셨나요?</div>
+        <div class="text-charcoal text-sm ">코드리뷰를 받은 소감과 리뷰에 대한 평가를 남겨주세요.</div>
+        <div class="mt-8">
+            <div>
+                <div class="flex ">
+                    <span class="text-pink text-xs font-bold">Q1</span><span class="font-bold text-xs text-charcoal">리뷰 요청 시 남겨주신 요청사항에 만족하는 리뷰를 받았나요?</span>
+                </div>
+                <div class="mt-5 text-charcoal text-xs">
+                    <mat-radio-group aria-label="Select an option" >
+                        <mat-radio-button value="1" class="mr-2">매우 만족</mat-radio-button>
+                        <mat-radio-button value="2" class="mr-2">대체로 만족</mat-radio-button>
+                        <mat-radio-button value="3" class="mr-2">보통</mat-radio-button>
+                        <mat-radio-button value="4" class="mr-2">약간 부족</mat-radio-button>
+                        <mat-radio-button value="5">매우 부족</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8">
+            <div>
+                <div class="flex ">
+                    <span class="text-pink text-xs font-bold">Q2</span><span class="font-bold text-xs text-charcoal">리뷰 내용은 얼마나 상세했나요?</span>
+                </div>
+                <div class="mt-5 text-charcoal text-xs">
+                    <mat-radio-group aria-label="Select an option" >
+                        <mat-radio-button value="1" class="mr-2">매우 만족</mat-radio-button>
+                        <mat-radio-button value="2" class="mr-2">대체로 만족</mat-radio-button>
+                        <mat-radio-button value="3" class="mr-2">보통</mat-radio-button>
+                        <mat-radio-button value="4" class="mr-2">약간 부족</mat-radio-button>
+                        <mat-radio-button value="5">매우 부족</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8">
+            <div>
+                <div class="flex ">
+                    <span class="text-pink text-xs font-bold">Q3</span><span class="font-bold text-xs text-charcoal">코드리뷰에 대해서 남겨주실 말씀이 있다면 자유롭게 작성해주세요.</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <mat-form-field [style.fontSize]="14" class="max-w-md mt-5" style="width:463px;">
+                    <textarea matInput
+                              cdkTextareaAutosize
+                              #autosize="cdkTextareaAutosize"
+                              cdkAutosizeMinRows="1"
+                              cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="mt-8 flex justify-end">
+            <button class="btn-green py-2 px-3 w-20" (click)="confirmExpert()">평가 완료</button>
+        </div>
+    </div>
+
+</mat-dialog-content>
+

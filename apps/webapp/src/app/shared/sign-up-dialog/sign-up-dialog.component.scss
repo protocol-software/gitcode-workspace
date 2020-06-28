@@ -1,0 +1,44 @@
+@import 'treo';
+
+h4 {
+  color: black;
+
+  &:not(:first-of-type) {
+    margin-top: 2rem;
+  }
+}
+
+.form-control-alert {
+  font-size: .8em;
+  //color: $google-red;
+  padding: .5em 0 0 2em;
+}
+
+.form-actions {
+  @include flex-row(center);
+  justify-content: space-around;
+  padding-top: 2rem;
+
+  button.form-action {
+    font-size: rem(14px);
+
+    img {
+      height: 24px;
+      width: 24px;
+      object-fit: contain;
+      margin-right: .5rem;
+    }
+  }
+}
+
+::ng-deep .mat-checkbox-label {
+  white-space: normal;
+  line-height: initial;
+
+  @media #{$medium-up} {
+    line-height: 24px;
+  }
+}
+
+:host(.sign-up-dialog) {
+}

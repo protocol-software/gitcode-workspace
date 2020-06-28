@@ -1,0 +1,79 @@
+<!--screen over md-->
+<div class="" *ngIf="true">
+    <div *ngFor="let cateItem of categoryOptions" >
+        <div class="text-base text-gray-800 font-medium mb-2">
+            {{ cateItem.name }}
+        </div>
+        <div class="mb-5 cursor-pointer">
+            <div *ngFor="let subCateItem of cateItem.subCategoryList" class="cursor-pointer">
+                <div class="rounded-l text-white text-base bg-blue font-medium w-48 py-1 px-3 flex whitespace-no-wrap justify-between cursor-pointer mb-2"
+                    *ngIf="subCateItem.checked; else elseCaseTemp" (click)="toggleCateItem(subCateItem.name)">
+                    {{ subCateItem.name }}
+                    <mat-icon class="cursor-pointer" style="color:white">close</mat-icon>
+                </div>
+                <!-- non checked all list -->
+                <ng-template #elseCaseTemp>
+                    <div class="rounded-l text-charcoal  font-medium w-48 py-1 px-3 flex justify-between cursor-pointer mb-2 hover:bg-gray-200 cursor-pointer"
+                        (click)="toggleCateItem(subCateItem.name)">
+                        {{ subCateItem.name }}
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+<!--screen mobile-->
+<div class="overflow-x-auto whitespace-no-wrap" *ngIf="false">
+    <mat-form-field class="mr-2">
+        <mat-label>프로그래밍 언어</mat-label>
+        <mat-select [formControl]="toppings" multiple>
+            <mat-select-trigger>
+                {{toppings.value ? toppings.value[0] : ''}}
+                <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+        (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+      </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="mr-2">
+        <mat-label>프레임워크</mat-label>
+        <mat-select [formControl]="toppings" multiple>
+            <mat-select-trigger>
+                {{toppings.value ? toppings.value[0] : ''}}
+                <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+        (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+      </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="mr-2">
+        <mat-label>프레임워크</mat-label>
+        <mat-select [formControl]="toppings" multiple>
+            <mat-select-trigger>
+                {{toppings.value ? toppings.value[0] : ''}}
+                <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+        (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+      </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field >
+        <mat-label>프레임워크</mat-label>
+        <mat-select [formControl]="toppings" multiple>
+            <mat-select-trigger>
+                {{toppings.value ? toppings.value[0] : ''}}
+                <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+        (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+      </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+</div>

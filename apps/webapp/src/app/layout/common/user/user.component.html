@@ -1,0 +1,42 @@
+<ng-container *ngIf="!user">
+    <div class="flex cursor-pointer">
+        <div class="hover:text-yellow-500" (click)="signIn($event)">
+            로그인 회원가입
+        </div>        
+    </div>
+</ng-container>
+
+<ng-container *ngIf="user">
+    <span class="avatar mr-3">
+        <img *ngIf="showAvatar && user.photoURL"
+             [src]="user.photoURL">
+        <mat-icon *ngIf="!showAvatar || !user.photoURL"
+                  [svgIcon]="'account_circle'"></mat-icon>        
+    </span>
+    <span class="cursor-pointer flex items-center" [matMenuTriggerFor]="userActions" style="margin-top:-2px;">
+        <span>{{ user.displayName }}</span>
+        <mat-icon [svgIcon]="'arrow_drop_down'"></mat-icon>
+    </span>
+
+    <mat-menu class="user-actions-menu"
+              [xPosition]="'before'"
+              #userActions="matMenu">
+<!--        <button mat-menu-item (click)="moveTo('/settings/profile')">-->
+<!--            <span>나의 정보</span>-->
+<!--        </button>-->
+<!--        <button mat-menu-item (click)="moveTo('/settings/billing')">-->
+<!--            <span>나의 결제</span>-->
+<!--        </button>-->
+<!--            <button mat-menu-item (click)="moveTo('/settings/setting')">-->
+<!--                <span>설정</span>-->
+<!--            </button>-->
+<!--        <button mat-menu-item (click)="deleteMember($event)">-->
+<!--            <span>회원탈퇴(임시)</span>-->
+<!--        </button>-->
+        <mat-divider class="my-2"></mat-divider>
+        <button mat-menu-item
+                (click)="signOut()">
+            <span>로그아웃</span>
+        </button>
+    </mat-menu>
+</ng-container>

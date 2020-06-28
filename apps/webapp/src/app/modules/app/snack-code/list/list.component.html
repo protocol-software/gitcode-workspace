@@ -1,0 +1,53 @@
+<div class="content-layout fullwidth-standard-normal-scroll " >
+    <div class="pl-2 md:pl-16 pt-5 border-b ">
+        <div class="text-lg font-medium text-charcoal mb-2">전체보기</div>
+        <div class="text-sm text-charcoal mb-2"><span class="mr-1">총</span><span>{{contentList.length}}</span><span class="mr-1">개의 콘텐츠가 있습니다.</span></div>
+        <div *ngIf="checkedCategories.length != 0 ; else elseItem" class="flex pb-5" style="max-width: 960px; overflow: auto;" >
+                <div *ngFor="let checkedItem of checkedCategories" class="cursor-pointer flex whitespace-no-wrap justify-between items-center bg-indigo-100 rounded-full border text-xs pr-2 pl-4 mr-2" (click)="toggleCateItem(checkedItem)">
+                    <div>
+                        {{ checkedItem}}
+                    </div>
+                    <mat-icon class="" style="font-size:16px">close</mat-icon>
+                </div>
+        </div>
+        <ng-template #elseItem>
+            <div class="w-40 mb-5 text-gray-500 cursor-pointer flex whitespace-no-wrap justify-center items-center  text-xs pr-2 pl-4 py-1 mr-2">
+                <div class="">
+                    선택된 필터가 없습니다.
+                </div>
+                <div> </div>
+            </div>
+        </ng-template>
+    </div>
+    <div class="">
+        <div>
+            <div *ngFor="let item of contentList | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems}; let no=index;" class="md:pl-20 pl-2 px-3 py-3 hover:bg-gray-200 cursor-pointer border-b border-gray-200 mb-3  container"
+                 routerLink="/snack-code/detail/20200429-content" routerLinkActive="font-semibold">
+                <div>
+                    <div class="flex justify-between">
+                        <div class="text-base font-bold text-charcoal">
+                            {{ (no+1) + (itemsPerPage * (currentPage-1)) }}. {{ item.content_title }}
+                        </div>
+                        <div class="flex">
+                            <img src="/assets/icons/vote-laugh.svg" class="w-5 mr-1">
+                            <div class="mr-2 text-gray-600"><span>{{item.vote_up}}</span></div>
+                            <img src="/assets/icons/vote-confused.svg" class="w-5 mr-1">
+                            <div class="text-gray-600"><span>{{item.vote_down}}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-2line" >
+                    {{ item.snippet }}
+                </div>
+                <div class="flex flex-wrap my-5 ">
+                    <div *ngFor="let tagItem of item.tag" class="mt-1 flex justify-between items-center text-center bg-gray-200 rounded-full border text-xs px-3 mr-2">
+                        <div class="">
+                            {{ tagItem}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <gitcode-pagination (pageChange)="pageChange($event)"></gitcode-pagination>
+        </div>
+    </div>
+</div>

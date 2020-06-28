@@ -3,12 +3,12 @@
 </button>
 
 <mat-dialog-content>
-    <div *ngIf="!isReviewRequestComplete; else isReviewRequestCompleteElse">
+    <div *ngIf="!isReviewRequestComplete; else isReviewRequestCompleteElse" style="">
         <form [formGroup]="formGroup">
             <div class="title ">코드리뷰 요청하기</div>
 
             <div class="mx-8 my-8">
-                <div class="text-xs font-bold text-charcoal">코드리뷰를 요청할 Repository를 선택하세요.</div>
+                <div class="text-xs font-bold text-charcoal mb-2">코드리뷰를 요청할 Repository를 선택하세요.</div>
                 <div>
                     <mat-form-field appearance="fill" floatLabel="always" class="w-48">
     <!--                    <mat-label>Repository</mat-label>-->
@@ -22,7 +22,7 @@
                     <!-- TODO:spock make it more detail perfectly-->
                 </div>
                 <div class="text-xs font-bold text-charcoal mb-2 mt-5 md:mt-0">코드리뷰를 요청할 Branch를 선택하세요.</div>
-                <div class="flex">
+                <div class="md:flex flex-none">
     <!--                <div class="flex items-center">-->
     <!--                    <mat-radio-group aria-label="Select an option w-4">-->
     <!--                        <mat-radio-button value="1" class="mr-5 text-xs text-charcoal">전체 소스코드</mat-radio-button>-->
@@ -37,10 +37,10 @@
                                 <mat-option [value]="branch.name" *ngFor="let branch of branchesOnRepo">
                                     {{ branch.name }}
                                 </mat-option>
-                            </mat-select>
+                            </mat-select> 
                         </mat-form-field>
                     </div>
-                    <div class="flex items-center mx-3"><img src="/assets/icons/code-request-arrow-right.svg"></div>
+                    <div class="flex items-center w-4 md:mx-3 ml-20 my-4 md:my-0"><img src="/assets/icons/code-request-arrow-right.svg"></div>
                     <div>
                         <mat-form-field appearance="fill" class="w-48 h-8">
                             <mat-select formControlName="targetBranchName" [(ngModel)]="targetBranchName">

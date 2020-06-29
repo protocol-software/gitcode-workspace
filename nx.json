@@ -14,10 +14,10 @@
     "data": {
       "tags": []
     },
-    "ui": {
+    "webapp": {
       "tags": []
     },
-    "webapp": {
+    "ui": {
       "tags": []
     }
   }

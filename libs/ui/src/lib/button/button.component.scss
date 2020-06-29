@@ -1,0 +1,29 @@
+button {
+  box-sizing: border-box;
+  border-radius: 4px;
+  line-height: 1;
+
+  &.primary {
+    background: linear-gradient(180deg, #33CE57 0%, #29AC47 100%);
+    border: 1px solid #2DA449;
+    color: white;
+
+    &:hover {
+      background: linear-gradient(180deg, #16C13E 0%, #0A9329 100%);
+      border: 1px solid #0C8E2B;
+    }
+
+    &:active {
+      background: #0C9A2D;
+      border: 1px solid #0C8E2B;
+    }
+  }
+
+  &.medium {
+    height: 34px;
+    padding: 7px 12px;
+  }
+}
+
+:host(.button) {
+}

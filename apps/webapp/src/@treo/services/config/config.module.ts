@@ -21,7 +21,7 @@ export class TreoConfigModule
      *
      * @param config
      */
-    static forRoot(config: any): ModuleWithProviders
+    static forRoot(config: any): ModuleWithProviders<any>
     {
         return {
             ngModule : TreoConfigModule,

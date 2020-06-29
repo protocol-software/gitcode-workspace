@@ -43,7 +43,7 @@
               "apps/api/tsconfig.app.json",
               "apps/api/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/api/**"]
+            "exclude": ["**/node_modules/**", "!apps/api/**/*"]
           }
         },
         "test": {
@@ -68,7 +68,7 @@
               "libs/data/tsconfig.lib.json",
               "libs/data/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/data/**"]
+            "exclude": ["**/node_modules/**", "!libs/data/**/*"]
           }
         },
         "test": {
@@ -93,7 +93,7 @@
               "libs/ui/tsconfig.lib.json",
               "libs/ui/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ui/**"]
+            "exclude": ["**/node_modules/**", "!libs/ui/**/*"]
           }
         },
         "test": {
@@ -137,10 +137,7 @@
               "apps/webapp/src/assets"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "apps/webapp/src/@treo/styles",
-                "libs/styles"
-              ]
+              "includePaths": ["apps/webapp/src/@treo/styles", "libs/styles"]
             },
             "styles": [
               "apps/webapp/src/styles/vendors.scss",
@@ -216,7 +213,7 @@
               "apps/webapp/tsconfig.app.json",
               "apps/webapp/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/webapp/**"]
+            "exclude": ["**/node_modules/**", "!apps/webapp/**/*"]
           }
         },
         "test": {

@@ -25,3 +25,11 @@ $browser-context: $base-font-size-px;
 
   @return $pixels / $context * 1rem;
 }
+
+@function spacing($size) {
+  @if (unitless($size)) {
+    $size: $size * '1rem';
+  }
+
+  @return $size / 4;
+}

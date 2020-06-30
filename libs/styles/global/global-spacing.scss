@@ -1,0 +1,43 @@
+@import '../functions';
+
+@for $i from 1 through 16 {
+  .padding-#{$i} {
+    padding: spacing(#{$i});
+  }
+
+  .padding-left-#{$i} {
+    padding-left: spacing(#{$i});
+  }
+
+  .padding-right-#{$i} {
+    padding-right: spacing(#{$i});
+  }
+
+  .padding-top-#{$i} {
+    padding-top: spacing(#{$i});
+  }
+
+  .padding-bottom-#{$i} {
+    padding-bottom: spacing(#{$i});
+  }
+
+  .margin-#{$i} {
+    margin: spacing(#{$i});
+  }
+
+  .margin-left-#{$i} {
+    margin-left: spacing(#{$i});
+  }
+
+  .margin-right-#{$i} {
+    margin-right: spacing(#{$i});
+  }
+
+  .margin-top-#{$i} {
+    margin-top: spacing(#{$i});
+  }
+
+  .margin-bottom-#{$i} {
+    margin-bottom: spacing(#{$i});
+  }
+}

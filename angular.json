@@ -111,7 +111,12 @@
             "assets": [
               "apps/webapp/src/favicon-16x16.png",
               "apps/webapp/src/favicon-32x32.png",
-              "apps/webapp/src/assets"
+              "apps/webapp/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./libs/assets/",
+                "output": "./assets"
+              }
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -216,6 +221,15 @@
       "sourceRoot": "libs/ui/src",
       "prefix": "gitcode",
       "architect": {
+        "build": {
+          "options": {
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/styles"
+              ]
+            }
+          }
+        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {

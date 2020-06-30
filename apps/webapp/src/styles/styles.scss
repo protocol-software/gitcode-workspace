@@ -4,6 +4,8 @@
 // @ Styles from this file will override anything from 'vendors.scss' file allowing customizations and
 //  modifications of third party libraries.
 // -----------------------------------------------------------------------------------------------------
+@import "global/global";
+
 .text-charcoal {
   color:#444A52;
 }

@@ -1,0 +1,39 @@
+$base-font-size-px: 16;
+$base-font-size: #{$base-font-size-px}px;
+$browser-context: $base-font-size-px;
+
+@function em($pixels, $context: $browser-context) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1em;
+}
+
+@function rem($pixels, $context: $browser-context) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1rem;
+}
+
+@function color($color, $intensity) {
+  @return var(--color-#{$color}-#{$intensity});
+}
+
+@function spacing($size) {
+  @if (unitless($size)) {
+    $size: $size * 1rem;
+  }
+
+  @return calc(#{$size} / 4);
+}

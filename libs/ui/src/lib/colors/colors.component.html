@@ -1,0 +1,55 @@
+<section>
+    <h3 class="section-title">Identity Colors</h3>
+    <ul class="color-group">
+        <li *ngFor="let color of identityColors" class="color">
+            <div class="palette background-{{ color.className }}"></div>
+            <div class="info">
+                <span class="name">{{ color.name }}</span>
+                <span class="css-class text-color">.{{ color.className }}</span>
+                <div class="css-class background-color">.background-{{ color.className }}</div>
+            </div>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h3 class="section-title">Gray</h3>
+    <ul class="color-group">
+        <li *ngFor="let color of grayColors" class="color">
+            <div class="palette background-{{ color.className }}"></div>
+            <div class="info">
+                <span class="name">{{ color.name }}</span>
+                <span class="css-class text-color">.{{ color.className }}</span>
+                <div class="css-class background-color">.background-{{ color.className }}</div>
+            </div>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h3 class="section-title">Indigo</h3>
+    <ul class="color-group">
+        <li *ngFor="let color of indigoColors" class="color">
+            <div class="palette background-{{ color.className }}"></div>
+            <div class="info">
+                <span class="name">{{ color.name }}</span>
+                <span class="css-class text-color">.{{ color.className }}</span>
+                <div class="css-class background-color">.background-{{ color.className }}</div>
+            </div>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h3 class="section-title">Green Colors</h3>
+    <ul class="color-group">
+        <li *ngFor="let color of greenColors" class="color">
+            <div class="palette background-{{ color.className }}"></div>
+            <div class="info">
+                <span class="name">{{ color.name }}</span>
+                <span class="css-class text-color">.{{ color.className }}</span>
+                <div class="css-class background-color">.background-{{ color.className }}</div>
+            </div>
+        </li>
+    </ul>
+</section>

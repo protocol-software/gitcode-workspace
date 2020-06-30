@@ -1,0 +1,48 @@
+@import "variables";
+
+.section-title {
+  margin: .5em 0 1em;
+}
+
+ul.color-group {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  @include flex-row();
+  flex-wrap: wrap;
+
+  li.color {
+    @include flex-row(center);
+    margin-bottom: 1rem;
+
+    .palette {
+      display: block;
+      width: rem(70px);
+      height: rem(70px);
+      border-radius: 4px;
+    }
+
+    .info {
+      @include flex-column();
+      font-size: rem(14px);
+      font-weight: 500;
+      padding: 0 1rem;
+      width: 15rem;
+
+      .name {
+        color: black;
+      }
+
+      .css-class {
+        color: $color-gray-500;
+        font-size: rem(12px);
+      }
+    }
+  }
+}
+
+:host(.colors) {
+  @include flex-column();
+  width: 100%;
+  height: 100%;
+}

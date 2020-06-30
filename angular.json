@@ -221,6 +221,15 @@
       "sourceRoot": "libs/ui/src",
       "prefix": "gitcode",
       "architect": {
+        "build": {
+          "options": {
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/styles"
+              ]
+            }
+          }
+        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {

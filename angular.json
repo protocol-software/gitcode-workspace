@@ -111,7 +111,12 @@
             "assets": [
               "apps/webapp/src/favicon-16x16.png",
               "apps/webapp/src/favicon-32x32.png",
-              "apps/webapp/src/assets"
+              "apps/webapp/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./libs/assets/",
+                "output": "./assets"
+              }
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

@@ -1,4 +1,5 @@
 @import "../colors";
+@import "../functions";
 
 .color-id-charcoal {
   color: $color-id-charcoal;
@@ -19,6 +20,18 @@
 .color-id-blue {
   color: $color-id-blue;
 }
+
+//@for $intensity from 100 through 900 {
+//  $colors: gray, indigo, green;
+//
+//  @each $color in $colors {
+//    .color-#{$color}-#{$intensity} {
+//      color: color($color, $intensity);
+//    }
+//  }
+//
+//  $intensity: $intensity + 100;
+//}
 
 .color-gray-100 {
   color: $color-gray-100;

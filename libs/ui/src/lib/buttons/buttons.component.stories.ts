@@ -1,7 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { radios, select, text } from '@storybook/addon-knobs';
-import { ButtonComponent } from './button.component';
+import { ClipboardModule } from 'ngx-clipboard';
+import { ButtonComponent } from './regular/button.component';
+import { SnackCopyButtonComponent } from './snack-copy/snack-copy-button.component';
 
 export default {
   title: 'Buttons',
@@ -32,5 +35,23 @@ export const regular = () => ({
     onClicked: (event) => {
       console.log('button clicked!');
     },
+  },
+});
+
+
+export const snackCopy = () => ({
+  moduleMetadata: {
+    imports: [
+      BrowserAnimationsModule,
+      HttpClientModule,
+      MatIconModule,
+      ClipboardModule,
+    ],
+    declarations: [SnackCopyButtonComponent],
+  },
+  component: [SnackCopyButtonComponent],
+  template: `<gitcode-snack-copy-button [content]='content'></gitcode-snack-copy-button>`,
+  props: {
+    content: text('content', 'This is copied text.'),
   },
 });

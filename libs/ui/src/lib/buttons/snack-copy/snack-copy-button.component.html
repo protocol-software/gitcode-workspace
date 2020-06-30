@@ -1,0 +1,10 @@
+<button type="button"
+        [class.is-copied]="isCopied"
+        ngxClipboard
+        [cbContent]="content"
+        (cbOnSuccess)="onContentCopied($event)"
+        (cbOnError)="onContentCopyError($event)">
+    <mat-icon *ngIf="isCopied">done</mat-icon>
+    <mat-icon *ngIf="!isCopied" svgIcon="copy"></mat-icon>
+    <span>Source Copy</span>
+</button>

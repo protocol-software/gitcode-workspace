@@ -1,0 +1,37 @@
+@import "variables";
+
+button {
+  box-sizing: border-box;
+  border-radius: 4px;
+  line-height: 1;
+  font-size: rem(14px);
+  font-weight: 500;
+  height: rem(30px);
+  padding: rem(5px) rem(10px);
+  font-family: $body-font-family-ko;
+  background: linear-gradient(179.05deg, #777879 3.25%, #444A52 96.78%);
+  color: white;
+  @include flex-row(center);
+
+  &:hover {
+    background: $color-id-charcoal;
+  }
+
+  &.is-copied {
+    background: $color-id-charcoal;
+    color: $color-id-yellow;
+
+    .mat-icon {
+      color: $color-id-yellow;
+    }
+  }
+
+  .mat-icon {
+    transform: scale(.75);
+    transform-origin: center;
+    margin: 0 rem(3px) 0 rem(-3px);
+  }
+}
+
+:host(.snack-copy-button) {
+}

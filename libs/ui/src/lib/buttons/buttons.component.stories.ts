@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { radios, select, text } from '@storybook/addon-knobs';
-import { ButtonComponent } from './button.component';
+import { ButtonComponent } from './regular/button.component';
 
 export default {
   title: 'Buttons',

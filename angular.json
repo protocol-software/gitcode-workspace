@@ -14,9 +14,7 @@
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": [
-              "apps/api/src/assets"
-            ]
+            "assets": ["apps/api/src/assets"]
           },
           "configurations": {
             "production": {
@@ -45,10 +43,7 @@
               "apps/api/tsconfig.app.json",
               "apps/api/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/api/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/api/**/*"]
           }
         },
         "test": {
@@ -73,10 +68,7 @@
               "libs/data/tsconfig.lib.json",
               "libs/data/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/data/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/data/**/*"]
           }
         },
         "test": {
@@ -119,10 +111,7 @@
               }
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "apps/webapp/src/@treo/styles",
-                "libs/styles"
-              ]
+              "includePaths": ["apps/webapp/src/@treo/styles", "libs/styles"]
             },
             "styles": [
               "apps/webapp/src/styles/vendors.scss",
@@ -198,10 +187,7 @@
               "apps/webapp/tsconfig.app.json",
               "apps/webapp/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/webapp/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/webapp/**/*"]
           }
         },
         "test": {
@@ -224,9 +210,7 @@
         "build": {
           "options": {
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "libs/styles"
-              ]
+              "includePaths": ["libs/styles"]
             }
           }
         },
@@ -237,10 +221,7 @@
               "libs/ui/tsconfig.lib.json",
               "libs/ui/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ui/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/ui/**/*"]
           }
         },
         "test": {
@@ -280,6 +261,38 @@
             "ci": {
               "quiet": true
             }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "util": {
+      "projectType": "library",
+      "root": "libs/util",
+      "sourceRoot": "libs/util/src",
+      "prefix": "gitcode",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/util/tsconfig.lib.json",
+              "libs/util/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/util/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/util/jest.config.js",
+            "tsConfig": "libs/util/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/util/src/test-setup.ts"
           }
         }
       },

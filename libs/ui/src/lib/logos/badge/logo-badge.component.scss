@@ -1,0 +1,56 @@
+@import "variables";
+
+.logo-container {
+  @include flex-column(center);
+  display: inline-flex;
+  font-size: rem(64px);
+  color: black;
+
+  .mat-icon {
+    font-size: 1em;
+    width: 3.465em;
+    height: 3.465em;
+  }
+
+  .name {
+    font-family: $body-font-family-ko;
+    font-size: 1em;
+    line-height: 1;
+    margin-top: .25em;
+  }
+
+  &.small {
+    font-size: rem(48px);
+  }
+
+  &.large {
+    font-size: rem(72px);
+  }
+
+  &.white {
+    color: white;
+  }
+
+  &.charcoal {
+    color: $color-id-charcoal;
+  }
+
+  &.yellow {
+    color: $color-id-yellow;
+  }
+
+  &.pink {
+    color: $color-id-pink;
+  }
+
+  &.green {
+    color: $color-id-green;
+  }
+
+  &.blue {
+    color: $color-id-blue;
+  }
+}
+
+:host(.logo-badge) {
+}

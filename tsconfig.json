@@ -24,6 +24,9 @@
     },
     {
       "path": "./libs/ui/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/util/tsconfig.spec.json"
     }
   ]
 }

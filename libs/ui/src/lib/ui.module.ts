@@ -8,6 +8,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { ButtonComponent } from './buttons/regular/button.component';
 import { SnackCopyButtonComponent } from './buttons/snack-copy/snack-copy-button.component';
 import { ColorsComponent } from './colors/colors.component';
+import { LogoComponent } from './logos/regular/logo.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { ColorsComponent } from './colors/colors.component';
   declarations: [
     ButtonComponent,
     ColorsComponent,
+    LogoComponent,
     SnackCopyButtonComponent,
   ],
   exports: [

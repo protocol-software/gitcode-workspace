@@ -1,0 +1,75 @@
+@import "variables";
+
+.logo-container {
+  @include flex-row(center);
+  display: inline-flex;
+  font-size: rem(24px);
+  color: black;
+
+  .mat-icon {
+    font-size: 1em;
+    width: 1.4em;
+    height: 1.4em;
+  }
+
+  .name {
+    display: none;
+    font-family: $body-font-family-ko;
+    font-size: 1em;
+    line-height: 1;
+    margin-left: .375em;
+    padding-bottom: .3em;
+  }
+
+  &.full {
+    .name {
+      display: flex;
+    }
+  }
+
+  &.button {
+    background-color: black;
+    border: solid thin black;
+    border-radius: 5px;
+
+    .mat-icon {
+      transform: scale(.857);
+      transform-origin: center;
+    }
+  }
+
+  &.small {
+    font-size: rem(20px);
+  }
+
+  &.large {
+    font-size: rem(28px);
+  }
+
+  &.white {
+    color: white;
+  }
+
+  &.charcoal {
+    color: $color-id-charcoal;
+  }
+
+  &.yellow {
+    color: $color-id-yellow;
+  }
+
+  &.pink {
+    color: $color-id-pink;
+  }
+
+  &.green {
+    color: $color-id-green;
+  }
+
+  &.blue {
+    color: $color-id-blue;
+  }
+}
+
+:host(.logo) {
+}

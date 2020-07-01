@@ -10,8 +10,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import { SvgIconService } from '@gitcode/util';
 import { IClipboardResponse } from 'ngx-clipboard';
 
 @Component({
@@ -28,11 +27,8 @@ export class SnackCopyButtonComponent implements OnInit, OnChanges, OnDestroy, A
 
   public isCopied = false;
 
-  constructor(private matIconRegistry: MatIconRegistry,
-              private domSanitizer: DomSanitizer,
-  ) {
-    this.matIconRegistry.addSvgIcon('copy',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('/assets/icons/copy.svg'));
+  constructor(private svgIconService: SvgIconService) {
+    this.svgIconService.registerIcon('copy', '/assets/icons/copy.svg');
   }
 
   public ngOnInit(): void {}

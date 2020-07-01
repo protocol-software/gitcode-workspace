@@ -8,8 +8,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import { SvgIconService } from '@gitcode/util';
 
 @Component({
   selector: 'gitcode-button',
@@ -26,11 +25,8 @@ export class ButtonComponent implements OnInit, OnChanges, OnDestroy, AfterViewI
   @Input() public align: 'horizontal' | 'vertical' = 'horizontal';
   @Input() public direction: 'default' | 'reverse' = 'default';
 
-  constructor(private matIconRegistry: MatIconRegistry,
-              private domSanitizer: DomSanitizer,
-  ) {
-    this.matIconRegistry.addSvgIcon('github',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('/assets/icons/github.svg'));
+  constructor(private svgIconService: SvgIconService) {
+    this.svgIconService.registerIcon('github', '/assets/icons/github.svg');
   }
 
   public ngOnInit(): void {}

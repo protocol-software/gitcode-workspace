@@ -19,7 +19,8 @@
     "outDir": "./dist/out-tsc",
     "paths": {
       "@gitcode/data": ["libs/data/src/index.ts"],
-      "@gitcode/ui": ["libs/ui/src/index.ts"]
+      "@gitcode/ui": ["libs/ui/src/index.ts"],
+      "@gitcode/util": ["libs/util/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

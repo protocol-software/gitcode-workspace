@@ -1,0 +1,88 @@
+@import "variables";
+
+.tag-container {
+  @include flex-row(center);
+  display: inline-flex;
+  justify-content: center;
+  border: solid thin transparent;
+  border-radius: 9999px;
+  padding: rem(1px) rem(5px);
+  background-color: $color-indigo-100;
+  color: $color-gray-700;
+  font-size: rem(12px);
+
+  ::ng-deep .mat-icon {
+    transform: scale(.625);
+    transform-origin: center;
+    margin: 0 0 0 rem(-3px);
+
+    &:last-child {
+      margin: 0 rem(-3px) 0 0;
+    }
+
+    svg {
+      path {
+        fill: white;
+        //stroke: white;
+      }
+
+      line {
+        stroke: white;
+      }
+    }
+  }
+
+  &.open,
+  &.review,
+  &.reopen,
+  &.closed,
+  &.matching,
+  &.matched {
+    color: white;
+    border-radius: 5px;
+    font-size: rem(14px);
+    line-height: 1;
+  }
+
+  &.open {
+    background-color: $color-id-yellow;
+  }
+
+  &.review {
+    background-color: $color-id-blue;
+  }
+
+  &.reopen {
+    background-color: $color-id-pink;
+  }
+
+  &.closed {
+    background-color: $color-id-charcoal;
+  }
+
+  &.matching {
+    background-color: $color-gray-500;
+  }
+
+  &.matched {
+    background-color: $color-gray-600;
+  }
+
+  &.best {
+    background-color: $color-id-yellow;
+    color: white;
+  }
+
+  &.grade {
+    background-color: transparent;
+    color: $color-green-600;
+    font-size: rem(12px);
+
+    &::before {
+      content: '//';
+    }
+  }
+}
+
+:host(.tag) {
+}

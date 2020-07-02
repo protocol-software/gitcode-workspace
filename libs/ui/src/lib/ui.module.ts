@@ -10,6 +10,7 @@ import { SnackCopyButtonComponent } from './buttons/snack-copy/snack-copy-button
 import { ColorsComponent } from './colors/colors.component';
 import { LogoBadgeComponent } from './logos/badge/logo-badge.component';
 import { LogoComponent } from './logos/regular/logo.component';
+import { TagComponent } from './tags/regular/tag.component';
 
 @NgModule({
   imports: [
@@ -26,12 +27,14 @@ import { LogoComponent } from './logos/regular/logo.component';
     LogoBadgeComponent,
     LogoComponent,
     SnackCopyButtonComponent,
+    TagComponent,
   ],
   exports: [
     ButtonComponent,
     LogoBadgeComponent,
     LogoComponent,
     SnackCopyButtonComponent,
+    TagComponent,
   ],
 })
 export class UiModule {}

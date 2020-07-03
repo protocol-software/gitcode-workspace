@@ -3,5 +3,6 @@ module.exports = {
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-viewport/register',
+    '@storybook/addon-a11y/register',
   ],
 };

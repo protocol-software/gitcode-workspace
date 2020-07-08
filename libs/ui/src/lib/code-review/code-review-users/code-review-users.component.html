@@ -5,7 +5,11 @@
 
 <div class="user" *ngIf="users?.length === 1">
     <img class="avatar" src="{{ users[0]?.photoUrl }}" alt="{{ users[0]?.name }}">
-    <span class="label">저자</span>
+    <span class="label">
+        <span *ngIf="userType === 'author'">저자</span>
+        <span *ngIf="userType === 'reviewers' && !isBestReviewer">코드리뷰 참여</span>
+        <span *ngIf="userType === 'reviewers' && isBestReviewer" class="best-reviewer">베스트 리뷰어</span>
+    </span>
     <span class="name">{{ users[0]?.name }}</span>
 </div>
 

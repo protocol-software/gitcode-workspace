@@ -5,7 +5,7 @@ import {
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
+  OnInit, SimpleChange,
   SimpleChanges,
 } from '@angular/core';
 
@@ -18,6 +18,9 @@ export class CodeReviewUsersComponent implements OnInit, OnChanges, OnDestroy, A
   @HostBinding('class') public hostClass = 'code-review-user';
 
   @Input() public users: { name: string, photoUrl: string }[];
+  @Input() public userType: 'author' | 'reviewers' = 'author';
+  @Input() public isBestReviewer = false;
+
   public maxStackedPhotoCount = 4;
 
   constructor() {
@@ -25,7 +28,15 @@ export class CodeReviewUsersComponent implements OnInit, OnChanges, OnDestroy, A
 
   public ngOnInit(): void {}
 
-  public ngOnChanges(changes: SimpleChanges): void {}
+  public ngOnChanges(changes: SimpleChanges): void {
+    this.onIsBestReviewerChanged(changes['isBestReviewer']);
+  }
+
+  private onIsBestReviewerChanged(change: SimpleChange): void {
+    if (typeof change?.currentValue === 'string') {
+      this.isBestReviewer = change?.currentValue?.toString().toLowerCase() === 'true';
+    }
+  }
 
   public ngOnDestroy(): void {}
 

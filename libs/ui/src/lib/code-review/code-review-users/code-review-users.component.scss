@@ -43,6 +43,10 @@
     grid-area: label;
     font-size: rem(12px);
     color: $color-gray-600;
+
+    .best-reviewer {
+      color: $color-id-blue;
+    }
   }
 
   .name {

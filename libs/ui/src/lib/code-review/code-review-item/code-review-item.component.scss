@@ -1,0 +1,43 @@
+@import "variables";
+
+.item-header {
+  grid-area: item-header;
+  @include flex-row(center);
+
+  .title {
+    font-size: rem(16px);
+    font-weight: 500;
+    color: $color-id-charcoal;
+    margin-right: rem(10px);
+  }
+}
+
+.tags {
+  grid-area: tags;
+  min-height: rem(23px);
+}
+
+.author {
+  grid-area: author;
+}
+
+.reviewers {
+  grid-area: reviewers;
+}
+
+.author,
+.reviewers {
+  @include flex-column();
+  justify-content: center;
+}
+
+:host(.code-review-item) {
+  display: grid;
+  grid-template-areas: "item-header author reviewers" "tags author reviewers";
+  grid-template-columns: 3fr 1fr 1fr;
+  width: 100%;
+  height: 100%;
+  border: solid thin $color-gray-300;
+  border-radius: 5px;
+  padding: rem(20px);
+}

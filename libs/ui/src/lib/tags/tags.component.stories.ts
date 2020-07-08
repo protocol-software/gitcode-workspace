@@ -26,6 +26,6 @@ export const regular = () => ({
       'type',
       ['none', 'open', 'reviewing', 'reopen', 'closed', 'matching', 'matched', 'best', 'grade'],
       'none'),
-    shouldAllowDismiss: radios('shouldAllowDismiss', { true: 'true', false: 'false' }, 'false'),
+    shouldAllowDismiss: radios('Should Allow Dismiss', { true: 'true', false: 'false' }, 'false'),
   },
 });

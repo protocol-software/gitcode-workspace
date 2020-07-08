@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ButtonComponent } from './buttons/regular/button.component';
 import { SnackCopyButtonComponent } from './buttons/snack-copy/snack-copy-button.component';
+import { CodeReviewItemComponent } from './code-review/code-review-item/code-review-item.component';
 import { CodeReviewUsersComponent } from './code-review/code-review-users/code-review-users.component';
 import { ColorsComponent } from './colors/colors.component';
 import { LogoBadgeComponent } from './logos/badge/logo-badge.component';
@@ -24,6 +25,7 @@ import { TagComponent } from './tags/regular/tag.component';
   ],
   declarations: [
     ButtonComponent,
+    CodeReviewItemComponent,
     CodeReviewUsersComponent,
     ColorsComponent,
     LogoBadgeComponent,
@@ -33,6 +35,7 @@ import { TagComponent } from './tags/regular/tag.component';
   ],
   exports: [
     ButtonComponent,
+    CodeReviewItemComponent,
     CodeReviewUsersComponent,
     LogoBadgeComponent,
     LogoComponent,

@@ -1,0 +1,13 @@
+<div class="item-header">
+    <span class="title">{{ codeReviewItem?.title }}</span>
+    <gitcode-tag [type]="codeReviewItem?.state | lowercase" class="status"></gitcode-tag>
+</div>
+<ul class="tags"></ul>
+<div class="author">
+    <gitcode-code-review-users [users]="[author]"
+                               [userType]="'author'"></gitcode-code-review-users>
+</div>
+<div class="reviewers">
+    <gitcode-code-review-users [users]="reviewers"
+                               [userType]="'reviewers'"></gitcode-code-review-users>
+</div>

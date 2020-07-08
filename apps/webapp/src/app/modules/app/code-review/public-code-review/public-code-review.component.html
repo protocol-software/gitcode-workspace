@@ -18,70 +18,70 @@
         <div class="  ">
             <div class="flex justify-between">
                 <div class="flex">
-<!--                    <div>-->
-<!--                        <mat-form-field class="treo-mat-dense mr-3" >-->
-<!--                            <mat-label>Framework</mat-label>-->
-<!--                            <mat-select [formControl]="frameworks" multiple>-->
-<!--                                <mat-select-trigger>-->
-<!--                                    {{frameworks.value ? frameworks.value[0] : ''}}-->
-<!--                                    <span *ngIf="frameworks.value?.length > 1" class="example-additional-selection">-->
-<!--                                    (+{{frameworks.value.length - 1}} {{frameworks.value?.length === 2 ? 'other' : 'others'}})-->
-<!--                                    </span>-->
-<!--                                </mat-select-trigger>-->
-<!--                                <mat-option *ngFor="let framework of frameworksList" [value]="framework">{{framework}}</mat-option>-->
-<!--                            </mat-select>-->
-<!--                        </mat-form-field>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <mat-form-field class="treo-mat-dense mr-3">-->
-<!--                            <mat-label>Language</mat-label>-->
-<!--                            <mat-select [formControl]="toppings" multiple>-->
-<!--                                <mat-select-trigger>-->
-<!--                                    {{toppings.value ? toppings.value[0] : ''}}-->
-<!--                                    <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">-->
-<!--                                    (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})-->
-<!--                                    </span>-->
-<!--                                </mat-select-trigger>-->
-<!--                                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>-->
-<!--                            </mat-select>-->
-<!--                        </mat-form-field>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <mat-form-field class="treo-mat-dense mr-3 ">-->
-<!--                            <mat-label>Database</mat-label>-->
-<!--                            <mat-select [formControl]="toppings" multiple>-->
-<!--                                <mat-select-trigger>-->
-<!--                                    {{toppings.value ? toppings.value[0] : ''}}-->
-<!--                                    <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">-->
-<!--                                    (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})-->
-<!--                                    </span>-->
-<!--                                </mat-select-trigger>-->
-<!--                                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>-->
-<!--                            </mat-select>-->
-<!--                        </mat-form-field>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <mat-form-field class="treo-mat-dense mr-3 " >-->
-<!--                            <mat-label>Status</mat-label>-->
-<!--                            <mat-select [formControl]="listStatuses" multiple [(ngModel)]="isSelectedStatus">-->
-<!--                                <mat-select-trigger>-->
-<!--                                    {{listStatuses.value ? listStatuses.value[0] : ''}}-->
-<!--                                    <span *ngIf="listStatuses.value?.length > 1" class="example-additional-selection">-->
-<!--                                    (+{{listStatuses.value.length - 1}} {{listStatuses.value?.length === 2 ? 'other' : 'others'}})-->
-<!--                                    </span>-->
-<!--                                </mat-select-trigger>-->
-<!--                                <mat-option *ngFor="let listStatus of contentStatusList" [value]="listStatus.key">-->
-<!--                                    {{listStatus.key}}-->
-<!--                                </mat-option>-->
-<!--                            </mat-select>-->
-<!--                        </mat-form-field>-->
-<!--                    </div>-->
+                    <!--                    <div>-->
+                    <!--                        <mat-form-field class="treo-mat-dense mr-3" >-->
+                    <!--                            <mat-label>Framework</mat-label>-->
+                    <!--                            <mat-select [formControl]="frameworks" multiple>-->
+                    <!--                                <mat-select-trigger>-->
+                    <!--                                    {{frameworks.value ? frameworks.value[0] : ''}}-->
+                    <!--                                    <span *ngIf="frameworks.value?.length > 1" class="example-additional-selection">-->
+                    <!--                                    (+{{frameworks.value.length - 1}} {{frameworks.value?.length === 2 ? 'other' : 'others'}})-->
+                    <!--                                    </span>-->
+                    <!--                                </mat-select-trigger>-->
+                    <!--                                <mat-option *ngFor="let framework of frameworksList" [value]="framework">{{framework}}</mat-option>-->
+                    <!--                            </mat-select>-->
+                    <!--                        </mat-form-field>-->
+                    <!--                    </div>-->
+                    <!--                    <div>-->
+                    <!--                        <mat-form-field class="treo-mat-dense mr-3">-->
+                    <!--                            <mat-label>Language</mat-label>-->
+                    <!--                            <mat-select [formControl]="toppings" multiple>-->
+                    <!--                                <mat-select-trigger>-->
+                    <!--                                    {{toppings.value ? toppings.value[0] : ''}}-->
+                    <!--                                    <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">-->
+                    <!--                                    (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})-->
+                    <!--                                    </span>-->
+                    <!--                                </mat-select-trigger>-->
+                    <!--                                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>-->
+                    <!--                            </mat-select>-->
+                    <!--                        </mat-form-field>-->
+                    <!--                    </div>-->
+                    <!--                    <div>-->
+                    <!--                        <mat-form-field class="treo-mat-dense mr-3 ">-->
+                    <!--                            <mat-label>Database</mat-label>-->
+                    <!--                            <mat-select [formControl]="toppings" multiple>-->
+                    <!--                                <mat-select-trigger>-->
+                    <!--                                    {{toppings.value ? toppings.value[0] : ''}}-->
+                    <!--                                    <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">-->
+                    <!--                                    (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})-->
+                    <!--                                    </span>-->
+                    <!--                                </mat-select-trigger>-->
+                    <!--                                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>-->
+                    <!--                            </mat-select>-->
+                    <!--                        </mat-form-field>-->
+                    <!--                    </div>-->
+                    <!--                    <div>-->
+                    <!--                        <mat-form-field class="treo-mat-dense mr-3 " >-->
+                    <!--                            <mat-label>Status</mat-label>-->
+                    <!--                            <mat-select [formControl]="listStatuses" multiple [(ngModel)]="isSelectedStatus">-->
+                    <!--                                <mat-select-trigger>-->
+                    <!--                                    {{listStatuses.value ? listStatuses.value[0] : ''}}-->
+                    <!--                                    <span *ngIf="listStatuses.value?.length > 1" class="example-additional-selection">-->
+                    <!--                                    (+{{listStatuses.value.length - 1}} {{listStatuses.value?.length === 2 ? 'other' : 'others'}})-->
+                    <!--                                    </span>-->
+                    <!--                                </mat-select-trigger>-->
+                    <!--                                <mat-option *ngFor="let listStatus of contentStatusList" [value]="listStatus.key">-->
+                    <!--                                    {{listStatus.key}}-->
+                    <!--                                </mat-option>-->
+                    <!--                            </mat-select>-->
+                    <!--                        </mat-form-field>-->
+                    <!--                    </div>-->
                     <div class="flex items-center mt-2">
                         <mat-checkbox [(ngModel)]="isOnlyMyPR"></mat-checkbox>
                         <div>나의 게시물만 보기</div>
                     </div>
                 </div>
-                <div class="flex items-center" >
+                <div class="flex items-center">
                     <button mat-raised-button (click)="createReview($event)"
                             class="btn-green text-sm text-white font-bold">
                         코드리뷰 요청하기
@@ -89,11 +89,11 @@
                 </div>
             </div>
             <!--List -->
-            <div class="mt-5 mb-12">
-<!--                <div *ngFor="let item of contentList | async | statusFilter:isSelectedStatus | myPostFilter:isSelectedMyPost | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems}; let no=index;"-->
+            <div *ngIf="false" class="mt-5 mb-12">
+                <!--                <div *ngFor="let item of contentList | async | statusFilter:isSelectedStatus | myPostFilter:isSelectedMyPost | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems}; let no=index;"-->
                 <div *ngFor="let item of contentList | async | myPostFilter:isOnlyMyPR:user?.uid; let no=index;"
                      class="flex-shrink md:flex mb-3 p-5 border-gray-300 border rounded-md cursor-pointer"
-                    (click)="openReviewDetail($event, item)">
+                     (click)="openReviewDetail($event, item)">
                     <div class="md:w-8/12 md:mb-0 mb-2">
                         <div class="flex">
                             <div class="text-base text-charcoal font-medium">
@@ -144,8 +144,11 @@
                                     <!-- begin status: best true-->
                                     <div class="flex" *ngIf="reviewer.isBestReviewer === true; else isElse">
                                         <div class="pr-2 relative">
-                                            <img class="absolute top-0 -mt-3 -ml-3 w-8" src="/assets/icons/badge-best.svg">
-                                            <img class="w-10" src="{{reviewer.photoUrl}}" *ngFor="let reviewer of item.reviewers">
+                                            <img class="absolute top-0 -mt-3 -ml-3 w-8"
+                                                 src="/assets/icons/badge-best.svg">
+                                            <img class="w-10"
+                                                 src="{{reviewer.photoUrl}}"
+                                                 *ngFor="let reviewer of item.reviewers">
                                         </div>
                                         <div>
                                             <div class="text-xs text-blue font-medium">베스트 리뷰어</div>
@@ -184,16 +187,26 @@
                         </div>
                     </div>
                 </div>
-<!--                <gitcode-pagination (pageChange)="pageChange($event)"></gitcode-pagination>-->
+                <!--                <gitcode-pagination (pageChange)="pageChange($event)"></gitcode-pagination>-->
             </div>
 
-            <div class="text-center md:h-64 md:my-24 flex items-center justify-center text-gray-600 text-sm font-medium" *ngIf="hasContent === false">
+            <div class="mt-5 mb-12">
+                <ul class="items">
+                    <li class="item"
+                        *ngFor="let item of contentList | async | myPostFilter:isOnlyMyPR:user?.uid; let no=index;">
+                        <gitcode-code-review-item [codeReviewItem]="item"
+                                                  (itemClicked)="openReviewDetail(null, $event)"></gitcode-code-review-item>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="text-center md:h-64 md:my-24 flex items-center justify-center text-gray-600 text-sm font-medium"
+                 *ngIf="hasContent === false">
                 <div>
                     아직 등록된 코드리뷰 요청이 없습니다.<br>
                     첫번째 코드리뷰 요청의 주인공이 되어보세요.
                 </div>
             </div>
-
         </div>
     </div>
 </div>

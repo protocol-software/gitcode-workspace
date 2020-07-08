@@ -1,34 +1,36 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {RequestCodeReviewService} from './request-code-review/request-code-review.service';
-import {CodeReviewDetailService} from "./code-review-detail/code-review-detail.service";
-import {IStatusList, IPublicCodeReviewList, PublicCodeReviewService} from "../../../../services/public-code-review.service";
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { IUser } from '@gitcode/data';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 // import {FormControl} from "@angular/forms";
 // import { Pipe, PipeTransform } from '@angular/core';
 // import {MatCheckboxChange} from "@angular/material/checkbox";
-import {AuthService} from "../../../../services/auth.service";
-import {takeUntil} from "rxjs/operators";
-import {IUser} from "@gitcode/data";
-import {Observable, Subject} from "rxjs";
-import {AngularFirestore} from "@angular/fire/firestore";
+import { AuthService } from '../../../../services/auth.service';
+import { PublicCodeReviewService } from '../../../../services/public-code-review.service';
+import { CodeReviewDetailService } from './code-review-detail/code-review-detail.service';
+import { RequestCodeReviewService } from './request-code-review/request-code-review.service';
 
 @Component({
   selector: 'gitcode-public-code-review',
   templateUrl: './public-code-review.component.html',
-  styleUrls: ['./public-code-review.component.scss']
+  styleUrls: ['./public-code-review.component.scss'],
 })
 export class PublicCodeReviewComponent implements OnInit {
-  contentList : Observable<any[]>;
+  @HostBinding('class') public hostClass = 'public-code-review';
+
+  contentList: Observable<any[]>;
   // contentListLength : any = [];
   // itemsPerPage = 5;
   // currentPage;
   // totalItems;
   // public errorMsg;
   // toppings = new FormControl();
-  // toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato','Tomato','Tomato','Tomato','Tomato','Tomato','Tomato','Tomato','Tomato'];
-  // frameworks = new FormControl();
-  // frameworksList: string[] = ['Angular','AngularJS','Angular 2+','Angular 8+','Angular 9','Laravel','Express','Django','Rails','Spring','React','React','Vue','Ember','Backbone'];
-  // listStatuses = new FormControl();
-  // data: Object;
+  // toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage',
+  // 'Tomato','Tomato','Tomato','Tomato','Tomato','Tomato','Tomato','Tomato','Tomato']; frameworks = new FormControl();
+  // frameworksList: string[] = ['Angular','AngularJS','Angular 2+','Angular 8+','Angular
+  // 9','Laravel','Express','Django','Rails','Spring','React','React','Vue','Ember','Backbone']; listStatuses = new
+  // FormControl(); data: Object;
 
 
   // answer: Answer[];
@@ -46,11 +48,11 @@ export class PublicCodeReviewComponent implements OnInit {
   hasContent: boolean = null;
 
   constructor(
-      private requestCodeReviewService: RequestCodeReviewService,
-      private codeReviewDeatilService: CodeReviewDetailService,
-      private publicCodeReviewService: PublicCodeReviewService,
-      private authService: AuthService,
-      private angularFirestore: AngularFirestore,
+    private requestCodeReviewService: RequestCodeReviewService,
+    private codeReviewDeatilService: CodeReviewDetailService,
+    private publicCodeReviewService: PublicCodeReviewService,
+    private authService: AuthService,
+    private angularFirestore: AngularFirestore,
   ) {
     this._unsubscribeAll = new Subject();
   }
@@ -66,8 +68,8 @@ export class PublicCodeReviewComponent implements OnInit {
           this.user = user;
         });
   }
-  ngOnDestroy(): void
-  {
+
+  ngOnDestroy(): void {
     // Unsubscribe from all subscriptions
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
@@ -95,13 +97,9 @@ export class PublicCodeReviewComponent implements OnInit {
 
   // private fetch(pageNo): void {
   //   this.currentPage = pageNo;
-  //   this.contentListLength = this.contentListLength.slice(this.itemsPerPage * (this.currentPage-1), this.itemsPerPage * this.currentPage);
-  //   this.totalItems = this.contentListLength.length;
-  // }
-  //
-  // public pageChange(pageNo): void {
-  //   this.fetch(pageNo);
-  // }
+  //   this.contentListLength = this.contentListLength.slice(this.itemsPerPage * (this.currentPage-1),
+  // this.itemsPerPage * this.currentPage); this.totalItems = this.contentListLength.length; }  public
+  // pageChange(pageNo): void { this.fetch(pageNo); }
 
   async createReview(event: MouseEvent): Promise<void> {
     if (event) {
@@ -110,23 +108,24 @@ export class PublicCodeReviewComponent implements OnInit {
     }
 
     let signdeIn = !!this.user;
-    if(!signdeIn) {
+    if (!signdeIn) {
       signdeIn = await this.authService.signIn();
 
-      if(!signdeIn) {
+      if (!signdeIn) {
         return;
       }
     }
 
     const dialogClosed = this.requestCodeReviewService.open();
     dialogClosed.subscribe(
-        (result) => {
-          if (!result) {
-            return;
-          }
-        },
+      (result) => {
+        if (!result) {
+          return;
+        }
+      },
     );
   }
+
   openReviewDetail(event: MouseEvent, item: any): void {
     if (event) {
       event.preventDefault();
@@ -137,12 +136,12 @@ export class PublicCodeReviewComponent implements OnInit {
   }
 
   // filterItemOfType(postId:number) {
-    // return this.contentList.filter(data=> data.postId == postId);
+  // return this.contentList.filter(data=> data.postId == postId);
   // }
 
   // getCheckboxes() {
-    // console.log(this.isSelectedStatus);
-    // return this.isSelectedStatus;
+  // console.log(this.isSelectedStatus);
+  // return this.isSelectedStatus;
   // }
 }
 

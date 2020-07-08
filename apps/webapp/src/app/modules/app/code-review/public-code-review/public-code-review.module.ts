@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { UiModule } from '@gitcode/ui';
 import { SharedModule } from '../../../../shared/shared.module';
 import {PublicCodeReviewRoutes} from './public-code-review.routing';
 // import { PublicCodeReviewComponent, SelectFrameworksPipe} from './public-code-review.component';
@@ -55,6 +56,7 @@ import {
         MatSelectModule,
         MatAutocompleteModule,
         MatPseudoCheckboxModule,
+        UiModule,
     ]
     ,providers:[
     ]

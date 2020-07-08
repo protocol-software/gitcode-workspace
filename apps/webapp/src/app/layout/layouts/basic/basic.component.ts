@@ -1,146 +1,143 @@
-import {Component, HostBinding, HostListener, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, HostBinding, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { TreoMediaWatcherService } from '../../../../@treo/services/media-watcher';
 import { TreoNavigationService } from '../../../../@treo/components/navigation';
-import {AuthService} from "../../../services/auth.service";
+import { TreoMediaWatcherService } from '../../../../@treo/services/media-watcher';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
-    selector     : 'basic-layout',
-    templateUrl  : './basic.component.html',
-    styleUrls    : ['./basic.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'basic-layout',
+  templateUrl: './basic.component.html',
+  styleUrls: ['./basic.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
-export class BasicLayoutComponent implements OnInit, OnDestroy
-{
-    data: any;
-    isScreenSmall: boolean;
-    authenticated = false;
+export class BasicLayoutComponent implements OnInit, OnDestroy {
+  @HostBinding('class') public hostClass = 'basic-layout';
 
-    @HostBinding('class.fixed-header')
-    fixedHeader: boolean;
+  data: any;
+  isScreenSmall: boolean;
+  authenticated = false;
 
-    @HostBinding('class.fixed-footer')
-    fixedFooter: boolean;
+  @HostBinding('class.fixed-header')
+  fixedHeader: boolean;
 
-    // Private
-    private _unsubscribeAll: Subject<any>;
+  @HostBinding('class.fixed-footer')
+  fixedFooter: boolean;
 
-    /**
-     * Constructor
-     *
-     * @param {ActivatedRoute} _activatedRoute
-     * @param {TreoMediaWatcherService} _treoMediaWatcherService
-     * @param {TreoNavigationService} _treoNavigationService
-     * @param {Router} _router
-     */
-    constructor(
-        private _activatedRoute: ActivatedRoute,
-        private _treoMediaWatcherService: TreoMediaWatcherService,
-        private _treoNavigationService: TreoNavigationService,
-        public _router: Router,
-        private authService: AuthService,
-    )
-    {
-        // Set the private defaults
-        this._unsubscribeAll = new Subject();
+  // Private
+  private _unsubscribeAll: Subject<any>;
 
-        // Set the defaults
-        this.fixedHeader = false;
-        this.fixedFooter = false;
+  /**
+   * Constructor
+   *
+   * @param {ActivatedRoute} _activatedRoute
+   * @param {TreoMediaWatcherService} _treoMediaWatcherService
+   * @param {TreoNavigationService} _treoNavigationService
+   * @param {Router} _router
+   */
+  constructor(
+    private _activatedRoute: ActivatedRoute,
+    private _treoMediaWatcherService: TreoMediaWatcherService,
+    private _treoNavigationService: TreoNavigationService,
+    public _router: Router,
+    private authService: AuthService,
+  ) {
+    // Set the private defaults
+    this._unsubscribeAll = new Subject();
 
-        this.authService.check()
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(result => {
-            this.authenticated = result;
-        })
-    }
+    // Set the defaults
+    this.fixedHeader = false;
+    this.fixedFooter = false;
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
+    this.authService.check()
+        .pipe(takeUntil(this._unsubscribeAll))
+        .subscribe(result => {
+          this.authenticated = result;
+        });
+  }
 
-    /**
-     * Getter for current year
-     */
-    get currentYear(): number
-    {
-        return new Date().getFullYear();
-    }
+  // -----------------------------------------------------------------------------------------------------
+  // @ Accessors
+  // -----------------------------------------------------------------------------------------------------
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
+  /**
+   * Getter for current year
+   */
+  get currentYear(): number {
+    return new Date().getFullYear();
+  }
 
-    /**
-     * On init
-     */
-    ngOnInit(): void
-    {
-        // Subscribe to the resolved route data
-        this._activatedRoute.data.subscribe((data: Data) => {
-            this.data = data.initialData;
+  // -----------------------------------------------------------------------------------------------------
+  // @ Lifecycle hooks
+  // -----------------------------------------------------------------------------------------------------
+
+  /**
+   * On init
+   */
+  ngOnInit(): void {
+    // Subscribe to the resolved route data
+    this._activatedRoute.data.subscribe((data: Data) => {
+      this.data = data.initialData;
+    });
+
+    // Subscribe to media changes
+    this._treoMediaWatcherService.onMediaChange$
+        .pipe(takeUntil(this._unsubscribeAll))
+        .subscribe(({ matchingAliases }) => {
+
+          // Check if the breakpoint is 'lt-md'
+          this.isScreenSmall = matchingAliases.includes('lt-md');
         });
 
-        // Subscribe to media changes
-        this._treoMediaWatcherService.onMediaChange$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(({matchingAliases}) => {
+    // Home , Header Color make different
+    this._router.url;
+    console.log(this._router.url);
+    return;
 
-                // Check if the breakpoint is 'lt-md'
-                this.isScreenSmall = matchingAliases.includes('lt-md');
-            });
+    // Dark or Light
+    this.detectScreenSize();
+  }
 
-        // Home , Header Color make different
-        this._router.url;
-        console.log(this._router.url);
-        return
+  /**
+   * On destroy
+   */
+  ngOnDestroy(): void {
+    // Unsubscribe from all subscriptions
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
+  }
 
-        // Dark or Light
-        this.detectScreenSize();
+  // -----------------------------------------------------------------------------------------------------
+  // @ Public methods
+  // -----------------------------------------------------------------------------------------------------
+
+  /**
+   * Toggle navigation
+   *
+   * @param key
+   */
+  toggleNavigation(key): void {
+    // Get the navigation
+    const navigation = this._treoNavigationService.getComponent(key);
+
+    if (navigation) {
+      // Toggle the opened status
+      navigation.toggle();
     }
+  }
 
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void
-    {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
+  private detectScreenSize() {
+    if (this.isScreenSmall = window.innerWidth < 959) {
+      return true;
+    } else {
+      return false;
     }
+  }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Toggle navigation
-     *
-     * @param key
-     */
-    toggleNavigation(key): void
-    {
-        // Get the navigation
-        const navigation = this._treoNavigationService.getComponent(key);
-
-        if ( navigation )
-        {
-            // Toggle the opened status
-            navigation.toggle();
-        }
-    }
-
-    private detectScreenSize() {
-        if (this.isScreenSmall = window.innerWidth < 959){
-            return true;
-        } else return false;
-    }
-
-    @HostListener('window:resize', ['$event'])
-    private onResize(event) {
-        this.detectScreenSize();
-    }
+  @HostListener('window:resize', ['$event'])
+  private onResize(event) {
+    this.detectScreenSize();
+  }
 
 }

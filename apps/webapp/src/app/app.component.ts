@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import { Component, HostBinding, ViewEncapsulation } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {appConfig} from './core/config/app.config';
 

@@ -1,0 +1,21 @@
+<div class="no-user" *ngIf="!users?.length">
+    <img class="icon" src="/assets/icons/avatar-github.svg" alt="github">
+    <span class="message">코드리뷰를 기다립니다.</span>
+</div>
+
+<div class="user" *ngIf="users?.length === 1">
+    <img class="avatar" src="{{ users[0]?.photoUrl }}" alt="{{ users[0]?.name }}">
+    <span class="label">저자</span>
+    <span class="name">{{ users[0]?.name }}</span>
+</div>
+
+<div class="users" *ngIf="users?.length > 1">
+    <ul class="avatars">
+        <li class="avatar" *ngFor="let user of users | slice:0:maxStackedPhotoCount">
+            <img src="{{ user.photoUrl }}" alt="{{ user.name }}">
+        </li>
+    </ul>
+    <div class="other-users" *ngIf="users?.length > maxStackedPhotoCount">
+        +{{ users?.length - maxStackedPhotoCount }}
+    </div>
+</div>

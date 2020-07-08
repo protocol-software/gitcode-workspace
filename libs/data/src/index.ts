@@ -30,6 +30,10 @@ export * from './lib/interfaces/otp.interface';
 export * from './lib/interfaces/code-tag.interface';
 export * from './lib/interfaces/code-content-item.interface';
 export * from './lib/interfaces/code-suggest-query.interface';
+export * from './lib/interfaces/code-review-item.interface';
+export * from './lib/interfaces/code-review-author.interface';
+export * from './lib/interfaces/code-review-reviewer.interface';
+export * from './lib/interfaces/github-pull-request.interface';
 
 // Enums
 export * from './lib/enums/oauth-provider.enum';

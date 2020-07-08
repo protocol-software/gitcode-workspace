@@ -1,0 +1,83 @@
+@import "variables";
+
+.avatar {
+  width: rem(40px);
+  height: rem(40px);
+  border: solid thin transparent;
+  border-radius: 4px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.no-user {
+  @include flex-center();
+  display: inline-flex;
+
+  .icon {
+    width: rem(15px);
+    height: rem(15px);
+  }
+
+  .message {
+    font-size: rem(12px);
+    color: $color-id-charcoal;
+  }
+}
+
+.user {
+  display: grid;
+  grid-template-areas: "avatar label" "avatar name";
+  grid-column-gap: rem(15px);
+
+  .avatar {
+    grid-area: avatar;
+    width: rem(40px);
+    height: rem(40px);
+    border: solid thin transparent;
+    border-radius: 4px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .label {
+    grid-area: label;
+    font-size: rem(12px);
+    color: $color-gray-600;
+  }
+
+  .name {
+    grid-area: name;
+    font-size: rem(16px);
+    color: $color-id-charcoal;
+    line-height: 1;
+  }
+}
+
+.users {
+  @include flex-row(flex-end);
+
+  ul.avatars {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    @include flex-row();
+
+    li.avatar {
+      + li.avatar {
+        margin-left: rem(-20px);
+      }
+    }
+  }
+
+  .other-users {
+    margin-left: rem(10px);
+    font-size: rem(12px);
+    font-weight: 500;
+    color: $color-id-pink;
+  }
+}
+
+:host(.code-review-user) {
+  display: inline-flex;
+  font-family: $body-font-family-ko;
+}

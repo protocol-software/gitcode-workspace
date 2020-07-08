@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   Component,
   EventEmitter,
-  HostBinding,
+  HostBinding, HostListener,
   Input,
   OnChanges,
   OnDestroy,
@@ -49,4 +49,9 @@ export class CodeReviewItemComponent implements OnInit, OnChanges, OnDestroy, Af
   public ngOnDestroy(): void {}
 
   public ngAfterViewInit(): void {}
+
+  @HostListener('click', ['$event'])
+  onClick($event) {
+    this.itemClicked.emit(this.codeReviewItem);
+  }
 }

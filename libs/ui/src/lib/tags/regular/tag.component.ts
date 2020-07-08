@@ -20,13 +20,13 @@ import { SvgIconService } from '@gitcode/util';
 export class TagComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   @HostBinding('class') public hostClass = 'tag';
 
-  @Input() public type: 'none' | 'open' | 'review' | 'reopen' | 'closed' | 'matching' | 'matched' | 'best' | 'grade' = 'none';
+  @Input() public type: 'none' | 'open' | 'reviewing' | 'reopen' | 'closed' | 'matching' | 'matched' | 'best' | 'grade' = 'none';
   @Input() public shouldAllowDismiss = false;
 
   public shouldShowIcon = false;
   public iconMap = {
     open: 'merge',
-    review: 'code',
+    reviewing: 'code',
     reopen: 'sync',
     closed: 'done',
     matching: 'matching',
@@ -36,7 +36,7 @@ export class TagComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit
   public defaultText = {
     none: 'Simple Tag',
     open: '오픈',
-    review: '코드리뷰 중',
+    reviewing: '코드리뷰 중',
     reopen: '재오픈',
     closed: '종료',
     matching: '리뷰어매칭 중',

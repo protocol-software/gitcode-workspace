@@ -24,7 +24,7 @@ export const regular = () => ({
     text: text('text', 'Awesome Tag'),
     type: select(
       'type',
-      ['none', 'open', 'review', 'reopen', 'closed', 'matching', 'matched', 'best', 'grade'],
+      ['none', 'open', 'reviewing', 'reopen', 'closed', 'matching', 'matched', 'best', 'grade'],
       'none'),
     shouldAllowDismiss: radios('shouldAllowDismiss', { true: 'true', false: 'false' }, 'false'),
   },

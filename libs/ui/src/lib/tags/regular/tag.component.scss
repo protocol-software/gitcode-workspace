@@ -33,7 +33,7 @@
   }
 
   &.open,
-  &.review,
+  &.reviewing,
   &.reopen,
   &.closed,
   &.matching,
@@ -48,7 +48,7 @@
     background-color: $color-id-yellow;
   }
 
-  &.review {
+  &.reviewing {
     background-color: $color-id-blue;
   }
 

@@ -193,12 +193,14 @@
             <div class="mt-5 mb-12">
                 <ul class="items">
                     <li class="item"
-                        *ngFor="let item of contentList | async | myPostFilter:isOnlyMyPR:user?.uid; let no=index;">
+                        *ngFor="let item of codeReviewItems | myPostFilter:isOnlyMyPR:user?.uid; let no=index;">
                         <gitcode-code-review-item [codeReviewItem]="item"
                                                   (itemClicked)="openReviewDetail(null, $event)"></gitcode-code-review-item>
                     </li>
                 </ul>
             </div>
+
+            <a href="#" class="load-more" *ngIf="hasMoreDocuments" (click)="loadMoreDocuments($event)">Load more</a>
 
             <div class="text-center md:h-64 md:my-24 flex items-center justify-center text-gray-600 text-sm font-medium"
                  *ngIf="hasContent === false">

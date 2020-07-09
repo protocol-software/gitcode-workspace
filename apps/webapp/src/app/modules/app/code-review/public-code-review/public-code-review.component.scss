@@ -12,6 +12,13 @@ ul.items {
   }
 }
 
+.load-more {
+  @include flex-center();
+  color: $color-id-blue;
+  text-decoration: underline;
+  font-size: rem(14px);
+}
+
 :host(.public-code-review) {
   @include flex-column();
   width: 100%;

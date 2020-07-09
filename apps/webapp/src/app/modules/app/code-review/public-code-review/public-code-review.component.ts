@@ -1,5 +1,5 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { AngularFirestore, QueryDocumentSnapshot, QueryFn } from '@angular/fire/firestore';
 import { IUser } from '@gitcode/data';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -16,10 +16,13 @@ import { RequestCodeReviewService } from './request-code-review/request-code-rev
   templateUrl: './public-code-review.component.html',
   styleUrls: ['./public-code-review.component.scss'],
 })
-export class PublicCodeReviewComponent implements OnInit {
+export class PublicCodeReviewComponent implements OnInit, OnDestroy {
   @HostBinding('class') public hostClass = 'public-code-review';
 
   contentList: Observable<any[]>;
+
+  public codeReviewItems: any[] = [];
+
   // contentListLength : any = [];
   // itemsPerPage = 5;
   // currentPage;
@@ -47,6 +50,10 @@ export class PublicCodeReviewComponent implements OnInit {
   public user: IUser;
   hasContent: boolean = null;
 
+  private pageSize = 10;
+  private lastDocInResponse: QueryDocumentSnapshot<any> = null;
+  public hasMoreDocuments = false;
+
   constructor(
     private requestCodeReviewService: RequestCodeReviewService,
     private codeReviewDeatilService: CodeReviewDetailService,
@@ -57,7 +64,7 @@ export class PublicCodeReviewComponent implements OnInit {
     this._unsubscribeAll = new Subject();
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.publicCodeReviewList();
     // this.statusesList();
     // this.fetch(1);
@@ -69,22 +76,55 @@ export class PublicCodeReviewComponent implements OnInit {
         });
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     // Unsubscribe from all subscriptions
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
   }
 
-  private publicCodeReviewList() {
-    this.contentList = this.angularFirestore.collection('public-code-review').valueChanges();
-
-    this.contentList.subscribe((result) => {
-      this.hasContent = result.length > 0;
-    });
+  private publicCodeReviewList(): void {
+    const query: QueryFn = (ref) => ref
+      .limit(this.pageSize)
+      .orderBy('createdAt', 'desc');
+    this.angularFirestore
+        .collection('public-code-review', query)
+        .snapshotChanges()
+        .subscribe((res) => {
+          this.hasContent = res?.length > 0;
+          const data = res?.map(item => item.payload.doc.data());
+          this.codeReviewItems = [...this.codeReviewItems, ...data];
+          this.lastDocInResponse = res[res.length - 1].payload.doc;
+          this.hasMoreDocuments = res?.length >= this.pageSize;
+        });
     // this.publicCodeReviewService.getPublicCodeReviewList()
     //     .subscribe(data => this.contentList = data,
     //         error => this.errorMsg = error);{
     // }
+  }
+
+  public loadMoreDocuments(event: MouseEvent): void {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    if (!this.lastDocInResponse) {
+      return;
+    }
+
+    const query: QueryFn = (ref) => ref
+      .limit(this.pageSize)
+      .orderBy('createdAt', 'desc')
+      .startAfter(this.lastDocInResponse);
+    this.angularFirestore
+        .collection('public-code-review', query)
+        .get()
+        .subscribe((res) => {
+          const data = res.docs.map(doc => doc.data());
+          this.codeReviewItems = [...this.codeReviewItems, ...data];
+          this.lastDocInResponse = res?.docs[res.docs.length - 1];
+          this.hasMoreDocuments = res?.docs?.length >= this.pageSize;
+        });
   }
 
   // private statusesList(){

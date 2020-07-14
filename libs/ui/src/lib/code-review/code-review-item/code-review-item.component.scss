@@ -12,9 +12,20 @@
   }
 }
 
-.tags {
+ul.tags {
   grid-area: tags;
   min-height: rem(23px);
+  margin: 0;
+  padding: rem(10px) 0 0 0;
+  list-style-type: none;
+  @include flex-row(center);
+  flex-wrap: wrap;
+
+  li.tag {
+    &:not(:last-of-type) {
+      margin-right: rem(7px);
+    }
+  }
 }
 
 .author {

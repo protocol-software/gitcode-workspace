@@ -6,10 +6,11 @@
   justify-content: center;
   border: solid thin transparent;
   border-radius: 9999px;
-  padding: rem(1px) rem(5px);
+  padding: rem(1px) rem(10px);
   background-color: $color-indigo-100;
   color: $color-gray-700;
   font-size: rem(12px);
+  min-height: rem(23px);
 
   ::ng-deep .mat-icon {
     transform: scale(.625);
@@ -38,6 +39,7 @@
   &.closed,
   &.matching,
   &.matched {
+    padding: rem(1px) rem(5px);
     color: white;
     border-radius: 5px;
     font-size: rem(14px);

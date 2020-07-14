@@ -49,6 +49,7 @@ export interface IGithubPullRequest {
   commits_url: string;
   body: string;
   head: IGithubCommitRef;
+  languages: string[];
 }
 
 interface IGithubCommitRef {

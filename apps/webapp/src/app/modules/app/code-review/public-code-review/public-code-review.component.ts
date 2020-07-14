@@ -2,7 +2,7 @@ import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore, QueryDocumentSnapshot, QueryFn } from '@angular/fire/firestore';
 import { IUser } from '@gitcode/data';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { retry, takeUntil } from 'rxjs/operators';
 // import {FormControl} from "@angular/forms";
 // import { Pipe, PipeTransform } from '@angular/core';
 // import {MatCheckboxChange} from "@angular/material/checkbox";
@@ -89,11 +89,15 @@ export class PublicCodeReviewComponent implements OnInit, OnDestroy {
     this.angularFirestore
         .collection('public-code-review', query)
         .snapshotChanges()
+        .pipe(
+          retry(2),
+        )
         .subscribe((res) => {
           this.hasContent = res?.length > 0;
           const data = res?.map(item => item.payload.doc.data());
-          this.codeReviewItems = [...this.codeReviewItems, ...data];
-          this.lastDocInResponse = res[res.length - 1].payload.doc;
+          // this.codeReviewItems = [...this.codeReviewItems, ...data];
+          this.codeReviewItems = data;
+          this.lastDocInResponse = res[res.length - 1]?.payload.doc;
           this.hasMoreDocuments = res?.length >= this.pageSize;
         });
     // this.publicCodeReviewService.getPublicCodeReviewList()

@@ -1,16 +1,18 @@
-import { Component, HostBinding, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {GitHubService} from "../../../../../services/github.service";
-import {AuthService} from "../../../../../services/auth.service";
-import {IGitHubBranch, IGitHubRepo, IUser} from "@gitcode/data";
-import {AngularFirestore, AngularFirestoreDocument} from "@angular/fire/firestore";
-import {environment} from "../../../../../../environments/environment";
+import { IGitHubBranch, IGitHubRepo, IUser } from '@gitcode/data';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { environment } from '../../../../../../environments/environment';
+import { AuthService } from '../../../../../services/auth.service';
+import { GitHubService } from '../../../../../services/github.service';
 
 @Component({
   selector: 'gitcode-request-code-review',
   templateUrl: './request-code-review.component.html',
-  styleUrls: ['./request-code-review.component.scss']
+  styleUrls: ['./request-code-review.component.scss'],
 })
 export class RequestCodeReviewComponent implements OnInit {
   user: IUser;
@@ -22,9 +24,9 @@ export class RequestCodeReviewComponent implements OnInit {
   public personalPublicRepos = [];
   public branchesOnRepo = [];
 
-  repoName: string = '';
-  branchName: string = '';
-  targetBranchName: string = '';
+  repoName = '';
+  branchName = '';
+  targetBranchName = '';
 
   proficiency: string;
   title: string;
@@ -34,12 +36,12 @@ export class RequestCodeReviewComponent implements OnInit {
   private creatingPR = false;
 
   constructor(
-      public dialogRef: MatDialogRef<RequestCodeReviewComponent>,
-      @Inject(MAT_DIALOG_DATA) public data: any,
-      private formBuilder: FormBuilder,
-      private gitHubService: GitHubService,
-      private authService: AuthService,
-      private angularFirestore: AngularFirestore,
+    public dialogRef: MatDialogRef<RequestCodeReviewComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private formBuilder: FormBuilder,
+    private gitHubService: GitHubService,
+    private authService: AuthService,
+    private angularFirestore: AngularFirestore,
   ) {
     this.formGroup = this.formBuilder.group({
       repoName: ['', Validators.compose([Validators.required])],
@@ -70,7 +72,7 @@ export class RequestCodeReviewComponent implements OnInit {
     this.branchName = '';
     this.branchesOnRepo = [];
 
-    if(this.repoName === '') {
+    if (this.repoName === '') {
       return;
     }
 
@@ -79,8 +81,10 @@ export class RequestCodeReviewComponent implements OnInit {
     });
   }
 
-  public async requestCreateReview(event) {
-    if(this.creatingPR) return;
+  public async requestCreateReview(event): Promise<void> {
+    if (this.creatingPR) {
+      return;
+    }
 
     this.formGroup.disable();
     this.creatingPR = true;
@@ -96,26 +100,40 @@ export class RequestCodeReviewComponent implements OnInit {
       draft: false,
     };
 
-    this.gitHubService.createPR(this.ownerName, this.repoName, payload)
-        .subscribe(async (result: any) => {
-          await this.postPR(result);
-          this.addWebhook();
+    const requests = [
+      this.gitHubService.getRepoLanguages(this.ownerName, this.repoName),
+      this.gitHubService.createPR(this.ownerName, this.repoName, payload),
+    ];
 
-          alert('PR이 생성되었습니다!');
-          this.isReviewRequestComplete = true;
-        },(error: any) => {
-          alert(`PR 생성에 실패하였습니다.\n${error.statusText}`);
-        }, () => {
-          this.formGroup.enable();
-          this.creatingPR = false;
-        });
+    forkJoin(requests)
+      .pipe(
+        map(
+          (results) => {
+            results[0].languages = results[1];
+            return results[0];
+          },
+        ),
+      )
+      .subscribe(async (result: any) => {
+        await this.postPR(result);
+        this.addWebhook();
+
+        alert('PR이 생성되었습니다!');
+        this.isReviewRequestComplete = true;
+      }, (error: any) => {
+        alert(`PR 생성에 실패하였습니다.\n${error.statusText}`);
+      }, () => {
+        this.formGroup.enable();
+        this.creatingPR = false;
+      });
   }
-  private addWebhook() {
+
+  private addWebhook(): void {
     this.gitHubService.getWebhook(this.ownerName, this.repoName)
         .subscribe((result: any[]) => {
           const hasWebhook = result.filter(item => item.config.url === environment.github.webhookUrl).length > 0;
 
-          if(!hasWebhook) {
+          if (!hasWebhook) {
             const payload = {
               name: 'web',
               config: {
@@ -128,13 +146,14 @@ export class RequestCodeReviewComponent implements OnInit {
             };
 
             this.gitHubService.addWebhook(this.ownerName, this.repoName, payload)
-                .subscribe((result: any) => {
-                  console.log(result);
+                .subscribe((res: any) => {
+                  console.log(res);
                 });
           }
         });
   }
-  private async postPR(prResponse: any) {
+
+  private async postPR(prResponse: any): Promise<void> {
     const prNodeId = prResponse.node_id;
 
     const doc = {
@@ -147,14 +166,14 @@ export class RequestCodeReviewComponent implements OnInit {
       topics: prResponse.head.repo.topics || [],
       author: this.user,
       githubPR: prResponse,
-      createdAt: (new Date()).toISOString()
+      createdAt: (new Date()).toISOString(),
     };
 
     console.log(doc);
     await this.angularFirestore.doc(`public-code-review/${prNodeId}`).set(doc, { merge: true });
   }
 
-  public closePopup(event) {
+  public closePopup(event): void {
     this.dialogRef.close(true);
   }
 }

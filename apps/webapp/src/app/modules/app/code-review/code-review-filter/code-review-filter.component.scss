@@ -1,0 +1,29 @@
+@import "variables";
+
+.filter-form {
+  @include flex-row(center);
+
+  .mat-form-field {
+    &.gitcode-select {
+      &:not(:last-child) {
+        margin-right: .5rem;
+      }
+    }
+  }
+
+  .mat-checkbox {
+    &:not(:last-child) {
+      margin-right: .5rem;
+    }
+  }
+}
+
+.mat-button {
+  text-decoration: underline;
+}
+
+:host(.code-review-filter) {
+  @include flex-column();
+  width: 100%;
+  height: 100%;
+}

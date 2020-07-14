@@ -1,0 +1,39 @@
+@import "../colors";
+@import "../functions";
+
+.mat-form-field {
+  &.gitcode-select {
+    height: rem(28px);
+
+    .mat-form-field-wrapper {
+      margin: 0;
+
+      .mat-form-field-flex {
+        min-height: unset;
+        height: rem(28px);
+        background: #FFFFFF;
+        border: 1px solid $color-gray-400;
+        border-radius: 2px;
+
+        .mat-form-field-infix {
+          .mat-select {
+            .mat-select-value {
+              color: $color-id-charcoal;
+
+              .mat-select-placeholder {
+                color: $color-id-charcoal;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.mat-checkbox {
+  &.gitcode-checkbox {
+    height: rem(28px);
+    line-height: 1.75;
+  }
+}

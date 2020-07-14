@@ -217,6 +217,7 @@
   "pullRequests": {
     "pageTitle": "PRs",
     "pullRequestFilter": {
+      "applyFilters": "필터 초기화",
       "isOnlySelfPRs": "나의 PR만 보기",
       "status": {
         "label": "상태",
@@ -234,6 +235,12 @@
         "label": "프레임워크",
         "option": {
           "all": "전체"
+        }
+      },
+      "database": {
+        "label": "Database",
+        "option": {
+          "all": "All"
         }
       },
       "search": {

@@ -217,6 +217,7 @@
   "pullRequests": {
     "pageTitle": "PRs",
     "pullRequestFilter": {
+      "applyFilters": "Apply filters",
       "isOnlySelfPRs": "View only my PR",
       "status": {
         "label": "Status",
@@ -232,6 +233,12 @@
       },
       "framework": {
         "label": "Framework",
+        "option": {
+          "all": "All"
+        }
+      },
+      "database": {
+        "label": "Database",
         "option": {
           "all": "All"
         }

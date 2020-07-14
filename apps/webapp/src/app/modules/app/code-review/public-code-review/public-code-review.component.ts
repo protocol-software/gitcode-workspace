@@ -187,6 +187,10 @@ export class PublicCodeReviewComponent implements OnInit, OnDestroy {
   // console.log(this.isSelectedStatus);
   // return this.isSelectedStatus;
   // }
+
+  public onFilterFormSubmitted(filterValue: any): void {
+    console.log(filterValue);
+  }
 }
 
 // @Pipe({ name: 'frameworks' })

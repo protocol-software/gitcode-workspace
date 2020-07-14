@@ -1,0 +1,49 @@
+<form class="filter-form"
+      [formGroup]="formGroup"
+      (ngSubmit)="onFormSubmit($event, formGroup.value)">
+    <mat-form-field class="gitcode-select"
+                    floatLabel="always">
+        <mat-label *ngIf="false">{{ 'pullRequests.pullRequestFilter.framework.label' | translate }}</mat-label>
+        <mat-select multiple
+                    [placeholder]="'pullRequests.pullRequestFilter.framework.label' | translate"
+                    formControlName="frameworks">
+            <mat-option *ngFor="let item of availableFrameworks"
+                        [value]="item">{{ item }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="gitcode-select"
+                    floatLabel="always">
+        <mat-label *ngIf="false">{{ 'pullRequests.pullRequestFilter.language.label' | translate }}</mat-label>
+        <mat-select multiple
+                    [placeholder]="'pullRequests.pullRequestFilter.language.label' | translate"
+                    formControlName="languages">
+            <mat-option *ngFor="let item of availableLanguages"
+                        [value]="item">{{ item }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="gitcode-select"
+                    floatLabel="always">
+        <mat-label *ngIf="false">{{ 'pullRequests.pullRequestFilter.database.label' | translate }}</mat-label>
+        <mat-select multiple
+                    [placeholder]="'pullRequests.pullRequestFilter.database.label' | translate"
+                    formControlName="databases">
+            <mat-option *ngFor="let item of availableDatabases"
+                        [value]="item">{{ item }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-checkbox class="gitcode-checkbox"
+                  formControlName="isOnlyMyPRs">
+        {{ 'pullRequests.pullRequestFilter.isOnlySelfPRs' | translate }}
+    </mat-checkbox>
+
+    <button mat-button
+            class="action"
+            type="submit"
+            color="primary"
+            [disabled]="!formGroup.valid">
+        {{ 'pullRequests.pullRequestFilter.applyFilters' | translate }}
+    </button>
+</form>

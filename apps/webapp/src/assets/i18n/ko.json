@@ -248,5 +248,8 @@
         "submit": "검색"
       }
     }
+  },
+  "codeReview": {
+    "request": "코드리뷰 요청하기"
   }
 }

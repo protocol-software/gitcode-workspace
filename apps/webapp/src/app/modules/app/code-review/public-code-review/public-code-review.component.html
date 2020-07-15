@@ -76,12 +76,8 @@
                     <!--                            </mat-select>-->
                     <!--                        </mat-form-field>-->
                     <!--                    </div>-->
-                    <div class="flex items-center mt-2">
-                        <mat-checkbox [(ngModel)]="isOnlyMyPR"></mat-checkbox>
-                        <div>나의 게시물만 보기</div>
-                    </div>
                 </div>
-                <div class="flex items-center">
+                <div class="flex items-center" *ngIf="false">
                     <button mat-raised-button (click)="createReview($event)"
                             class="btn-green text-sm text-white font-bold">
                         코드리뷰 요청하기
@@ -190,12 +186,17 @@
                 <!--                <gitcode-pagination (pageChange)="pageChange($event)"></gitcode-pagination>-->
             </div>
 
-            <gitcode-code-review-filter (formSubmitted)="onFilterFormSubmitted($event)"></gitcode-code-review-filter>
+            <div class="code-review-control">
+                <gitcode-code-review-filter (formSubmitted)="onFilterFormSubmitted($event)"></gitcode-code-review-filter>
+                <gitcode-button (click)="createReview($event)">
+                    {{ 'codeReview.request' | translate }}
+                </gitcode-button>
+            </div>
 
             <div class="mt-5 mb-12">
                 <ul class="items">
                     <li class="item"
-                        *ngFor="let item of codeReviewItems | myPostFilter:isOnlyMyPR:user?.uid; let no=index;">
+                        *ngFor="let item of codeReviewItems">
                         <gitcode-code-review-item [codeReviewItem]="item"
                                                   (itemClicked)="openReviewDetail(null, $event)"></gitcode-code-review-item>
                     </li>
@@ -215,6 +216,5 @@
     </div>
 </div>
 
-<!--TODO FILTER  -->
 <!--TODO REQUEST -->
 <!--TODO Checkbox-->

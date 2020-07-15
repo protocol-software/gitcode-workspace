@@ -1,8 +1,8 @@
 import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
-import { AngularFirestore, QueryDocumentSnapshot, QueryFn } from '@angular/fire/firestore';
+import { AngularFirestore, CollectionReference, Query, QueryDocumentSnapshot, QueryFn } from '@angular/fire/firestore';
 import { IUser } from '@gitcode/data';
 import { Observable, Subject } from 'rxjs';
-import { retry, takeUntil } from 'rxjs/operators';
+import { retry, take, takeUntil } from 'rxjs/operators';
 // import {FormControl} from "@angular/forms";
 // import { Pipe, PipeTransform } from '@angular/core';
 // import {MatCheckboxChange} from "@angular/material/checkbox";
@@ -53,6 +53,9 @@ export class PublicCodeReviewComponent implements OnInit, OnDestroy {
   private pageSize = 10;
   private lastDocInResponse: QueryDocumentSnapshot<any> = null;
   public hasMoreDocuments = false;
+
+  private query: Query;
+  private filter: any;
 
   constructor(
     private requestCodeReviewService: RequestCodeReviewService,
@@ -116,13 +119,12 @@ export class PublicCodeReviewComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const query: QueryFn = (ref) => ref
-      .limit(this.pageSize)
-      .orderBy('createdAt', 'desc')
-      .startAfter(this.lastDocInResponse);
     this.angularFirestore
-        .collection('public-code-review', query)
+        .collection('public-code-review', this.buildQuery.bind(this))
         .get()
+        .pipe(
+          retry(2),
+        )
         .subscribe((res) => {
           const data = res.docs.map(doc => doc.data());
           this.codeReviewItems = [...this.codeReviewItems, ...data];
@@ -189,7 +191,49 @@ export class PublicCodeReviewComponent implements OnInit, OnDestroy {
   // }
 
   public onFilterFormSubmitted(filterValue: any): void {
-    console.log(filterValue);
+    this.filter = filterValue;
+    this.lastDocInResponse = null;
+
+    this.angularFirestore
+        .collection('public-code-review', this.buildQuery.bind(this))
+        .get()
+        .pipe(
+          take(1),
+          retry(2),
+        )
+        .subscribe((res) => {
+          const data = res.docs.map(doc => doc.data());
+          this.codeReviewItems = data;
+          this.lastDocInResponse = res?.docs[res.docs.length - 1];
+          this.hasMoreDocuments = res?.docs?.length >= this.pageSize;
+        });
+  }
+
+  private buildQuery(ref: CollectionReference): Query {
+    let query: Query = ref.limit(this.pageSize)
+                          .orderBy('createdAt', 'desc');
+
+    if (this.lastDocInResponse) {
+      query = query.startAfter(this.lastDocInResponse);
+    }
+
+    if (this.filter) {
+      const searchValues = [
+        ...this.filter.frameworks,
+        ...this.filter.languages,
+        ...this.filter.databases,
+      ].map((item: string) => item.toLowerCase());
+
+      if (searchValues && searchValues.length) {
+        query = query.where('githubPR.languages', 'array-contains-any', searchValues);
+      }
+
+      if (this.filter.isOnlyMyPRs && this.user) {
+        query = query.where('author.uid', '==', this.user?.uid);
+      }
+    }
+
+    return query;
   }
 }
 

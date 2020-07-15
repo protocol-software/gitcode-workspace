@@ -1,5 +1,10 @@
 @import "variables";
 
+.code-review-control {
+  @include flex-row(center);
+  justify-content: space-between;
+}
+
 ul.items {
   width: 100%;
   max-width: rem(1200px);

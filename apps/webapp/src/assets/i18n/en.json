@@ -248,5 +248,8 @@
         "submit": "Submit"
       }
     }
+  },
+  "codeReview": {
+    "request": "Request Code Review"
   }
 }

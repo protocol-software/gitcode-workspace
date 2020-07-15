@@ -10,73 +10,74 @@ button {
   padding: rem(7px) rem(12px);
   font-family: $body-font-family-ko;
   @include flex-row(center);
+  white-space: nowrap;
 
   &.primary {
-    background: linear-gradient(180deg, #33CE57 0%, #29AC47 100%);
+    background: linear-gradient(180deg, #33CE57 0%, #29AC47 100%) !important;
     border: 1px solid #2DA449;
-    color: white;
+    color: white !important;;
 
     &:hover {
-      background: linear-gradient(180deg, #16C13E 0%, #0A9329 100%);
+      background: linear-gradient(180deg, #16C13E 0%, #0A9329 100%) !important;;
       border: 1px solid #0C8E2B;
     }
 
     &:active {
-      background: #0C9A2D;
+      background: #0C9A2D !important;;
       border: 1px solid #0C8E2B;
     }
   }
 
   &.outline {
-    background: white;
+    background: white !important;;
     border: 1px solid $color-gray-400;
-    color: $color-id-blue;
+    color: $color-id-blue !important;;
 
     &:hover {
-      background: $color-gray-200;
+      background: $color-gray-200 !important;;
     }
 
     &:active {
-      background: $color-id-blue;
-      color: white;
+      background: $color-id-blue !important;;
+      color: white !important;;
     }
   }
 
   &.outline-gray {
-    background: white;
+    background: white !important;;
     border: 1px solid $color-gray-400;
-    color: $color-id-charcoal;
+    color: $color-id-charcoal !important;;
     font-weight: 500;
   }
 
   &.gray {
-    background: linear-gradient(180deg, #FAFAFC 0%, #EFF3F6 100%), #EFF3F6;
+    background: linear-gradient(180deg, #FAFAFC 0%, #EFF3F6 100%), #EFF3F6 !important;;
     border: 1px solid $color-gray-400;
-    color: $color-id-charcoal;
+    color: $color-id-charcoal !important;;
 
     &:hover {
-      background: #EDEEEE;
+      background: #EDEEEE !important;;
     }
 
     &:active {
-      background: linear-gradient(180deg, #EFEFEF 0%, #E2E3E4 100%), #EFF3F6;
+      background: linear-gradient(180deg, #EFEFEF 0%, #E2E3E4 100%), #EFF3F6 !important;;
     }
   }
 
   &.github {
-    background: linear-gradient(180deg, #FAFAFC 0%, #EFF3F6 100%), #EFF3F6;
+    background: linear-gradient(180deg, #FAFAFC 0%, #EFF3F6 100%), #EFF3F6 !important;;
     border: 1px solid $color-gray-400;
-    color: $color-id-charcoal;
+    color: $color-id-charcoal !important;;
     font-weight: 500;
     height: rem(40px);
     padding: rem(11px) rem(20px);
 
     &:hover {
-      background: #EDEEEE;
+      background: #EDEEEE !important;;
     }
 
     &:active {
-      background: linear-gradient(180deg, #EFEFEF 0%, #E2E3E4 100%), #EFF3F6;
+      background: linear-gradient(180deg, #EFEFEF 0%, #E2E3E4 100%), #EFF3F6 !important;;
     }
 
     .mat-icon {

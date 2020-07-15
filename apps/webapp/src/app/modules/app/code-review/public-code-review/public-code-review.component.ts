@@ -1,7 +1,7 @@
 import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore, CollectionReference, Query, QueryDocumentSnapshot, QueryFn } from '@angular/fire/firestore';
 import { IUser } from '@gitcode/data';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { retry, take, takeUntil } from 'rxjs/operators';
 // import {FormControl} from "@angular/forms";
 // import { Pipe, PipeTransform } from '@angular/core';
@@ -19,7 +19,7 @@ import { RequestCodeReviewService } from './request-code-review/request-code-rev
 export class PublicCodeReviewComponent implements OnInit, OnDestroy {
   @HostBinding('class') public hostClass = 'public-code-review';
 
-  contentList: Observable<any[]>;
+  // contentList: Observable<any[]>;
 
   public codeReviewItems: any[] = [];
 
@@ -39,8 +39,8 @@ export class PublicCodeReviewComponent implements OnInit, OnDestroy {
   // answer: Answer[];
   // this.answer = new Array<Answer>();
 
-  isOnlyMyPR = false;
-  isSelectedStatus: string;
+  // isOnlyMyPR = false;
+  // isSelectedStatus: string;
 
   // isSelectedMyPost2 :any =[];
   // contentStatusList: IStatusList[] = [];
@@ -59,7 +59,7 @@ export class PublicCodeReviewComponent implements OnInit, OnDestroy {
 
   constructor(
     private requestCodeReviewService: RequestCodeReviewService,
-    private codeReviewDeatilService: CodeReviewDetailService,
+    private codeReviewDetailService: CodeReviewDetailService,
     private publicCodeReviewService: PublicCodeReviewService,
     private authService: AuthService,
     private angularFirestore: AngularFirestore,
@@ -172,13 +172,13 @@ export class PublicCodeReviewComponent implements OnInit, OnDestroy {
     );
   }
 
-  openReviewDetail(event: MouseEvent, item: any): void {
+  public openReviewDetail(event: MouseEvent, item: any): void {
     if (event) {
       event.preventDefault();
       event.stopPropagation();
     }
 
-    const dialogClosed = this.codeReviewDeatilService.open({ item });
+    const dialogClosed = this.codeReviewDetailService.open({ item });
   }
 
   // filterItemOfType(postId:number) {

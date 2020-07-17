@@ -1,7 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {DialogRole, MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
+import { Direction } from '@angular/cdk/bidi';
+import { Component, HostBinding, Inject, OnInit } from '@angular/core';
+import { DialogRole, MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ExpertEvaluationComponent } from '../expert-evaluation/expert-evaluation.component';
-import {Direction} from "@angular/cdk/bidi";
 
 export interface DialogData {
   item: any
@@ -10,52 +10,67 @@ export interface DialogData {
 @Component({
   selector: 'gitcode-code-review-detail',
   templateUrl: './code-review-detail.component.html',
-  styleUrls: ['./code-review-detail.component.scss']
+  styleUrls: ['./code-review-detail.component.scss'],
 })
 export class CodeReviewDetailComponent implements OnInit {
+  @HostBinding('class') public hostClass = 'code-review-detail';
+
   isReviewRequestComplete: any;
   animal: string;
   name: string;
   item: any;
 
   constructor(public dialog: MatDialog,
-  public dialogRef: MatDialogRef<CodeReviewDetailDialog>,
-  @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+              public dialogRef: MatDialogRef<CodeReviewDetailDialog>,
+              @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.item = data.item;
   }
 
   ngOnInit(): void {
 
   }
+
   openDialog($value) {
-      if ($value==1){
-        const dialogRef = this.dialog.open(CodeReviewDetailDialog,{
-          data: {name: this.name, animal: this.animal}
-        });
-        dialogRef.afterClosed().subscribe(result => {
-          console.log('The dialog was closed');
-          this.animal = result;
-        });
-      }
-      if ($value==2){
-        const dialogRef = this.dialog.open(CodeReviewDetailDialog,{
-          data: {name: this.name, animal: this.animal}
-        });
-        dialogRef.afterClosed().subscribe(result => {
-          console.log('The dialog was closed');
-          this.animal = result;
-        });
-      }
+    if ($value == 1) {
+      const dialogRef = this.dialog.open(CodeReviewDetailDialog, {
+        data: { name: this.name, animal: this.animal },
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        this.animal = result;
+      });
     }
+    if ($value == 2) {
+      const dialogRef = this.dialog.open(CodeReviewDetailDialog, {
+        data: { name: this.name, animal: this.animal },
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        this.animal = result;
+      });
+    }
+  }
 
   openDialogBestreview(event: MouseEvent) {
     this.dialog.open(CodeReviewDetailDialogBestreview);
   }
 
-  public closePopup(event) {
+  public closePopup(event): void {
     this.dialogRef.close(true);
   }
 
+  public openExternalLink(event: MouseEvent, link: string): void {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    if (!link) {
+      return;
+    }
+
+    window.open(link, '_blank');
+  }
 }
 
 @Component({
@@ -63,11 +78,11 @@ export class CodeReviewDetailComponent implements OnInit {
   templateUrl: 'code-review-detail-dialog.html',
 })
 export class CodeReviewDetailDialog {
-  isTrue: boolean = false;
+  isTrue = false;
 
   constructor(
-      public dialogRef: MatDialogRef<CodeReviewDetailDialog>,
-      @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    public dialogRef: MatDialogRef<CodeReviewDetailDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -78,6 +93,7 @@ export class CodeReviewDetailDialog {
       this.isTrue = true;
     }
   }
+
   public closePopup(event) {
     this.dialogRef.close(true);
   }
@@ -91,7 +107,7 @@ export class CodeReviewDetailDialogBestreview {
   private dialogConfig = {
     autoFocus: false,
     closeOnNavigation: true,
-    direction: <Direction>'ltr',
+    direction: 'ltr' as Direction,
     disableClose: false,
     hasBackdrop: true,
     height: '80vh',
@@ -101,20 +117,22 @@ export class CodeReviewDetailDialogBestreview {
     maxWidth: '527px',
     panelClass: ['app-dialog'],
     restoreFocus: false,
-    role: <DialogRole>'dialog',
+    role: 'dialog' as DialogRole,
   };
   isTrue: true;
+
   constructor(
-      public dialog:MatDialog,
-      public dialogRef: MatDialogRef<CodeReviewDetailDialogBestreview>) {
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<CodeReviewDetailDialogBestreview>) {
   }
 
   confirmBox() {
     const config: MatDialogConfig = this.dialogConfig;
     config.panelClass = ['app-dialog'];
-    this.dialog.open(ExpertEvaluationComponent,config);
+    this.dialog.open(ExpertEvaluationComponent, config);
 
   }
+
   public closePopup() {
     this.dialogRef.close(true);
 

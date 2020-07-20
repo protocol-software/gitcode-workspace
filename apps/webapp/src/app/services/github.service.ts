@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IGitHubBranch, IGitHubRepo, IGitHubUser } from '@gitcode/data';
+import { IGitHubBranch, IGithubComment, IGitHubRepo, IGitHubUser } from '@gitcode/data';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as UrlAssembler from 'url-assembler';
@@ -59,6 +59,14 @@ export class GitHubService {
       .toString();
 
     return this.http.get<IGitHubBranch[]>(endpoint, { headers: this.getHeaders() });
+  }
+
+  public getComments(owner: string, repo: string): Observable<IGithubComment[]> {
+    const endpoint = UrlAssembler(this.baseApiUrl)
+      .template(`/repos/${owner}/${repo}/comments`)
+      .toString();
+
+    return this.http.get<IGithubComment[]>(endpoint);
   }
 
   public createPR(owner: string, repo: string, payload: any): Observable<any> {

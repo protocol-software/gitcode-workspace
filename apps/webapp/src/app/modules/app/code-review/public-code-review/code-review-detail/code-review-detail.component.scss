@@ -84,6 +84,31 @@ section.repo-info {
   }
 }
 
+.comment-header {
+  @include flex-row(center);
+  background-color: $color-gray-100;
+  padding: rem(8px) rem(32px);
+  font-size: rem(12px);
+  border-top: solid thin $color-gray-300;
+  border-bottom: solid thin $color-gray-300;
+
+  .key-value {
+    @include flex-row(center);
+    margin-right: rem(15px);
+
+    .key {
+      color: $color-gray-700;
+      font-weight: 700;
+      margin-right: rem(6px);
+    }
+
+    .value {
+      color: $color-id-blue;
+      font-weight: 500;
+    }
+  }
+}
+
 :host(.code-review-detail) {
   @include flex-column();
   width: 100%;

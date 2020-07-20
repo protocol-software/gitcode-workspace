@@ -251,5 +251,10 @@
   },
   "codeReview": {
     "request": "Request Code Review"
+  },
+  "codeReviewDetail": {
+    "title": "Code Review Detail",
+    "reviewers": "Reviewers",
+    "comments": "Comments"
   }
 }

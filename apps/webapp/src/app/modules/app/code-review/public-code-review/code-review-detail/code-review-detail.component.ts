@@ -1,6 +1,9 @@
 import { Direction } from '@angular/cdk/bidi';
 import { Component, HostBinding, Inject, OnInit } from '@angular/core';
 import { DialogRole, MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { IGithubComment } from '@gitcode/data';
+import { finalize, retry } from 'rxjs/operators';
+import { GitHubService } from '../../../../../services/github.service';
 import { ExpertEvaluationComponent } from '../expert-evaluation/expert-evaluation.component';
 
 export interface DialogData {
@@ -20,14 +23,18 @@ export class CodeReviewDetailComponent implements OnInit {
   name: string;
   item: any;
 
+  public comments: IGithubComment[];
+  public isLoadingComments = false;
+
   constructor(public dialog: MatDialog,
               public dialogRef: MatDialogRef<CodeReviewDetailDialog>,
-              @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+              @Inject(MAT_DIALOG_DATA) public data: DialogData,
+              private githubService: GitHubService) {
     this.item = data.item;
   }
 
   ngOnInit(): void {
-
+    this.loadComments();
   }
 
   openDialog($value) {
@@ -70,6 +77,32 @@ export class CodeReviewDetailComponent implements OnInit {
     }
 
     window.open(link, '_blank');
+  }
+
+
+  private loadComments(): void {
+    const ownerName = this.item.githubPR?.user?.login;
+    const repoUrl = new URL(this.item.githubPR?.url);
+    const repoName = repoUrl?.pathname?.split('/')[3];
+
+    if (!ownerName || !repoName) {
+      return;
+    }
+
+    this.isLoadingComments = true;
+
+    this.githubService.getComments(ownerName, repoName)
+        .pipe(
+          retry(2),
+          finalize(() => {
+            this.isLoadingComments = false;
+          }),
+        )
+        .subscribe(
+          (res) => {
+            this.comments = res;
+          },
+        );
   }
 }
 

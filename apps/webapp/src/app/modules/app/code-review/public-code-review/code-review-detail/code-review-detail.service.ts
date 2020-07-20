@@ -15,7 +15,7 @@ export class CodeReviewDetailService {
     autoFocus: false,
     // backdropClass: 'cdk-overlay-dark-backdrop',
     closeOnNavigation: true,
-    direction: <Direction>'ltr',
+    direction: 'ltr' as Direction,
     disableClose: false,
     hasBackdrop: true,
     height: '80vh',
@@ -27,7 +27,7 @@ export class CodeReviewDetailService {
     panelClass: ['app-dialog'],
     // position: <DialogPosition>'bottom',
     restoreFocus: false,
-    role: <DialogRole>'dialog',
+    role: 'dialog' as DialogRole,
   };
 
   constructor(private dialog: MatDialog) {

@@ -109,6 +109,23 @@ section.repo-info {
   }
 }
 
+.no-comment {
+  @include flex-center();
+  height: rem(132px);
+  color: $color-gray-600;
+}
+
+ul.comments {
+  margin: 0;
+  padding: rem(12px) rem(32px);
+  list-style-type: none;
+  @include flex-column();
+
+  li.comment {
+
+  }
+}
+
 :host(.code-review-detail) {
   @include flex-column();
   width: 100%;

@@ -3,9 +3,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { TranslateModule } from '@ngx-translate/core';
 import { ClipboardModule } from 'ngx-clipboard';
+import { MomentModule } from 'ngx-moment';
 import { ButtonComponent } from './buttons/regular/button.component';
 import { SnackCopyButtonComponent } from './buttons/snack-copy/snack-copy-button.component';
+import { CodeReviewCommentComponent } from './code-review/code-review-comment/code-review-comment.component';
 import { CodeReviewItemComponent } from './code-review/code-review-item/code-review-item.component';
 import { CodeReviewUsersComponent } from './code-review/code-review-users/code-review-users.component';
 import { ColorsComponent } from './colors/colors.component';
@@ -20,9 +23,12 @@ import { TagComponent } from './tags/regular/tag.component';
     MatIconModule,
     MatInputModule,
     ClipboardModule,
+    TranslateModule,
+    MomentModule,
   ],
   declarations: [
     ButtonComponent,
+    CodeReviewCommentComponent,
     CodeReviewItemComponent,
     CodeReviewUsersComponent,
     ColorsComponent,
@@ -33,6 +39,7 @@ import { TagComponent } from './tags/regular/tag.component';
   ],
   exports: [
     ButtonComponent,
+    CodeReviewCommentComponent,
     CodeReviewItemComponent,
     CodeReviewUsersComponent,
     LogoBadgeComponent,

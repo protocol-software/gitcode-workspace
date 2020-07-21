@@ -1,0 +1,111 @@
+@import "variables";
+
+.avatar {
+  grid-area: avatar;
+  width: rem(32px);
+  height: rem(32px);
+  border: solid thin transparent;
+  border-radius: 3px;
+  overflow: hidden;
+
+  img {
+    @include fit-image(cover);
+  }
+}
+
+.comment-header {
+  grid-area: comment-header;
+  @include flex-row(center);
+  padding-left: 1rem;
+  background-color: $color-indigo-100;
+  border: solid thin $color-gray-400;
+  height: rem(35px);
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+  }
+
+  &::before {
+    border-top: 6px solid transparent;
+    border-right: 12px solid $color-gray-400;
+    border-bottom: 6px solid transparent;
+    top: 12px;
+    left: -12px;
+  }
+
+  &::after {
+    border-top: 5px solid transparent;
+    border-right: 10px solid $color-indigo-100;
+    border-bottom: 5px solid transparent;
+    top: 13px;
+    left: -10px;
+  }
+
+  .username {
+    font-size: rem(14px);
+    font-weight: 700;
+    margin-right: .5rem;
+    color: $color-id-charcoal;
+  }
+
+  .when {
+    font-size: rem(12px);
+    font-weight: 400;
+    color: $color-gray-600;
+  }
+}
+
+.comment-body {
+  grid-area: comment-body;
+  padding: 1rem;
+  font-size: rem(14px);
+  font-weight: 400;
+  color: $color-id-charcoal;
+  border: solid thin $color-gray-400;
+  border-top: none;
+}
+
+.actions {
+  grid-area: actions;
+  @include flex-row(center);
+  font-size: rem(12px);
+  font-weight: 500;
+  color: $color-gray-600;
+  padding: .25rem 0;
+
+  .action {
+    @include flex-row(center);
+
+    &:not(:last-of-type) {
+      margin-right: 1rem;
+    }
+
+    &.reply {
+      grid-area: reply;
+    }
+
+    &.best-answer {
+      grid-area: best-answer;
+    }
+
+    .mat-icon {
+      margin-right: .25rem;
+      transform: scale(.8);
+      transform-origin: center;
+    }
+  }
+}
+
+:host(.code-review-comment) {
+  display: grid;
+  grid-template-areas: "avatar comment-header" "avatar comment-body" "avatar actions";
+  grid-template-columns: rem(32px) auto;
+  grid-column-gap: 1rem;
+  width: 100%;
+  height: 100%;
+}

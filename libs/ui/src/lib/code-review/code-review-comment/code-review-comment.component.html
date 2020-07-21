@@ -1,0 +1,24 @@
+<div class="avatar">
+    <img src="{{ comment?.user?.avatar_url }}" alt="{{ comment?.user?.name }}">
+</div>
+<div class="comment-header">
+    <span class="username">{{ comment?.user?.login }}</span>
+    <span class="when">{{ 'codeReviewDetail.comment.commented' | translate }} {{ comment?.created_at | amTimeAgo }}</span>
+</div>
+<div class="comment-body">
+    <span class="comment">{{ comment?.body }}</span>
+</div>
+<div class="actions">
+    <a href="{{ comment?.url }}"
+       target="_blank"
+       class="action reply">
+        <mat-icon svgIcon="reply"></mat-icon>
+        <span>{{ 'codeReviewDetail.comment.reply' | translate }}</span>
+    </a>
+    <a href="#"
+       (click)="markAsBestAnswer($event)"
+       class="action best-answer">
+        <mat-icon svgIcon="star"></mat-icon>
+        <span>{{ 'codeReviewDetail.comment.markAsBest' | translate }}</span>
+    </a>
+</div>

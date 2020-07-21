@@ -255,6 +255,12 @@
   "codeReviewDetail": {
     "title": "코드리뷰 요청",
     "reviewers": "Reviewers",
-    "comments": "Comments"
+    "comments": "Comments",
+    "noComment": "등록된 코멘트가 없습니다.",
+    "comment": {
+      "commented": "commented",
+      "reply": "답글달기",
+      "markAsBest": "베스트 리뷰 선정"
+    }
   }
 }

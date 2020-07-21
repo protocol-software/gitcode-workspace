@@ -255,6 +255,12 @@
   "codeReviewDetail": {
     "title": "Code Review Detail",
     "reviewers": "Reviewers",
-    "comments": "Comments"
+    "comments": "Comments",
+    "noComment": "There are no registered comments.",
+    "comment": {
+      "commented": "commented",
+      "reply": "Reply",
+      "markAsBest": "Mark as best answer"
+    }
   }
 }

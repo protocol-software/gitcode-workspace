@@ -67,7 +67,9 @@
 
     <ul class="comments" *ngIf="comments?.length">
         <li class="comment" *ngFor="let comment of comments">
-            <gitcode-code-review-comment [comment]="comment"></gitcode-code-review-comment>
+            <gitcode-code-review-comment [comment]="comment"
+                                         [hasBestAnswer]="!!bestAnswer"
+                                         [isBestAnswer]="bestAnswer?.commentId === comment?.id"></gitcode-code-review-comment>
         </li>
     </ul>
     <!--    <div class="border-t border-b bg-gray-100 border-gray-300 flex px-8 py-2">-->

@@ -73,6 +73,8 @@
   &.best {
     background-color: $color-id-yellow;
     color: white;
+    min-height: unset;
+    height: rem(20px);
   }
 
   &.grade {

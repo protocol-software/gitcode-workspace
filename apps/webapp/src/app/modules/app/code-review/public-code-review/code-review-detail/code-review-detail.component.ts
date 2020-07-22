@@ -1,8 +1,10 @@
 import { Direction } from '@angular/cdk/bidi';
 import { Component, HostBinding, Inject, OnInit } from '@angular/core';
+import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
 import { DialogRole, MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { IGithubComment } from '@gitcode/data';
 import { finalize, retry } from 'rxjs/operators';
+import { ICodeReviewBestAnswer } from '../../../../../../../../../libs/data/src/lib/interfaces/code-review-best-answer.interface';
 import { GitHubService } from '../../../../../services/github.service';
 import { ExpertEvaluationComponent } from '../expert-evaluation/expert-evaluation.component';
 
@@ -24,21 +26,44 @@ export class CodeReviewDetailComponent implements OnInit {
   item: any;
 
   public comments: IGithubComment[];
+  public bestAnswer: ICodeReviewBestAnswer;
   public isLoadingComments = false;
 
   constructor(public dialog: MatDialog,
               public dialogRef: MatDialogRef<CodeReviewDetailDialog>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
-              private githubService: GitHubService) {
+              private githubService: GitHubService,
+              private angularFirestore: AngularFirestore) {
     this.item = data.item;
+    this.getBestAnswer();
   }
 
   ngOnInit(): void {
     this.loadComments();
   }
 
-  openDialog($value) {
-    if ($value == 1) {
+  private getBestAnswer(): void {
+    if (!this.item) {
+      return;
+    }
+
+    const query: QueryFn = (ref) => ref
+      .where('nodeId', '==', this.item?.githubPR.node_id);
+    this.angularFirestore
+        .collection('code-review-best-answer', query)
+        .snapshotChanges()
+        .pipe(
+          retry(2),
+        )
+        .subscribe(
+          (docs) => {
+            this.bestAnswer = docs[0]?.payload.doc.data() as ICodeReviewBestAnswer;
+          },
+        );
+  }
+
+  openDialog($value): void {
+    if ($value === 1) {
       const dialogRef = this.dialog.open(CodeReviewDetailDialog, {
         data: { name: this.name, animal: this.animal },
       });
@@ -47,7 +72,8 @@ export class CodeReviewDetailComponent implements OnInit {
         this.animal = result;
       });
     }
-    if ($value == 2) {
+
+    if ($value === 2) {
       const dialogRef = this.dialog.open(CodeReviewDetailDialog, {
         data: { name: this.name, animal: this.animal },
       });
@@ -58,7 +84,7 @@ export class CodeReviewDetailComponent implements OnInit {
     }
   }
 
-  openDialogBestreview(event: MouseEvent) {
+  openDialogBestreview(event: MouseEvent): void {
     this.dialog.open(CodeReviewDetailDialogBestreview);
   }
 

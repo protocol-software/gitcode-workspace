@@ -35,6 +35,7 @@ export * from './lib/interfaces/code-review-author.interface';
 export * from './lib/interfaces/code-review-reviewer.interface';
 export * from './lib/interfaces/github-pull-request.interface';
 export * from './lib/interfaces/github-comment.interface';
+export * from './lib/interfaces/code-review-best-answer.interface';
 
 // Enums
 export * from './lib/enums/oauth-provider.enum';

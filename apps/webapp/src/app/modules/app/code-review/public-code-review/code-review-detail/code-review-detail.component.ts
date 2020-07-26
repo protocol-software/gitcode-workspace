@@ -3,7 +3,7 @@ import { Component, HostBinding, Inject, OnInit } from '@angular/core';
 import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
 import { DialogRole, MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { IGithubComment } from '@gitcode/data';
-import { finalize, retry } from 'rxjs/operators';
+import { finalize, retry, take } from 'rxjs/operators';
 import { ICodeReviewBestAnswer } from '../../../../../../../../../libs/data/src/lib/interfaces/code-review-best-answer.interface';
 import { GitHubService } from '../../../../../services/github.service';
 import { ExpertEvaluationComponent } from '../expert-evaluation/expert-evaluation.component';
@@ -54,6 +54,7 @@ export class CodeReviewDetailComponent implements OnInit {
         .snapshotChanges()
         .pipe(
           retry(2),
+          take(1),
         )
         .subscribe(
           (docs) => {
@@ -128,46 +129,120 @@ export class CodeReviewDetailComponent implements OnInit {
           (res) => {
             // For testing only!
             // if (!res || !res.length) {
-            //   res = [
-            //     {
-            //       'html_url': 'https://github.com/octocat/Hello-World/commit/6dcb09b5b57875f334f61aebed695e2e4193db5e#commitcomment-1',
-            //       'url': 'https://api.github.com/repos/octocat/Hello-World/comments/1',
-            //       'id': 1,
-            //       'node_id': 'MDEzOkNvbW1pdENvbW1lbnQx',
-            //       'body': 'Great stuff',
-            //       'path': 'file1.txt',
-            //       'position': 4,
-            //       'line': 14,
-            //       'commit_id': '6dcb09b5b57875f334f61aebed695e2e4193db5e',
-            //       'user': {
-            //         'login': 'octocat',
-            //         'id': 1,
-            //         'node_id': 'MDQ6VXNlcjE=',
-            //         'avatar_url': 'https://i.pravatar.cc/40',
-            //         'gravatar_id': '',
-            //         'url': 'https://api.github.com/users/octocat',
-            //         'html_url': 'https://github.com/octocat',
-            //         'followers_url': 'https://api.github.com/users/octocat/followers',
-            //         'following_url': 'https://api.github.com/users/octocat/following{/other_user}',
-            //         'gists_url': 'https://api.github.com/users/octocat/gists{/gist_id}',
-            //         'starred_url': 'https://api.github.com/users/octocat/starred{/owner}{/repo}',
-            //         'subscriptions_url': 'https://api.github.com/users/octocat/subscriptions',
-            //         'organizations_url': 'https://api.github.com/users/octocat/orgs',
-            //         'repos_url': 'https://api.github.com/users/octocat/repos',
-            //         'events_url': 'https://api.github.com/users/octocat/events{/privacy}',
-            //         'received_events_url': 'https://api.github.com/users/octocat/received_events',
-            //         'type': 'User',
-            //         'site_admin': false,
-            //       },
-            //       'created_at': '2011-04-14T16:00:49Z',
-            //       'updated_at': '2011-04-14T16:00:49Z',
-            //     },
-            //   ];
+            //   res = this.getMockComments();
             // }
 
             this.comments = res;
           },
         );
+  }
+
+  public onBestAnswerChanged(bestAnswer: ICodeReviewBestAnswer): void {
+    this.bestAnswer = bestAnswer;
+  }
+
+  private getMockComments(): IGithubComment[] {
+    return [
+      {
+        'html_url': 'https://github.com/octocat/Hello-World/commit/6dcb09b5b57875f334f61aebed695e2e4193db5e#commitcomment-1',
+        'url': 'https://api.github.com/repos/octocat/Hello-World/comments/1',
+        'id': 1,
+        'node_id': 'MDExOlB1bGxSZXF1ZXN0NDQwMTU0OTI0',
+        'body': 'Great stuff',
+        'path': 'file1.txt',
+        'position': 4,
+        'line': 14,
+        'commit_id': '6dcb09b5b57875f334f61aebed695e2e4193db5e',
+        'user': {
+          'login': 'octocat',
+          'id': 1,
+          'node_id': 'MDQ6VXNlcjE=',
+          'avatar_url': 'https://i.pravatar.cc/40',
+          'gravatar_id': '',
+          'url': 'https://api.github.com/users/octocat',
+          'html_url': 'https://github.com/octocat',
+          'followers_url': 'https://api.github.com/users/octocat/followers',
+          'following_url': 'https://api.github.com/users/octocat/following{/other_user}',
+          'gists_url': 'https://api.github.com/users/octocat/gists{/gist_id}',
+          'starred_url': 'https://api.github.com/users/octocat/starred{/owner}{/repo}',
+          'subscriptions_url': 'https://api.github.com/users/octocat/subscriptions',
+          'organizations_url': 'https://api.github.com/users/octocat/orgs',
+          'repos_url': 'https://api.github.com/users/octocat/repos',
+          'events_url': 'https://api.github.com/users/octocat/events{/privacy}',
+          'received_events_url': 'https://api.github.com/users/octocat/received_events',
+          'type': 'User',
+          'site_admin': false,
+        },
+        'created_at': '2011-04-14T16:00:49Z',
+        'updated_at': '2011-04-14T16:00:49Z',
+      },
+      {
+        'html_url': 'https://github.com/octocat/Hello-World/commit/6dcb09b5b57875f334f61aebed695e2e4193db5e#commitcomment-1',
+        'url': 'https://api.github.com/repos/octocat/Hello-World/comments/1',
+        'id': 2,
+        'node_id': 'MDExOlB1bGxSZXF1ZXN0NDQwMTU0OTI0',
+        'body': 'Great stuff',
+        'path': 'file1.txt',
+        'position': 4,
+        'line': 14,
+        'commit_id': '6dcb09b5b57875f334f61aebed695e2e4193db5e',
+        'user': {
+          'login': 'octocat',
+          'id': 1,
+          'node_id': 'MDQ6VXNlcjE=',
+          'avatar_url': 'https://i.pravatar.cc/40',
+          'gravatar_id': '',
+          'url': 'https://api.github.com/users/octocat',
+          'html_url': 'https://github.com/octocat',
+          'followers_url': 'https://api.github.com/users/octocat/followers',
+          'following_url': 'https://api.github.com/users/octocat/following{/other_user}',
+          'gists_url': 'https://api.github.com/users/octocat/gists{/gist_id}',
+          'starred_url': 'https://api.github.com/users/octocat/starred{/owner}{/repo}',
+          'subscriptions_url': 'https://api.github.com/users/octocat/subscriptions',
+          'organizations_url': 'https://api.github.com/users/octocat/orgs',
+          'repos_url': 'https://api.github.com/users/octocat/repos',
+          'events_url': 'https://api.github.com/users/octocat/events{/privacy}',
+          'received_events_url': 'https://api.github.com/users/octocat/received_events',
+          'type': 'User',
+          'site_admin': false,
+        },
+        'created_at': '2011-04-14T16:00:49Z',
+        'updated_at': '2011-04-14T16:00:49Z',
+      },
+      {
+        'html_url': 'https://github.com/octocat/Hello-World/commit/6dcb09b5b57875f334f61aebed695e2e4193db5e#commitcomment-1',
+        'url': 'https://api.github.com/repos/octocat/Hello-World/comments/1',
+        'id': 3,
+        'node_id': 'MDExOlB1bGxSZXF1ZXN0NDQwMTU0OTI0',
+        'body': 'Great stuff',
+        'path': 'file1.txt',
+        'position': 4,
+        'line': 14,
+        'commit_id': '6dcb09b5b57875f334f61aebed695e2e4193db5e',
+        'user': {
+          'login': 'octocat',
+          'id': 1,
+          'node_id': 'MDQ6VXNlcjE=',
+          'avatar_url': 'https://i.pravatar.cc/40',
+          'gravatar_id': '',
+          'url': 'https://api.github.com/users/octocat',
+          'html_url': 'https://github.com/octocat',
+          'followers_url': 'https://api.github.com/users/octocat/followers',
+          'following_url': 'https://api.github.com/users/octocat/following{/other_user}',
+          'gists_url': 'https://api.github.com/users/octocat/gists{/gist_id}',
+          'starred_url': 'https://api.github.com/users/octocat/starred{/owner}{/repo}',
+          'subscriptions_url': 'https://api.github.com/users/octocat/subscriptions',
+          'organizations_url': 'https://api.github.com/users/octocat/orgs',
+          'repos_url': 'https://api.github.com/users/octocat/repos',
+          'events_url': 'https://api.github.com/users/octocat/events{/privacy}',
+          'received_events_url': 'https://api.github.com/users/octocat/received_events',
+          'type': 'User',
+          'site_admin': false,
+        },
+        'created_at': '2011-04-14T16:00:49Z',
+        'updated_at': '2011-04-14T16:00:49Z',
+      },
+    ];
   }
 }
 

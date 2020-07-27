@@ -2,7 +2,9 @@ import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/co
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ICodeReviewBestAnswer, IGithubComment } from '@gitcode/data';
 import { SvgIconService } from '@gitcode/util';
+import { TranslateService } from '@ngx-translate/core';
 import { retry, take } from 'rxjs/operators';
+import { DialogService } from '../../dialogs/dialog.service';
 
 @Component({
   selector: 'gitcode-code-review-comment',
@@ -22,17 +24,38 @@ export class CodeReviewCommentComponent {
 
   constructor(private svgIconService: SvgIconService,
               private angularFirestore: AngularFirestore,
+              private dialogService: DialogService,
+              private translateService: TranslateService,
   ) {
     this.svgIconService.registerIcon('reply', '/assets/icons/reply.svg');
     this.svgIconService.registerIcon('star', '/assets/icons/star.svg');
   }
 
-  public async markAsBestAnswer(event: MouseEvent): Promise<void> {
+  public confirmMarkAsBestAnswer(event: MouseEvent): void {
     if (event) {
       event.preventDefault();
       event.stopPropagation();
     }
 
+    const alertDialog = this.dialogService.confirm(
+      this.translateService.instant('codeReviewDetail.markAsBestConfirm.title'),
+      this.translateService.instant('codeReviewDetail.markAsBestConfirm.message'),
+      this.translateService.instant('codeReviewDetail.markAsBestConfirm.confirm'),
+      this.translateService.instant('codeReviewDetail.markAsBestConfirm.cancel'),
+    );
+
+    alertDialog.afterClosed().subscribe(
+      (answer) => {
+        if (!answer) {
+          return;
+        }
+
+        this.markAsBestAnswer();
+      },
+    );
+  }
+
+  private markAsBestAnswer(): void {
     const bestAnswer: ICodeReviewBestAnswer = {
       nodeId: this.comment.node_id,
       commentId: this.comment.id,

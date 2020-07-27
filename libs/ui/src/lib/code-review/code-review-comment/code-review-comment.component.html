@@ -18,7 +18,7 @@
     </a>
     <a href="#"
        *ngIf="shouldAllowMarkAsBestAnswer && !isBestAnswer"
-       (click)="markAsBestAnswer($event)"
+       (click)="confirmMarkAsBestAnswer($event)"
        class="action best-answer">
         <mat-icon svgIcon="star"></mat-icon>
         <span>{{ 'codeReviewDetail.comment.markAsBest' | translate }}</span>

@@ -1,0 +1,7 @@
+@import "variables";
+
+:host(.rate-reviewee-dialog) {
+  @include flex-column();
+  width: 100%;
+  height: 100%;
+}

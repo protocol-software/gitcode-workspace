@@ -5,6 +5,8 @@ import { SvgIconService } from '@gitcode/util';
 import { TranslateService } from '@ngx-translate/core';
 import { retry, take } from 'rxjs/operators';
 import { DialogService } from '../../dialogs/dialog.service';
+import { RateReviewerPrivateDialogService } from '../rate-reviewer-private/dialog/rate-reviewer-private-dialog.service';
+import { RateReviewerPublicDialogService } from '../rate-reviewer-public/dialog/rate-reviewer-public-dialog.service';
 
 @Component({
   selector: 'gitcode-code-review-comment',
@@ -17,6 +19,7 @@ export class CodeReviewCommentComponent {
   @Input() public comment: IGithubComment;
   @Input() public hasBestAnswer = false;
   @Input() public isBestAnswer = false;
+  @Input() public prType: 'public' | 'private' = 'public';
   @Output() public bestAnswerChanged: EventEmitter<ICodeReviewBestAnswer> = new EventEmitter<ICodeReviewBestAnswer>();
 
   // TODO: only allow the author to mark an answer as the best answer.
@@ -25,6 +28,8 @@ export class CodeReviewCommentComponent {
   constructor(private svgIconService: SvgIconService,
               private angularFirestore: AngularFirestore,
               private dialogService: DialogService,
+              private rateReviewerPublicDialogService: RateReviewerPublicDialogService,
+              private rateReviewerPrivateDialogService: RateReviewerPrivateDialogService,
               private translateService: TranslateService,
   ) {
     this.svgIconService.registerIcon('reply', '/assets/icons/reply.svg');
@@ -45,17 +50,18 @@ export class CodeReviewCommentComponent {
     );
 
     alertDialog.afterClosed().subscribe(
-      (answer) => {
+      async (answer) => {
         if (!answer) {
           return;
         }
 
-        this.markAsBestAnswer();
+        await this.markAsBestAnswer();
+        this.openRateReviewerDialog();
       },
     );
   }
 
-  private markAsBestAnswer(): void {
+  private async markAsBestAnswer(): Promise<void> {
     const bestAnswer: ICodeReviewBestAnswer = {
       nodeId: this.comment.node_id,
       commentId: this.comment.id,
@@ -65,23 +71,36 @@ export class CodeReviewCommentComponent {
     const query = ref => ref.where('nodeId', '==', this.comment.node_id);
     const bestAnswerComments$ = this.angularFirestore
                                     .collection('code-review-best-answer', query)
-                                    .snapshotChanges()
-                                    .pipe(
-                                      retry(2),
-                                      take(1),
-                                    );
+                                    .snapshotChanges();
 
-    bestAnswerComments$.subscribe(
-      async (bestAnswerComments) => {
-        if (bestAnswerComments?.length) {
-          await bestAnswerComments[0].payload.doc.ref.update(bestAnswer);
-        } else {
-          await this.angularFirestore
-                    .collection('code-review-best-answer')
-                    .add(bestAnswer);
-        }
+    bestAnswerComments$
+      .pipe(
+        retry(2),
+        take(1),
+      )
+      .subscribe(
+        async (bestAnswerComments) => {
+          if (bestAnswerComments?.length) {
+            await bestAnswerComments[0].payload.doc.ref.update(bestAnswer);
+          } else {
+            await this.angularFirestore
+                      .collection('code-review-best-answer')
+                      .add(bestAnswer);
+          }
 
-        this.bestAnswerChanged.emit(bestAnswer);
+          this.bestAnswerChanged.emit(bestAnswer);
+        },
+      );
+  }
+
+  private openRateReviewerDialog(): void {
+    const dialogRef = this.prType === 'public'
+                      ? this.rateReviewerPublicDialogService.open()
+                      : this.rateReviewerPrivateDialogService.open();
+
+    dialogRef.afterClosed().subscribe(
+      (data) => {
+        console.log(data);
       },
     );
   }

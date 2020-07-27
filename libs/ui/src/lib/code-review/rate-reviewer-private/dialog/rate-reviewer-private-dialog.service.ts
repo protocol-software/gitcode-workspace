@@ -1,14 +1,14 @@
 import { Direction } from '@angular/cdk/bidi';
 import { Injectable } from '@angular/core';
 import { DialogRole, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { Observable } from 'rxjs/Observable';
-import { CodeReviewDetailComponent } from './code-review-detail.component';
+import { RateReviewerPrivateDialogComponent } from './rate-reviewer-private-dialog.component';
+import * as Immutable from 'immutable';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class CodeReviewDetailService {
-  private dialogRef: MatDialogRef<CodeReviewDetailComponent>;
+export class RateReviewerPrivateDialogService {
+  private dialogRef: MatDialogRef<RateReviewerPrivateDialogComponent>;
   private dialogConfig = {
     autoFocus: false,
     // backdropClass: 'cdk-overlay-dark-backdrop',
@@ -30,14 +30,14 @@ export class CodeReviewDetailService {
 
   constructor(private dialog: MatDialog) {
   }
-  public open(data?: any): Observable<any> {
-    const config: MatDialogConfig = this.dialogConfig;
-    // config.maxWidth = '31.25rem';
+
+  public open(data?: any): MatDialogRef<RateReviewerPrivateDialogComponent> {
+    const config: MatDialogConfig = Immutable.Map(this.dialogConfig).toJS();
     config.panelClass = ['app-dialog'];
     config.data = data || {};
 
-    this.dialogRef = this.dialog.open(CodeReviewDetailComponent, config);
-    return this.dialogRef.afterClosed();
+    this.dialogRef = this.dialog.open(RateReviewerPrivateDialogComponent, config);
+    return this.dialogRef;
   }
 
   public close(): void {

@@ -1,0 +1,7 @@
+@import "variables";
+
+:host(.rate-reviewer-private-form) {
+  @include flex-column();
+  width: 100%;
+  height: 100%;
+}

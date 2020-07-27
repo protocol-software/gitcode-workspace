@@ -78,6 +78,7 @@
     "firebase": "^7.14.2",
     "firebase-admin": "^8.12.1",
     "highlight.js": "^10.0.0",
+    "immutable": "^4.0.0-rc.12",
     "js-sha1": "^0.6.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",

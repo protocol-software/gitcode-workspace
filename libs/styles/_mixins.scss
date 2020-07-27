@@ -1,6 +1,20 @@
 @import 'animations';
 @import "media-queries";
 
+@mixin flex($direction, $align-items, $justify-content) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+
+@mixin inline-flex($direction, $align-items, $justify-content) {
+  display: inline-flex;
+  flex-direction: $direction;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+
 @mixin flex-column($align: stretch) {
   display: flex;
   flex-direction: column;

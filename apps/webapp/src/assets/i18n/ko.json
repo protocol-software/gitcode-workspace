@@ -261,6 +261,12 @@
       "commented": "commented",
       "reply": "답글달기",
       "markAsBest": "베스트 리뷰 선정"
+    },
+    "markAsBestConfirm": {
+      "title": "베스트 리뷰 선정",
+      "message": "해당 리뷰를 베스트 리뷰로 선정하시겠어요?",
+      "confirm":"확인",
+      "cancel": "취소"
     }
   }
 }

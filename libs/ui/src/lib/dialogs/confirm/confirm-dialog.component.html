@@ -1,0 +1,18 @@
+<button mat-icon-button mat-dialog-close class="close-icon" tabindex="-1">
+    <mat-icon>close</mat-icon>
+</button>
+
+<h2 mat-dialog-title *ngIf="title" [innerHtml]="title"></h2>
+<mat-dialog-content>
+    <div class="dialog-content" [innerHtml]="message"></div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button
+            type="button"
+            [mat-dialog-close]="true"
+            [innerHTML]="yesButtonText"></button>
+    <button mat-button
+            type="button"
+            mat-dialog-close
+            [innerHTML]="noButtonText"></button>
+</mat-dialog-actions>

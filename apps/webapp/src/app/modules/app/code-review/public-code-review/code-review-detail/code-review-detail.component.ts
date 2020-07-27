@@ -4,7 +4,7 @@ import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
 import { DialogRole, MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { IGithubComment } from '@gitcode/data';
 import { finalize, retry, take } from 'rxjs/operators';
-import { ICodeReviewBestAnswer } from '../../../../../../../../../libs/data/src/lib/interfaces/code-review-best-answer.interface';
+import { ICodeReviewBestAnswer } from '@gitcode/data';
 import { GitHubService } from '../../../../../services/github.service';
 import { ExpertEvaluationComponent } from '../expert-evaluation/expert-evaluation.component';
 
@@ -128,9 +128,9 @@ export class CodeReviewDetailComponent implements OnInit {
         .subscribe(
           (res) => {
             // For testing only!
-            // if (!res || !res.length) {
-            //   res = this.getMockComments();
-            // }
+            if (!res || !res.length) {
+              res = this.getMockComments();
+            }
 
             this.comments = res;
           },

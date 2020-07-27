@@ -1,0 +1,50 @@
+@import "../variables";
+
+.app-modal-dialog {
+  .mat-dialog-container {
+    position: relative;
+    border-radius: 10px;
+    padding: rem(60px) rem(20px) rem(20px);
+    min-width: rem(383px);
+    min-height: rem(235px);
+    height: auto;
+    width: auto;
+    color: $color-id-charcoal;
+
+    .mat-dialog-title {
+      font-size: rem(16px);
+      font-weight: 700;
+    }
+
+    .mat-dialog-content {
+      font-size: rem(14px);
+      font-weight: 400;
+      margin: 0;
+      padding: 0;
+    }
+
+    .mat-dialog-actions {
+      margin-top: auto;
+      @include flex(row, stretch, flex-end);
+
+      .mat-button-base {
+        font-size: rem(14px);
+        font-weight: 400;
+        color: $color-id-blue;
+        padding: 0;
+        min-width: 2rem;
+      }
+    }
+
+    .close-icon {
+      position: absolute;
+      top: rem(10px);
+      right: rem(10px);
+      z-index: 99;
+
+      .mat-icon {
+        font-size: 2.5rem;
+      }
+    }
+  }
+}

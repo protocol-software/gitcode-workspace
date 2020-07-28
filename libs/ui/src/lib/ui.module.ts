@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
 import { TranslateModule } from '@ngx-translate/core';
 import { ClipboardModule } from 'ngx-clipboard';
 import { MomentModule } from 'ngx-moment';
@@ -39,6 +40,7 @@ import { TagComponent } from './tags/regular/tag.component';
     MatButtonModule,
     MatDialogModule,
     ReactiveFormsModule,
+    MatRadioModule,
   ],
   declarations: [
     ButtonComponent,

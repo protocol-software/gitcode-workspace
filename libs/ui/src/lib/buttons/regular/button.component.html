@@ -1,4 +1,4 @@
-<button class="{{ color }} {{ size }} {{ align }} {{ direction }}" [type]="type">
+<button class="{{ color }} {{ size }} {{ align }} {{ direction }}" [type]="type" [disabled]="disabled">
     <mat-icon *ngIf="icon && color !== 'github'">{{ icon }}</mat-icon>
     <mat-icon *ngIf="color === 'github'" svgIcon="github"></mat-icon>
     <ng-content></ng-content>

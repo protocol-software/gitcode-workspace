@@ -1,5 +1,6 @@
 import { Component, HostBinding, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { IRateReviewerPublic } from '@gitcode/data';
 
 @Component({
   selector: 'gitcode-rate-reviewer-public-dialog',
@@ -18,5 +19,9 @@ export class RateReviewerPublicDialogComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
+  }
+
+  public onFormSubmitted(data: IRateReviewerPublic) {
+    this.dialogRef.close(data);
   }
 }

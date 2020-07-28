@@ -265,8 +265,81 @@
     "markAsBestConfirm": {
       "title": "Best Review Selected",
       "message": "Would you choose this review as the best review?",
-      "confirm":"Confirm",
+      "confirm": "Confirm",
       "cancel": "Cancel"
+    }
+  },
+  "rateReviewer": {
+    "public": {
+      "dialogTitle": "Review Rating",
+      "title": "Did you get a satisfactory review from Protocol?",
+      "message": "Please leave your impression of the code review and the rating for the review.",
+      "ratingScale": {
+        "5": "Excellent",
+        "4": "Very Good",
+        "3": "Good",
+        "2": "Fair",
+        "1": "Poor"
+      },
+      "questions": [
+        "Did you receive a review that satisfies the request you left when requesting a review?",
+        "How detailed was the review?",
+        "If you have any comments for a code review, please write it freely."
+      ],
+      "complete": "Complete",
+      "evaluationCompleted": {
+        "title": "Review Evaluation Completed",
+        "message": "Code review evaluation is completed.<br>Thank you.",
+        "confirm": "Confirm"
+      }
+    },
+    "private": {
+      "dialogTitle": "Review Rating",
+      "title": "Did you get a satisfactory review from Protocol?",
+      "message": "Please leave your impression of the code review and the rating for the review.",
+      "ratingScale": {
+        "5": "Excellent",
+        "4": "Very Good",
+        "3": "Good",
+        "2": "Fair",
+        "1": "Poor"
+      },
+      "questions": [
+        "Did you receive a review that satisfies the request you left when requesting a review?",
+        "How detailed was the review?",
+        "Was it properly done when expert review was required?",
+        "If you have any comments for a code review, please write it freely."
+      ],
+      "complete": "Complete",
+      "evaluationCompleted": {
+        "title": "Review Evaluation Completed",
+        "message": "Code review evaluation is completed.<br>Thank you.",
+        "confirm": "Confirm"
+      }
+    }
+  },
+  "rateReviewee": {
+    "dialogTitle": "Review Rating",
+    "title": "{{ username }} expert! Thank you for the code review.",
+    "message": "Please leave a review so that the reviewer in charge of the expert can develop further.",
+    "ratingScale": {
+      "5": "Excellent",
+      "4": "Very Good",
+      "3": "Good",
+      "2": "Fair",
+      "1": "Poor"
+    },
+    "questions": [
+      "What is the readability of the reviewer's code?",
+      "How would you rate the reviewer's level of development knowledge?",
+      "How was the reviewer's level of understanding?",
+      "Feel free to leave any comments you would like to convey to the reviewer."
+    ],
+    "complete": "Complete",
+    "evaluationCompleted": {
+      "title": "Review Evaluation Completed",
+      "message": "Code review evaluation is completed.<br>Thank you.",
+      "confirm": "Confirm"
     }
   }
 }

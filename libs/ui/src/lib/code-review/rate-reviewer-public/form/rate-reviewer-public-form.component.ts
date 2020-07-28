@@ -1,11 +1,13 @@
 import {
   AfterViewInit,
   Component,
+  EventEmitter,
   HostBinding,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
+  Output,
   SimpleChange,
   SimpleChanges,
 } from '@angular/core';
@@ -21,13 +23,15 @@ export class RateReviewerPublicFormComponent implements OnInit, OnChanges, OnDes
   @HostBinding('class') public hostClass = 'rate-reviewer-public-form';
 
   @Input() public rateReviewerPublic: IRateReviewerPublic;
+  @Output() public formSubmitted: EventEmitter<IRateReviewerPublic> = new EventEmitter<IRateReviewerPublic>();
 
   public formGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
-      // TODO: add form elements.
-      sampleInput: ['', Validators.compose([Validators.required])],
+      reviewSatisfactionScore: [0, Validators.compose([Validators.required])],
+      reviewDetailScore: [0, Validators.compose([Validators.required])],
+      comment: [''],
     });
   }
 
@@ -46,8 +50,12 @@ export class RateReviewerPublicFormComponent implements OnInit, OnChanges, OnDes
       return;
     }
 
-    // TODO: fill form on rateReviewerPublic changed.
-    this.formGroup.patchValue({});
+    const data: IRateReviewerPublic = change.currentValue;
+    this.formGroup.patchValue({
+      reviewSatisfactionScore: data.reviewSatisfactionScore,
+      reviewDetailScore: data.reviewDetailScore,
+      comment: data.comment,
+    });
   }
 
   public onFormSubmit(event, formValue): void {
@@ -56,6 +64,7 @@ export class RateReviewerPublicFormComponent implements OnInit, OnChanges, OnDes
 
     // TODO: call API with form value.
     console.log('form submit');
+    this.formSubmitted.emit(formValue);
     this.formGroup.reset();
   }
 }

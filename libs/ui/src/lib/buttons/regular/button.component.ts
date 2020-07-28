@@ -24,6 +24,7 @@ export class ButtonComponent implements OnInit, OnChanges, OnDestroy, AfterViewI
   @Input() public type: 'button' | 'reset' | 'submit' = 'button';
   @Input() public align: 'horizontal' | 'vertical' = 'horizontal';
   @Input() public direction: 'default' | 'reverse' = 'default';
+  @Input() public disabled = false;
 
   constructor(private svgIconService: SvgIconService) {
     this.svgIconService.registerIcon('github', '/assets/icons/github.svg');

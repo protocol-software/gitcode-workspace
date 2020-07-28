@@ -1,5 +1,23 @@
 @import "variables";
 
+.form-title {
+  font-size: rem(14px);
+  font-weight: 500;
+  line-height: 2;
+  color: $color-id-charcoal;
+}
+
+.form-message {
+  font-size: rem(14px);
+  font-weight: 400;
+  color: $color-id-charcoal;
+}
+
+.form-actions {
+  @include flex-row();
+  justify-content: flex-end;
+}
+
 :host(.rate-reviewee-form) {
   @include flex-column();
   width: 100%;

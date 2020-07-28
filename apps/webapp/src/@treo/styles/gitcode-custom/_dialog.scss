@@ -1,4 +1,5 @@
 @import "mixins";
+@import "functions";
 @import "colors";
 
 .app-dialog {
@@ -25,34 +26,30 @@
       .title {
         height: rem(52px);
         @include flex-row(center);
-        padding: 0 1rem;
-        font-size: rem(14px);
-        font-weight: 700;
+        padding: 0 rem(20px);
+        font-size: rem(16px);
+        font-weight: 500;
         color: white;
         background-color: $bg-charcoal;
       }
 
       .content {
-        padding: rem(20px) rem(34px) rem(30px);
-        color: #5E6996;
-
-        @media #{$medium-up} {
-          padding: rem(20px) rem(50px) rem(30px);
-        }
+        padding: rem(32px);
+        color: $bg-charcoal;
       }
     }
 
     .close-icon {
       position: absolute;
       top: .45rem;
-      right: 0;
+      right: rem(8px);
       z-index: 99;
 
       .mat-button-wrapper {
         @include flex-center();
 
         .mat-icon {
-          font-size: 1rem;
+          font-size: 2rem;
           color: white;
         }
       }

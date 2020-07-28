@@ -1,3 +1,5 @@
 export interface IRateReviewerPublic {
-  rateReviewerPublicId?: string;
+  reviewSatisfactionScore?: number;
+  reviewDetailScore?: number;
+  comment?: string;
 }

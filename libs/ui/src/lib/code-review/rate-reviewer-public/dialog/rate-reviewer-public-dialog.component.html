@@ -3,11 +3,13 @@
 </button>
 
 <mat-dialog-content>
-    <div class="title">Title</div>
-    <div class="content">Message</div>
+    <div class="title">{{ 'rateReviewer.public.dialogTitle' | translate }}</div>
+    <div class="content">
+        <gitcode-rate-reviewer-public-form (formSubmitted)="onFormSubmitted($event)"></gitcode-rate-reviewer-public-form>
+    </div>
 </mat-dialog-content>
 
-<mat-dialog-actions>
+<mat-dialog-actions *ngIf="false">
     <div class="dialog-actions">
         <button mat-flat-button
                 class="dialog-action"

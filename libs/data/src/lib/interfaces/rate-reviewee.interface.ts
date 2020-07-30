@@ -1,3 +1,6 @@
 export interface IRateReviewee {
-  rateRevieweeId?: string;
+  readabilityScore?: number,
+  knowledgeScore?: number,
+  understandingScore?: number,
+  comment?: string,
 }

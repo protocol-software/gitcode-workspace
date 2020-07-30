@@ -1,21 +1,90 @@
-<h1 class="page-title">rate-reviewee-form</h1>
 <form [formGroup]="formGroup"
       (ngSubmit)="onFormSubmit($event, formGroup.value)">
-    <mat-form-field floatLabel="always">
-        <mat-label>Name</mat-label>
-        <input matInput
-               type="text"
-               formControlName="sampleInput"
-               required
-               placeholder="Sample name input">
-    </mat-form-field>
+    <div class="form-title">{{ 'rateReviewee.title' | translate:{ username: username } }}</div>
+    <div class="form-message">{{ 'rateReviewee.message' | translate }}</div>
 
-    <div class="actions">
-        <button mat-flat-button
-                class="action"
-                type="submit"
-                color="primary"
-                [disabled]="!formGroup.valid">Complete
-        </button>
+    <ol class="questionnaire-items">
+        <li class="item">
+            <div class="question">{{ 'rateReviewee.questions.0' | translate }}</div>
+            <mat-radio-group formControlName="readabilityScore" required>
+                <ul class="answer-choices">
+                    <li class="answer-choice">
+                        <mat-radio-button [value]="5">{{ 'rateReviewee.ratingScale.5' | translate }}</mat-radio-button>
+                    </li>
+                    <li class="answer-choice">
+                        <mat-radio-button [value]="4">{{ 'rateReviewee.ratingScale.4' | translate }}</mat-radio-button>
+                    </li>
+                    <li class="answer-choice">
+                        <mat-radio-button [value]="3">{{ 'rateReviewee.ratingScale.3' | translate }}</mat-radio-button>
+                    </li>
+                    <li class="answer-choice">
+                        <mat-radio-button [value]="2">{{ 'rateReviewee.ratingScale.2' | translate }}</mat-radio-button>
+                    </li>
+                    <li class="answer-choice">
+                        <mat-radio-button [value]="1">{{ 'rateReviewee.ratingScale.1' | translate }}</mat-radio-button>
+                    </li>
+                </ul>
+            </mat-radio-group>
+        </li>
+        <li class="item">
+            <div class="question">{{ 'rateReviewee.questions.1' | translate }}</div>
+            <mat-radio-group formControlName="knowledgeScore" required>
+                <ul class="answer-choices">
+                    <li class="answer-choice">
+                        <mat-radio-button [value]="5">{{ 'rateReviewee.ratingScale.5' | translate }}</mat-radio-button>
+                    </li>
+                    <li class="answer-choice">
+                        <mat-radio-button [value]="4">{{ 'rateReviewee.ratingScale.4' | translate }}</mat-radio-button>
+                    </li>
+                    <li class="answer-choice">
+                        <mat-radio-button [value]="3">{{ 'rateReviewee.ratingScale.3' | translate }}</mat-radio-button>
+                    </li>
+                    <li class="answer-choice">
+                        <mat-radio-button [value]="2">{{ 'rateReviewee.ratingScale.2' | translate }}</mat-radio-button>
+                    </li>
+                    <li class="answer-choice">
+                        <mat-radio-button [value]="1">{{ 'rateReviewee.ratingScale.1' | translate }}</mat-radio-button>
+                    </li>
+                </ul>
+            </mat-radio-group>
+        </li>
+        <li class="item">
+            <div class="question">{{ 'rateReviewee.questions.2' | translate }}</div>
+            <mat-radio-group formControlName="understandingScore" required>
+                <ul class="answer-choices">
+                    <li class="answer-choice">
+                        <mat-radio-button [value]="5">{{ 'rateReviewee.ratingScale.5' | translate }}</mat-radio-button>
+                    </li>
+                    <li class="answer-choice">
+                        <mat-radio-button [value]="4">{{ 'rateReviewee.ratingScale.4' | translate }}</mat-radio-button>
+                    </li>
+                    <li class="answer-choice">
+                        <mat-radio-button [value]="3">{{ 'rateReviewee.ratingScale.3' | translate }}</mat-radio-button>
+                    </li>
+                    <li class="answer-choice">
+                        <mat-radio-button [value]="2">{{ 'rateReviewee.ratingScale.2' | translate }}</mat-radio-button>
+                    </li>
+                    <li class="answer-choice">
+                        <mat-radio-button [value]="1">{{ 'rateReviewee.ratingScale.1' | translate }}</mat-radio-button>
+                    </li>
+                </ul>
+            </mat-radio-group>
+        </li>
+        <li class="item">
+            <div class="question">{{ 'rateReviewee.questions.3' | translate }}</div>
+            <div class="answer">
+                <mat-form-field floatLabel="always" class="mt-5 w-full">
+                    <textarea matInput
+                              type="text"
+                              formControlName="comment"></textarea>
+                </mat-form-field>
+            </div>
+        </li>
+    </ol>
+
+    <div class="form-actions">
+        <gitcode-button type="submit"
+                        color="primary"
+                        [disabled]="!formGroup.valid">{{ 'rateReviewee.complete' | translate }}</gitcode-button>
     </div>
 </form>

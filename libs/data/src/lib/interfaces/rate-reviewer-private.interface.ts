@@ -1,3 +1,6 @@
 export interface IRateReviewerPrivate {
-  rateReviewerPrivateId?: string;
+  reviewSatisfactionScore?: number;
+  reviewDetailScore?: number;
+  reviewCompletenessScore?: number;
+  comment?: string;
 }

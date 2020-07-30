@@ -1,13 +1,15 @@
 import {
   AfterViewInit,
   Component,
+  EventEmitter,
   HostBinding,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
-  OnChanges,
-  SimpleChanges,
+  Output,
   SimpleChange,
+  SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IRateReviewerPrivate } from '@gitcode/data';
@@ -21,13 +23,16 @@ export class RateReviewerPrivateFormComponent implements OnInit, OnChanges, OnDe
   @HostBinding('class') public hostClass = 'rate-reviewer-private-form';
 
   @Input() public rateReviewerPrivate: IRateReviewerPrivate;
+  @Output() public formSubmitted: EventEmitter<IRateReviewerPrivate> = new EventEmitter<IRateReviewerPrivate>();
 
   public formGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
-      // TODO: add form elements.
-      sampleInput: ['', Validators.compose([Validators.required])],
+      reviewSatisfactionScore: [0, Validators.compose([Validators.required])],
+      reviewDetailScore: [0, Validators.compose([Validators.required])],
+      reviewCompletenessScore: [0, Validators.compose([Validators.required])],
+      comment: [''],
     });
   }
 
@@ -46,8 +51,13 @@ export class RateReviewerPrivateFormComponent implements OnInit, OnChanges, OnDe
       return;
     }
 
-    // TODO: fill form on rateReviewerPrivate changed.
-    this.formGroup.patchValue({});
+    const data: IRateReviewerPrivate = change.currentValue;
+    this.formGroup.patchValue({
+      reviewSatisfactionScore: data.reviewSatisfactionScore,
+      reviewDetailScore: data.reviewDetailScore,
+      reviewCompletenessScore: data.reviewCompletenessScore,
+      comment: data.comment,
+    });
   }
 
   public onFormSubmit(event, formValue): void {
@@ -55,7 +65,7 @@ export class RateReviewerPrivateFormComponent implements OnInit, OnChanges, OnDe
     event.stopPropagation();
 
     // TODO: call API with form value.
-    console.log('form submit');
+    this.formSubmitted.emit(formValue);
     this.formGroup.reset();
   }
 }

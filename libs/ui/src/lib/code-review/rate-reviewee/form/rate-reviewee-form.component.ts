@@ -1,11 +1,13 @@
 import {
   AfterViewInit,
   Component,
+  EventEmitter,
   HostBinding,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
+  Output,
   SimpleChange,
   SimpleChanges,
 } from '@angular/core';
@@ -21,13 +23,17 @@ export class RateRevieweeFormComponent implements OnInit, OnChanges, OnDestroy, 
   @HostBinding('class') public hostClass = 'rate-reviewee-form';
 
   @Input() public rateReviewee: IRateReviewee;
+  @Output() public formSubmitted: EventEmitter<IRateReviewee> = new EventEmitter<IRateReviewee>();
 
   public formGroup: FormGroup;
+  public username: string;
 
   constructor(private formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
-      // TODO: add form elements.
-      sampleInput: ['', Validators.compose([Validators.required])],
+      readabilityScore: [0, Validators.compose([Validators.required])],
+      knowledgeScore: [0, Validators.compose([Validators.required])],
+      understandingScore: [0, Validators.compose([Validators.required])],
+      comment: [0, Validators.compose([Validators.required])],
     });
   }
 
@@ -46,8 +52,13 @@ export class RateRevieweeFormComponent implements OnInit, OnChanges, OnDestroy, 
       return;
     }
 
-    // TODO: fill form on rateReviewee changed.
-    this.formGroup.patchValue({});
+    const data: IRateReviewee = change.currentValue;
+    this.formGroup.patchValue({
+      readabilityScore: data.readabilityScore,
+      knowledgeScore: data.knowledgeScore,
+      understandingScore: data.understandingScore,
+      comment: data.comment,
+    });
   }
 
   public onFormSubmit(event, formValue): void {
@@ -55,7 +66,7 @@ export class RateRevieweeFormComponent implements OnInit, OnChanges, OnDestroy, 
     event.stopPropagation();
 
     // TODO: call API with form value.
-    console.log('form submit');
+    this.formSubmitted.emit(formValue);
     this.formGroup.reset();
   }
 }

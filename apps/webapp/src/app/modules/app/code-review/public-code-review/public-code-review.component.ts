@@ -178,7 +178,7 @@ export class PublicCodeReviewComponent implements OnInit, OnDestroy {
       event.stopPropagation();
     }
 
-    const dialogClosed = this.codeReviewDetailService.open({ item });
+    const dialogRef = this.codeReviewDetailService.open({ item });
   }
 
   // filterItemOfType(postId:number) {

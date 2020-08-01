@@ -30,14 +30,14 @@ export class CodeReviewDetailService {
 
   constructor(private dialog: MatDialog) {
   }
-  public open(data?: any): Observable<any> {
+  public open(data?: any): MatDialogRef<CodeReviewDetailComponent> {
     const config: MatDialogConfig = this.dialogConfig;
     // config.maxWidth = '31.25rem';
     config.panelClass = ['app-dialog'];
     config.data = data || {};
 
     this.dialogRef = this.dialog.open(CodeReviewDetailComponent, config);
-    return this.dialogRef.afterClosed();
+    return this.dialogRef;
   }
 
   public close(): void {

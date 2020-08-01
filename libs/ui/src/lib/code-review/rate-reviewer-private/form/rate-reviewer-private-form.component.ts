@@ -11,8 +11,9 @@ import {
   SimpleChange,
   SimpleChanges,
 } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IRateReviewerPrivate } from '@gitcode/data';
+import { ICodeReviewBestAnswer, IRateReviewerPrivate } from '@gitcode/data';
 
 @Component({
   selector: 'gitcode-rate-reviewer-private-form',
@@ -22,12 +23,15 @@ import { IRateReviewerPrivate } from '@gitcode/data';
 export class RateReviewerPrivateFormComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   @HostBinding('class') public hostClass = 'rate-reviewer-private-form';
 
+  @Input() public bestAnswer: ICodeReviewBestAnswer;
   @Input() public rateReviewerPrivate: IRateReviewerPrivate;
   @Output() public formSubmitted: EventEmitter<IRateReviewerPrivate> = new EventEmitter<IRateReviewerPrivate>();
 
   public formGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private angularFirestore: AngularFirestore,
+  ) {
     this.formGroup = this.formBuilder.group({
       reviewSatisfactionScore: [0, Validators.compose([Validators.required])],
       reviewDetailScore: [0, Validators.compose([Validators.required])],
@@ -60,11 +64,16 @@ export class RateReviewerPrivateFormComponent implements OnInit, OnChanges, OnDe
     });
   }
 
-  public onFormSubmit(event, formValue): void {
+  public async onFormSubmit(event, formValue): Promise<void> {
     event.preventDefault();
     event.stopPropagation();
 
-    // TODO: call API with form value.
+    const data = {
+      bestAnswer: this.bestAnswer,
+      createdDate: (new Date()).toISOString(),
+    };
+    Object.assign(data, formValue);
+    await this.angularFirestore.collection('rate-reviewer-private').add(data);
     this.formSubmitted.emit(formValue);
     this.formGroup.reset();
   }

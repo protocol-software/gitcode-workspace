@@ -11,8 +11,9 @@ import {
   SimpleChange,
   SimpleChanges,
 } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IRateReviewee } from '@gitcode/data';
+import { ICodeReviewBestAnswer, IRateReviewee } from '@gitcode/data';
 
 @Component({
   selector: 'gitcode-rate-reviewee-form',
@@ -22,13 +23,16 @@ import { IRateReviewee } from '@gitcode/data';
 export class RateRevieweeFormComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   @HostBinding('class') public hostClass = 'rate-reviewee-form';
 
+  @Input() public bestAnswer: ICodeReviewBestAnswer;
   @Input() public rateReviewee: IRateReviewee;
   @Output() public formSubmitted: EventEmitter<IRateReviewee> = new EventEmitter<IRateReviewee>();
 
   public formGroup: FormGroup;
   public username: string;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private angularFirestore: AngularFirestore,
+  ) {
     this.formGroup = this.formBuilder.group({
       readabilityScore: [0, Validators.compose([Validators.required])],
       knowledgeScore: [0, Validators.compose([Validators.required])],
@@ -61,11 +65,16 @@ export class RateRevieweeFormComponent implements OnInit, OnChanges, OnDestroy, 
     });
   }
 
-  public onFormSubmit(event, formValue): void {
+  public async onFormSubmit(event, formValue): Promise<void> {
     event.preventDefault();
     event.stopPropagation();
 
-    // TODO: call API with form value.
+    const data = {
+      bestAnswer: this.bestAnswer,
+      createdDate: (new Date()).toISOString(),
+    };
+    Object.assign(data, formValue);
+    await this.angularFirestore.collection('rate-reviewee').add(data);
     this.formSubmitted.emit(formValue);
     this.formGroup.reset();
   }

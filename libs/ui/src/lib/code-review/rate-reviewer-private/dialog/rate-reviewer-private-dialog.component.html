@@ -5,7 +5,8 @@
 <mat-dialog-content>
     <div class="title">{{ 'rateReviewer.public.dialogTitle' | translate }}</div>
     <div class="content">
-        <gitcode-rate-reviewer-private-form (formSubmitted)="onFormSubmitted($event)"></gitcode-rate-reviewer-private-form>
+        <gitcode-rate-reviewer-private-form [bestAnswer]="bestAnswer"
+                                            (formSubmitted)="onFormSubmitted($event)"></gitcode-rate-reviewer-private-form>
     </div>
 </mat-dialog-content>
 

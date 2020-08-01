@@ -94,9 +94,15 @@ export class CodeReviewCommentComponent {
   }
 
   private openRateReviewerDialog(): void {
+    const dialogData = {
+      bestAnswer: {
+        nodeId: this.comment.node_id,
+        commentId: this.comment.id,
+      },
+    };
     const dialogRef = this.prType === 'public'
-                      ? this.rateReviewerPublicDialogService.open()
-                      : this.rateReviewerPrivateDialogService.open();
+                      ? this.rateReviewerPublicDialogService.open(dialogData)
+                      : this.rateReviewerPrivateDialogService.open(dialogData);
 
     dialogRef.afterClosed().subscribe(
       (data) => {

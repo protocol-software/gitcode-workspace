@@ -1,6 +1,6 @@
 import { Component, HostBinding, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { IRateReviewerPublic } from '@gitcode/data';
+import { ICodeReviewBestAnswer, IRateReviewerPublic } from '@gitcode/data';
 
 @Component({
   selector: 'gitcode-rate-reviewee-dialog',
@@ -10,9 +10,12 @@ import { IRateReviewerPublic } from '@gitcode/data';
 export class RateRevieweeDialogComponent implements OnInit, OnDestroy {
   @HostBinding('class') public hostClass = 'rate-reviewee-dialog';
 
+  public bestAnswer: ICodeReviewBestAnswer;
+
   constructor(public dialogRef: MatDialogRef<RateRevieweeDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
+    this.bestAnswer = this.data.bestAnswer;
   }
 
   public ngOnInit() {

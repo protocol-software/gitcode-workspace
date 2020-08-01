@@ -1,6 +1,15 @@
-import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChange,
+  SimpleChanges,
+} from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { ICodeReviewBestAnswer, IGithubComment } from '@gitcode/data';
+import { ICodeReviewBestAnswer, IGithubComment, IGitHubUser, IUser } from '@gitcode/data';
 import { SvgIconService } from '@gitcode/util';
 import { TranslateService } from '@ngx-translate/core';
 import { retry, take } from 'rxjs/operators';
@@ -13,17 +22,18 @@ import { RateReviewerPublicDialogService } from '../rate-reviewer-public/dialog/
   templateUrl: './code-review-comment.component.html',
   styleUrls: ['./code-review-comment.component.scss'],
 })
-export class CodeReviewCommentComponent {
+export class CodeReviewCommentComponent implements OnChanges {
   @HostBinding('class') public hostClass = 'code-review-comment';
 
+  @Input() public prAuthor: IGitHubUser;
   @Input() public comment: IGithubComment;
   @Input() public hasBestAnswer = false;
   @Input() public isBestAnswer = false;
   @Input() public prType: 'public' | 'private' = 'public';
   @Output() public bestAnswerChanged: EventEmitter<ICodeReviewBestAnswer> = new EventEmitter<ICodeReviewBestAnswer>();
 
-  // TODO: only allow the author to mark an answer as the best answer.
-  public shouldAllowMarkAsBestAnswer = true;
+  public currentUser: IUser;
+  public shouldAllowMarkAsBestAnswer = false;
 
   constructor(private svgIconService: SvgIconService,
               private angularFirestore: AngularFirestore,
@@ -34,6 +44,21 @@ export class CodeReviewCommentComponent {
   ) {
     this.svgIconService.registerIcon('reply', '/assets/icons/reply.svg');
     this.svgIconService.registerIcon('star', '/assets/icons/star.svg');
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    this.onIsBestAnswerChanged(changes['isBestAnswer']);
+  }
+
+  private onIsBestAnswerChanged(change: SimpleChange): void {
+    if (!this.currentUser) {
+      this.shouldAllowMarkAsBestAnswer = false;
+      return;
+    }
+
+    // TODO: only allow the PR owner to mark an answer as the best answer.
+    const isPROwner = this.currentUser.uid === this.prAuthor.login;
+    this.shouldAllowMarkAsBestAnswer = !change.currentValue && isPROwner;
   }
 
   public confirmMarkAsBestAnswer(event: MouseEvent): void {
@@ -106,7 +131,7 @@ export class CodeReviewCommentComponent {
 
     dialogRef.afterClosed().subscribe(
       (data) => {
-        console.log(data);
+        // console.log(data);
       },
     );
   }

@@ -133,6 +133,14 @@ ul.comments {
   margin: 0 auto;
 }
 
+.load-more {
+  @include flex-center();
+  color: $color-id-blue;
+  text-decoration: underline;
+  font-size: rem(14px);
+  padding: 1rem 0;
+}
+
 :host(.code-review-detail) {
   @include flex-column();
   width: 100%;

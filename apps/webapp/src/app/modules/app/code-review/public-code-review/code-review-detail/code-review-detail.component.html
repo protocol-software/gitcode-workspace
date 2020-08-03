@@ -57,39 +57,55 @@
         </div>
         <div class="key-value">
             <span class="key">{{ 'codeReviewDetail.comments' | translate }}</span>
-            <span class="value">{{ comments?.length }}</span>
+            <span class="value">{{ paginationConfig?.totalItems }}</span>
         </div>
-    </div>
-
-    <div class="comment-loading" *ngIf="isLoadingComments">
-        <mat-spinner color="primary" diameter="40"></mat-spinner>
     </div>
 
     <div class="no-comment" *ngIf="!isLoadingComments && !comments?.length">
         {{ 'codeReviewDetail.noComment' | translate }}
     </div>
 
-    <ul class="comments" *ngIf="!isLoadingComments && comments?.length">
-        <li class="comment" *ngFor="let comment of comments| paginate: paginationConfig">
-            <gitcode-code-review-comment [prAuthorUid]="item?.author?.uid"
-                                         [comment]="comment"
-                                         [hasBestAnswer]="!!bestAnswer"
-                                         [isBestAnswer]="bestAnswer?.commentId === comment?.id"
-                                         (bestAnswerChanged)="onBestAnswerChanged($event)"></gitcode-code-review-comment>
-        </li>
-    </ul>
+    <ng-container *ngIf="!usePagination">
+        <ul class="comments" *ngIf="comments?.length">
+            <li class="comment" *ngFor="let comment of comments; trackBy: trackCommentBy">
+                <gitcode-code-review-comment [prAuthorUid]="item?.author?.uid"
+                                             [comment]="comment"
+                                             [hasBestAnswer]="!!bestAnswer"
+                                             [isBestAnswer]="bestAnswer?.commentId === comment?.id"
+                                             (bestAnswerChanged)="onBestAnswerChanged($event)"></gitcode-code-review-comment>
+            </li>
+        </ul>
 
-    <div class="comments-pagination">
-        <pagination-controls (pageChange)="onCommentsPageChanged($event)"
-                             maxSize="9"
-                             directionLinks="true"
-                             autoHide="true"
-                             responsive="true"
-                             previousLabel="{{ previousText }}"
-                             nextLabel="{{ nextText }}"
-                             screenReaderPaginationLabel="Pagination"
-                             screenReaderPageLabel="page"
-                             screenReaderCurrentLabel="You're on page"></pagination-controls>
+        <a href="#" class="load-more" *ngIf="mayHaveMoreComments" (click)="loadMoreComments($event)">More</a>
+    </ng-container>
+
+    <ng-container *ngIf="usePagination">
+        <ul class="comments" *ngIf="!isLoadingComments && comments?.length">
+            <li class="comment" *ngFor="let comment of comments | paginate: paginationConfig; trackBy: trackCommentBy">
+                <gitcode-code-review-comment [prAuthorUid]="item?.author?.uid"
+                                             [comment]="comment"
+                                             [hasBestAnswer]="!!bestAnswer"
+                                             [isBestAnswer]="bestAnswer?.commentId === comment?.id"
+                                             (bestAnswerChanged)="onBestAnswerChanged($event)"></gitcode-code-review-comment>
+            </li>
+        </ul>
+
+        <div class="comments-pagination">
+            <pagination-controls (pageChange)="onCommentsPageChanged($event)"
+                                 maxSize="9"
+                                 directionLinks="true"
+                                 autoHide="true"
+                                 responsive="true"
+                                 previousLabel="{{ previousText }}"
+                                 nextLabel="{{ nextText }}"
+                                 screenReaderPaginationLabel="Pagination"
+                                 screenReaderPageLabel="page"
+                                 screenReaderCurrentLabel="You're on page"></pagination-controls>
+        </div>
+    </ng-container>
+
+    <div class="comment-loading" *ngIf="isLoadingComments">
+        <mat-spinner color="primary" diameter="40"></mat-spinner>
     </div>
 
     <!--    <div class="border-t border-b bg-gray-100 border-gray-300 flex px-8 py-2">-->

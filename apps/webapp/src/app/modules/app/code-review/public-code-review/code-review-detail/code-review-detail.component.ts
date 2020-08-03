@@ -30,11 +30,13 @@ export class CodeReviewDetailComponent implements OnInit {
   public comments: IGithubComment[];
   public bestAnswer: ICodeReviewBestAnswer;
   public isLoadingComments = false;
+  public usePagination = false;
   public paginationConfig: PaginatePipeArgs = {
     itemsPerPage: 10,
     currentPage: 1,
     totalItems: 0,
   };
+  public mayHaveMoreComments = false;
 
   public previousText: string;
   public nextText: string;
@@ -134,15 +136,15 @@ export class CodeReviewDetailComponent implements OnInit {
     this.isLoadingComments = true;
 
     const requests = [
-      this.githubService.getPRComments(this.item.githubPR.comments_url)
-          .pipe(
-            map(comments => comments.length),
-          ),
       this.githubService.getPRComments(
         this.item.githubPR.comments_url,
         +this.paginationConfig.itemsPerPage,
         pageNumber,
       ),
+      this.githubService.getPRComments(this.item.githubPR.comments_url)
+          .pipe(
+            map(comments => comments.length),
+          ),
     ];
 
     forkJoin(requests)
@@ -154,10 +156,50 @@ export class CodeReviewDetailComponent implements OnInit {
       )
       .subscribe(
         (res) => {
-          this.paginationConfig.totalItems = +res[0];
-          this.comments = res[1] as IGithubComment[];
+          this.comments = res[0] as IGithubComment[];
+          this.paginationConfig.totalItems = +res[1];
+          this.mayHaveMoreComments = this.comments.length >= this.paginationConfig.itemsPerPage;
         },
       );
+  }
+
+  public loadMoreComments(event: MouseEvent): void {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    const ownerName = this.item.githubPR?.user?.login;
+    const repoUrl = new URL(this.item.githubPR?.url);
+    const repoName = repoUrl?.pathname?.split('/')[3];
+
+    if (!ownerName || !repoName) {
+      return;
+    }
+
+    this.isLoadingComments = true;
+    const pageNumber = +this.paginationConfig.currentPage + 1;
+
+    this.githubService.getPRComments(
+      this.item.githubPR.comments_url,
+      +this.paginationConfig.itemsPerPage,
+      +pageNumber,
+    ).pipe(
+      retry(2),
+      finalize(() => {
+        this.isLoadingComments = false;
+      }),
+    ).subscribe(
+      (comments) => {
+        (this.paginationConfig.currentPage as number) += 1;
+        this.mayHaveMoreComments = comments.length >= this.paginationConfig.itemsPerPage;
+        this.comments = [...this.comments, ...comments];
+      },
+    );
+  }
+
+  public trackCommentBy(index: number, comment: IGithubComment): number {
+    return comment.id;
   }
 
   public onBestAnswerChanged(bestAnswer: ICodeReviewBestAnswer): void {

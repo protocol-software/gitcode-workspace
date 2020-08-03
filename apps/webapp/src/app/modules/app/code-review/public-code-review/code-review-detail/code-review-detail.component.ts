@@ -2,7 +2,7 @@ import { Direction } from '@angular/cdk/bidi';
 import { Component, HostBinding, Inject, OnInit } from '@angular/core';
 import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
 import { DialogRole, MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { IGithubComment } from '@gitcode/data';
+import { ICodeReviewItem, IGithubComment } from '@gitcode/data';
 import { finalize, retry, take } from 'rxjs/operators';
 import { ICodeReviewBestAnswer } from '@gitcode/data';
 import { GitHubService } from '../../../../../services/github.service';
@@ -23,7 +23,7 @@ export class CodeReviewDetailComponent implements OnInit {
   isReviewRequestComplete: any;
   animal: string;
   name: string;
-  item: any;
+  item: ICodeReviewItem;
 
   public comments: IGithubComment[];
   public bestAnswer: ICodeReviewBestAnswer;
@@ -118,7 +118,7 @@ export class CodeReviewDetailComponent implements OnInit {
 
     this.isLoadingComments = true;
 
-    this.githubService.getComments(ownerName, repoName)
+    this.githubService.getPRComments(this.item.githubPR.comments_url)
         .pipe(
           retry(2),
           finalize(() => {
@@ -128,9 +128,9 @@ export class CodeReviewDetailComponent implements OnInit {
         .subscribe(
           (res) => {
             // For testing only!
-            if (!res || !res.length) {
-              res = this.getMockComments();
-            }
+            // if (!res || !res.length) {
+            //   res = this.getMockComments();
+            // }
 
             this.comments = res;
           },

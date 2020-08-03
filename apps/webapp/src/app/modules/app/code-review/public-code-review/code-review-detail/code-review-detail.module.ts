@@ -7,6 +7,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
@@ -37,6 +38,7 @@ import { CodeReviewDetailService } from './code-review-detail.service';
     FormsModule,
     UiModule,
     RouterModule,
+    MatProgressSpinnerModule,
   ],
   declarations: [CodeReviewDetailComponent, CodeReviewDetailDialog, CodeReviewDetailDialogBestreview],
   providers: [

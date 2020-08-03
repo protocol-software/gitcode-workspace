@@ -61,12 +61,16 @@ export class GitHubService {
     return this.http.get<IGitHubBranch[]>(endpoint, { headers: this.getHeaders() });
   }
 
-  public getComments(owner: string, repo: string): Observable<IGithubComment[]> {
+  public getRepoComments(owner: string, repo: string): Observable<IGithubComment[]> {
     const endpoint = UrlAssembler(this.baseApiUrl)
       .template(`/repos/${owner}/${repo}/comments`)
       .toString();
 
     return this.http.get<IGithubComment[]>(endpoint);
+  }
+
+  public getPRComments(commentsUrl: string): Observable<IGithubComment[]> {
+    return this.http.get<IGithubComment[]>(commentsUrl);
   }
 
   public createPR(owner: string, repo: string, payload: any): Observable<any> {

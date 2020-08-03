@@ -109,7 +109,8 @@ section.repo-info {
   }
 }
 
-.no-comment {
+.no-comment,
+.comment-loading {
   @include flex-center();
   height: rem(132px);
   color: $color-gray-600;

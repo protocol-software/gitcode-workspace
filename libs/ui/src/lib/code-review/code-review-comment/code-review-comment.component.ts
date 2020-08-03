@@ -25,7 +25,7 @@ import { RateReviewerPublicDialogService } from '../rate-reviewer-public/dialog/
 export class CodeReviewCommentComponent implements OnChanges {
   @HostBinding('class') public hostClass = 'code-review-comment';
 
-  @Input() public prAuthor: IGitHubUser;
+  @Input() public prAuthorUid: string;
   @Input() public comment: IGithubComment;
   @Input() public hasBestAnswer = false;
   @Input() public isBestAnswer = false;
@@ -57,7 +57,7 @@ export class CodeReviewCommentComponent implements OnChanges {
     }
 
     // TODO: only allow the PR owner to mark an answer as the best answer.
-    const isPROwner = this.currentUser.uid === this.prAuthor.login;
+    const isPROwner = this.currentUser?.uid === this.prAuthorUid;
     this.shouldAllowMarkAsBestAnswer = !change.currentValue && isPROwner;
   }
 

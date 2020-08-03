@@ -1,0 +1,59 @@
+@import "../colors";
+@import "../functions";
+@import "../typography.scss";
+
+ul.ngx-pagination {
+  font-family: $body-font-family-ko;
+  font-size: rem(12px);
+  font-weight: 700;
+  color: $color-id-charcoal;
+
+  li {
+    background-color: white;
+    border: solid thin $color-gray-400;
+    padding: rem(7px) rem(12px) !important;
+    margin: 0;
+
+    &:not(:first-of-type) {
+      border-left: none;
+    }
+
+    &:first-of-type {
+      border-radius: 3px 0 0 3px;
+
+      &::before {
+        content: unset !important;
+      }
+
+      a {
+        &::before {
+          content: unset !important;
+        }
+      }
+    }
+
+    &:last-of-type {
+      border-radius: 0 3px 3px 0;
+
+      &::after {
+        content: unset !important;
+      }
+
+      a {
+        &::after {
+          content: unset !important;
+        }
+      }
+    }
+
+    &.current {
+      padding: rem(7px) rem(12px);
+      background-color: $color-id-charcoal;
+      color: white;
+    }
+
+    a {
+      padding: 0;
+    }
+  }
+}

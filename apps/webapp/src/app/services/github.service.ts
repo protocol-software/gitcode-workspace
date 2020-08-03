@@ -69,8 +69,18 @@ export class GitHubService {
     return this.http.get<IGithubComment[]>(endpoint);
   }
 
-  public getPRComments(commentsUrl: string): Observable<IGithubComment[]> {
-    return this.http.get<IGithubComment[]>(commentsUrl);
+  public getPRComments(commentsUrl: string, pageSize?: number, pageNumber?: number): Observable<IGithubComment[]> {
+    let endpointBuilder = UrlAssembler(commentsUrl);
+    if (pageSize && pageNumber) {
+      endpointBuilder = endpointBuilder.query({
+        per_page: pageSize,
+        page: pageNumber,
+      });
+    }
+
+    const endpoint = endpointBuilder.toString();
+
+    return this.http.get<IGithubComment[]>(endpoint);
   }
 
   public createPR(owner: string, repo: string, payload: any): Observable<any> {

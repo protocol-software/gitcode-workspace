@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { UiModule } from '@gitcode/ui';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgxPaginationModule } from 'ngx-pagination';
 import {
   CodeReviewDetailComponent,
   CodeReviewDetailDialog,
@@ -39,6 +40,7 @@ import { CodeReviewDetailService } from './code-review-detail.service';
     UiModule,
     RouterModule,
     MatProgressSpinnerModule,
+    NgxPaginationModule,
   ],
   declarations: [CodeReviewDetailComponent, CodeReviewDetailDialog, CodeReviewDetailDialogBestreview],
   providers: [

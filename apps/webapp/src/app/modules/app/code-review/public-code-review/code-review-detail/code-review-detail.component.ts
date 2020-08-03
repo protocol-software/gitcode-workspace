@@ -2,9 +2,11 @@ import { Direction } from '@angular/cdk/bidi';
 import { Component, HostBinding, Inject, OnInit } from '@angular/core';
 import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
 import { DialogRole, MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { ICodeReviewItem, IGithubComment } from '@gitcode/data';
-import { finalize, retry, take } from 'rxjs/operators';
-import { ICodeReviewBestAnswer } from '@gitcode/data';
+import { ICodeReviewBestAnswer, ICodeReviewItem, IGithubComment } from '@gitcode/data';
+import { TranslateService } from '@ngx-translate/core';
+import { PaginatePipeArgs } from 'ngx-pagination/dist/paginate.pipe';
+import { forkJoin } from 'rxjs';
+import { finalize, map, retry, take } from 'rxjs/operators';
 import { GitHubService } from '../../../../../services/github.service';
 import { ExpertEvaluationComponent } from '../expert-evaluation/expert-evaluation.component';
 
@@ -28,18 +30,31 @@ export class CodeReviewDetailComponent implements OnInit {
   public comments: IGithubComment[];
   public bestAnswer: ICodeReviewBestAnswer;
   public isLoadingComments = false;
+  public paginationConfig: PaginatePipeArgs = {
+    itemsPerPage: 10,
+    currentPage: 1,
+    totalItems: 0,
+  };
+
+  public previousText: string;
+  public nextText: string;
 
   constructor(public dialog: MatDialog,
               public dialogRef: MatDialogRef<CodeReviewDetailDialog>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
               private githubService: GitHubService,
-              private angularFirestore: AngularFirestore) {
+              private angularFirestore: AngularFirestore,
+              public translateService: TranslateService,
+  ) {
     this.item = data.item;
+    this.paginationConfig.totalItems = this.item.githubPR.comments;
+    this.previousText = this.translateService.instant('pagination.previous');
+    this.nextText = this.translateService.instant('pagination.next');
     this.getBestAnswer();
   }
 
   ngOnInit(): void {
-    this.loadComments();
+    this.loadComments(1);
   }
 
   private getBestAnswer(): void {
@@ -107,7 +122,7 @@ export class CodeReviewDetailComponent implements OnInit {
   }
 
 
-  private loadComments(): void {
+  private loadComments(pageNumber: number): void {
     const ownerName = this.item.githubPR?.user?.login;
     const repoUrl = new URL(this.item.githubPR?.url);
     const repoName = repoUrl?.pathname?.split('/')[3];
@@ -118,23 +133,31 @@ export class CodeReviewDetailComponent implements OnInit {
 
     this.isLoadingComments = true;
 
-    this.githubService.getPRComments(this.item.githubPR.comments_url)
-        .pipe(
-          retry(2),
-          finalize(() => {
-            this.isLoadingComments = false;
-          }),
-        )
-        .subscribe(
-          (res) => {
-            // For testing only!
-            // if (!res || !res.length) {
-            //   res = this.getMockComments();
-            // }
+    const requests = [
+      this.githubService.getPRComments(this.item.githubPR.comments_url)
+          .pipe(
+            map(comments => comments.length),
+          ),
+      this.githubService.getPRComments(
+        this.item.githubPR.comments_url,
+        +this.paginationConfig.itemsPerPage,
+        pageNumber,
+      ),
+    ];
 
-            this.comments = res;
-          },
-        );
+    forkJoin(requests)
+      .pipe(
+        retry(2),
+        finalize(() => {
+          this.isLoadingComments = false;
+        }),
+      )
+      .subscribe(
+        (res) => {
+          this.paginationConfig.totalItems = +res[0];
+          this.comments = res[1] as IGithubComment[];
+        },
+      );
   }
 
   public onBestAnswerChanged(bestAnswer: ICodeReviewBestAnswer): void {
@@ -243,6 +266,12 @@ export class CodeReviewDetailComponent implements OnInit {
         'updated_at': '2011-04-14T16:00:49Z',
       },
     ];
+  }
+
+  public onCommentsPageChanged(pageNumber: number): void {
+    this.paginationConfig.currentPage = pageNumber;
+
+    this.loadComments(pageNumber);
   }
 }
 

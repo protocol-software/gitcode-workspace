@@ -6,6 +6,10 @@
     "th": "ภาษาไทย",
     "vn": "Tiếng Việt"
   },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next"
+  },
   "layout": {
     "signIn": "Sign in",
     "signUp": "Sign up"

@@ -127,6 +127,12 @@ ul.comments {
   }
 }
 
+.comments-pagination {
+  @include flex-center();
+  padding: 1rem 0;
+  margin: 0 auto;
+}
+
 :host(.code-review-detail) {
   @include flex-column();
   width: 100%;

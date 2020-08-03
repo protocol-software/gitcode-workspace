@@ -70,7 +70,7 @@
     </div>
 
     <ul class="comments" *ngIf="!isLoadingComments && comments?.length">
-        <li class="comment" *ngFor="let comment of comments">
+        <li class="comment" *ngFor="let comment of comments| paginate: paginationConfig">
             <gitcode-code-review-comment [prAuthorUid]="item?.author?.uid"
                                          [comment]="comment"
                                          [hasBestAnswer]="!!bestAnswer"
@@ -78,6 +78,20 @@
                                          (bestAnswerChanged)="onBestAnswerChanged($event)"></gitcode-code-review-comment>
         </li>
     </ul>
+
+    <div class="comments-pagination">
+        <pagination-controls (pageChange)="onCommentsPageChanged($event)"
+                             maxSize="9"
+                             directionLinks="true"
+                             autoHide="true"
+                             responsive="true"
+                             previousLabel="{{ previousText }}"
+                             nextLabel="{{ nextText }}"
+                             screenReaderPaginationLabel="Pagination"
+                             screenReaderPageLabel="page"
+                             screenReaderCurrentLabel="You're on page"></pagination-controls>
+    </div>
+
     <!--    <div class="border-t border-b bg-gray-100 border-gray-300 flex px-8 py-2">-->
     <!--        <div class="mr-5">-->
     <!--            <span class="mr-2 text-xs font-bold text-gray-700 ">Reviewer</span><span class="font-medium text-sm text-blue">38</span>-->

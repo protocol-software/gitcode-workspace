@@ -66,7 +66,7 @@ export class GitHubService {
       .template(`/repos/${owner}/${repo}/comments`)
       .toString();
 
-    return this.http.get<IGithubComment[]>(endpoint);
+    return this.http.get<IGithubComment[]>(endpoint, { headers: this.getHeaders() });
   }
 
   public getPRComments(commentsUrl: string, pageSize?: number, pageNumber?: number): Observable<IGithubComment[]> {
@@ -80,7 +80,7 @@ export class GitHubService {
 
     const endpoint = endpointBuilder.toString();
 
-    return this.http.get<IGithubComment[]>(endpoint);
+    return this.http.get<IGithubComment[]>(endpoint, { headers: this.getHeaders() });
   }
 
   public createPR(owner: string, repo: string, payload: any): Observable<any> {

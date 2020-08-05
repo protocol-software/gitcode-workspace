@@ -68,7 +68,8 @@
     <ng-container *ngIf="!usePagination">
         <ul class="comments" *ngIf="comments?.length">
             <li class="comment" *ngFor="let comment of comments; trackBy: trackCommentBy">
-                <gitcode-code-review-comment [prAuthorUid]="item?.author?.uid"
+                <gitcode-code-review-comment [currentUserUid]="currentUser?.uid"
+                                             [prAuthorUid]="item?.author?.uid"
                                              [comment]="comment"
                                              [hasBestAnswer]="!!bestAnswer"
                                              [isBestAnswer]="bestAnswer?.commentId === comment?.id"

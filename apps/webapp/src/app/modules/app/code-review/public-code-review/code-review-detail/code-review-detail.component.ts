@@ -2,11 +2,12 @@ import { Direction } from '@angular/cdk/bidi';
 import { Component, HostBinding, Inject, OnInit } from '@angular/core';
 import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
 import { DialogRole, MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { ICodeReviewBestAnswer, ICodeReviewItem, IGithubComment } from '@gitcode/data';
+import { ICodeReviewBestAnswer, ICodeReviewItem, IGithubComment, IUser } from '@gitcode/data';
 import { TranslateService } from '@ngx-translate/core';
 import { PaginatePipeArgs } from 'ngx-pagination/dist/paginate.pipe';
 import { forkJoin } from 'rxjs';
 import { finalize, map, retry, take } from 'rxjs/operators';
+import { AuthService } from '../../../../../services/auth.service';
 import { GitHubService } from '../../../../../services/github.service';
 import { ExpertEvaluationComponent } from '../expert-evaluation/expert-evaluation.component';
 
@@ -27,6 +28,7 @@ export class CodeReviewDetailComponent implements OnInit {
   name: string;
   item: ICodeReviewItem;
 
+  public currentUser: IUser;
   public comments: IGithubComment[];
   public bestAnswer: ICodeReviewBestAnswer;
   public isLoadingComments = false;
@@ -45,6 +47,7 @@ export class CodeReviewDetailComponent implements OnInit {
               public dialogRef: MatDialogRef<CodeReviewDetailDialog>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
               private githubService: GitHubService,
+              private authService: AuthService,
               private angularFirestore: AngularFirestore,
               public translateService: TranslateService,
   ) {
@@ -53,6 +56,12 @@ export class CodeReviewDetailComponent implements OnInit {
     this.previousText = this.translateService.instant('pagination.previous');
     this.nextText = this.translateService.instant('pagination.next');
     this.getBestAnswer();
+
+    this.authService.user$.subscribe(
+      (user) => {
+        this.currentUser = user;
+      },
+    );
   }
 
   ngOnInit(): void {

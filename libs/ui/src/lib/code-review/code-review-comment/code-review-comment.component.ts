@@ -9,7 +9,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { ICodeReviewBestAnswer, IGithubComment, IGitHubUser, IUser } from '@gitcode/data';
+import { ICodeReviewBestAnswer, IGithubComment, IUser } from '@gitcode/data';
 import { SvgIconService } from '@gitcode/util';
 import { TranslateService } from '@ngx-translate/core';
 import { retry, take } from 'rxjs/operators';
@@ -25,6 +25,7 @@ import { RateReviewerPublicDialogService } from '../rate-reviewer-public/dialog/
 export class CodeReviewCommentComponent implements OnChanges {
   @HostBinding('class') public hostClass = 'code-review-comment';
 
+  @Input() public currentUserUid: string;
   @Input() public prAuthorUid: string;
   @Input() public comment: IGithubComment;
   @Input() public hasBestAnswer = false;
@@ -32,7 +33,6 @@ export class CodeReviewCommentComponent implements OnChanges {
   @Input() public prType: 'public' | 'private' = 'public';
   @Output() public bestAnswerChanged: EventEmitter<ICodeReviewBestAnswer> = new EventEmitter<ICodeReviewBestAnswer>();
 
-  public currentUser: IUser;
   public shouldAllowMarkAsBestAnswer = false;
 
   constructor(private svgIconService: SvgIconService,
@@ -47,18 +47,39 @@ export class CodeReviewCommentComponent implements OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
+    this.onCurrentUserUidChanged(changes['currentUserUid']);
+    this.onPrAuthorUidChanged(changes['prAuthorUid']);
     this.onIsBestAnswerChanged(changes['isBestAnswer']);
   }
 
+  private onCurrentUserUidChanged(change: SimpleChange): void {
+    if (!change || !change.currentValue) {
+      return;
+    }
+
+    this.setPermissions();
+  }
+
+  private onPrAuthorUidChanged(change: SimpleChange): void {
+    if (!change || !change.currentValue) {
+      return;
+    }
+
+    this.setPermissions();
+  }
+
+  private setPermissions(): void {
+    const isPROwner = this.currentUserUid === this.prAuthorUid;
+    this.shouldAllowMarkAsBestAnswer = this.isBestAnswer && isPROwner;
+  }
+
   private onIsBestAnswerChanged(change: SimpleChange): void {
-    if (!this.currentUser) {
+    if (!this.currentUserUid) {
       this.shouldAllowMarkAsBestAnswer = false;
       return;
     }
 
-    // TODO: only allow the PR owner to mark an answer as the best answer.
-    const isPROwner = this.currentUser?.uid === this.prAuthorUid;
-    this.shouldAllowMarkAsBestAnswer = !change.currentValue && isPROwner;
+    this.setPermissions();
   }
 
   public confirmMarkAsBestAnswer(event: MouseEvent): void {

@@ -2,8 +2,6 @@
 import { TreoNavigationItem } from '../../@treo/components/navigation';
 
 export const defaultNavigation: TreoNavigationItem[] = [
-
-
     {
         id   : 'codeReview.publicCodeReview',
         title: '퍼블릭 코드리뷰',
@@ -41,6 +39,46 @@ export const defaultNavigation: TreoNavigationItem[] = [
     //     link : '/settings',
     // },
 ];
+
+export const authenticatedDefaultNavigation: TreoNavigationItem[] = [
+    {
+        id   : 'codeReview.publicCodeReview',
+        title: '퍼블릭 코드리뷰',
+        type : 'basic',
+        link : '/code-review/public'
+    },
+    {
+        id   : 'codeReview.publicCodeReview',
+        title: '프라이빗 코드리뷰',
+        type : 'basic',
+        link : '/code-review/private'
+    },
+    // {
+    //     id      : 'snackCode',
+    //     title   : '스낵코드',
+    //     type    : 'basic',
+    //     link : '/snack-code',
+    // },
+    // {
+    //     id      : 'searchCode',
+    //     title   : '코드검색',
+    //     type    : 'basic',
+    //     link : '/search-code',
+    // },
+    {
+        id      : 'howItWorks',
+        title   : '어떻게 동작하나요?',
+        type    : 'basic',
+        link : '/how-it-works',
+    },
+    // {
+    //     id      : 'settings',
+    //     title   : '설정',
+    //     type    : 'basic',
+    //     link : '/settings',
+    // },
+];
+
 export const compactNavigation: TreoNavigationItem[] = [
     {
         id      : 'starter',
@@ -50,6 +88,7 @@ export const compactNavigation: TreoNavigationItem[] = [
         children: [] // This will be filled from defaultNavigation so we don't have to manage multiple sets of the same navigation
     }
 ];
+
 export const futuristicNavigation: TreoNavigationItem[] = [
     {
         id   : 'starter.example',
@@ -71,6 +110,7 @@ export const futuristicNavigation: TreoNavigationItem[] = [
         type : 'basic'
     }
 ];
+
 export const horizontalNavigation: TreoNavigationItem[] = [
     // {
     //     id      : 'codeReview',
@@ -92,11 +132,55 @@ export const horizontalNavigation: TreoNavigationItem[] = [
     //     ]
     // },
     // TODO:spock if don't use nested 'Apeear dropdown arrow error'
+    //  --> [Kiang] If it's related to JWT issue, it's probably because
+    //  AuthInterceptor tries to decode a non-JWT token (from github).
+    //  This has been temporarily fixed by removing the token expiration check
+    //  in the interceptor.
     {
                 id   : 'codeReview.publicCodeReview',
                 title: '퍼블릭 코드리뷰',
                 type : 'basic',
                 link : '/code-review/public'
+    },
+    // {
+    //     id      : 'snackCode',
+    //     title   : '스낵코드',
+    //     type    : 'basic',
+    //     link : '/snack-code',
+    // },
+    // {
+    //     id      : 'searchCode',
+    //     title   : '코드검색',
+    //     type    : 'basic',
+    //     link : '/search-code',
+    // },
+    {
+        id      : 'howItWorks',
+        title   : '어떻게 동작하나요?',
+        type    : 'basic',
+        link : '/how-it-works',
+    }
+];
+
+export const authenticatedHorizontalNavigation: TreoNavigationItem[] = [
+    {
+        id      : 'codeReview',
+        title   : '코드리뷰',
+        type    : 'group',
+        children: [
+            {
+                id   : 'codeReview.publicCodeReview',
+                title: '퍼블릭 코드리뷰',
+                type : 'basic',
+                link : '/code-review/public'
+            }
+            ,{
+                id   : 'codeReview.publicCodeReview',
+                title: '프라이빗 코드리뷰',
+                type : 'basic',
+                link : '/code-review/private'
+            }
+        ]
     },
     // {
     //     id      : 'snackCode',

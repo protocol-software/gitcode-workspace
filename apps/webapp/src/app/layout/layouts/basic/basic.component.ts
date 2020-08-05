@@ -1,10 +1,12 @@
 import { Component, HostBinding, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { TreoNavigationService } from '../../../../@treo/components/navigation';
+import { TreoNavigationItem, TreoNavigationService } from '../../../../@treo/components/navigation';
 import { TreoMediaWatcherService } from '../../../../@treo/services/media-watcher';
 import { AuthService } from '../../../services/auth.service';
+import { NavigationService } from '../../../services/navigation.service';
 
 @Component({
   selector: 'basic-layout',
@@ -28,6 +30,8 @@ export class BasicLayoutComponent implements OnInit, OnDestroy {
   // Private
   private _unsubscribeAll: Subject<any>;
 
+  public navigationConfig: { [key: string]: TreoNavigationItem[] };
+
   /**
    * Constructor
    *
@@ -35,6 +39,9 @@ export class BasicLayoutComponent implements OnInit, OnDestroy {
    * @param {TreoMediaWatcherService} _treoMediaWatcherService
    * @param {TreoNavigationService} _treoNavigationService
    * @param {Router} _router
+   * @param authService
+   * @param afAuth
+   * @param navigationService
    */
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -42,6 +49,8 @@ export class BasicLayoutComponent implements OnInit, OnDestroy {
     private _treoNavigationService: TreoNavigationService,
     public _router: Router,
     private authService: AuthService,
+    private afAuth: AngularFireAuth,
+    private navigationService: NavigationService,
   ) {
     // Set the private defaults
     this._unsubscribeAll = new Subject();
@@ -55,6 +64,12 @@ export class BasicLayoutComponent implements OnInit, OnDestroy {
         .subscribe(result => {
           this.authenticated = result;
         });
+
+    this.afAuth.authState.subscribe(
+      (authState) => {
+        this.navigationConfig = this.navigationService.getNavigationConfig(!!authState);
+      },
+    );
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -92,7 +107,6 @@ export class BasicLayoutComponent implements OnInit, OnDestroy {
 
     // Home , Header Color make different
     this._router.url;
-    console.log(this._router.url);
     return;
 
     // Dark or Light

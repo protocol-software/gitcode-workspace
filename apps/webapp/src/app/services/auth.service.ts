@@ -6,8 +6,8 @@ import { IUser, OAuthProvider } from '@gitcode/data';
 import * as firebase from 'firebase';
 import { Observable, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
+import { AuthUtils } from '../core/auth/auth.utils';
 import { GitHubService } from './github.service';
-import {AuthUtils} from '../core/auth/auth.utils';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +26,7 @@ export class AuthService {
   ) {
     // Get the auth state, then fetch the Firestore user document or return null
     this.user$ = this.afAuth.authState.pipe(
-      switchMap(user => {        
+      switchMap(user => {
         // Logged in
         if (user) {
           return this.afs.doc<IUser>(`${this.collectionName}/${user.uid}`).valueChanges().pipe(
@@ -71,7 +71,7 @@ export class AuthService {
         break;
       case OAuthProvider.GITHUB:
         provider = new firebase.auth.GithubAuthProvider();
-        provider.setCustomParameters({prompt: 'login'});
+        provider.setCustomParameters({ prompt: 'login' });
         provider.addScope('user,repo,admin:repo_hook');
         break;
       case OAuthProvider.GOOGLE:
@@ -87,7 +87,7 @@ export class AuthService {
     // provider.addScope('profile');
     // provider.addScope('email');
 
-    return await this.afAuth.signInWithPopup(provider);   
+    return await this.afAuth.signInWithPopup(provider);
 
     // 가입여부 체크
     // const existsUserData = await this.getSignedUserData(userCredential);
@@ -148,26 +148,25 @@ export class AuthService {
     return userRef.set(userData, { merge: true });
   }
 
-  public getSignedUserData (
-    userCredential: firebase.auth.UserCredential,    
+  public getSignedUserData(
+    userCredential: firebase.auth.UserCredential,
   ): Promise<any> {
-    return this.afs.doc(`${this.collectionName}/${userCredential.user.uid}`).get().toPromise()
+    return this.afs.doc(`${this.collectionName}/${userCredential.user.uid}`).get().toPromise();
   }
 
-  public deleteUserData (
-    userUid: string
+  public deleteUserData(
+    userUid: string,
   ): Promise<void> {
-    return this.afs.doc(`${this.collectionName}/${userUid}`).delete()
+    return this.afs.doc(`${this.collectionName}/${userUid}`).delete();
   }
 
   public async signIn(): Promise<boolean> {
     const userCredential = await this.signInOAuth(OAuthProvider.GITHUB);
     const signedUserData = await this.getSignedUserData(userCredential);
 
-    if(!signedUserData.exists) {
+    if (!signedUserData.exists) {
       return false;
-    }
-    else {
+    } else {
       const providerUserData = await this.getProviderUserData(OAuthProvider.GITHUB, userCredential);
       await this.updateUserData(userCredential, OAuthProvider.GITHUB, providerUserData);
 
@@ -185,23 +184,19 @@ export class AuthService {
     await this.router.navigate(['/']);
   }
 
-  check(): Observable<boolean>
-  {
+  check(): Observable<boolean> {
     // Check if the user is logged in
-    if ( this._authenticated )
-    {
+    if (this._authenticated) {
       return of(true);
     }
 
     // Check the access token availability
-    if ( !this.accessToken )
-    {
+    if (!this.accessToken) {
       return of(false);
     }
 
     // Check the access token expire date
-    if ( AuthUtils.isTokenExpired(this.accessToken) )
-    {
+    if (AuthUtils.isTokenExpired(this.accessToken)) {
       return of(false);
     }
 

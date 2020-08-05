@@ -1,8 +1,8 @@
 import { Component, HostBinding, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Data, Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { TreoNavigationItem, TreoNavigationService } from '../../../../@treo/components/navigation';
 import { TreoMediaWatcherService } from '../../../../@treo/services/media-watcher';
 import { AuthService } from '../../../services/auth.service';
@@ -30,7 +30,7 @@ export class BasicLayoutComponent implements OnInit, OnDestroy {
   // Private
   private _unsubscribeAll: Subject<any>;
 
-  public navigationConfig: { [key: string]: TreoNavigationItem[] };
+  public navigationConfig$: Observable<{ [key: string]: TreoNavigationItem[] }>;
 
   /**
    * Constructor
@@ -65,10 +65,8 @@ export class BasicLayoutComponent implements OnInit, OnDestroy {
           this.authenticated = result;
         });
 
-    this.afAuth.authState.subscribe(
-      (authState) => {
-        this.navigationConfig = this.navigationService.getNavigationConfig(!!authState);
-      },
+    this.navigationConfig$ = this.afAuth.authState.pipe(
+      map(authState => this.navigationService.getNavigationConfig(!!authState)),
     );
   }
 

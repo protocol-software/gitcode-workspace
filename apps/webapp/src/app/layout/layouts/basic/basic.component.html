@@ -4,7 +4,7 @@
                           [appearance]="'classic'"
                           [mode]="'over'"
                           [name]="'mainNavigation'"
-                          [navigation]="navigationConfig?.default"
+                          [navigation]="(navigationConfig$ | async)?.default"
                           [opened]="false">
 
     <div treoVerticalNavigationContentHeader>
@@ -39,7 +39,7 @@
             <!-- Horizontal navigation -->
             <treo-horizontal-navigation class="pt-5" *ngIf="!isScreenSmall"
                                         [name]="'mainNavigation'"
-                                        [navigation]="navigationConfig?.horizontal"></treo-horizontal-navigation>
+                                        [navigation]="(navigationConfig$ | async)?.horizontal"></treo-horizontal-navigation>
 
             <div class="spacer"></div>
 

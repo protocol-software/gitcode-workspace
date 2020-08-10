@@ -18,9 +18,9 @@
                 </button>
             </div>
         </div>
-        <!-- body -->
-        <div>
 
+        <!-- body -->
+        <div *ngIf="false">
             <div class="flex justify-between">
                 <div class="flex items-center">
                     <mat-checkbox></mat-checkbox>
@@ -32,8 +32,7 @@
                     </button>
                 </div>
             </div>
-            <!--List -->
-            <div class="mt-5 mb-12  " >
+            <div class="mt-5 mb-12  ">
                 <!-- list 0 -->
                 <div class="flex-shrink md:flex mb-3 p-5 border-gray-300 border rounded-md cursor-pointer">
                     <div class="md:w-8/12 md:mb-0 mb-2">
@@ -322,6 +321,22 @@
                 </nav>
             </div>
         </div>
-    </div>
 
+        <div class="code-review-control">
+            <mat-checkbox>{{ 'codeReview.viewMyPostsOnly' | translate }}</mat-checkbox>
+            <gitcode-button (click)="createReview($event)">
+                {{ 'codeReview.request' | translate }}
+            </gitcode-button>
+        </div>
+        <div class="mt-5 mb-12">
+            <ul class="items">
+                <li class="item"
+                    *ngFor="let item of codeReviewItems">
+                    <gitcode-code-review-item [codeReviewItem]="item"
+                                              (itemClicked)="openReviewDetail(null, $event)"></gitcode-code-review-item>
+                </li>
+            </ul>
+        </div>
+        <a href="#" class="load-more" *ngIf="hasMoreDocuments" (click)="loadMoreDocuments($event)">Load more</a>
+    </div>
 </div>

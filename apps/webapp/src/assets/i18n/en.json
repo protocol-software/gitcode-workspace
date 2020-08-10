@@ -254,7 +254,8 @@
     }
   },
   "codeReview": {
-    "request": "Request Code Review"
+    "request": "Request Code Review",
+    "viewMyPostsOnly": "View my posts only"
   },
   "codeReviewDetail": {
     "title": "Code Review Detail",

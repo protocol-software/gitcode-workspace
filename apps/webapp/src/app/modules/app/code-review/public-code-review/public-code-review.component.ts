@@ -51,8 +51,8 @@ export class PublicCodeReviewComponent implements OnInit, OnDestroy {
   hasContent: boolean = null;
 
   private pageSize = 10;
-  private lastDocInResponse: QueryDocumentSnapshot<any> = null;
   public hasMoreDocuments = false;
+  private lastDocInResponse: QueryDocumentSnapshot<any> = null;
 
   private query: Query;
   private filter: any;
@@ -68,7 +68,7 @@ export class PublicCodeReviewComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.publicCodeReviewList();
+    this.loadDocuments();
     // this.statusesList();
     // this.fetch(1);
 
@@ -85,7 +85,7 @@ export class PublicCodeReviewComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.complete();
   }
 
-  private publicCodeReviewList(): void {
+  private loadDocuments(): void {
     const query: QueryFn = (ref) => ref
       .limit(this.pageSize)
       .orderBy('createdAt', 'desc');

@@ -254,7 +254,8 @@
     }
   },
   "codeReview": {
-    "request": "코드리뷰 요청하기"
+    "request": "코드리뷰 요청하기",
+    "viewMyPostsOnly": "나의 게시물만 보기"
   },
   "codeReviewDetail": {
     "title": "코드리뷰 요청",

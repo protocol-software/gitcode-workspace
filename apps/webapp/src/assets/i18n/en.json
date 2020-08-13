@@ -278,6 +278,32 @@
       "noRateMessage": "Check the content of the review, and leave a rating and impression.",
       "evaluate": "Evaluate Expert",
       "assessmentComplete": "Assessment Complete"
+    },
+    "authorActions": {
+      "close": "Close",
+      "reopen": "Re-open",
+      "modify": "Modify",
+      "delete": "Delete",
+      "dialog": {
+        "yesButton": "Confirm",
+        "noButton": "Cancel",
+
+        "close": {
+          "title": "Close Code Review",
+          "message": "After closing, you can reopen as needed.<br>Would you like to change this code review to the closed state?",
+          "completeMessage": "The status of code review has been changed to closed."
+        },
+        "reopen": {
+          "title": "Reopen",
+          "message": "Would you like to reopen this code review?",
+          "completeMessage": "The code review request has been reopened."
+        },
+        "delete": {
+          "title": "Delete",
+          "message": "Upon deletion, it will be deleted from the code review request list, and the existing data will not be saved.<br>Would you like to delete this code review?",
+          "completeMessage": "Deletion is complete."
+        }
+      }
     }
   },
   "rateReviewer": {

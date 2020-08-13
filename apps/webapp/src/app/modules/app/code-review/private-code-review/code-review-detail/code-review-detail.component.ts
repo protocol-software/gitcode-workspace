@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { PaginatePipeArgs } from 'ngx-pagination/dist/paginate.pipe';
 import { forkJoin } from 'rxjs';
 import { finalize, map, retry, take } from 'rxjs/operators';
+import { DialogService } from '../../../../../../../../../libs/ui/src/lib/dialogs/dialog.service';
 import { AuthService } from '../../../../../services/auth.service';
 import { GitHubService } from '../../../../../services/github.service';
 import { ExpertEvaluationComponent } from '../expert-evaluation/expert-evaluation.component';
@@ -31,6 +32,7 @@ export class CodeReviewDetailComponent implements OnInit {
 
   public item: ICodeReviewItem;
   public currentUser: IUser;
+  public isAuthor = false;
   public comments: IGithubComment[];
   public bestAnswer: ICodeReviewBestAnswer;
   public isLoadingComments = false;
@@ -55,6 +57,7 @@ export class CodeReviewDetailComponent implements OnInit {
               private authService: AuthService,
               private angularFirestore: AngularFirestore,
               public translateService: TranslateService,
+              private dialogService: DialogService,
   ) {
     this.item = data.item;
     this.paginationConfig.totalItems = this.item.githubPR.comments;
@@ -66,7 +69,7 @@ export class CodeReviewDetailComponent implements OnInit {
       (user) => {
         this.currentUser = user;
 
-        console.log(user.uid, this.item?.author?.uid);
+        this.isAuthor = !!user && user?.uid === this.item?.author?.uid;
         this.canEvaluateExpert = !!user && user?.uid === this.item?.author?.uid;
       },
     );
@@ -226,6 +229,61 @@ export class CodeReviewDetailComponent implements OnInit {
     this.paginationConfig.currentPage = pageNumber;
 
     this.loadComments(pageNumber);
+  }
+
+  public closeCodeReview(event: MouseEvent): void {
+    event?.preventDefault();
+    event?.stopPropagation();
+
+    this.confirmOperation('close');
+  }
+
+  public reopenCodeReview(event: MouseEvent): void {
+    event?.preventDefault();
+    event?.stopPropagation();
+
+    this.confirmOperation('reopen');
+  }
+
+  public modifyCodeReview(event: MouseEvent): void {
+    event?.preventDefault();
+    event?.stopPropagation();
+  }
+
+  public deleteCodeReview(event: MouseEvent): void {
+    event?.preventDefault();
+    event?.stopPropagation();
+
+    this.confirmOperation('delete');
+  }
+
+  private confirmOperation(operation: string): void {
+    const confirmTitle = this.translateService.instant(`codeReviewDetail.authorActions.dialog.${operation}.title`);
+    const confirmMessage = this.translateService.instant(`codeReviewDetail.authorActions.dialog.${operation}.message`);
+    const completeMessage = this.translateService.instant(`codeReviewDetail.authorActions.dialog.${operation}.completeMessage`);
+    const yesButtonText = this.translateService.instant('codeReviewDetail.authorActions.dialog.yesButton');
+    const noButtonText = this.translateService.instant('codeReviewDetail.authorActions.dialog.noButton');
+
+    const confirmDialogRef = this.dialogService.confirm(
+      confirmTitle,
+      confirmMessage,
+      yesButtonText,
+      noButtonText,
+    );
+
+    confirmDialogRef.afterClosed().subscribe(
+      (isConfirmed) => {
+        if (!isConfirmed) {
+          return;
+        }
+
+        this.dialogService.alert(
+          confirmTitle,
+          completeMessage,
+          yesButtonText,
+        );
+      }
+    );
   }
 }
 

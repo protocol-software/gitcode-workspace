@@ -278,6 +278,32 @@
       "noRateMessage": "리뷰 내용을 확인하시고, 평가와 소감을 남겨주세요.",
       "evaluate": "전문가 평가하기",
       "assessmentComplete": "평가완료"
+    },
+    "authorActions": {
+      "close": "코드리뷰 종료",
+      "reOpen": "재오픈",
+      "modify": "수정",
+      "delete": "삭제",
+      "dialog": {
+        "yesButton": "확인",
+        "noButton": "취소",
+
+        "close": {
+          "title": "코드리뷰 종료",
+          "message": "종료 이후에도 필요에 따라 재오픈 할  수 있습니다.<br>이 코드리뷰를 종료 상태로 변경하시겠어요?",
+          "completeMessage": "코드리뷰의 상태가 종료로 변경되었습니다."
+        },
+        "reOpen": {
+          "title": "재오픈",
+          "message": "이 코드리뷰를 재오픈 할까요?",
+          "completeMessage": "코드리뷰 요청이 재 오픈되었습니다."
+        },
+        "delete": {
+          "title": "삭제",
+          "message": "삭제 시 코드리뷰 요청 목록에서 삭제되며 기존 데이터는<br>저장되지 않습니다.<br>이 코드리뷰를 삭제하시겠어요?",
+          "completeMessage": "삭제가 완료되었습니다."
+        }
+      }
     }
   },
   "rateReviewer": {

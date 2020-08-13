@@ -272,6 +272,12 @@
       "message": "해당 리뷰를 베스트 리뷰로 선정하시겠어요?",
       "confirm":"확인",
       "cancel": "취소"
+    },
+    "rateReviewer": {
+      "noRateTitle": "{{ username }}님의 코드리뷰가 완료되었습니다.",
+      "noRateMessage": "리뷰 내용을 확인하시고, 평가와 소감을 남겨주세요.",
+      "evaluate": "전문가 평가하기",
+      "assessmentComplete": "평가완료"
     }
   },
   "rateReviewer": {

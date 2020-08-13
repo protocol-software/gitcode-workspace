@@ -272,6 +272,12 @@
       "message": "Would you choose this review as the best review?",
       "confirm": "Confirm",
       "cancel": "Cancel"
+    },
+    "rateReviewer": {
+      "noRateTitle": "There is no review for {{ username }}.",
+      "noRateMessage": "Check the content of the review, and leave a rating and impression.",
+      "evaluate": "Evaluate Expert",
+      "assessmentComplete": "Assessment Complete"
     }
   },
   "rateReviewer": {

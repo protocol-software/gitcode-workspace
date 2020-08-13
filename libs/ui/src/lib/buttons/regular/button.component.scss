@@ -12,6 +12,11 @@ button {
   @include flex-row(center);
   white-space: nowrap;
 
+  &[disabled] {
+    opacity: .6;
+    pointer-events: none;
+  }
+
   &.primary {
     background: linear-gradient(180deg, #33CE57 0%, #29AC47 100%) !important;
     border: 1px solid #2DA449;

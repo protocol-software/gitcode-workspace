@@ -132,7 +132,6 @@ export class CodeReviewDetailComponent implements OnInit {
     window.open(link, '_blank');
   }
 
-
   private loadComments(pageNumber: number): void {
     const ownerName = this.item.githubPR?.user?.login;
     const repoUrl = new URL(this.item.githubPR?.url);

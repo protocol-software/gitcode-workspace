@@ -90,9 +90,9 @@ export class PrivateCodeReviewComponent implements OnInit {
         )
         .subscribe((res) => {
           this.hasContent = res?.length > 0;
-          const data = res?.map(item => item.payload.doc.data());
+          const data: any = res?.map(item => Object.assign({ id: item.payload.doc.id }, item.payload.doc.data()));
           // this.codeReviewItems = [...this.codeReviewItems, ...data];
-          this.codeReviewItems = data;
+          this.codeReviewItems = data.filter(item => item.state !== 'deleted');
           this.lastDocInResponse = res[res.length - 1]?.payload.doc;
           this.hasMoreDocuments = res?.length >= this.pageSize;
         });
@@ -115,8 +115,8 @@ export class PrivateCodeReviewComponent implements OnInit {
           retry(2),
         )
         .subscribe((res) => {
-          const data = res.docs.map(doc => doc.data());
-          this.codeReviewItems = [...this.codeReviewItems, ...data];
+          const data: any = res.docs.map(doc => Object.assign({ id: doc.id }, doc.data()));
+          this.codeReviewItems = [...this.codeReviewItems, ...data.filter(item => item.state !== 'deleted')];
           this.lastDocInResponse = res?.docs[res.docs.length - 1];
           this.hasMoreDocuments = res?.docs?.length >= this.pageSize;
         });

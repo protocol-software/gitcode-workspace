@@ -3,6 +3,7 @@ import { ICodeReviewReviewer } from './code-review-reviewer.interface';
 import { IGithubPullRequest } from './github-pull-request.interface';
 
 export interface ICodeReviewItem {
+  id?: string;
   author: ICodeReviewAuthor;
   createdAt: string;
   description: string;

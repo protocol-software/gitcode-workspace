@@ -281,7 +281,7 @@
     },
     "authorActions": {
       "close": "코드리뷰 종료",
-      "reOpen": "재오픈",
+      "reopen": "재오픈",
       "modify": "수정",
       "delete": "삭제",
       "dialog": {
@@ -293,7 +293,7 @@
           "message": "종료 이후에도 필요에 따라 재오픈 할  수 있습니다.<br>이 코드리뷰를 종료 상태로 변경하시겠어요?",
           "completeMessage": "코드리뷰의 상태가 종료로 변경되었습니다."
         },
-        "reOpen": {
+        "reopen": {
           "title": "재오픈",
           "message": "이 코드리뷰를 재오픈 할까요?",
           "completeMessage": "코드리뷰 요청이 재 오픈되었습니다."

@@ -20,7 +20,7 @@ import { SvgIconService } from '@gitcode/util';
 export class TagComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   @HostBinding('class') public hostClass = 'tag';
 
-  @Input() public type: 'none' | 'open' | 'reviewing' | 'reopen' | 'closed' | 'matching' | 'matched' | 'best' | 'grade' = 'none';
+  @Input() public type: 'none' | 'open' | 'reviewing' | 'reopen' | 'closed' | 'matching' | 'matched' | 'best' | 'grade' | 'deleted' = 'none';
   @Input() public shouldAllowDismiss = false;
 
   public shouldShowIcon = false;

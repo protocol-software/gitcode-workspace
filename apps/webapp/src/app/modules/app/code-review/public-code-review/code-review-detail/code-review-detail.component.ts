@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { PaginatePipeArgs } from 'ngx-pagination/dist/paginate.pipe';
 import { forkJoin } from 'rxjs';
 import { finalize, map, retry, take } from 'rxjs/operators';
+import { DialogService } from '../../../../../../../../../libs/ui/src/lib/dialogs/dialog.service';
 import { AuthService } from '../../../../../services/auth.service';
 import { GitHubService } from '../../../../../services/github.service';
 import { ExpertEvaluationComponent } from '../expert-evaluation/expert-evaluation.component';
@@ -50,6 +51,7 @@ export class CodeReviewDetailComponent implements OnInit {
               private authService: AuthService,
               private angularFirestore: AngularFirestore,
               public translateService: TranslateService,
+              private dialogService: DialogService,
   ) {
     this.item = data.item;
     this.paginationConfig.totalItems = this.item.githubPR.comments;
@@ -322,6 +324,84 @@ export class CodeReviewDetailComponent implements OnInit {
     this.paginationConfig.currentPage = pageNumber;
 
     this.loadComments(pageNumber);
+  }
+
+  public closeCodeReview(event: MouseEvent): void {
+    event?.preventDefault();
+    event?.stopPropagation();
+
+    this.confirmOperation('close');
+  }
+
+  public reopenCodeReview(event: MouseEvent): void {
+    event?.preventDefault();
+    event?.stopPropagation();
+
+    this.confirmOperation('reopen');
+  }
+
+  public modifyCodeReview(event: MouseEvent): void {
+    event?.preventDefault();
+    event?.stopPropagation();
+  }
+
+  public deleteCodeReview(event: MouseEvent): void {
+    event?.preventDefault();
+    event?.stopPropagation();
+
+    this.confirmOperation('delete');
+  }
+
+  private confirmOperation(operation: string): void {
+    const confirmTitle = this.translateService.instant(`codeReviewDetail.authorActions.dialog.${operation}.title`);
+    const confirmMessage = this.translateService.instant(`codeReviewDetail.authorActions.dialog.${operation}.message`);
+    const completeMessage = this.translateService.instant(`codeReviewDetail.authorActions.dialog.${operation}.completeMessage`);
+    const yesButtonText = this.translateService.instant('codeReviewDetail.authorActions.dialog.yesButton');
+    const noButtonText = this.translateService.instant('codeReviewDetail.authorActions.dialog.noButton');
+
+    const confirmDialogRef = this.dialogService.confirm(
+      confirmTitle,
+      confirmMessage,
+      yesButtonText,
+      noButtonText,
+    );
+
+    confirmDialogRef.afterClosed().subscribe(
+      async (isConfirmed) => {
+        if (!isConfirmed) {
+          return;
+        }
+
+        // change code-review status based on the specified operation.
+        const operationState = {
+          close: 'closed',
+          reopen: 'reopen',
+          delete: 'deleted',
+        };
+
+        await this.angularFirestore
+                  .collection('public-code-review')
+                  .doc(this.item.id)
+                  .update({ state: operationState[operation] });
+
+        this.item.state = operationState[operation];
+
+        this.dialogService.alert(
+          confirmTitle,
+          completeMessage,
+          yesButtonText,
+        ).afterClosed()
+            .subscribe(
+              (result) => {
+                if (operation !== 'delete') {
+                  return;
+                }
+
+                this.dialogRef.close(this.item);
+              },
+            );
+      },
+    );
   }
 }
 

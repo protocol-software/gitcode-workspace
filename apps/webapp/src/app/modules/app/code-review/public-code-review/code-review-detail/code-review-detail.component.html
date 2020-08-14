@@ -20,9 +20,18 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #beforeMenu="matMenu" xPosition="before">
-                <button mat-menu-item (click)="openDialog(1)">코드리뷰 종료</button>
-                <button mat-menu-item (click)="openDialog(2)">수정</button>
-                <button mat-menu-item>삭제</button>
+                <button mat-menu-item (click)="closeCodeReview($event)" *ngIf="item?.state !== 'closed'">
+                    {{ 'codeReviewDetail.authorActions.close' | translate }}
+                </button>
+                <button mat-menu-item (click)="reopenCodeReview($event)" *ngIf="item?.state === 'closed'">
+                    {{ 'codeReviewDetail.authorActions.reopen' | translate }}
+                </button>
+                <button mat-menu-item (click)="modifyCodeReview($event)">
+                    {{ 'codeReviewDetail.authorActions.modify' | translate }}
+                </button>
+                <button mat-menu-item (click)="deleteCodeReview($event)">
+                    {{ 'codeReviewDetail.authorActions.delete' | translate }}
+                </button>
             </mat-menu>
         </div>
     </div>

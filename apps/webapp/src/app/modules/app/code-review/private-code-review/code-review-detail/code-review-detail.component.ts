@@ -272,17 +272,40 @@ export class CodeReviewDetailComponent implements OnInit {
     );
 
     confirmDialogRef.afterClosed().subscribe(
-      (isConfirmed) => {
+      async (isConfirmed) => {
         if (!isConfirmed) {
           return;
         }
+
+        // change code-review status based on the specified operation.
+        const operationState = {
+          close: 'closed',
+          reopen: 'reopen',
+          delete: 'deleted',
+        };
+
+        await this.angularFirestore
+                  .collection('private-code-review')
+                  .doc(this.item.id)
+                  .update({ state: operationState[operation] });
+
+        this.item.state = operationState[operation];
 
         this.dialogService.alert(
           confirmTitle,
           completeMessage,
           yesButtonText,
-        );
-      }
+        ).afterClosed()
+            .subscribe(
+              (result) => {
+                if (operation !== 'delete') {
+                  return;
+                }
+
+                this.dialogRef.close(this.item);
+              },
+            );
+      },
     );
   }
 }

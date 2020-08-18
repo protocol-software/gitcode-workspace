@@ -1,34 +1,36 @@
-import { Injectable } from '@nestjs/common';
+import { EmailDto, OtpDto } from '@gitcode/data';
+import { HttpService, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { IOtp } from './interfaces/otp-document.interface';
-
 import * as AWS from 'aws-sdk';
-import {EmailDto, OtpDto} from "@gitcode/data";
-import {environment} from "../../../environments/environment";
+import { Model } from 'mongoose';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
+import { IOtp } from './interfaces/otp-document.interface';
 
 @Injectable()
 export class CommonService {
   constructor(
     @InjectModel('Otp') private readonly otpModel: Model<IOtp>,
+    private http: HttpService,
   ) {
-
   }
 
   private async createOtp(): Promise<string> {
     let otpData = null;
 
-    while(!otpData) {
+    while (!otpData) {
       const code = Math.floor((Math.random() * (999999 - 100000)) + 100000).toString();
       const result = await this.otpModel.findOne({ code }).exec();
 
-      if(result === null) {
+      if (result === null) {
         otpData = { code };
       }
     }
 
     return otpData.code;
   }
+
   private async saveOtp(identity: string, otp: string): Promise<void> {
     await this.otpModel.findOneAndUpdate(
       { identity: identity },
@@ -43,10 +45,10 @@ export class CommonService {
 
   public async sendEmail(emailDto: EmailDto): Promise<any> {
     // TODO
-    if(!['no-reply@protocol.network'].includes(emailDto.from)) {
+    if (!['no-reply@protocol.network'].includes(emailDto.from)) {
       throw new Error(`${emailDto.from} is not valid email.`);
     }
-    
+
     const region = environment.aws.region;
     const accessKeyId = environment.aws.accessKeyId;
     const secretAccessKey = environment.aws.secretAccessKey;
@@ -54,19 +56,19 @@ export class CommonService {
     AWS.config.update({
       accessKeyId,
       secretAccessKey,
-      region
+      region,
     });
 
     const sesParams = {
       Destination: {
         CcAddresses: emailDto.ccs,
-        ToAddresses: emailDto.tos
+        ToAddresses: emailDto.tos,
       },
       Message: {
         Body: {
           Html: {
-            Charset: "UTF-8",
-            Data: emailDto.bodyHtml
+            Charset: 'UTF-8',
+            Data: emailDto.bodyHtml,
           },
           // Text: {
           //   Charset: "UTF-8",
@@ -75,14 +77,14 @@ export class CommonService {
         },
         Subject: {
           Charset: 'UTF-8',
-          Data: emailDto.subject
-        }
+          Data: emailDto.subject,
         },
+      },
       Source: emailDto.from,
       ReplyToAddresses: null,
     };
 
-    const result = await new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(sesParams).promise();
+    const result = await new AWS.SES({ apiVersion: '2010-12-01' }).sendEmail(sesParams).promise();
     return result;
   }
 
@@ -112,4 +114,14 @@ export class CommonService {
     return result !== null;
   }
 
+  public convertCurrency(fromCurrency: string, toCurrency: string, amount: number): Observable<number> {
+    return this.http.get(`https://api.exchangeratesapi.io/latest?base=${fromCurrency}`)
+               .pipe(
+                 map(
+                   (res: any) => {
+                     return +(res?.data?.rates[toCurrency] * amount).toFixed(2);
+                   },
+                 ),
+               );
+  }
 }

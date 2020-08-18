@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Observable } from 'rxjs';
 
 import { CommonService } from './common.service';
 import {EmailDto, OtpDto} from "@gitcode/data";
@@ -20,5 +21,10 @@ export class CommonController {
   @Post('verify-otp')
   public async verifyOtp(@Body() otpDto: OtpDto): Promise<any> {
     return await this.commonService.verifyOtp(otpDto);
+  }
+
+  @Get('currency/:from/:to/:amount')
+  public convertCurrency(@Param() params): Observable<number> {
+    return this.commonService.convertCurrency(params.from, params.to, params.amount);
   }
 }

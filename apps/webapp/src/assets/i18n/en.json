@@ -378,5 +378,8 @@
       "message": "Code review evaluation is completed.<br>Thank you.",
       "confirm": "Confirm"
     }
+  },
+  "paymentDialog": {
+    "months": " months"
   }
 }

@@ -38,7 +38,10 @@ export class PrivateCodeReviewComponent implements OnInit {
     this.loadDocuments();
 
     this.authService.user$
-        .pipe(take(1))
+        .pipe(
+          retry(2),
+          take(1),
+        )
         .subscribe((user: IUser) => {
           this.user = user;
         });
@@ -75,7 +78,7 @@ export class PrivateCodeReviewComponent implements OnInit {
   }
 
   public createDialogPayment(): void {
-    this.paymentDialogService.open();
+    this.paymentDialogService.open({ githubId: this.user?.providerUserData.github.login, user: this.user });
   }
 
   private loadDocuments(): void {

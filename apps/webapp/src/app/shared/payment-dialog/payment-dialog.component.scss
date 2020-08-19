@@ -3,7 +3,7 @@
 :host(.policy-dialog) {
 }
 
-.app-dialog{
+.app-dialog {
   max-width: 100vw !important;
 }
 
@@ -26,6 +26,13 @@
 .mat-form-field.mat-form-field-appearance-fill {
 
 }
+
 .custom-label input:checked + svg {
   display: block !important;
+}
+
+button[disabled] {
+  img {
+    filter: grayscale(1);
+  }
 }

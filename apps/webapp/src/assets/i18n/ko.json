@@ -378,5 +378,8 @@
       "message": "코드리뷰 평가가 완료되었습니다.<br>감사합니다.",
       "confirm": "확인"
     }
+  },
+  "paymentDialog": {
+    "months": "개월"
   }
 }

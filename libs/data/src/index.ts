@@ -39,6 +39,7 @@ export * from './lib/interfaces/code-review-best-answer.interface';
 export * from './lib/interfaces/rate-reviewer-public.interface';
 export * from './lib/interfaces/rate-reviewer-private.interface';
 export * from './lib/interfaces/rate-reviewee.interface';
+export * from './lib/interfaces/paypal-token.interface';
 
 // Enums
 export * from './lib/enums/oauth-provider.enum';

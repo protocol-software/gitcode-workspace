@@ -8,4 +8,10 @@ export const ApiEndpoint = {
     getSuggestQuery: `/search-code/suggest-query`,
     query: `/search-code/query`,
   },
+  payPal: {
+    getToken: '/oauth2/token',
+    createProduct: '/catalogs/products',
+    createPlan: '/billing/plans',
+    createSubscription: '/billing/subscriptions',
+  },
 };

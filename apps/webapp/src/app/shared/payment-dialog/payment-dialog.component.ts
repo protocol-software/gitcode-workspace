@@ -7,6 +7,7 @@ import bigJs from 'big.js';
 import { IClientAuthorizeCallbackData, ICreateOrderRequest, IPayPalConfig, IPurchaseUnit } from 'ngx-paypal';
 import { environment } from '../../../environments/environment';
 import { CurrencyService } from '../../services/currency.service';
+import { PayPalService } from '../../services/paypal.service';
 
 @Component({
   selector: 'app-policy-dialog',
@@ -30,6 +31,7 @@ export class PaymentDialogComponent implements OnInit, OnDestroy {
               private formBuilder: FormBuilder,
               private currencyService: CurrencyService,
               private angularFirestore: AngularFirestore,
+              private payPalService: PayPalService,
   ) {
     this.user = this.data.user;
 
@@ -75,8 +77,19 @@ export class PaymentDialogComponent implements OnInit, OnDestroy {
     );
   }
 
-  public onFormSubmitted($event: any, formValue: any): void {
+  public onFormSubmitted(event, formValue: any): void {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
     // TODO: submit payment information.
+    this.payPalService.getToken(environment.payPal.clientId, environment.payPal.clientSecret)
+        .subscribe(
+          (response) => {
+            console.log(response);
+          },
+        );
   }
 
   private initPayPalConfig(): void {

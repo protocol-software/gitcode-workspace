@@ -1,6 +1,5 @@
 <div class="content-layout" *ngIf="!(isComplete) else isCompleteElse">
-    <form [formGroup]="formGroup"
-          (ngSubmit)="onFormSubmitted($event, formGroup.value)">
+    <form [formGroup]="formGroup">
         <div class="px-3 md:px-5 py-5">
             <!-- BEGIN top -->
             <!-- Title-->
@@ -169,7 +168,8 @@
                         <div>구매에 대한 상세한 사항은 설정 페이지에서 확인 가능합니다.</div>
                         <div class="text-center mt-3">감사합니다.</div>
                         <div class="flex justify-center mt-5">
-                            <button class="btn-gray-400-2 py-1 px-2" mat-dialog-close>
+                            <button class="btn-gray-400-2 py-1 px-2"
+                                    (click)="submitForm($event)">
                                 확인
                             </button>
                         </div>

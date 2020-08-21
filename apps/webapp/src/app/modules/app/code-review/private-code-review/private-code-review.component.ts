@@ -1,7 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { AngularFirestore, CollectionReference, Query, QueryDocumentSnapshot, QueryFn } from '@angular/fire/firestore';
 import { IUser } from '@gitcode/data';
-import { retry, take } from 'rxjs/operators';
+import { retry } from 'rxjs/operators';
 import { AuthService } from '../../../../services/auth.service';
 import { PaymentDialogService } from '../../../../shared/payment-dialog/payment-dialog.service';
 import { CodeReviewDetailService } from './code-review-detail/code-review-detail.service';
@@ -40,7 +40,7 @@ export class PrivateCodeReviewComponent implements OnInit {
     this.authService.user$
         .pipe(
           retry(2),
-          take(1),
+          // take(1),
         )
         .subscribe((user: IUser) => {
           this.user = user;

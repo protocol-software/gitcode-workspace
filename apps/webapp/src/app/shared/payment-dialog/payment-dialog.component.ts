@@ -2,9 +2,10 @@ import { Component, HostBinding, Inject, OnDestroy, OnInit } from '@angular/core
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { IUser } from '@gitcode/data';
+import { IPayPalProductRequest, IUser, PayPalProductType } from '@gitcode/data';
 import bigJs from 'big.js';
 import { IClientAuthorizeCallbackData, ICreateOrderRequest, IPayPalConfig, IPurchaseUnit } from 'ngx-paypal';
+import { concatMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { CurrencyService } from '../../services/currency.service';
 import { PayPalService } from '../../services/paypal.service';
@@ -77,17 +78,29 @@ export class PaymentDialogComponent implements OnInit, OnDestroy {
     );
   }
 
-  public onFormSubmitted(event, formValue: any): void {
+  public submitForm(event: MouseEvent): void {
     if (event) {
       event.preventDefault();
       event.stopPropagation();
     }
 
+    const formValue = this.formGroup.value;
+    const payPalProduct: IPayPalProductRequest = {
+      name: 'Code Review Subscription',
+      description: `${formValue.period} months subscription`,
+      type: PayPalProductType.SERVICE,
+      category: 'SOFTWARE',
+    };
+
     // TODO: submit payment information.
     this.payPalService.getToken(environment.payPal.clientId, environment.payPal.clientSecret)
+        .pipe(
+          concatMap(token => this.payPalService.createProduct(payPalProduct, token.access_token))
+        )
         .subscribe(
           (response) => {
             console.log(response);
+            this.dialogRef.close(response);
           },
         );
   }

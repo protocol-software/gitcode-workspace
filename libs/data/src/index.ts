@@ -40,9 +40,12 @@ export * from './lib/interfaces/rate-reviewer-public.interface';
 export * from './lib/interfaces/rate-reviewer-private.interface';
 export * from './lib/interfaces/rate-reviewee.interface';
 export * from './lib/interfaces/paypal-token.interface';
+export * from './lib/interfaces/paypal-product-request.interface';
+export * from './lib/interfaces/paypal-product-response.interface';
 
 // Enums
 export * from './lib/enums/oauth-provider.enum';
 export * from './lib/enums/promotional-code-category.enum';
 export * from './lib/enums/promotional-code-type.enum';
 export * from './lib/enums/pull-request-status.enum';
+export * from './lib/enums/paypal-product-type.enum';

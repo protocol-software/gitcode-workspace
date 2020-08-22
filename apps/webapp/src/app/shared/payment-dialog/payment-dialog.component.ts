@@ -20,7 +20,7 @@ export class PaymentDialogComponent implements OnInit, OnDestroy {
 
   public formGroup: FormGroup;
   public user: IUser;
-  public periods = Array.from(Array(12), (value, index) => index + 1).reverse();
+  public cycles = Array.from(Array(12), (value, index) => index + 1).reverse();
   public isComplete = false;
   public payPalConfig?: IPayPalConfig;
   public unitPriceKRW = 50000;
@@ -37,11 +37,12 @@ export class PaymentDialogComponent implements OnInit, OnDestroy {
     this.user = this.data.user;
 
     this.formGroup = this.formBuilder.group({
-      period: [12, Validators.compose([Validators.required])],
+      cycles: [12, Validators.compose([Validators.required])],
       githubId: [null, Validators.compose([Validators.required])],
       email: [null, Validators.compose([Validators.required])],
       phone: [null, Validators.compose([Validators.required])],
       isAgreed: [false, Validators.compose([Validators.requiredTrue])],
+      unitPriceUSD: [null, Validators.compose([Validators.required, Validators.min(0.01)])],
     });
 
     this.monitorValueChanges();
@@ -54,6 +55,7 @@ export class PaymentDialogComponent implements OnInit, OnDestroy {
         .subscribe(
           (value) => {
             this.unitPriceUSD = value;
+            this.formGroup.get('unitPriceUSD').setValue(value);
           },
         );
   }
@@ -66,11 +68,11 @@ export class PaymentDialogComponent implements OnInit, OnDestroy {
   }
 
   private monitorValueChanges(): void {
-    this.onPeriodChanged();
+    this.onCyclesChanged();
   }
 
-  private onPeriodChanged(): void {
-    const control = this.formGroup.get('period');
+  private onCyclesChanged(): void {
+    const control = this.formGroup.get('cycles');
     control.valueChanges.subscribe(
       (value) => {
         this.initPayPalConfig();
@@ -85,17 +87,32 @@ export class PaymentDialogComponent implements OnInit, OnDestroy {
     }
 
     const formValue = this.formGroup.value;
+
+    // Ref: https://developer.paypal.com/docs/api/catalog-products/v1/
     const payPalProduct: IPayPalProductRequest = {
       name: 'Code Review Subscription',
-      description: `${formValue.period} months subscription`,
+      description: `Code Review Monthly Subscription (Finite Plan)`,
       type: PayPalProductType.SERVICE,
       category: 'SOFTWARE',
     };
 
     // TODO: submit payment information.
+    //  Product and plan creations are one-time operations.
+    //  They should be created only if they have not been created before.
+    //  However, price in a plan is dynamic (based on the exchange rate).
+    //  Find a solution for this case.
+    let payPalAccessToken = null;
     this.payPalService.getToken(environment.payPal.clientId, environment.payPal.clientSecret)
         .pipe(
-          concatMap(token => this.payPalService.createProduct(payPalProduct, token.access_token))
+          concatMap(token => {
+            payPalAccessToken = token.access_token;
+            return this.payPalService.createProduct(payPalProduct, payPalAccessToken);
+          }),
+          concatMap(product =>
+            this.payPalService.createPlan(
+              this.payPalService.generatePlan(product, formValue),
+              payPalAccessToken,
+            )),
         )
         .subscribe(
           (response) => {
@@ -151,8 +168,8 @@ export class PaymentDialogComponent implements OnInit, OnDestroy {
   }
 
   private getPayPalPurchaseUnits(): IPurchaseUnit[] {
-    const period = this.formGroup.get('period').value;
-    const totalPaymentAmount = new bigJs(this.unitPriceUSD).times(+period).toFixed(2);
+    const cycles = this.formGroup.get('cycles').value;
+    const totalPaymentAmount = new bigJs(this.unitPriceUSD).times(+cycles).toFixed(2);
 
     return [
       {

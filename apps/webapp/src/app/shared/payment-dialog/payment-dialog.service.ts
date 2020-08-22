@@ -14,7 +14,7 @@ export class PaymentDialogService {
     autoFocus: false,
     // backdropClass: 'cdk-overlay-dark-backdrop',
     closeOnNavigation: false,
-    direction: <Direction>'ltr',
+    direction: 'ltr' as Direction,
     disableClose: false,
     hasBackdrop: true,
     height: '80vh',
@@ -25,7 +25,7 @@ export class PaymentDialogService {
     maxWidth: '776px',
     // position: <DialogPosition>'bottom',
     restoreFocus: false,
-    role: <DialogRole>'dialog',
+    role: 'dialog' as DialogRole,
   };
 
   constructor(private dialog: MatDialog) {

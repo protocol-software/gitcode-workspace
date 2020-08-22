@@ -42,6 +42,9 @@ export * from './lib/interfaces/rate-reviewee.interface';
 export * from './lib/interfaces/paypal-token.interface';
 export * from './lib/interfaces/paypal-product-request.interface';
 export * from './lib/interfaces/paypal-product-response.interface';
+export * from './lib/interfaces/paypal-plan-request.interface';
+export * from './lib/interfaces/paypal-plan-response.interface';
+
 
 // Enums
 export * from './lib/enums/oauth-provider.enum';

@@ -14,6 +14,7 @@
             </div>
             <div class="md:ml-5 mt-3 flex justify-center ">
                 <button class="text-bold text-sm text-charcoal btn-gray-400-2 py-auto align-middle py-1 px-3"
+                        [disabled]="!user"
                         (click)="createDialogPayment()">
                     프라이빗 코드리뷰 신청하기
                 </button>

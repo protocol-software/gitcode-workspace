@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { IPayPalProductRequest, IUser, PayPalProductType } from '@gitcode/data';
 import bigJs from 'big.js';
-import { IClientAuthorizeCallbackData, ICreateOrderRequest, IPayPalConfig, IPurchaseUnit } from 'ngx-paypal';
+import { ICreateOrderRequest, IPayPalConfig, IPurchaseUnit } from 'ngx-paypal';
 import { concatMap, finalize } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { CurrencyService } from '../../services/currency.service';
@@ -89,44 +89,74 @@ export class PaymentDialogComponent implements OnInit, OnDestroy {
 
     const formValue = this.formGroup.value;
 
-    // Ref: https://developer.paypal.com/docs/api/catalog-products/v1/
-    const payPalProduct: IPayPalProductRequest = {
-      name: 'Code Review Subscription',
-      description: `Code Review Monthly Subscription (Finite Plan)`,
-      type: PayPalProductType.SERVICE,
-      category: 'SOFTWARE',
-    };
-
     // TODO: submit payment information.
     //  Product and plan creations are one-time operations.
     //  They should be created only if they have not been created before.
     //  However, price in a plan is dynamic (based on the exchange rate).
     //  Find a solution for this case.
     let payPalAccessToken = null;
+    let paymentProductRequest: IPayPalProductRequest = null;
+    let paymentProductResponse = null;
+    let paymentPlanRequest = null;
+    let paymentPlanResponse = null;
+    let paymentSubscriptionRequest = null;
+    let paymentSubscriptionResponse = null;
+
     this.isInProgress = true;
     this.payPalService.getToken(environment.payPal.clientId, environment.payPal.clientSecret)
         .pipe(
           concatMap(token => {
             payPalAccessToken = token.access_token;
-            return this.payPalService.createProduct(payPalProduct, payPalAccessToken);
+
+            // Ref: https://developer.paypal.com/docs/api/catalog-products/v1/
+            paymentProductRequest = {
+              name: 'Code Review Subscription',
+              description: `Code Review Monthly Subscription (Finite Plan)`,
+              type: PayPalProductType.SERVICE,
+              category: 'SOFTWARE',
+            };
+
+            return this.payPalService.createProduct(paymentProductRequest, payPalAccessToken);
           }),
-          concatMap(product =>
-            this.payPalService.createPlan(
-              this.payPalService.generatePlan(product, formValue),
+          concatMap(product => {
+            paymentProductResponse = product;
+            paymentPlanRequest = this.payPalService.generatePlan(product, formValue);
+            return this.payPalService.createPlan(
+              paymentPlanRequest,
               payPalAccessToken,
-            )),
-          concatMap(plan =>
-            this.payPalService.createSubscription(
-              this.payPalService.generateSubscription(plan, formValue),
+            );
+          }),
+          concatMap(plan => {
+            paymentPlanResponse = plan;
+            paymentSubscriptionRequest = this.payPalService.generateSubscription(plan, formValue);
+            return this.payPalService.createSubscription(
+              paymentSubscriptionRequest,
               payPalAccessToken,
-            )),
+            );
+          }),
           finalize(() => {
             this.isInProgress = false;
           }),
         )
         .subscribe(
-          (response) => {
-            console.log(response);
+          async (response) => {
+            paymentSubscriptionResponse = response;
+
+            await this.savePaymentData({
+              product: {
+                request: paymentProductRequest,
+                response: paymentProductResponse,
+              },
+              plan: {
+                request: paymentPlanRequest,
+                response: paymentPlanResponse,
+              },
+              subscription: {
+                request: paymentSubscriptionRequest,
+                response: paymentSubscriptionResponse,
+              },
+            });
+
             this.dialogRef.close(response);
           },
         );
@@ -208,7 +238,7 @@ export class PaymentDialogComponent implements OnInit, OnDestroy {
     ];
   }
 
-  private async savePaymentData(paymentGatewayData: IClientAuthorizeCallbackData): Promise<any> {
+  private async savePaymentData(paymentGatewayData: any): Promise<any> {
     const data = { paymentGatewayData, formData: this.formGroup.value };
     await this.angularFirestore.collection('payments').add(data);
   }

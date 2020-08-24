@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { PaymentDialogComponent } from './payment-dialog.component';
@@ -25,6 +26,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     TranslateModule,
     ReactiveFormsModule,
     NgxPayPalModule,
+    MatProgressSpinnerModule,
   ],
   declarations: [PaymentDialogComponent],
   providers: [

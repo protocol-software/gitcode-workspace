@@ -44,7 +44,8 @@ export * from './lib/interfaces/paypal-product-request.interface';
 export * from './lib/interfaces/paypal-product-response.interface';
 export * from './lib/interfaces/paypal-plan-request.interface';
 export * from './lib/interfaces/paypal-plan-response.interface';
-
+export * from './lib/interfaces/paypal-subscription-request.interface';
+export * from './lib/interfaces/paypal-subscription-response.interface';
 
 // Enums
 export * from './lib/enums/oauth-provider.enum';
@@ -52,3 +53,4 @@ export * from './lib/enums/promotional-code-category.enum';
 export * from './lib/enums/promotional-code-type.enum';
 export * from './lib/enums/pull-request-status.enum';
 export * from './lib/enums/paypal-product-type.enum';
+export * from './lib/enums/paypal-subscription-status.enum';

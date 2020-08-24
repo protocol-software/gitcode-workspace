@@ -168,7 +168,11 @@
                         <div>구매에 대한 상세한 사항은 설정 페이지에서 확인 가능합니다.</div>
                         <div class="text-center mt-3">감사합니다.</div>
                         <div class="flex justify-center mt-5">
+                            <mat-spinner *ngIf="isInProgress"
+                                         [diameter]="24"
+                                         class="py-1 px-2"></mat-spinner>
                             <button class="btn-gray-400-2 py-1 px-2"
+                                    *ngIf="!isInProgress"
                                     (click)="submitForm($event)">
                                 확인
                             </button>

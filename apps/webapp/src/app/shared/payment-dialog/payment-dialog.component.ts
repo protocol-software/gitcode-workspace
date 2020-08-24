@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { IPayPalProductRequest, IUser, PayPalProductType } from '@gitcode/data';
 import bigJs from 'big.js';
 import { IClientAuthorizeCallbackData, ICreateOrderRequest, IPayPalConfig, IPurchaseUnit } from 'ngx-paypal';
-import { concatMap } from 'rxjs/operators';
+import { concatMap, finalize } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { CurrencyService } from '../../services/currency.service';
 import { PayPalService } from '../../services/paypal.service';
@@ -26,6 +26,7 @@ export class PaymentDialogComponent implements OnInit, OnDestroy {
   public unitPriceKRW = 50000;
   public unitPriceUSD: number;
   public currency = 'USD';
+  public isInProgress = false;
 
   constructor(public dialogRef: MatDialogRef<PaymentDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -102,6 +103,7 @@ export class PaymentDialogComponent implements OnInit, OnDestroy {
     //  However, price in a plan is dynamic (based on the exchange rate).
     //  Find a solution for this case.
     let payPalAccessToken = null;
+    this.isInProgress = true;
     this.payPalService.getToken(environment.payPal.clientId, environment.payPal.clientSecret)
         .pipe(
           concatMap(token => {
@@ -113,6 +115,14 @@ export class PaymentDialogComponent implements OnInit, OnDestroy {
               this.payPalService.generatePlan(product, formValue),
               payPalAccessToken,
             )),
+          concatMap(plan =>
+            this.payPalService.createSubscription(
+              this.payPalService.generateSubscription(plan, formValue),
+              payPalAccessToken,
+            )),
+          finalize(() => {
+            this.isInProgress = false;
+          }),
         )
         .subscribe(
           (response) => {

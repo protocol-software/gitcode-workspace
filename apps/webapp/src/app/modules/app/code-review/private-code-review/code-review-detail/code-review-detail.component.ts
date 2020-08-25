@@ -11,6 +11,7 @@ import { DialogService } from '../../../../../../../../../libs/ui/src/lib/dialog
 import { AuthService } from '../../../../../services/auth.service';
 import { GitHubService } from '../../../../../services/github.service';
 import { ExpertEvaluationComponent } from '../expert-evaluation/expert-evaluation.component';
+import { RequestCodeReviewService } from '../request-code-review/request-code-review.service';
 
 export interface DialogData {
   animal: string;
@@ -58,6 +59,7 @@ export class CodeReviewDetailComponent implements OnInit {
               private angularFirestore: AngularFirestore,
               public translateService: TranslateService,
               private dialogService: DialogService,
+              private requestCodeReviewService: RequestCodeReviewService,
   ) {
     this.item = data.item;
     this.paginationConfig.totalItems = this.item.githubPR.comments;
@@ -248,6 +250,15 @@ export class CodeReviewDetailComponent implements OnInit {
   public modifyCodeReview(event: MouseEvent): void {
     event?.preventDefault();
     event?.stopPropagation();
+
+    const dialogClosed = this.requestCodeReviewService.open({ codeReviewItem: this.item });
+    dialogClosed.subscribe(
+      (result) => {
+        if (!result) {
+          return;
+        }
+      },
+    );
   }
 
   public deleteCodeReview(event: MouseEvent): void {

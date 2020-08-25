@@ -1,11 +1,10 @@
 import { Direction } from '@angular/cdk/bidi';
 import { Injectable } from '@angular/core';
 import { DialogRole, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { Observable } from 'rxjs/Observable';
 import { CodeReviewDetailComponent } from './code-review-detail.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CodeReviewDetailService {
   private dialogRef: MatDialogRef<CodeReviewDetailComponent>;
@@ -30,6 +29,7 @@ export class CodeReviewDetailService {
 
   constructor(private dialog: MatDialog) {
   }
+
   public open(data?: any): MatDialogRef<CodeReviewDetailComponent> {
     const config: MatDialogConfig = this.dialogConfig;
     // config.maxWidth = '31.25rem';

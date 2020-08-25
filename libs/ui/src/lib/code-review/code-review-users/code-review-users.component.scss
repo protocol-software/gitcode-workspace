@@ -3,6 +3,8 @@
 .avatar {
   width: rem(40px);
   height: rem(40px);
+  min-width: rem(40px);
+  max-width: rem(40px);
   border: solid thin transparent;
   border-radius: 4px;
   box-sizing: border-box;

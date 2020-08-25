@@ -202,7 +202,7 @@ export class PublicCodeReviewComponent implements OnInit, OnDestroy {
           retry(2),
         )
         .subscribe((res) => {
-          const data = res.docs.map(doc => doc.data());
+          const data: any = res.docs.map(doc => Object.assign({ id: doc.id }, doc.data()));
           this.codeReviewItems = data;
           this.lastDocInResponse = res?.docs[res.docs.length - 1];
           this.hasMoreDocuments = res?.docs?.length >= this.pageSize;

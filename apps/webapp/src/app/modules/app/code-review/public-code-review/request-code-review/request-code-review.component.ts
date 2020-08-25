@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { IGitHubBranch, IGitHubRepo, IUser } from '@gitcode/data';
+import { ICodeReviewItem, IGitHubBranch, IGitHubRepo, IUser } from '@gitcode/data';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../../../../environments/environment';
@@ -21,8 +21,8 @@ export class RequestCodeReviewComponent implements OnInit {
   public isReviewRequestComplete = false;
 
   public ownerName: string;
-  public personalPublicRepos = [];
-  public branchesOnRepo = [];
+  public repos = [];
+  public branches = [];
 
   repoName = '';
   branchName = '';
@@ -33,6 +33,7 @@ export class RequestCodeReviewComponent implements OnInit {
   description: string;
   purpose: string;
 
+  public item: ICodeReviewItem;
   private creatingPR = false;
 
   constructor(
@@ -52,6 +53,49 @@ export class RequestCodeReviewComponent implements OnInit {
       description: ['', Validators.compose([Validators.required])],
       purpose: ['', Validators.compose([Validators.required])],
     });
+
+    this.monitorValueChanges();
+
+    this.item = this.data?.codeReviewItem;
+    if (this.item && Object.keys(this.item).length > 0) {
+      this.formGroup.patchValue({
+        repoName: this.item.githubPR?.base?.repo?.name,
+        branchName: this.item.githubPR?.head?.ref,
+        targetBranchName: this.item.githubPR?.base?.ref,
+        proficiency: this.item.proficiency,
+        title: this.item.title,
+        description: this.item.description,
+        purpose: this.item.purpose,
+      });
+    }
+  }
+
+  private monitorValueChanges(): void {
+    this.onRepoNameChanged();
+  }
+
+  private onRepoNameChanged(): void {
+    const control = this.formGroup.get('repoName');
+    control.valueChanges.subscribe(
+      (value) => {
+        this.repoName = value;
+
+        if (!value) {
+          return;
+        }
+
+        this.gitHubService.getBranches(this.ownerName, this.repoName).subscribe((result: IGitHubBranch[]) => {
+          this.branches = result;
+
+          if (this.item && Object.keys(this.item).length > 0) {
+            this.formGroup.patchValue({
+              branchName: this.item.githubPR?.head?.ref,
+              targetBranchName: this.item.githubPR?.base?.ref,
+            });
+          }
+        });
+      },
+    );
   }
 
   ngOnInit(): void {
@@ -62,7 +106,13 @@ export class RequestCodeReviewComponent implements OnInit {
       this.ownerName = this.user.providerUserData.github.login;
 
       this.gitHubService.getRepositories(this.ownerName).subscribe((result: IGitHubRepo[]) => {
-        this.personalPublicRepos = result;
+        this.repos = result;
+
+        if (this.item && Object.keys(this.item).length > 0) {
+          this.formGroup.patchValue({
+            repoName: this.item.githubPR?.base?.repo?.name,
+          });
+        }
       });
     });
   }
@@ -70,18 +120,34 @@ export class RequestCodeReviewComponent implements OnInit {
   repoChanged(event): void {
     this.repoName = event.source.value;
     this.branchName = '';
-    this.branchesOnRepo = [];
+    this.branches = [];
 
     if (this.repoName === '') {
       return;
     }
 
     this.gitHubService.getBranches(this.ownerName, this.repoName).subscribe((result: IGitHubBranch[]) => {
-      this.branchesOnRepo = result;
+      this.branches = result;
+
+      if (this.item && Object.keys(this.item).length > 0) {
+        this.formGroup.patchValue({
+          branchName: this.item.githubPR?.head?.ref,
+          targetBranchName: this.item.githubPR?.base?.ref,
+        });
+      }
     });
   }
 
-  public async requestCreateReview(event): Promise<void> {
+  public async onFormSubmitted(event, formValue): Promise<void> {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    await this.requestCreateReview(formValue);
+  }
+
+  public async requestCreateReview(formValue: any): Promise<void> {
     if (this.creatingPR) {
       return;
     }
@@ -92,17 +158,46 @@ export class RequestCodeReviewComponent implements OnInit {
     // await this.gitHubService.createBranch(this.ownerName, this.repoName, this.targetBranchName, ref.object.sha);
 
     const payload = {
-      title: this.title,
-      head: this.branchName,
-      base: this.targetBranchName,
-      body: `${this.description}\n\n${this.purpose}`,
+      title: formValue.title,
+      head: formValue.branchName,
+      base: formValue.targetBranchName,
+      body: `${formValue.description}\n\n${formValue.purpose}`,
       maintainer_can_modify: true,
       draft: false,
     };
 
+    const isEditMode = this.item && Object.keys(this.item).length > 0;
+    if (isEditMode) {
+      const data = {
+        title: formValue.title,
+        description: formValue.description,
+        head: formValue.branchName,
+        base: formValue.targetBranchName,
+        body: `${formValue.description}\n\n${formValue.purpose}`,
+        proficiency: formValue.proficiency,
+        purpose: formValue.purpose,
+      };
+
+      await this.angularFirestore
+                .collection('public-code-review')
+                .doc(this.item.id)
+                .set(data, { merge: true });
+
+      this.formGroup.enable();
+      this.creatingPR = false;
+
+      this.item.title = data.title;
+      this.item.description = data.description;
+      this.item.proficiency = data.proficiency;
+      this.item.purpose = data.purpose;
+
+      this.dialogRef.close(true);
+      return;
+    }
+
     const requests = [
-      this.gitHubService.getRepoLanguages(this.ownerName, this.repoName),
       this.gitHubService.createPR(this.ownerName, this.repoName, payload),
+      this.gitHubService.getRepoLanguages(this.ownerName, this.repoName),
     ];
 
     forkJoin(requests)
@@ -154,7 +249,7 @@ export class RequestCodeReviewComponent implements OnInit {
   }
 
   private async postPR(prResponse: any): Promise<void> {
-    const prNodeId = prResponse.node_id;
+    const prNodeId = prResponse?.node_id;
 
     const doc = {
       state: 'open',
@@ -163,13 +258,12 @@ export class RequestCodeReviewComponent implements OnInit {
       description: this.description,
       purpose: this.purpose,
       reviewers: [],
-      topics: prResponse.head.repo.topics || [],
+      topics: prResponse?.head?.repo?.topics || [],
       author: this.user,
       githubPR: prResponse,
       createdAt: (new Date()).toISOString(),
     };
 
-    console.log(doc);
     await this.angularFirestore.doc(`public-code-review/${prNodeId}`).set(doc, { merge: true });
   }
 

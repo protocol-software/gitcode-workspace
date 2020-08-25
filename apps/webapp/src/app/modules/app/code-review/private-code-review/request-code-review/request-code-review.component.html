@@ -3,7 +3,7 @@
     <mat-icon>close</mat-icon>
 </button>
 
-<mat-dialog-content >
+<mat-dialog-content>
     <div *ngIf="!isReviewRequestComplete; else isReviewRequestCompleteElse">
         <div class="title ">코드리뷰 요청하기</div>
         <!-- begin content-->
@@ -73,14 +73,20 @@
                 </div>
                 <div class="text-xs font-bold text-charcoal mb-2">이 프로잭트에 대해 간략히 설명해주세요.</div>
                 <div class="border rounded">
-                    <textarea class="w-full px-2 py-2" placeholder="예시) &#10;실시간 검색을 통해 호텔의 객실을 조회하고 예약할 수 있는 서비스입니다."></textarea>
+                    <textarea class="w-full px-2 py-2"
+                              placeholder="예시) &#10;실시간 검색을 통해 호텔의 객실을 조회하고 예약할 수 있는 서비스입니다."></textarea>
                 </div>
                 <div class="text-xs font-bold text-charcoal mb-2 mt-5">코드리뷰시 어떤 측면을 중심으로 받고 싶으신가요?</div>
                 <div class="border rounded">
-                    <textarea class="w-full px-2 py-2" placeholder="예시) &#10;코드 확장성과 재사용에 대해서 제대로 사용하는지 알고싶습니다. 코드 확장성과 재사용에 대해서 제대로 사용하는지 알고싶습니다. 코드 확장성과 재사용에 대해서 제대로 사용하는지 알고싶습니다. 코드 확장성과 재사용에 대해서 제대로 사용하는지 알고싶습니다."></textarea>
+                    <textarea class="w-full px-2 py-2"
+                              placeholder="예시) &#10;코드 확장성과 재사용에 대해서 제대로 사용하는지 알고싶습니다. 코드 확장성과 재사용에 대해서 제대로 사용하는지 알고싶습니다. 코드 확장성과 재사용에 대해서 제대로 사용하는지 알고싶습니다. 코드 확장성과 재사용에 대해서 제대로 사용하는지 알고싶습니다."></textarea>
                 </div>
                 <div class="flex justify-end mt-8">
-                    <button class="btn-green flex items-center px-2 py-1" mat-raised-button (click)="createReviewStep2($event)"><img src="/assets/icons/pr-open.svg" class="w-3 mr-1">코드리뷰 요청</button>
+                    <button class="btn-green flex items-center px-2 py-1"
+                            type="submit"
+                            mat-raised-button>
+                        <img src="/assets/icons/pr-open.svg" class="w-3 mr-1">코드리뷰 요청
+                    </button>
                 </div>
             </div>
 

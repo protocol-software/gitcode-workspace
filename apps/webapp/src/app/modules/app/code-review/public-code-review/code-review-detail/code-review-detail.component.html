@@ -16,7 +16,7 @@
             <div class="date">{{ item?.createdAt }}</div>
             <gitcode-tag [type]="'grade'">{{ item?.proficiency }}</gitcode-tag>
 
-            <button mat-button [matMenuTriggerFor]="beforeMenu" class="author-actions">
+            <button mat-button [matMenuTriggerFor]="beforeMenu" class="author-actions" *ngIf="isAuthor">
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #beforeMenu="matMenu" xPosition="before">

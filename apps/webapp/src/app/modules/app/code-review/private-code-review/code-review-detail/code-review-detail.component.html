@@ -17,7 +17,7 @@
             <gitcode-tag [type]="'grade'">{{ item?.proficiency }}</gitcode-tag>
 
             <button mat-button
-                    *ngIf="isAuthor || true"
+                    *ngIf="isAuthor"
                     [matMenuTriggerFor]="beforeMenu"
                     class="author-actions">
                 <mat-icon>more_vert</mat-icon>

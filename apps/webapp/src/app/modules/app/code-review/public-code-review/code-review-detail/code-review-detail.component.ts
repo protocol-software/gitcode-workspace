@@ -41,6 +41,7 @@ export class CodeReviewDetailComponent implements OnInit {
     totalItems: 0,
   };
   public mayHaveMoreComments = false;
+  public isAuthor = false;
 
   public previousText: string;
   public nextText: string;
@@ -64,6 +65,7 @@ export class CodeReviewDetailComponent implements OnInit {
     this.authService.user$.subscribe(
       (user) => {
         this.currentUser = user;
+        this.isAuthor = !!user && user?.uid === this.item?.author?.uid;
       },
     );
   }

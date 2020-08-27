@@ -214,7 +214,7 @@ export class RequestCodeReviewComponent implements OnInit {
         ),
       )
       .subscribe(async (result: any) => {
-        await this.postPR(result);
+        await this.postPR(result, formValue);
         this.addWebhook();
 
         alert('PR이 생성되었습니다!');
@@ -252,15 +252,15 @@ export class RequestCodeReviewComponent implements OnInit {
         });
   }
 
-  private async postPR(prResponse: any): Promise<void> {
+  private async postPR(prResponse: any, formValue: any): Promise<void> {
     const prNodeId = prResponse?.node_id;
 
     const doc = {
       state: 'open',
-      title: this.title,
-      proficiency: this.proficiency,
-      description: this.description,
-      purpose: this.purpose,
+      title: formValue.title,
+      proficiency: formValue.proficiency,
+      description: formValue.description,
+      purpose: formValue.purpose,
       reviewers: [],
       topics: prResponse?.head?.repo?.topics || [],
       author: this.user,

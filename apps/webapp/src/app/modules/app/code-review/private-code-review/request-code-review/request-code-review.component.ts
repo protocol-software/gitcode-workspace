@@ -181,7 +181,7 @@ export class RequestCodeReviewComponent implements OnInit {
       };
 
       await this.angularFirestore
-                .collection('public-code-review')
+                .collection('private-code-review')
                 .doc(this.item.id)
                 .set(data, { merge: true });
 
@@ -198,8 +198,8 @@ export class RequestCodeReviewComponent implements OnInit {
     }
 
     const requests = [
-      this.gitHubService.getRepoLanguages(this.ownerName, this.repoName),
       this.gitHubService.createPR(this.ownerName, this.repoName, payload),
+      this.gitHubService.getRepoLanguages(this.ownerName, this.repoName),
     ];
 
     forkJoin(requests)
@@ -212,7 +212,7 @@ export class RequestCodeReviewComponent implements OnInit {
         ),
       )
       .subscribe(async (result: any) => {
-        await this.postPR(result);
+        await this.postPR(result, formValue);
         this.addWebhook();
 
         alert('PR이 생성되었습니다!');
@@ -250,15 +250,15 @@ export class RequestCodeReviewComponent implements OnInit {
         });
   }
 
-  private async postPR(prResponse: any): Promise<void> {
+  private async postPR(prResponse: any, formValue: any): Promise<void> {
     const prNodeId = prResponse?.node_id;
 
     const doc = {
       state: 'open',
-      title: this.title,
-      proficiency: this.proficiency,
-      description: this.description,
-      purpose: this.purpose,
+      title: formValue.title,
+      proficiency: formValue.proficiency,
+      description: formValue.description,
+      purpose: formValue.purpose,
       reviewers: [],
       topics: prResponse?.head?.repo?.topics || [],
       author: this.user,
@@ -266,7 +266,7 @@ export class RequestCodeReviewComponent implements OnInit {
       createdAt: (new Date()).toISOString(),
     };
 
-    await this.angularFirestore.doc(`public-code-review/${prNodeId}`).set(doc, { merge: true });
+    await this.angularFirestore.doc(`private-code-review/${prNodeId}`).set(doc, { merge: true });
   }
 
   public closePopup(event): void {

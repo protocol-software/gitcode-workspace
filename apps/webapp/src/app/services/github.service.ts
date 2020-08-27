@@ -53,6 +53,14 @@ export class GitHubService {
     return this.http.get<IGitHubRepo[]>(endpoint, { headers: this.getHeaders() });
   }
 
+  public getAuthenticatedUserRepositories(): Observable<IGitHubRepo[]> {
+    const endpoint = UrlAssembler(this.baseApiUrl)
+      .template(`/user/repos`)
+      .toString();
+
+    return this.http.get<IGitHubRepo[]>(endpoint, { headers: this.getHeaders() });
+  }
+
   public getBranches(owner: string, repo: string): Observable<IGitHubBranch[]> {
     const endpoint = UrlAssembler(this.baseApiUrl)
       .template(`/repos/${owner}/${repo}/branches`)

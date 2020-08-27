@@ -103,16 +103,19 @@ export class RequestCodeReviewComponent implements OnInit {
       this.user = user;
       this.ownerName = this.user.providerUserData.github.login;
 
-      // TODO: get private repos instead of public repos.
-      this.gitHubService.getRepositories(this.ownerName).subscribe((result: IGitHubRepo[]) => {
-        this.repos = result;
+      this.gitHubService.getAuthenticatedUserRepositories()
+          .pipe(
+            map(repos => repos.filter(repo => repo.private)),
+          )
+          .subscribe((result: IGitHubRepo[]) => {
+            this.repos = result;
 
-        if (this.item && Object.keys(this.item).length > 0) {
-          this.formGroup.patchValue({
-            repoName: this.item.githubPR?.base?.repo?.name,
+            if (this.item && Object.keys(this.item).length > 0) {
+              this.formGroup.patchValue({
+                repoName: this.item.githubPR?.base?.repo?.name,
+              });
+            }
           });
-        }
-      });
     });
   }
 

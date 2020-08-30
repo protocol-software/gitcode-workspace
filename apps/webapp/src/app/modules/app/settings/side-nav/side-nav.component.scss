@@ -1,0 +1,24 @@
+@import "variables";
+
+.user-block {
+  .image-wrapper {
+    @include flex-center();
+    align-self: center;
+    border: solid thin transparent;
+    border-radius: 3px;
+    width: rem(77px);
+    height: rem(77px);
+    overflow: hidden;
+    margin: 0 auto 2rem auto;
+
+    img {
+      @include fit-image(cover);
+    }
+  }
+}
+
+:host(.side-nav) {
+  @include flex-column();
+  width: 100%;
+  height: 100%;
+}
